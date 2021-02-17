@@ -6,7 +6,7 @@ function ArtistItem({ artist }) {
   const { id, name, coverArt } = artist;
 
   return (
-    <Link to={`/artist/${id}`} className={`block`}>
+    <Link to={`/artists/${id}`} className={`block`}>
       <AlbumArt id={coverArt} description={name} />
       <h1>
         {name} (id: {id})

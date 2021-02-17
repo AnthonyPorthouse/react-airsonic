@@ -13,6 +13,16 @@ export async function ping(serverUrl, username, password) {
   return fetch(`${serverUrl}/rest/ping?${authParams}`);
 }
 
+export async function getAllAlbums(serverUrl, username, password) {
+  const authParams = generateAuthParams(username, password);
+  const result = await fetch(
+    `${serverUrl}/rest/getAlbumList2?type=alphabeticalByArtist&size=500&${authParams}`
+  );
+  const json = await result.json();
+
+  return json["subsonic-response"].albumList2.album;
+}
+
 export async function getArtists(serverUrl, username, password) {
   const authParams = generateAuthParams(username, password);
   const result = await fetch(`${serverUrl}/rest/getArtists?${authParams}`);
@@ -46,6 +56,27 @@ export async function getArtist(id, serverUrl, username, password) {
   return [artist, albums];
 }
 
+export async function getAlbum(id, serverUrl, username, password) {
+  const authParams = generateAuthParams(username, password);
+  const result = await fetch(
+    `${serverUrl}/rest/getAlbum?id=${id}&${authParams}`
+  );
+  const json = await result.json();
+
+  const album = {
+    id: json["subsonic-response"].album.id,
+    name: json["subsonic-response"].album.name,
+    coverArt: json["subsonic-response"].album.coverArt,
+    songCount: json["subsonic-response"].album.songCount,
+    artist: json["subsonic-response"].album.artist,
+    artistId: json["subsonic-response"].album.artistId,
+  };
+
+  const tracks = json["subsonic-response"].album.song;
+
+  return [album, tracks];
+}
+
 export function getCoverArtUrl(id, serverUrl, username, password) {
   const authParams = generateAuthParams(username, password);
   return `${serverUrl}/rest/getCoverArt?id=${id}&${authParams}`;
@@ -53,6 +84,8 @@ export function getCoverArtUrl(id, serverUrl, username, password) {
 
 const API = {
   ping,
+  getAllAlbums,
+  getAlbum,
   getArtists,
   getArtist,
   getCoverArtUrl,

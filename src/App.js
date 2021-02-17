@@ -4,20 +4,25 @@ import { selectSuccess } from "./features/authSlice";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Artists from "./Pages/Artists";
 import Artist from "./Pages/Artist";
+import Albums from "./Pages/Albums";
+import Nav from "./Components/Nav";
+import Album from "./Pages/Album";
 
 function App() {
   return (
     <main className={`fixed w-screen h-screen overflow-y-auto px-3 pt-3`}>
+      <Nav />
+
       <Switch>
-        <Route path={"/login"}>
-          <LogIn />
-        </Route>
-
-        <AuthenticatedRoute path={"/"} exact={true}>
-          <Artists />
-        </AuthenticatedRoute>
-
-        <AuthenticatedRoute path={"/artist/:id"} children={<Artist />} />
+        <Route path={"/login"} children={<LogIn />} />
+        <AuthenticatedRoute path={"/"} exact={true} children={<Albums />} />
+        <AuthenticatedRoute
+          path={"/artists"}
+          exact={true}
+          children={<Artists />}
+        />
+        <AuthenticatedRoute path={"/artists/:id"} children={<Artist />} />
+        <AuthenticatedRoute path={"/albums/:id"} children={<Album />} />
       </Switch>
     </main>
   );
