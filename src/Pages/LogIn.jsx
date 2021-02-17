@@ -1,12 +1,26 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from "react-redux";
-import {setServer, setPassword, setUsername, selectServer, selectPassword, selectUsername, ping} from './features/authSlice';
+import {
+    setServer,
+    setPassword,
+    setUsername,
+    selectServer,
+    selectPassword,
+    selectUsername,
+    ping,
+    selectSuccess
+} from '../features/authSlice';
+
+import {useHistory} from 'react-router-dom';
 
 function LogIn() {
 
     const server = useSelector(selectServer);
     const username = useSelector(selectUsername);
     const password = useSelector(selectPassword);
+    const loggedIn = useSelector(selectSuccess);
+
+    const history = useHistory();
 
     const dispatch = useDispatch();
 
@@ -16,6 +30,12 @@ function LogIn() {
         e.preventDefault();
         dispatch(ping({server, username, password}));
     }
+
+    useEffect(() => {
+        if (loggedIn) {
+            history.push('/');
+        }
+    }, [loggedIn, history])
 
     return (
         <div className={`w-64`}>

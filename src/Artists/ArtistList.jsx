@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import Artist from "./Artist";
+import ArtistItem from "./ArtistItem";
 import {useDispatch, useSelector} from "react-redux";
 import {getArtists, selectArtists, selectArtistsLoaded} from "../features/artistSlice";
 import {selectAuth} from "../features/authSlice";
@@ -19,7 +19,7 @@ function ArtistList() {
 
     return (
         <div className={`flex gap-6`}>
-            {artists.map((artist) => <Artist key={artist.id} artist={artist} />)}
+            {artists.map((artist) => <ArtistItem key={artist.id} artist={artist} />)}
         </div>
     )
 }
