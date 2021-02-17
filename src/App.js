@@ -1,8 +1,9 @@
 import LogIn from "./Pages/LogIn";
-import ArtistList from "./Artists/ArtistList.jsx";
 import {useSelector} from "react-redux";
 import {selectSuccess} from "./features/authSlice";
 import {Switch, Route, Redirect} from "react-router-dom";
+import Artists from "./Pages/Artists";
+import Artist from "./Pages/Artist";
 
 function App() {
     return (
@@ -14,8 +15,10 @@ function App() {
                 </Route>
 
                 <AuthenticatedRoute path={"/"} exact={true}>
-                    <ArtistList />
+                    <Artists />
                 </AuthenticatedRoute>
+
+                <AuthenticatedRoute path={"/artist/:id"} children={<Artist/>} />
             </Switch>
         </main>
     );
