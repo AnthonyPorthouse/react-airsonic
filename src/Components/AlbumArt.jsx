@@ -1,17 +1,17 @@
 import React from "react";
-import {useSelector} from "react-redux";
-import {selectAuth} from "../features/authSlice";
-import {getCoverArtUrl} from '../features/api';
+import { useSelector } from "react-redux";
+import { selectAuth } from "../features/authSlice";
+import { getCoverArtUrl } from "../features/api";
 
-function AlbumArt({id, description}) {
-    const auth = useSelector(selectAuth);
+function AlbumArt({ id, description }) {
+  const auth = useSelector(selectAuth);
 
-    const url = getCoverArtUrl(id, auth.server, auth.username, auth.password);
-    return (
-        <div className={`rounded overflow-hidden`}>
-            <img className={`w-64 h-64`} src={url} alt={description} loading="lazy"/>
-        </div>
-    )
+  const url = getCoverArtUrl(id, auth.server, auth.username, auth.password);
+  return (
+    <div className={`rounded overflow-hidden`}>
+      <img className={`w-64 h-64`} src={url} alt={description} loading="lazy" />
+    </div>
+  );
 }
 
-export default AlbumArt
+export default AlbumArt;

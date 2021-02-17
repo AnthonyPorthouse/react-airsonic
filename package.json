@@ -47,6 +47,7 @@
     "@tailwindcss/postcss7-compat": "^2.0.3",
     "autoprefixer": "^9.8.6",
     "postcss": "^7.0.35",
+    "prettier": "2.2.1",
     "redux-devtools": "^3.7.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3"
   }
