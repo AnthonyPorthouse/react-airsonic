@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectAuth } from "../features/authSlice";
 import { getAlbum, selectAlbum, selectTracks } from "../features/albumSlice";
 import { useEffect, useState } from "react";
+import TrackList from "../Components/TrackList";
 
 function Album() {
   const { id } = useParams();
@@ -24,14 +25,7 @@ function Album() {
 
   return (
     <div>
-      <ul>
-        {tracks.map((track) => (
-          <li key={track.id}>
-            {track.discNumber ? `${track.discNumber} / ` : null} {track.track} -{" "}
-            {track.title}
-          </li>
-        ))}
-      </ul>
+      <TrackList tracks={tracks} />
     </div>
   );
 }
