@@ -7,7 +7,7 @@ import Artist from "./Pages/Artist";
 
 function App() {
     return (
-        <main className={`fixed w-screen h-screen overflow-y-auto`}>
+        <main className={`fixed w-screen h-screen overflow-y-auto px-3 pt-3`}>
 
             <Switch>
                 <Route path={"/login"}>

@@ -28,7 +28,7 @@ function Artist() {
     }, [artist, auth, dispatch, id, loading])
 
     return <div>
-        <h1>{artist.name}</h1>
+        <h1 className={`text-2xl`}>{artist.name}</h1>
 
         <AlbumList albums={albums}/>
     </div>

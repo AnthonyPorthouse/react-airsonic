@@ -38,26 +38,28 @@ function LogIn() {
     }, [loggedIn, history])
 
     return (
-        <div className={`w-64`}>
-            <form className={`my-auto grid grid-cols-1 gap-6`} onSubmit={submit}>
-                <label className={`block w-full`}>
-                    Server
-                    <input className={`block w-full`} type="text" value={server}
-                           onChange={(e) => dispatch(setServer(e.target.value))}/>
-                </label>
-                <label className={`block w-full`}>
-                    Username
-                    <input className={`block w-full`} type="text" value={username}
-                           onChange={(e) => dispatch(setUsername(e.target.value))}/>
-                </label>
-                <label className={`block w-full`}>
-                    Password
-                    <input className={`block w-full`} type="password" value={password}
-                           onChange={(e) => dispatch(setPassword(e.target.value))}/>
-                </label>
-                <button className={`block w-full`}>Log In</button>
-            </form>
-            {result ? <div>{result['subsonic-response'].status}</div> : null}
+        <div className={`flex items-center h-full`}>
+            <div className={`mx-auto w-64`}>
+                <form className={`grid grid-cols-1 gap-6`} onSubmit={submit}>
+                    <label className={`block w-full`}>
+                        Server
+                        <input className={`block w-full`} type="text" value={server}
+                               onChange={(e) => dispatch(setServer(e.target.value))}/>
+                    </label>
+                    <label className={`block w-full`}>
+                        Username
+                        <input className={`block w-full`} type="text" value={username}
+                               onChange={(e) => dispatch(setUsername(e.target.value))}/>
+                    </label>
+                    <label className={`block w-full`}>
+                        Password
+                        <input className={`block w-full`} type="password" value={password}
+                               onChange={(e) => dispatch(setPassword(e.target.value))}/>
+                    </label>
+                    <button className={`block w-full`}>Log In</button>
+                </form>
+                {result ? <div>{result['subsonic-response'].status}</div> : null}
+            </div>
         </div>
     )
 }

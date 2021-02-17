@@ -1,10 +1,11 @@
 import Album from "./Album";
+import Grid from "./Grid";
 
 function AlbumList({albums}) {
     return (
-        <div>
+        <Grid>
             {albums.map((album) => <Album key={album.id} album={album} />)}
-        </div>
+        </Grid>
     )
 }
 
