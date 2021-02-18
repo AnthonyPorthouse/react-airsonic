@@ -4,6 +4,7 @@ import artistsReducer from "../features/artistsSlice";
 import artistReducer from "../features/artistSlice";
 import albumsReducer from "../features/albumsSlice";
 import albumReducer from "../features/albumSlice";
+import playlistReducer from "../features/playlistSlice";
 
 export default configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export default configureStore({
     album: albumReducer,
     artists: artistsReducer,
     artist: artistReducer,
+    playlist: playlistReducer,
   },
 });

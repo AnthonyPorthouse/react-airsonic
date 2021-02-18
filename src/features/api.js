@@ -82,6 +82,11 @@ export function getCoverArtUrl(id, serverUrl, username, password) {
   return `${serverUrl}/rest/getCoverArt?id=${id}&${authParams}`;
 }
 
+export function getStreamUrl(id, serverUrl, username, password) {
+  const authParams = generateAuthParams(username, password);
+  return `${serverUrl}/rest/stream?id=${id}&${authParams}`;
+}
+
 const API = {
   ping,
   getAllAlbums,
@@ -89,6 +94,7 @@ const API = {
   getArtists,
   getArtist,
   getCoverArtUrl,
+  getStreamUrl,
 };
 
 export default API;

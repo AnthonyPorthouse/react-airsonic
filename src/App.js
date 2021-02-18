@@ -8,21 +8,29 @@ import Albums from "./Pages/Albums";
 import Nav from "./Components/Nav";
 import Album from "./Pages/Album";
 
+import MediaPlayer from "./Components/MediaPlayer";
+
 function App() {
   return (
     <main className={`fixed w-screen h-screen overflow-y-auto px-3 pt-3`}>
       <Nav />
 
       <Switch>
-        <Route path={"/login"} children={<LogIn />} />
-        <AuthenticatedRoute path={"/"} exact={true} children={<Albums />} />
-        <AuthenticatedRoute
-          path={"/artists"}
-          exact={true}
-          children={<Artists />}
-        />
-        <AuthenticatedRoute path={"/artists/:id"} children={<Artist />} />
-        <AuthenticatedRoute path={"/albums/:id"} children={<Album />} />
+        <Route path={"/login"}>
+          <LogIn />
+        </Route>
+        <AuthenticatedRoute path={"/"} exact={true}>
+          <Albums />
+        </AuthenticatedRoute>
+        <AuthenticatedRoute path={"/artists"} exact={true}>
+          <Artists />
+        </AuthenticatedRoute>
+        <AuthenticatedRoute path={"/artists/:id"}>
+          <Artist />
+        </AuthenticatedRoute>
+        <AuthenticatedRoute path={"/albums/:id"}>
+          <Album />
+        </AuthenticatedRoute>
       </Switch>
     </main>
   );

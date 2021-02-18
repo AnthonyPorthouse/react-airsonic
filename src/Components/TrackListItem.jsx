@@ -1,13 +1,19 @@
 import { addSeconds, lightFormat } from "date-fns";
 import { ReactComponent as Play } from "../images/play.svg";
+import { useDispatch } from "react-redux";
+import { getNextTrack, setTracks } from "../features/playlistSlice";
 
 function TrackListItem({ track }) {
   const start = new Date(0, 0, 0, 0, 0, 0, 0);
   const end = addSeconds(start, track.duration);
   const time = lightFormat(end, "m:ss");
 
+  const dispatch = useDispatch();
+
   const play = (e) => {
     e.preventDefault();
+    dispatch(setTracks([track.id]));
+    dispatch(getNextTrack());
   };
 
   return (
