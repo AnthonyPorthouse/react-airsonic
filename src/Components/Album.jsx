@@ -5,10 +5,17 @@ function Album({ album }) {
   const { id, name, artist, coverArt } = album;
 
   return (
-    <Link to={`/albums/${id}`} className={`block w-64 border`}>
+    <Link
+      to={`/albums/${id}`}
+      className={`block w-64 relative rounded overflow-hidden hover:shadow-lg`}
+    >
       <AlbumArt id={coverArt} description={name} />
-      <h1 className={`text-xl`}>{name}</h1>
-      <h2>{artist}</h2>
+      <div
+        className={`absolute top-0 left-0 w-full h-full transition-all duration-200 ease-in-out bg-white opacity-0 hover:opacity-75 p-1 flex flex-col justify-center text-center`}
+      >
+        <h1 className={`text-xl`}>{name}</h1>
+        <h2>{artist}</h2>
+      </div>
     </Link>
   );
 }

@@ -14,7 +14,7 @@ function App() {
 
   return (
     <main
-      className={`fixed w-screen h-screen flex flex-col overflow-y-auto ${
+      className={`fixed w-screen h-screen flex flex-col overflow-y-auto bg-gray-50 ${
         loggedIn ? "pt-20 pb-8" : null
       }`}
     >
