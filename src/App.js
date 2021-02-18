@@ -7,15 +7,20 @@ import Artist from "./Pages/Artist";
 import Albums from "./Pages/Albums";
 import Nav from "./Components/Nav";
 import Album from "./Pages/Album";
+import MediaPlayer from "./Components/MediaPlayer";
 
 function App() {
+  const loggedIn = useSelector(selectSuccess);
+
   return (
     <main
-      className={`fixed w-screen h-screen flex flex-col overflow-y-auto pt-20 pb-8`}
+      className={`fixed w-screen h-screen flex flex-col overflow-y-auto ${
+        loggedIn ? "pt-20 pb-8" : null
+      }`}
     >
-      <Nav />
+      {loggedIn ? <Nav /> : null}
 
-      <div className={`px-6`}>
+      <div className={`px-6 flex-grow flex`}>
         <Switch>
           <Route path={"/login"}>
             <LogIn />
@@ -37,6 +42,8 @@ function App() {
           </AuthenticatedRoute>
         </Switch>
       </div>
+
+      {loggedIn ? <MediaPlayer /> : null}
     </main>
   );
 }

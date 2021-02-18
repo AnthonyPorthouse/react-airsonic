@@ -2,7 +2,7 @@ import AlbumArt from "./AlbumArt";
 
 function AlbumHeader({ album }) {
   return (
-    <div className={`flex gap-6`}>
+    <div className={`flex flex-col gap-6 w-64`}>
       <AlbumArt id={album.coverArt} description={album.title} />
       <div className={`flex-auto`}>
         <h1 className={`text-3xl`}>{album.name}</h1>

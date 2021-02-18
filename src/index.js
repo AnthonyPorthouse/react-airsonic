@@ -6,7 +6,6 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import store from "./app/store";
 import { BrowserRouter } from "react-router-dom";
-import MediaPlayer from "./Components/MediaPlayer";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,8 +13,6 @@ ReactDOM.render(
       <BrowserRouter>
         <App />
       </BrowserRouter>
-
-      <MediaPlayer />
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
