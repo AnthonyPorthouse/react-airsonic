@@ -8,9 +8,7 @@ function ArtistItem({ artist }) {
   return (
     <Link to={`/artists/${id}`} className={`block`}>
       <AlbumArt id={coverArt} description={name} />
-      <h1>
-        {name} (id: {id})
-      </h1>
+      <h1>{name}</h1>
     </Link>
   );
 }

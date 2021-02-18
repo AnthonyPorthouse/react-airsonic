@@ -56,6 +56,7 @@ export async function getAlbum({ id, server, username, token, salt }) {
   const album = {
     id: json["subsonic-response"].album.id,
     name: json["subsonic-response"].album.name,
+    year: json["subsonic-response"].album.year,
     coverArt: json["subsonic-response"].album.coverArt,
     songCount: json["subsonic-response"].album.songCount,
     artist: json["subsonic-response"].album.artist,

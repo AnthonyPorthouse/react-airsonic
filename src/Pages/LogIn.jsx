@@ -39,7 +39,7 @@ function LogIn() {
   }, [loggedIn, history]);
 
   return (
-    <div className={`flex items-center h-full`}>
+    <div className={`flex flex-auto items-center h-auto`}>
       <div className={`mx-auto w-64`}>
         <form className={`grid grid-cols-1 gap-6`} onSubmit={submit}>
           <label className={`block w-full`}>

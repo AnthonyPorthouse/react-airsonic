@@ -4,6 +4,7 @@ import { selectAuth } from "../features/authSlice";
 import { getAlbum, selectAlbum, selectTracks } from "../features/albumSlice";
 import { useEffect, useState } from "react";
 import TrackList from "../Components/TrackList";
+import AlbumHeader from "../Components/AlbumHeader";
 
 function Album() {
   const { id } = useParams();
@@ -24,7 +25,8 @@ function Album() {
   }, [album, auth, dispatch, id, loading]);
 
   return (
-    <div>
+    <div className={`flex flex-col gap-6`}>
+      <AlbumHeader album={album} />
       <TrackList tracks={tracks} />
     </div>
   );

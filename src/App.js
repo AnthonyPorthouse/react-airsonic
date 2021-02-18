@@ -10,29 +10,33 @@ import Album from "./Pages/Album";
 
 function App() {
   return (
-    <main className={`fixed w-screen h-screen overflow-y-auto px-3 pt-3`}>
+    <main
+      className={`fixed w-screen h-screen flex flex-col overflow-y-auto pt-20 pb-8`}
+    >
       <Nav />
 
-      <Switch>
-        <Route path={"/login"}>
-          <LogIn />
-        </Route>
-        <AuthenticatedRoute path={"/"} exact={true}>
-          <Albums />
-        </AuthenticatedRoute>
-        <AuthenticatedRoute path={"/artists"} exact={true}>
-          <Artists />
-        </AuthenticatedRoute>
-        <AuthenticatedRoute path={"/artists/:id"}>
-          <Artist />
-        </AuthenticatedRoute>
-        <AuthenticatedRoute path={"/albums"} exact={true}>
-          <Albums />
-        </AuthenticatedRoute>
-        <AuthenticatedRoute path={"/albums/:id"}>
-          <Album />
-        </AuthenticatedRoute>
-      </Switch>
+      <div className={`px-6`}>
+        <Switch>
+          <Route path={"/login"}>
+            <LogIn />
+          </Route>
+          <AuthenticatedRoute path={"/"} exact={true}>
+            <Albums />
+          </AuthenticatedRoute>
+          <AuthenticatedRoute path={"/artists"} exact={true}>
+            <Artists />
+          </AuthenticatedRoute>
+          <AuthenticatedRoute path={"/artists/:id"}>
+            <Artist />
+          </AuthenticatedRoute>
+          <AuthenticatedRoute path={"/albums"} exact={true}>
+            <Albums />
+          </AuthenticatedRoute>
+          <AuthenticatedRoute path={"/albums/:id"}>
+            <Album />
+          </AuthenticatedRoute>
+        </Switch>
+      </div>
     </main>
   );
 }
