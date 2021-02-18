@@ -17,20 +17,20 @@ function TrackListItem({ track }) {
   };
 
   return (
-    <div
-      className={`grid grid-flow-col auto-cols-max gap-6 align-items-center`}
-    >
-      <button onClick={play} className={`w-8 h-8`}>
+    <div className={`flex gap-6`}>
+      <button onClick={play} className={`inline-block w-6`}>
         <span className={`sr-only`}>Play Track</span>
-        <Play className={`w-4`} />
+        <Play className={`w-full`} />
       </button>
-      <span className={`w-12 text-right`}>
-        {track.discNumber ? `${track.discNumber} / ` : null}
-        {` ${track.track} `}
-      </span>
-      <span className={``}>{track.artist}</span>
-      <span className={`w-full`}>{track.title}</span>
-      <span className={`text-right`}>{time}</span>
+      <div className={`flex-grow flex gap-6`}>
+        <span className={`w-1/12 text-right`}>
+          {track.discNumber ? `${track.discNumber} / ` : null}
+          {` ${track.track} `}
+        </span>
+        <span className={`w-1/6 truncate`}>{track.artist}</span>
+        <span className={`flex-grow truncate`}>{track.title}</span>
+        <span className={`w-1/12 text-right`}>{time}</span>
+      </div>
     </div>
   );
 }

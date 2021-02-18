@@ -6,7 +6,7 @@ import { getCoverArtUrl } from "../features/api";
 function AlbumArt({ id, description }) {
   const auth = useSelector(selectAuth);
 
-  const url = getCoverArtUrl(id, auth.server, auth.username, auth.password);
+  const url = getCoverArtUrl({ id, ...auth });
   return (
     <div className={`rounded overflow-hidden`}>
       <img className={`w-64 h-64`} src={url} alt={description} loading="lazy" />

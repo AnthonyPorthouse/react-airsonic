@@ -4,13 +4,7 @@ import API from "./api";
 export const getArtist = createAsyncThunk(
   "artist/getArtist",
   async (req, thunkAPI) => {
-    const response = await API.getArtist(
-      req.id,
-      req.server,
-      req.username,
-      req.password
-    );
-    return response;
+    return await API.getArtist(req);
   }
 );
 

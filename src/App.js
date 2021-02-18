@@ -28,6 +28,9 @@ function App() {
         <AuthenticatedRoute path={"/artists/:id"}>
           <Artist />
         </AuthenticatedRoute>
+        <AuthenticatedRoute path={"/albums"} exact={true}>
+          <Albums />
+        </AuthenticatedRoute>
         <AuthenticatedRoute path={"/albums/:id"}>
           <Album />
         </AuthenticatedRoute>

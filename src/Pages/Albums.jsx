@@ -14,7 +14,7 @@ function Albums() {
 
   useEffect(() => {
     if (!loading) {
-      dispatch(getAllAlbums({ ...auth }));
+      dispatch(getAllAlbums(auth));
       setLoading(true);
     }
   }, [auth, dispatch, loading]);

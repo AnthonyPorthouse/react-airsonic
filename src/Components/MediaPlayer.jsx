@@ -10,7 +10,7 @@ function MediaPlayer() {
   const audio = useRef();
   const currentTrack = useSelector(selectCurrentTrack);
   const currentTrackUrl = useMemo(
-    () => getStreamUrl(currentTrack, auth.server, auth.username, auth.password),
+    () => getStreamUrl({ id: currentTrack, ...auth }),
     [currentTrack, auth]
   );
 

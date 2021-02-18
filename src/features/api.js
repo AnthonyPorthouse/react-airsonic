@@ -1,31 +1,25 @@
-import md5 from "md5";
-import uuid from "uuid";
-
-function generateAuthParams(username, password) {
-  const salt = uuid.v4();
-  const token = md5(`${password}${salt}`);
-
+function generateAuthParams({ username, token, salt }) {
   return `u=${username}&t=${token}&s=${salt}&v=1.15.0&c=react-airsonic&f=json`;
 }
 
-export async function ping(serverUrl, username, password) {
-  const authParams = generateAuthParams(username, password);
-  return fetch(`${serverUrl}/rest/ping?${authParams}`);
+export async function ping({ server, username, token, salt }) {
+  const authParams = generateAuthParams({ username, token, salt });
+  return fetch(`${server}/rest/ping?${authParams}`);
 }
 
-export async function getAllAlbums(serverUrl, username, password) {
-  const authParams = generateAuthParams(username, password);
+export async function getAllAlbums({ server, username, token, salt }) {
+  const authParams = generateAuthParams({ username, token, salt });
   const result = await fetch(
-    `${serverUrl}/rest/getAlbumList2?type=alphabeticalByArtist&size=500&${authParams}`
+    `${server}/rest/getAlbumList2?type=alphabeticalByArtist&size=500&${authParams}`
   );
   const json = await result.json();
 
   return json["subsonic-response"].albumList2.album;
 }
 
-export async function getArtists(serverUrl, username, password) {
-  const authParams = generateAuthParams(username, password);
-  const result = await fetch(`${serverUrl}/rest/getArtists?${authParams}`);
+export async function getArtists({ server, username, token, salt }) {
+  const authParams = generateAuthParams({ username, token, salt });
+  const result = await fetch(`${server}/rest/getArtists?${authParams}`);
   const json = await result.json();
 
   const artists = [];
@@ -37,11 +31,9 @@ export async function getArtists(serverUrl, username, password) {
   return artists;
 }
 
-export async function getArtist(id, serverUrl, username, password) {
-  const authParams = generateAuthParams(username, password);
-  const result = await fetch(
-    `${serverUrl}/rest/getArtist?id=${id}&${authParams}`
-  );
+export async function getArtist({ id, server, username, token, salt }) {
+  const authParams = generateAuthParams({ username, token, salt });
+  const result = await fetch(`${server}/rest/getArtist?id=${id}&${authParams}`);
   const json = await result.json();
 
   const artist = {
@@ -56,11 +48,9 @@ export async function getArtist(id, serverUrl, username, password) {
   return [artist, albums];
 }
 
-export async function getAlbum(id, serverUrl, username, password) {
-  const authParams = generateAuthParams(username, password);
-  const result = await fetch(
-    `${serverUrl}/rest/getAlbum?id=${id}&${authParams}`
-  );
+export async function getAlbum({ id, server, username, token, salt }) {
+  const authParams = generateAuthParams({ username, token, salt });
+  const result = await fetch(`${server}/rest/getAlbum?id=${id}&${authParams}`);
   const json = await result.json();
 
   const album = {
@@ -77,14 +67,14 @@ export async function getAlbum(id, serverUrl, username, password) {
   return [album, tracks];
 }
 
-export function getCoverArtUrl(id, serverUrl, username, password) {
-  const authParams = generateAuthParams(username, password);
-  return `${serverUrl}/rest/getCoverArt?id=${id}&${authParams}`;
+export function getCoverArtUrl({ id, server, username, token, salt }) {
+  const authParams = generateAuthParams({ username, token, salt });
+  return `${server}/rest/getCoverArt?id=${id}&${authParams}`;
 }
 
-export function getStreamUrl(id, serverUrl, username, password) {
-  const authParams = generateAuthParams(username, password);
-  return `${serverUrl}/rest/stream?id=${id}&${authParams}`;
+export function getStreamUrl({ id, server, username, token, salt }) {
+  const authParams = generateAuthParams({ username, token, salt });
+  return `${server}/rest/stream?id=${id}&${authParams}`;
 }
 
 const API = {

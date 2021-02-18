@@ -4,7 +4,7 @@ import API from "./api";
 export const getAllAlbums = createAsyncThunk(
   "albums/getAllAlbums",
   async (req, thunkAPI) => {
-    return await API.getAllAlbums(req.server, req.username, req.password);
+    return await API.getAllAlbums(req);
   }
 );
 

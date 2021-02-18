@@ -9,6 +9,7 @@ import {
   selectUsername,
   ping,
   selectSuccess,
+  selectAuth,
 } from "../features/authSlice";
 
 import { useHistory } from "react-router-dom";
@@ -18,6 +19,7 @@ function LogIn() {
   const username = useSelector(selectUsername);
   const password = useSelector(selectPassword);
   const loggedIn = useSelector(selectSuccess);
+  const auth = useSelector(selectAuth);
 
   const history = useHistory();
 
@@ -27,7 +29,7 @@ function LogIn() {
 
   const submit = (e) => {
     e.preventDefault();
-    dispatch(ping({ server, username, password }));
+    dispatch(ping(auth));
   };
 
   useEffect(() => {
