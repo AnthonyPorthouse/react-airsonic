@@ -28,7 +28,7 @@ function TrackListItem({ track }) {
           {` ${track.track} `}
         </span>
         <span className={`w-1/6 truncate`}>{track.artist}</span>
-        <span className={`flex-grow truncate`}>{track.title}</span>
+        <span className={`flex-grow w-0 truncate`}>{track.title}</span>
         <span className={`w-1/12 text-right`}>{time}</span>
       </div>
     </div>
