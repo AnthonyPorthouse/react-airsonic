@@ -8,8 +8,6 @@ import Albums from "./Pages/Albums";
 import Nav from "./Components/Nav";
 import Album from "./Pages/Album";
 
-import MediaPlayer from "./Components/MediaPlayer";
-
 function App() {
   return (
     <main className={`fixed w-screen h-screen overflow-y-auto px-3 pt-3`}>

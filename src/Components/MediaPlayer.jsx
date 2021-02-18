@@ -19,11 +19,17 @@ function MediaPlayer() {
       return;
     }
 
-    if (audio.current) {
-      audio.current.pause();
+    if (!audio.current) {
+      audio.current = new Audio(currentTrackUrl);
+      audio.current.play();
+      return;
     }
-    audio.current = new Audio(currentTrackUrl);
-    audio.current.play();
+
+    if (audio.current?.src !== currentTrackUrl) {
+      audio.current.pause();
+      audio.current = new Audio(currentTrackUrl);
+      audio.current.play();
+    }
   }, [audio, auth, currentTrack, currentTrackUrl]);
 
   return <div />;

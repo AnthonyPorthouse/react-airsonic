@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ArtistList from "../Components/ArtistList";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -14,11 +14,16 @@ function Artists() {
   const artists = useSelector(selectArtists);
   const auth = useSelector(selectAuth);
 
+  const [loading, setLoading] = useState(false);
+
+  const fetchAlbums = !loading && !artistsLoaded;
+
   useEffect(() => {
-    if (!artistsLoaded) {
+    if (fetchAlbums) {
       dispatch(getArtists(auth));
+      setLoading(true);
     }
-  }, [artistsLoaded, dispatch, auth]);
+  }, [fetchAlbums, dispatch, auth]);
 
   return (
     <div>

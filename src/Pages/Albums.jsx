@@ -2,22 +2,29 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAuth } from "../features/authSlice";
 import AlbumList from "../Components/AlbumList";
-import { getAllAlbums, selectAllAlbums } from "../features/albumsSlice";
+import {
+  getAllAlbums,
+  selectAllAlbums,
+  selectAllAlbumsLoaded,
+} from "../features/albumsSlice";
 
 function Albums() {
   const auth = useSelector(selectAuth);
   const albums = useSelector(selectAllAlbums);
+  const albumsLoaded = useSelector(selectAllAlbumsLoaded);
 
   const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(false);
 
+  const fetchAlbums = !loading && !albumsLoaded;
+
   useEffect(() => {
-    if (!loading) {
+    if (fetchAlbums) {
       dispatch(getAllAlbums(auth));
       setLoading(true);
     }
-  }, [auth, dispatch, loading]);
+  }, [auth, dispatch, fetchAlbums]);
 
   return (
     <div>
