@@ -2,9 +2,7 @@ import { NavLink } from "react-router-dom";
 
 function Nav() {
   return (
-    <nav
-      className={`text-2xl mb-6 px-6 py-3 fixed top-0 bg-white w-full shadow`}
-    >
+    <nav className={`text-2xl px-6 py-3 bg-white w-full shadow`}>
       <ul className={`flex gap-x-6`}>
         <li>
           <NavLink to={`/`}>Home</NavLink>

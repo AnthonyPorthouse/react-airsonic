@@ -26,7 +26,7 @@ function Album() {
 
   return (
     <div className={`flex flex-auto gap-6`}>
-      <AlbumHeader album={album} />
+      <AlbumHeader album={album} tracks={tracks} />
       <TrackList tracks={tracks} />
     </div>
   );

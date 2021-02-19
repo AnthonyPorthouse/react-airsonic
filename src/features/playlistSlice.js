@@ -19,7 +19,7 @@ export const playlistSlice = createSlice({
     },
     getNextTrack: (state, action) => {
       const tracks = state.tracks;
-      state.currentTrack = tracks.pop();
+      state.currentTrack = tracks.shift();
       state.tracks = tracks;
     },
   },

@@ -13,14 +13,10 @@ function App() {
   const loggedIn = useSelector(selectSuccess);
 
   return (
-    <main
-      className={`fixed w-screen h-screen flex flex-col overflow-y-auto bg-gray-50 ${
-        loggedIn ? "pt-20 pb-8" : null
-      }`}
-    >
+    <main className={`w-screen h-screen flex flex-col bg-gray-50`}>
       {loggedIn ? <Nav /> : null}
 
-      <div className={`px-6 flex-grow flex`}>
+      <div className={`overflow-y-auto px-6 py-6 flex-grow flex`}>
         <Switch>
           <Route path={"/login"}>
             <LogIn />
