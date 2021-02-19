@@ -16,27 +16,29 @@ function App() {
     <main className={`w-screen h-screen flex flex-col bg-gray-50`}>
       {loggedIn ? <Nav /> : null}
 
-      <div className={`overflow-y-auto px-6 py-6 flex-grow flex`}>
-        <Switch>
-          <Route path={"/login"}>
-            <LogIn />
-          </Route>
-          <AuthenticatedRoute path={"/"} exact={true}>
-            <Albums />
-          </AuthenticatedRoute>
-          <AuthenticatedRoute path={"/artists"} exact={true}>
-            <Artists />
-          </AuthenticatedRoute>
-          <AuthenticatedRoute path={"/artists/:id"}>
-            <Artist />
-          </AuthenticatedRoute>
-          <AuthenticatedRoute path={"/albums"} exact={true}>
-            <Albums />
-          </AuthenticatedRoute>
-          <AuthenticatedRoute path={"/albums/:id"}>
-            <Album />
-          </AuthenticatedRoute>
-        </Switch>
+      <div className={`overflow-y-auto flex-grow`}>
+        <div className="mx-6 my-6">
+          <Switch>
+            <Route path={"/login"}>
+              <LogIn />
+            </Route>
+            <AuthenticatedRoute path={"/"} exact={true}>
+              <Albums />
+            </AuthenticatedRoute>
+            <AuthenticatedRoute path={"/artists"} exact={true}>
+              <Artists />
+            </AuthenticatedRoute>
+            <AuthenticatedRoute path={"/artists/:id"}>
+              <Artist />
+            </AuthenticatedRoute>
+            <AuthenticatedRoute path={"/albums"} exact={true}>
+              <Albums />
+            </AuthenticatedRoute>
+            <AuthenticatedRoute path={"/albums/:id"}>
+              <Album />
+            </AuthenticatedRoute>
+          </Switch>
+        </div>
       </div>
 
       {loggedIn ? <MediaPlayer /> : null}
