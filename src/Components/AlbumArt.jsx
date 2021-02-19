@@ -8,8 +8,13 @@ function AlbumArt({ id, description }) {
 
   const url = getCoverArtUrl({ id, ...auth });
   return (
-    <div className={`rounded overflow-hidden`}>
-      <img className={`w-64 h-64`} src={url} alt={description} loading="lazy" />
+    <div>
+      <img
+        className={`rounded overflow-hidden w-64 h-64`}
+        src={url}
+        alt={description}
+        loading="lazy"
+      />
     </div>
   );
 }

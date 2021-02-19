@@ -5,20 +5,14 @@ import { getStreamUrl } from "../features/api";
 import { useEffect, useMemo, useRef, useState } from "react";
 import ProgressBar from "./ProgressBar";
 import Duration from "./Duration";
-import { ReactComponent as Play } from "../images/play.svg";
-import { ReactComponent as Pause } from "../images/pause.svg";
-import { ReactComponent as Stop } from "../images/stop.svg";
-import { ReactComponent as FastForward } from "../images/fast-forward.svg";
+import MediaControls from "./MediaControls";
 
 function MediaPlayer() {
   const auth = useSelector(selectAuth);
 
   const audio = useRef(new Audio());
   const currentTrack = useSelector(selectCurrentTrack);
-  const currentTrackUrl = useMemo(
-    () => getStreamUrl({ id: currentTrack, ...auth }),
-    [currentTrack, auth]
-  );
+  const currentTrackUrl = getStreamUrl({ id: currentTrack, ...auth });
 
   const dispatch = useDispatch();
 
@@ -57,45 +51,31 @@ function MediaPlayer() {
     }
   }, [audio, auth, currentTrack, currentTrackUrl]);
 
-  const skipTrack = (e) => {
-    e.preventDefault();
-    dispatch(getNextTrack());
-  };
-
-  if (currentTrack) {
-    return (
-      <div
-        className={`w-full px-6 py-3 bg-white shadow flex justify-items-stretch`}
-      >
-        <div className={`flex`}>
-          <button className={`inline-block w-6`} title={`Play Track`}>
-            <Play className={`w-full`} />
-          </button>
-          <button className={`inline-block w-6`} title={`Pause Track`}>
-            <Pause className={`w-full`} />
-          </button>
-          <button className={`inline-block w-6`} title={`Stop Track`}>
-            <Stop className={`w-full`} />
-          </button>
-          <button
-            onClick={skipTrack}
-            className={`inline-block w-6`}
-            title={`Next Track`}
-          >
-            <FastForward className={`w-full`} />
-          </button>
-        </div>
-        <div className={`w-2/3 mx-auto`}>
-          <ProgressBar length={duration} position={currentTime} />
-        </div>
-        <div>
-          <Duration time={currentTime} /> / <Duration time={duration} />
-        </div>
-      </div>
-    );
+  if (!currentTrack) {
+    return <div />;
   }
 
-  return <div />;
+  return (
+    <div
+      className={`w-full px-6 py-3 gap-x-6 bg-white shadow flex justify-items-stretch`}
+    >
+      <div className={`w-1/6`}>
+        <MediaControls />
+      </div>
+      <div className={`w-2/3 mx-auto`}>
+        <ProgressBar length={duration} position={currentTime} />
+      </div>
+      <div className={`w-1/6 flex gap-x-1 justify-center`}>
+        <span className={`w-16 text-right`}>
+          <Duration time={currentTime} />
+        </span>
+        <span>/</span>
+        <span className={`w-16 flex-grow text-left`}>
+          <Duration time={duration} />
+        </span>
+      </div>
+    </div>
+  );
 }
 
 export default MediaPlayer;
