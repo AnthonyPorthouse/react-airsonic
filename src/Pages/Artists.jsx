@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import ArtistList from "../Components/ArtistList";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getArtists,
-  selectArtists,
-  selectArtistsLoaded,
+  getArtistsFromApi,
+  artArtistsLoaded,
+  getArtistsAlphabetically,
 } from "../features/artistsSlice";
 import { selectAuth } from "../features/authSlice";
 
 function Artists() {
   const dispatch = useDispatch();
-  const artistsLoaded = useSelector(selectArtistsLoaded);
-  const artists = useSelector(selectArtists);
+  const artistsLoaded = useSelector(artArtistsLoaded);
+  const artists = useSelector(getArtistsAlphabetically);
   const auth = useSelector(selectAuth);
 
   const [loading, setLoading] = useState(false);
@@ -20,7 +20,7 @@ function Artists() {
 
   useEffect(() => {
     if (fetchAlbums) {
-      dispatch(getArtists(auth));
+      dispatch(getArtistsFromApi(auth));
       setLoading(true);
     }
   }, [fetchAlbums, dispatch, auth]);

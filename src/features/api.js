@@ -36,14 +36,7 @@ export async function getArtist({ id, server, username, token, salt }) {
   const result = await fetch(`${server}/rest/getArtist?id=${id}&${authParams}`);
   const json = await result.json();
 
-  const artist = {
-    id: json["subsonic-response"].artist.id,
-    name: json["subsonic-response"].artist.name,
-    coverArt: json["subsonic-response"].artist.coverArt,
-    albumCount: json["subsonic-response"].artist.albumCount,
-  };
-
-  const albums = json["subsonic-response"].artist.album;
+  const { album: albums, ...artist } = json["subsonic-response"].artist;
 
   return [artist, albums];
 }
@@ -53,19 +46,9 @@ export async function getAlbum({ id, server, username, token, salt }) {
   const result = await fetch(`${server}/rest/getAlbum?id=${id}&${authParams}`);
   const json = await result.json();
 
-  const album = {
-    id: json["subsonic-response"].album.id,
-    name: json["subsonic-response"].album.name,
-    year: json["subsonic-response"].album.year,
-    coverArt: json["subsonic-response"].album.coverArt,
-    songCount: json["subsonic-response"].album.songCount,
-    artist: json["subsonic-response"].album.artist,
-    artistId: json["subsonic-response"].album.artistId,
-  };
+  const { song: songs, ...album } = json["subsonic-response"].album;
 
-  const tracks = json["subsonic-response"].album.song;
-
-  return [album, tracks];
+  return [album, songs];
 }
 
 export function getCoverArtUrl({ id, server, username, token, salt }) {

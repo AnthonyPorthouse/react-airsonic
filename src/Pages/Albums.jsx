@@ -3,15 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectAuth } from "../features/authSlice";
 import AlbumList from "../Components/AlbumList";
 import {
+  getAllAlbumsFromApi,
   getAllAlbums,
-  selectAllAlbums,
-  selectAllAlbumsLoaded,
+  areAllAlbumsLoaded,
 } from "../features/albumsSlice";
 
 function Albums() {
   const auth = useSelector(selectAuth);
-  const albums = useSelector(selectAllAlbums);
-  const albumsLoaded = useSelector(selectAllAlbumsLoaded);
+  const albums = useSelector(getAllAlbums);
+  const albumsLoaded = useSelector(areAllAlbumsLoaded);
 
   const dispatch = useDispatch();
 
@@ -21,7 +21,7 @@ function Albums() {
 
   useEffect(() => {
     if (fetchAlbums) {
-      dispatch(getAllAlbums(auth));
+      dispatch(getAllAlbumsFromApi(auth));
       setLoading(true);
     }
   }, [auth, dispatch, fetchAlbums]);

@@ -6,6 +6,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import ProgressBar from "./ProgressBar";
 import Duration from "./Duration";
 import MediaControls from "./MediaControls";
+import TrackInfo from "./TrackInfo";
 
 function MediaPlayer() {
   const auth = useSelector(selectAuth);
@@ -57,22 +58,23 @@ function MediaPlayer() {
 
   return (
     <div
-      className={`w-full px-6 py-3 gap-x-6 bg-white shadow flex justify-items-stretch`}
+      className={`w-full px-6 py-3 gap-x-6 bg-white shadow flex flex-col gap-y-3`}
     >
-      <div className={`w-1/6`}>
-        <MediaControls />
-      </div>
-      <div className={`w-2/3 mx-auto`}>
-        <ProgressBar length={duration} position={currentTime} />
-      </div>
-      <div className={`w-1/6 flex gap-x-1 justify-center`}>
-        <span className={`w-16 text-right`}>
+      <div className={`flex justify-items-stretch`}>
+        <div className={`w-1/6`}>
+          <MediaControls />
+        </div>
+        <div className={`w-2/3 mx-auto`}>
+          <TrackInfo track={currentTrack} />
+        </div>
+        <div className={`w-1/6 flex gap-x-1 justify-end`}>
           <Duration time={currentTime} />
-        </span>
-        <span>/</span>
-        <span className={`w-16 flex-grow text-left`}>
+          <span>/</span>
           <Duration time={duration} />
-        </span>
+        </div>
+      </div>
+      <div className={`w-full`}>
+        <ProgressBar length={duration} position={currentTime} />
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ function MediaControls() {
   };
 
   return (
-    <div className={`flex w-full justify-center`}>
+    <div className={`flex w-full`}>
       <button className={`inline-block w-6`} title={`Play Track`}>
         <Play className={`w-full`} />
       </button>

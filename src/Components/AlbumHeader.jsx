@@ -2,12 +2,12 @@ import AlbumArt from "./AlbumArt";
 import { useDispatch } from "react-redux";
 import { getNextTrack, setTracks } from "../features/playlistSlice";
 
-function AlbumHeader({ album, tracks }) {
+function AlbumHeader({ album }) {
   const dispatch = useDispatch();
 
   const playAll = (e) => {
     e.preventDefault();
-    dispatch(setTracks(tracks.map((track) => track.id)));
+    dispatch(setTracks(album.tracks));
     dispatch(getNextTrack());
   };
 
