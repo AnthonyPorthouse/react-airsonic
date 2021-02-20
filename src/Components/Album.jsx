@@ -7,7 +7,7 @@ function Album({ album }) {
   return (
     <Link
       to={`/albums/${id}`}
-      className={`block w-64 relative rounded overflow-hidden hover:shadow-lg`}
+      className={`block w-full relative rounded overflow-hidden hover:shadow-lg`}
     >
       <AlbumArt id={coverArt} description={name} />
       <div

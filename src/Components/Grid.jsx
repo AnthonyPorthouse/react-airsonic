@@ -1,6 +1,6 @@
 function Grid({ children }) {
   return (
-    <ul className={`flex gap-6 flex-wrap`}>
+    <ul className={`grid grid-cols-6 gap-6`}>
       {children.map((child, i) => (
         <li key={i}>{child}</li>
       ))}

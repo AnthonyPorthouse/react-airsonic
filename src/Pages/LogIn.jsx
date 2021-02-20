@@ -46,7 +46,7 @@ function LogIn() {
             Server
             <input
               className={`block w-full`}
-              type="text"
+              type="url"
               value={server}
               onChange={(e) => dispatch(setServer(e.target.value))}
             />
