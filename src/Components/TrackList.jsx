@@ -2,7 +2,7 @@ import TrackListItem from "./TrackListItem";
 
 function TrackList({ tracks }) {
   return (
-    <section className={`flex-auto self-start max-w-full`}>
+    <section className={`flex-auto self-start w-full`}>
       <h1 className={`text-xl`}>Tracks</h1>
       <ul className={`divide-y divide-gray-200 border border-grey-200`}>
         {tracks.map((track, i) => (

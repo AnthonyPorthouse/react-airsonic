@@ -27,7 +27,7 @@ function Album() {
   }, [album, auth, dispatch, id, loading]);
 
   return (
-    <div className={`flex flex-auto gap-6`}>
+    <div className={`flex flex-auto flex-col lg:flex-row gap-6`}>
       <AlbumHeader album={album} />
       {<TrackList tracks={songs} />}
     </div>
