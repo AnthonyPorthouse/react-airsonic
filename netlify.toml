@@ -3,6 +3,9 @@
 publish = "build"
 command = "npm run build"
 
+[build.environment]
+INLINE_RUNTIME_CHUNK = false
+
 [[redirects]]
 from = "/*"
 to = "/index.html"
