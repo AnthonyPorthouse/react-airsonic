@@ -1,7 +1,10 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import Duration from "./Duration";
+import AudioContext from "./AudioContext";
 
 function ProgressBar({ length, position }) {
+  const audio = useContext(AudioContext);
+
   const progress = (position / length) * 100;
 
   const progressBar = useRef(null);
@@ -9,6 +12,11 @@ function ProgressBar({ length, position }) {
   const [showPosition, showPositionEnabled] = useState(false);
   const [mousePercent, setMousePercent] = useState(0);
   const [mouseSongPos, setMouseSongPos] = useState(0);
+
+  const seek = (e) => {
+    e.preventDefault();
+    audio.currentTime = mouseSongPos;
+  };
 
   return (
     <div
@@ -28,6 +36,7 @@ function ProgressBar({ length, position }) {
         setMousePercent(percentagePosition * 100);
         setMouseSongPos(value);
       }}
+      onClick={seek}
     >
       {showPosition ? (
         <div

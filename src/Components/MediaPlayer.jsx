@@ -2,11 +2,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getNextTrack, selectCurrentTrack } from "../features/playlistSlice";
 import { selectAuth } from "../features/authSlice";
 import { getStreamUrl } from "../features/api";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ProgressBar from "./ProgressBar";
 import Duration from "./Duration";
 import MediaControls from "./MediaControls";
 import TrackInfo from "./TrackInfo";
+import AudioContext from "./AudioContext";
 
 function MediaPlayer() {
   const auth = useSelector(selectAuth);
@@ -57,26 +58,28 @@ function MediaPlayer() {
   }
 
   return (
-    <div
-      className={`w-full px-6 py-3 gap-x-6 bg-white shadow flex flex-col gap-y-3`}
-    >
-      <div className={`flex justify-items-stretch`}>
-        <div className={`w-1/6`}>
-          <MediaControls />
+    <AudioContext.Provider value={audio.current}>
+      <div
+        className={`w-full px-6 py-3 gap-x-6 bg-white shadow flex flex-col gap-y-3`}
+      >
+        <div className={`flex justify-items-stretch`}>
+          <div className={`w-1/6`}>
+            <MediaControls />
+          </div>
+          <div className={`w-2/3 mx-auto`}>
+            <TrackInfo track={currentTrack} />
+          </div>
+          <div className={`w-1/6 flex gap-x-1 justify-end`}>
+            <Duration time={currentTime} />
+            <span>/</span>
+            <Duration time={duration} />
+          </div>
         </div>
-        <div className={`w-2/3 mx-auto`}>
-          <TrackInfo track={currentTrack} />
-        </div>
-        <div className={`w-1/6 flex gap-x-1 justify-end`}>
-          <Duration time={currentTime} />
-          <span>/</span>
-          <Duration time={duration} />
+        <div className={`w-full`}>
+          <ProgressBar length={duration} position={currentTime} />
         </div>
       </div>
-      <div className={`w-full`}>
-        <ProgressBar length={duration} position={currentTime} />
-      </div>
-    </div>
+    </AudioContext.Provider>
   );
 }
 
