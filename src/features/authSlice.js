@@ -2,35 +2,37 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import API from "./api";
 import uuid from "uuid";
 import md5 from "md5";
+import { Cookies } from "react-cookie";
+
+const salt = uuid.v4();
+const cookies = new Cookies();
 
 export const ping = createAsyncThunk("auth/ping", async (auth, thunkAPI) => {
   const response = await API.ping({ ...auth });
   return response.data;
 });
 
-const salt = uuid.v4();
-
 export const authSlice = createSlice({
   name: "auth",
   initialState: {
     salt,
-    server: localStorage.getItem("auth.server") || "",
-    username: localStorage.getItem("auth.username") || "",
-    password: localStorage.getItem("auth.password") || "",
-    token: md5(`${localStorage.getItem("auth.password")}${salt}`),
+    server: cookies.get("ra.server"),
+    username: cookies.get("ra.username"),
+    password: cookies.get("ra.password"),
+    token: md5(`${cookies.get("ra.password")}${salt}`),
     success: false,
   },
   reducers: {
     setServer: (state, action) => {
-      localStorage.setItem("auth.server", action.payload);
+      cookies.set("ra.server", action.payload, { sameSite: true });
       state.server = action.payload;
     },
     setUsername: (state, action) => {
-      localStorage.setItem("auth.username", action.payload);
+      cookies.set("ra.username", action.payload, { sameSite: true });
       state.username = action.payload;
     },
     setPassword: (state, action) => {
-      localStorage.setItem("auth.password", action.payload);
+      cookies.set("ra.password", action.payload, { sameSite: true });
       state.password = action.payload;
       state.token = md5(`${state.password}${state.salt}`);
     },
