@@ -4,7 +4,7 @@ publish = "build"
 command = "npm run build"
 
 [build.environment]
-INLINE_RUNTIME_CHUNK = false
+INLINE_RUNTIME_CHUNK = "false"
 
 [[redirects]]
 from = "/*"
