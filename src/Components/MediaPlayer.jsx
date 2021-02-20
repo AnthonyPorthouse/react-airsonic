@@ -22,7 +22,7 @@ function MediaPlayer() {
   const [currentTime, setCurrentTime] = useState(0);
 
   useEffect(() => {
-    audio.current.addEventListener("canplay", (e) => {
+    audio.current.addEventListener("loadeddata", (e) => {
       audio.current.play().catch(() => {});
     });
 

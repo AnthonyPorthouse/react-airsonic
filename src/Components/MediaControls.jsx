@@ -4,7 +4,7 @@ import { ReactComponent as Stop } from "../images/stop.svg";
 import { ReactComponent as FastForward } from "../images/fast-forward.svg";
 import { getNextTrack } from "../features/playlistSlice";
 import { useDispatch } from "react-redux";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import AudioContext from "./AudioContext";
 
 function MediaControls() {
@@ -29,18 +29,23 @@ function MediaControls() {
   const stop = (e) => {
     e.preventDefault();
     audio.pause();
-    audio.currentTime = 1;
+    audio.currentTime = 0;
   };
 
-  return (
-    <div className={`flex w-full`}>
-      <button
-        className={`inline-block w-6`}
-        title={`Play Track`}
-        onClick={play}
-      >
-        <Play className={`w-full`} />
-      </button>
+  const playPauseButton = () => {
+    if (audio.paused) {
+      return (
+        <button
+          className={`inline-block w-6`}
+          title={`Play Track`}
+          onClick={play}
+        >
+          <Play className={`w-full`} />
+        </button>
+      );
+    }
+
+    return (
       <button
         className={`inline-block w-6`}
         title={`Pause Track`}
@@ -48,6 +53,13 @@ function MediaControls() {
       >
         <Pause className={`w-full`} />
       </button>
+    );
+  };
+
+  return (
+    <div className={`flex w-full`}>
+      {playPauseButton()}
+
       <button
         className={`inline-block w-6`}
         title={`Stop Track`}
