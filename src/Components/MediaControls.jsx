@@ -36,7 +36,7 @@ function MediaControls() {
     if (audio.paused) {
       return (
         <button
-          className={`inline-block w-6`}
+          className={`inline-block w-12`}
           title={`Play Track`}
           onClick={play}
         >
@@ -47,7 +47,7 @@ function MediaControls() {
 
     return (
       <button
-        className={`inline-block w-6`}
+        className={`inline-block w-12`}
         title={`Pause Track`}
         onClick={pause}
       >
@@ -61,7 +61,7 @@ function MediaControls() {
       {playPauseButton()}
 
       <button
-        className={`inline-block w-6`}
+        className={`inline-block w-12`}
         title={`Stop Track`}
         onClick={stop}
       >
@@ -69,7 +69,7 @@ function MediaControls() {
       </button>
       <button
         onClick={skipTrack}
-        className={`inline-block w-6`}
+        className={`inline-block w-12`}
         title={`Next Track`}
       >
         <FastForward className={`w-full`} />

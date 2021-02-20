@@ -62,7 +62,7 @@ function MediaPlayer() {
       <div
         className={`w-full px-6 py-3 gap-x-6 bg-white shadow flex flex-col gap-y-3`}
       >
-        <div className={`flex justify-items-stretch`}>
+        <div className={`flex items-center justify-items-stretch`}>
           <div className={`w-1/6`}>
             <MediaControls />
           </div>
