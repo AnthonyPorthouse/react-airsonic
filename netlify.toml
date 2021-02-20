@@ -7,3 +7,15 @@ command = "npm run build"
 from = "/*"
 to = "/index.html"
 status = 200
+
+
+[[headers]]
+for = "/*"
+
+[headers.values]
+Content-Security-Policy = "script-src 'self'"
+X-Frame-Options = "DENY"
+X-XSS-Protection = "1; mode=block"
+X-Content-Type-Options = "nosniff"
+Referrer-Policy = "no-referrer-when-downgrade"
+Permissions-Policy = ""
