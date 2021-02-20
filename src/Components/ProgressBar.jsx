@@ -20,7 +20,7 @@ function ProgressBar({ length, position }) {
       if (!audio.buffered?.length) {
         return;
       }
-      const buffered = audio.buffered.end(0);
+      const buffered = audio.buffered.end(audio.buffered.length - 1);
       const duration = audio.duration;
 
       setBufferPercent((buffered / duration) * 100);
@@ -29,7 +29,7 @@ function ProgressBar({ length, position }) {
 
   const seek = (e) => {
     e.preventDefault();
-    audio.fastSeek(mouseSongPos);
+    audio.currentTime = mouseSongPos;
   };
 
   return (
