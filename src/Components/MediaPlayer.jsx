@@ -8,6 +8,7 @@ import Duration from "./Duration";
 import MediaControls from "./MediaControls";
 import TrackInfo from "./TrackInfo";
 import AudioContext from "./AudioContext";
+import MediaSession from "./MediaSession";
 
 function MediaPlayer() {
   const auth = useSelector(selectAuth);
@@ -59,25 +60,27 @@ function MediaPlayer() {
 
   return (
     <AudioContext.Provider value={audio.current}>
-      <div
-        className={`w-full px-6 py-3 gap-x-6 bg-white shadow flex flex-col gap-y-3`}
-      >
-        <div className={`flex items-center justify-items-stretch`}>
-          <div className={`flex-grow`}>
-            <TrackInfo track={currentTrack} />
+      <MediaSession track={currentTrack}>
+        <div
+          className={`w-full px-6 py-3 gap-x-6 bg-white shadow flex flex-col gap-y-3`}
+        >
+          <div className={`flex items-center justify-items-stretch`}>
+            <div className={`flex-grow`}>
+              <TrackInfo track={currentTrack} />
+            </div>
+            <div className={`flex-shrink-0`}>
+              <MediaControls />
+            </div>
           </div>
-          <div className={`flex-shrink-0`}>
-            <MediaControls />
+          <div className={`w-full flex flex-col`}>
+            <ProgressBar length={duration} position={currentTime} />
+            <div className={`flex justify-between`}>
+              <Duration time={currentTime} />
+              <Duration time={duration} />
+            </div>
           </div>
         </div>
-        <div className={`w-full flex flex-col`}>
-          <ProgressBar length={duration} position={currentTime} />
-          <div className={`flex justify-between`}>
-            <Duration time={currentTime} />
-            <Duration time={duration} />
-          </div>
-        </div>
-      </div>
+      </MediaSession>
     </AudioContext.Provider>
   );
 }
