@@ -1,5 +1,6 @@
 import { ReactComponent as Pause } from "../../images/pause.svg";
 import { useContext } from "react";
+import AudioContext from "../AudioContext";
 
 function PauseButton() {
   /**

@@ -1,5 +1,6 @@
 import { ReactComponent as Play } from "../../images/play.svg";
 import { useContext } from "react";
+import AudioContext from "../AudioContext";
 
 function PlayButton() {
   /**
