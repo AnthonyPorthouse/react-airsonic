@@ -54,7 +54,7 @@ export const albumsSlice = createSlice({
     [getAlbumFromApi.fulfilled]: (state, action) => {
       state.loaded = true;
       const album = action.payload;
-      state.albums[album.id] = album;
+      state.albums[album.id] = Object.assign({}, state.albums[album.id], album);
     },
   },
 });

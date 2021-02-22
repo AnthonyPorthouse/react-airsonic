@@ -3,6 +3,7 @@ import authReducer from "../features/authSlice";
 import artistsReducer from "../features/artistsSlice";
 import albumsReducer from "../features/albumsSlice";
 import playlistReducer from "../features/playlistSlice";
+import playlistsReducer from "../features/playlistsSlice";
 import songReducer from "../features/songSlice";
 
 export default configureStore({
@@ -11,6 +12,7 @@ export default configureStore({
     albums: albumsReducer,
     artists: artistsReducer,
     playlist: playlistReducer,
+    playlists: playlistsReducer,
     songs: songReducer,
   },
 });

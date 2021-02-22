@@ -8,6 +8,8 @@ import Albums from "./Pages/Albums";
 import Nav from "./Components/Nav";
 import Album from "./Pages/Album";
 import MediaPlayer from "./Components/MediaPlayer";
+import Playlists from "./Pages/Playlists";
+import Playlist from "./Pages/Playlist";
 
 function App() {
   const loggedIn = useSelector(selectSuccess);
@@ -36,6 +38,12 @@ function App() {
             </AuthenticatedRoute>
             <AuthenticatedRoute path={"/albums/:id"}>
               <Album />
+            </AuthenticatedRoute>
+            <AuthenticatedRoute path={"/playlists"} exact={true}>
+              <Playlists />
+            </AuthenticatedRoute>
+            <AuthenticatedRoute path={"/playlists/:id"}>
+              <Playlist />
             </AuthenticatedRoute>
           </Switch>
         </div>

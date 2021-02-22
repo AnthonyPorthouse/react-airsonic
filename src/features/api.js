@@ -54,6 +54,26 @@ export async function getAlbum({ id, server, username, token, salt }) {
   return [album, songs];
 }
 
+export async function getPlaylists({ server, username, token, salt }) {
+  const authParams = generateAuthParams({ username, token, salt });
+  const result = await fetch(`${server}/rest/getPlaylists?${authParams}`);
+  const json = await result.json();
+
+  return json["subsonic-response"].playlists.playlist;
+}
+
+export async function getPlaylist({ id, server, username, token, salt }) {
+  const authParams = generateAuthParams({ username, token, salt });
+  const result = await fetch(
+    `${server}/rest/getPlaylist?id=${id}&${authParams}`
+  );
+  const json = await result.json();
+
+  const { entry: songs, ...playlist } = json["subsonic-response"].playlist;
+
+  return [playlist, songs];
+}
+
 export function getCoverArtUrl({ id, server, username, token, salt }) {
   const authParams = generateAuthParams({ username, token, salt });
   return `${server}/rest/getCoverArt?id=${id}&${authParams}`;

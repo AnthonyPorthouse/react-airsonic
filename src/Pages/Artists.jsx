@@ -3,14 +3,14 @@ import ArtistList from "../Components/ArtistList";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getArtistsFromApi,
-  artArtistsLoaded,
+  areArtistsLoaded,
   getArtistsAlphabetically,
 } from "../features/artistsSlice";
 import { selectAuth } from "../features/authSlice";
 
 function Artists() {
   const dispatch = useDispatch();
-  const artistsLoaded = useSelector(artArtistsLoaded);
+  const artistsLoaded = useSelector(areArtistsLoaded);
   const artists = useSelector(getArtistsAlphabetically);
   const auth = useSelector(selectAuth);
 
