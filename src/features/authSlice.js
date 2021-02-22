@@ -8,8 +8,7 @@ const salt = uuid.v4();
 const cookies = new Cookies();
 
 export const ping = createAsyncThunk("auth/ping", async (auth, thunkAPI) => {
-  const response = await API.ping({ ...auth });
-  return response.data;
+  return await API.ping({ ...auth });
 });
 
 export const authSlice = createSlice({
@@ -39,7 +38,7 @@ export const authSlice = createSlice({
   },
   extraReducers: {
     [ping.fulfilled]: (state, action) => {
-      state.success = true;
+      state.success = action.payload;
     },
   },
 });

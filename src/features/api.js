@@ -4,7 +4,10 @@ function generateAuthParams({ username, token, salt }) {
 
 export async function ping({ server, username, token, salt }) {
   const authParams = generateAuthParams({ username, token, salt });
-  return fetch(`${server}/rest/ping?${authParams}`);
+  const result = await fetch(`${server}/rest/ping?${authParams}`);
+  const json = await result.json();
+
+  return json["subsonic-response"].status === "ok";
 }
 
 export async function getAllAlbums({ server, username, token, salt }) {

@@ -57,7 +57,7 @@ function MediaControls() {
   };
 
   return (
-    <div className={`flex w-full`}>
+    <div className={`flex w-full gap-2`}>
       {playPauseButton()}
 
       <button

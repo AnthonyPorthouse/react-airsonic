@@ -5,9 +5,9 @@ function TrackInfo({ track }) {
   const song = useSelector((state) => getSongById(state, track));
 
   return (
-    <div className={`grid text-left`}>
-      <span className={`font-bold`}>{song.title}</span>
-      <span>{song.artist}</span>
+    <div className={`grid text-left w-full`}>
+      <span className={`font-bold truncate`}>{song.title}</span>
+      <span className={`truncate`}>{song.artist}</span>
     </div>
   );
 }

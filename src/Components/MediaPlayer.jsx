@@ -66,7 +66,7 @@ function MediaPlayer() {
           <div className={`flex-grow`}>
             <TrackInfo track={currentTrack} />
           </div>
-          <div className={`w-1/6`}>
+          <div className={`flex-shrink-0`}>
             <MediaControls />
           </div>
         </div>
