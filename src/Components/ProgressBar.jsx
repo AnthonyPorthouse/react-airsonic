@@ -16,7 +16,7 @@ function ProgressBar({ length, position }) {
   const [bufferPercent, setBufferPercent] = useState(0);
 
   useEffect(() => {
-    audio.addEventListener("progress", (e) => {
+    const progressHandler = (e) => {
       if (!audio.buffered?.length) {
         return;
       }
@@ -24,7 +24,13 @@ function ProgressBar({ length, position }) {
       const duration = audio.duration;
 
       setBufferPercent((buffered / duration) * 100);
-    });
+    };
+
+    audio.addEventListener("progress", progressHandler);
+
+    return () => {
+      audio.removeEventListener("progress", progressHandler);
+    };
   });
 
   const seek = (e) => {
