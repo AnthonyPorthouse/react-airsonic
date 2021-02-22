@@ -35,7 +35,7 @@ function TrackListItem({ track }) {
         </span>
         <span className={`w-1/6 truncate`}>{track.artist}</span>
         <span className={`flex-grow w-0 truncate`}>{track.title}</span>
-        <span className={`w-1/12 text-right`}>
+        <span className={`text-right`}>
           <Duration time={track.duration} />
         </span>
       </div>
