@@ -2,13 +2,19 @@ import { ReactComponent as Play } from "../images/play.svg";
 import { useDispatch } from "react-redux";
 import { getNextTrack, setTracks } from "../features/playlistSlice";
 import Duration from "./Duration";
+import { useContext } from "react";
+import AlbumContext from "./AlbumContext";
 
 function TrackListItem({ track }) {
   const dispatch = useDispatch();
+  const tracks = useContext(AlbumContext);
 
   const play = (e) => {
     e.preventDefault();
-    dispatch(setTracks([track.id]));
+
+    const startingIndex = tracks.findIndex((t) => t.id === track.id);
+
+    dispatch(setTracks(tracks.slice(startingIndex).map((t) => t.id)));
     dispatch(getNextTrack());
   };
 
