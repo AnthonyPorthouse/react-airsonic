@@ -8,10 +8,10 @@ function Nav() {
           <NavLink to={`/`}>Home</NavLink>
         </li>
         <li>
-          <NavLink to={`/albums`}>All Albums</NavLink>
+          <NavLink to={`/albums`}>Albums</NavLink>
         </li>
         <li>
-          <NavLink to={`/artists`}>All Artists</NavLink>
+          <NavLink to={`/artists`}>Artists</NavLink>
         </li>
       </ul>
     </nav>

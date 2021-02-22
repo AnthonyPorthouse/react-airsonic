@@ -63,20 +63,19 @@ function MediaPlayer() {
         className={`w-full px-6 py-3 gap-x-6 bg-white shadow flex flex-col gap-y-3`}
       >
         <div className={`flex items-center justify-items-stretch`}>
+          <div className={`flex-grow`}>
+            <TrackInfo track={currentTrack} />
+          </div>
           <div className={`w-1/6`}>
             <MediaControls />
           </div>
-          <div className={`w-2/3 mx-auto`}>
-            <TrackInfo track={currentTrack} />
-          </div>
-          <div className={`w-1/6 flex gap-x-1 justify-end`}>
+        </div>
+        <div className={`w-full flex flex-col`}>
+          <ProgressBar length={duration} position={currentTime} />
+          <div className={`flex justify-between`}>
             <Duration time={currentTime} />
-            <span>/</span>
             <Duration time={duration} />
           </div>
-        </div>
-        <div className={`w-full`}>
-          <ProgressBar length={duration} position={currentTime} />
         </div>
       </div>
     </AudioContext.Provider>

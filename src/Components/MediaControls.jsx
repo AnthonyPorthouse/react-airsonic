@@ -4,7 +4,7 @@ import { ReactComponent as Stop } from "../images/stop.svg";
 import { ReactComponent as FastForward } from "../images/fast-forward.svg";
 import { getNextTrack } from "../features/playlistSlice";
 import { useDispatch } from "react-redux";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import AudioContext from "./AudioContext";
 
 function MediaControls() {
@@ -61,7 +61,7 @@ function MediaControls() {
       {playPauseButton()}
 
       <button
-        className={`inline-block w-12`}
+        className={`inline-block w-12 hidden md:block`}
         title={`Stop Track`}
         onClick={stop}
       >

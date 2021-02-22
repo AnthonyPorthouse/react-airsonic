@@ -13,15 +13,16 @@ function TrackListItem({ track }) {
   };
 
   return (
-    <div className={`flex gap-6`}>
+    <div className={`flex gap-6 overflow-hidden`}>
       <button
         onClick={play}
-        className={`inline-block w-6`}
+        className={`flex gap-6 md:block w-full md:w-6 flex-shrink-0`}
         title={`Play Track`}
       >
-        <Play className={`w-full`} />
+        <Play className={`flex-shrink-0 w-6 md:w-full`} />
+        <span className={`truncate md:hidden`}>{track.title}</span>
       </button>
-      <div className={`flex-grow flex gap-6`}>
+      <div className={`flex-grow gap-6 hidden md:flex`}>
         <span className={`w-1/12 text-right`}>
           {track.discNumber ? `${track.discNumber} / ` : null}
           {` ${track.track} `}

@@ -1,5 +1,8 @@
-import { createContext } from "react";
+import { createContext, createRef } from "react";
 
-const AudioContext = createContext();
+const audioRef = createRef();
+audioRef.current = new Audio();
+
+const AudioContext = createContext(audioRef);
 
 export default AudioContext;
