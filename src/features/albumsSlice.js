@@ -31,7 +31,7 @@ export const albumsSlice = createSlice({
   },
   reducers: {
     setAlbums: (state, action) => {
-      state.albums = action.payload;
+      action.payload.forEach((album) => (state.albums[album.id] = album));
     },
     setAlbum: (state, action) => {
       const album = action.payload;

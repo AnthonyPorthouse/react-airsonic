@@ -5,6 +5,7 @@ import albumsReducer from "../features/albumsSlice";
 import playlistReducer from "../features/playlistSlice";
 import playlistsReducer from "../features/playlistsSlice";
 import songReducer from "../features/songSlice";
+import searchReducer from "../features/searchSlice";
 
 export default configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export default configureStore({
     playlist: playlistReducer,
     playlists: playlistsReducer,
     songs: songReducer,
+    search: searchReducer,
   },
 });

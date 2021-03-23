@@ -1,22 +1,26 @@
 import { useState } from "react";
 import { ReactComponent as Search } from "../images/search.svg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectAuth } from "../features/authSlice";
-import { getSearchResults } from "../features/api";
+import { useHistory } from "react-router-dom";
+import { getSearchResultsFromApi } from "../features/searchSlice";
 
 function SearchBar() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const auth = useSelector(selectAuth);
 
   const [filter, setFilter] = useState("");
 
   const search = (query) => {
-    getSearchResults({ query, ...auth }).then((results) => {
-      console.log(results);
-    });
+    dispatch(getSearchResultsFromApi({ query, ...auth }));
+    history.push("/search");
   };
 
   return (
     <form
+      className={`w-full`}
       onSubmit={(event) => {
         event.preventDefault();
         search(filter);
@@ -25,7 +29,7 @@ function SearchBar() {
     >
       <div className={"flex items-center border border-black p-0"}>
         <input
-          className={"border-none focus:border-none px-3 py-2 pr-0"}
+          className={"flex-grow border-none focus:border-none px-3 py-2 pr-0"}
           autoComplete="off"
           type="search"
           name="search"

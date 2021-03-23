@@ -10,6 +10,7 @@ import Album from "./Pages/Album";
 import MediaPlayer from "./Components/MediaPlayer";
 import Playlists from "./Pages/Playlists";
 import Playlist from "./Pages/Playlist";
+import Search from "./Pages/Search";
 
 function App() {
   const loggedIn = useSelector(selectSuccess);
@@ -44,6 +45,9 @@ function App() {
             </AuthenticatedRoute>
             <AuthenticatedRoute path={"/playlists/:id"}>
               <Playlist />
+            </AuthenticatedRoute>
+            <AuthenticatedRoute path={"/search"}>
+              <Search />
             </AuthenticatedRoute>
           </Switch>
         </div>

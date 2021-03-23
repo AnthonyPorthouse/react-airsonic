@@ -91,7 +91,7 @@ export async function getSearchResults({
     "subsonic-response"
   ].searchResult3;
 
-  return [artists, albums, songs];
+  return [artists || [], albums || [], songs || []];
 }
 
 export function getCoverArtUrl({ id, server, username, token, salt }) {
