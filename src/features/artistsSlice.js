@@ -66,6 +66,8 @@ export const { setArtists } = artistsSlice.actions;
 export const getArtists = (state) =>
   Object.keys(state.artists.artists).map((key) => state.artists.artists[key]);
 export const getArtistById = (state, id) => state.artists.artists[id];
+export const getArtistsByIds = (state, ids) =>
+  ids.map((id) => state.artists.artists[id]);
 export const areArtistsLoaded = (state) => state.artists.loaded;
 
 export const getArtistsAlphabetically = createSelector(

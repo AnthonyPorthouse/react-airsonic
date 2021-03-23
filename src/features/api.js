@@ -74,6 +74,26 @@ export async function getPlaylist({ id, server, username, token, salt }) {
   return [playlist, songs];
 }
 
+export async function getSearchResults({
+  query,
+  server,
+  username,
+  token,
+  salt,
+}) {
+  const authParams = generateAuthParams({ username, token, salt });
+  const result = await fetch(
+    `${server}/rest/search3?query=${query}&artistCount=4&albumCount=4&songCount=100&${authParams}`
+  );
+  const json = await result.json();
+
+  const { song: songs, album: albums, artist: artists } = json[
+    "subsonic-response"
+  ].searchResult3;
+
+  return [artists || [], albums || [], songs || []];
+}
+
 export function getCoverArtUrl({ id, server, username, token, salt }) {
   const authParams = generateAuthParams({ username, token, salt });
   return `${server}/rest/getCoverArt?id=${id}&${authParams}`;
@@ -90,6 +110,7 @@ const API = {
   getAlbum,
   getArtists,
   getArtist,
+  getSearchResults,
   getCoverArtUrl,
   getStreamUrl,
 };
