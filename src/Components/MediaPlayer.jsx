@@ -9,6 +9,7 @@ import MediaControls from "./MediaControls";
 import TrackInfo from "./TrackInfo";
 import AudioContext from "./AudioContext";
 import MediaSession from "./MediaSession";
+import TitleInfo from "./TitleInfo";
 
 function MediaPlayer() {
   const auth = useSelector(selectAuth);
@@ -61,6 +62,8 @@ function MediaPlayer() {
   return (
     <AudioContext.Provider value={audio.current}>
       <MediaSession track={currentTrack}>
+        <TitleInfo nowPlaying={currentTrack} />
+
         <div
           className={`w-full px-6 py-3 gap-x-6 bg-white shadow flex flex-col gap-y-3`}
         >

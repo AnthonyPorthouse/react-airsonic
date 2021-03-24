@@ -11,6 +11,7 @@ import MediaPlayer from "./Components/MediaPlayer";
 import Playlists from "./Pages/Playlists";
 import Playlist from "./Pages/Playlist";
 import Search from "./Pages/Search";
+import TitleInfo from "./Components/TitleInfo";
 
 function App() {
   const loggedIn = useSelector(selectSuccess);
@@ -18,6 +19,8 @@ function App() {
   return (
     <main className={`w-screen h-screen flex flex-col bg-gray-50`}>
       {loggedIn ? <Nav /> : null}
+
+      <TitleInfo />
 
       <div className={`overflow-y-auto flex-grow`}>
         <div className="mx-6 my-6">
