@@ -22,14 +22,17 @@ function Search() {
       {artists.length ? (
         <div className={``}>
           <h1 className={`text-xl`}>Artists</h1>
-          <ArtistList artists={artists} />
+          <ArtistList
+            className={`grid-cols-2 md:grid-cols-4`}
+            artists={artists}
+          />
         </div>
       ) : null}
 
       {albums.length ? (
         <div className={``}>
           <h1 className={`text-xl`}>Albums</h1>
-          <AlbumList albums={albums} />
+          <AlbumList className={`grid-cols-2 md:grid-cols-4`} albums={albums} />
         </div>
       ) : null}
 

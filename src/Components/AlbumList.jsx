@@ -1,9 +1,9 @@
 import Album from "./Album";
 import Grid from "./Grid";
 
-function AlbumList({ albums }) {
+function AlbumList({ className, albums }) {
   return (
-    <Grid>
+    <Grid className={className}>
       {albums.map((album) => (
         <Album key={album.id} album={album} />
       ))}

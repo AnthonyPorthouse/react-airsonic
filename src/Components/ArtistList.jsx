@@ -2,9 +2,9 @@ import React from "react";
 import ArtistItem from "./ArtistItem";
 import Grid from "./Grid";
 
-function ArtistList({ artists }) {
+function ArtistList({ className, artists }) {
   return (
-    <Grid>
+    <Grid className={className}>
       {artists.map((artist) => (
         <ArtistItem key={artist.id} artist={artist} />
       ))}
