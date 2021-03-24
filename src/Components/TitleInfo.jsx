@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { useSelector } from "react-redux";
 import { getSongById } from "../features/songSlice";
 
