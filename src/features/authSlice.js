@@ -15,23 +15,24 @@ export const authSlice = createSlice({
   name: "auth",
   initialState: {
     salt,
-    server: cookies.get("ra.server"),
-    username: cookies.get("ra.username"),
-    password: cookies.get("ra.password"),
+    server: localStorage.getItem("ra.server") || "",
+    username: localStorage.getItem("ra.username") || "",
+    password: localStorage.getItem("ra.password") || "",
     token: md5(`${cookies.get("ra.password")}${salt}`),
     success: false,
+    error: "",
   },
   reducers: {
     setServer: (state, action) => {
-      cookies.set("ra.server", action.payload, { sameSite: true });
+      localStorage.setItem("ra.server", action.payload);
       state.server = action.payload;
     },
     setUsername: (state, action) => {
-      cookies.set("ra.username", action.payload, { sameSite: true });
+      localStorage.setItem("ra.username", action.payload);
       state.username = action.payload;
     },
     setPassword: (state, action) => {
-      cookies.set("ra.password", action.payload, { sameSite: true });
+      localStorage.setItem("ra.password", action.payload);
       state.password = action.payload;
       state.token = md5(`${state.password}${state.salt}`);
     },

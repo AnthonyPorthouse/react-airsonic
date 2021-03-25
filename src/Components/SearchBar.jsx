@@ -27,9 +27,15 @@ function SearchBar() {
       }}
       autoComplete="off"
     >
-      <div className={"flex items-center border border-black p-0"}>
+      <div
+        className={
+          "flex items-center rounded-full border shadow-inner p-0 overflow-hidden"
+        }
+      >
         <input
-          className={"flex-grow border-none focus:border-none px-3 py-2 pr-0"}
+          className={
+            "flex-grow bg-transparent border-none focus:ring-0 px-3 py-2 pr-0"
+          }
           autoComplete="off"
           type="search"
           name="search"

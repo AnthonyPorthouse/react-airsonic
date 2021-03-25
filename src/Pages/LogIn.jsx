@@ -22,15 +22,23 @@ function LogIn() {
   const auth = useSelector(selectAuth);
 
   const history = useHistory();
-
   const dispatch = useDispatch();
-
   const [result] = useState();
+
+  const [autoLoginAttempted, setAutoLoginAttempted] = useState(false);
 
   const submit = (e) => {
     e.preventDefault();
     dispatch(ping(auth));
   };
+
+  useEffect(() => {
+    if (!autoLoginAttempted && server) {
+      dispatch(ping(auth));
+    }
+
+    setAutoLoginAttempted(true);
+  }, [auth, autoLoginAttempted, dispatch, server]);
 
   useEffect(() => {
     if (loggedIn) {

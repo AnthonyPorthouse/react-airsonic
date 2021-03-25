@@ -65,7 +65,7 @@ function MediaPlayer() {
         <TitleInfo nowPlaying={currentTrack} />
 
         <div
-          className={`w-full px-6 py-3 gap-x-6 bg-white shadow flex flex-col gap-y-3`}
+          className={`w-full px-6 py-3 gap-x-6 bg-white shadow flex flex-col gap-y-3 z-50`}
         >
           <div className={`flex items-center justify-items-stretch`}>
             <div className={`flex-grow`}>
