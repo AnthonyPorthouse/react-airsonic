@@ -18,7 +18,7 @@ export const authSlice = createSlice({
     server: localStorage.getItem("ra.server") || "",
     username: localStorage.getItem("ra.username") || "",
     password: localStorage.getItem("ra.password") || "",
-    token: md5(`${cookies.get("ra.password")}${salt}`),
+    token: md5(`${localStorage.getItem("ra.password")}${salt}`),
     success: false,
     error: "",
   },
