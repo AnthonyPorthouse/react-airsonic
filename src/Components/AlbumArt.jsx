@@ -1,19 +1,23 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectAuth } from "../features/authSlice";
-import { getCoverArtUrl } from "../features/api";
+import { getScaledCoverArtUrl } from "../features/api";
 
 function AlbumArt({ id, description }) {
   const auth = useSelector(selectAuth);
 
-  const url = getCoverArtUrl({ id, ...auth });
+  const url = getScaledCoverArtUrl({ id, size: 64, ...auth });
   return (
-    <img
-      className={`rounded overflow-hidden w-full`}
-      src={url}
-      alt={description}
-      loading="lazy"
-    />
+    <picture className={`rounded overflow-hidden w-full`}>
+      <source
+        srcSet={`${getScaledCoverArtUrl({ id, size: 256, ...auth })} 256w`}
+      />
+      <source
+        srcSet={`${getScaledCoverArtUrl({ id, size: 128, ...auth })} 128w`}
+      />
+
+      <img src={url} alt={description} loading="lazy" />
+    </picture>
   );
 }
 

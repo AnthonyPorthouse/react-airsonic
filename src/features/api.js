@@ -99,6 +99,18 @@ export function getCoverArtUrl({ id, server, username, token, salt }) {
   return `${server}/rest/getCoverArt?id=${id}&${authParams}`;
 }
 
+export function getScaledCoverArtUrl({
+  id,
+  size,
+  server,
+  username,
+  token,
+  salt,
+}) {
+  const authParams = generateAuthParams({ username, token, salt });
+  return `${server}/rest/getCoverArt?id=${id}&size=${size}&${authParams}`;
+}
+
 export function getStreamUrl({ id, server, username, token, salt }) {
   const authParams = generateAuthParams({ username, token, salt });
   return `${server}/rest/stream?id=${id}&${authParams}`;
@@ -112,6 +124,7 @@ const API = {
   getArtist,
   getSearchResults,
   getCoverArtUrl,
+  getScaledCoverArtUrl,
   getStreamUrl,
 };
 
