@@ -1,62 +1,74 @@
+import React, { Suspense } from "react";
 import LogIn from "./Pages/LogIn";
 import { useSelector } from "react-redux";
 import { selectSuccess } from "./features/authSlice";
 import { Switch, Route, Redirect } from "react-router-dom";
-import Artists from "./Pages/Artists";
-import Artist from "./Pages/Artist";
-import Albums from "./Pages/Albums";
-import Nav from "./Components/Nav";
-import Album from "./Pages/Album";
-import MediaPlayer from "./Components/MediaPlayer";
-import Playlists from "./Pages/Playlists";
-import Playlist from "./Pages/Playlist";
-import Search from "./Pages/Search";
 import TitleInfo from "./Components/TitleInfo";
+import Spinner from "./Components/Spinner";
+
+const Artists = React.lazy(() => import("./Pages/Artists"));
+const Artist = React.lazy(() => import("./Pages/Artist"));
+const Albums = React.lazy(() => import("./Pages/Albums"));
+const Album = React.lazy(() => import("./Pages/Album"));
+const Playlists = React.lazy(() => import("./Pages/Playlists"));
+const Playlist = React.lazy(() => import("./Pages/Playlist"));
+const Search = React.lazy(() => import("./Pages/Search"));
+
+const Nav = React.lazy(() => import("./Components/Nav"));
+const MediaPlayer = React.lazy(() => import("./Components/MediaPlayer"));
 
 function App() {
   const loggedIn = useSelector(selectSuccess);
 
   return (
     <main className={`w-screen h-screen flex flex-col bg-gray-50`}>
-      {loggedIn ? <Nav /> : null}
+      <Suspense
+        fallback={
+          <div className={`w-screen h-screen`}>
+            <Spinner />
+          </div>
+        }
+      >
+        {loggedIn ? <Nav /> : null}
 
-      <TitleInfo />
+        <TitleInfo />
 
-      <div className={`overflow-y-auto flex-grow`}>
-        <div className="mx-6 my-6">
-          <Switch>
-            <Route path={"/login"}>
-              <LogIn />
-            </Route>
-            <AuthenticatedRoute path={"/"} exact={true}>
-              <Albums />
-            </AuthenticatedRoute>
-            <AuthenticatedRoute path={"/artists"} exact={true}>
-              <Artists />
-            </AuthenticatedRoute>
-            <AuthenticatedRoute path={"/artists/:id"}>
-              <Artist />
-            </AuthenticatedRoute>
-            <AuthenticatedRoute path={"/albums"} exact={true}>
-              <Albums />
-            </AuthenticatedRoute>
-            <AuthenticatedRoute path={"/albums/:id"}>
-              <Album />
-            </AuthenticatedRoute>
-            <AuthenticatedRoute path={"/playlists"} exact={true}>
-              <Playlists />
-            </AuthenticatedRoute>
-            <AuthenticatedRoute path={"/playlists/:id"}>
-              <Playlist />
-            </AuthenticatedRoute>
-            <AuthenticatedRoute path={"/search"}>
-              <Search />
-            </AuthenticatedRoute>
-          </Switch>
+        <div className={`overflow-y-auto flex-grow`}>
+          <div className="mx-6 my-6">
+            <Switch>
+              <Route path={"/login"}>
+                <LogIn />
+              </Route>
+              <AuthenticatedRoute path={"/"} exact={true}>
+                <Albums />
+              </AuthenticatedRoute>
+              <AuthenticatedRoute path={"/artists"} exact={true}>
+                <Artists />
+              </AuthenticatedRoute>
+              <AuthenticatedRoute path={"/artists/:id"}>
+                <Artist />
+              </AuthenticatedRoute>
+              <AuthenticatedRoute path={"/albums"} exact={true}>
+                <Albums />
+              </AuthenticatedRoute>
+              <AuthenticatedRoute path={"/albums/:id"}>
+                <Album />
+              </AuthenticatedRoute>
+              <AuthenticatedRoute path={"/playlists"} exact={true}>
+                <Playlists />
+              </AuthenticatedRoute>
+              <AuthenticatedRoute path={"/playlists/:id"}>
+                <Playlist />
+              </AuthenticatedRoute>
+              <AuthenticatedRoute path={"/search"}>
+                <Search />
+              </AuthenticatedRoute>
+            </Switch>
+          </div>
         </div>
-      </div>
 
-      {loggedIn ? <MediaPlayer /> : null}
+        {loggedIn ? <MediaPlayer /> : null}
+      </Suspense>
     </main>
   );
 }

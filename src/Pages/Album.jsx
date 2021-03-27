@@ -6,6 +6,7 @@ import TrackList from "../Components/TrackList";
 import AlbumHeader from "../Components/AlbumHeader";
 import { getSongsByIds } from "../features/songSlice";
 import { getAlbumById, getAlbumFromApi } from "../features/albumsSlice";
+import Spinner from "../Components/Spinner";
 
 function Album() {
   const { id } = useParams();
@@ -29,7 +30,7 @@ function Album() {
   return (
     <div className={`flex flex-auto flex-col lg:flex-row gap-6`}>
       <AlbumHeader album={album} />
-      {<TrackList tracks={songs} />}
+      {!album?.tracks ? <Spinner /> : <TrackList tracks={songs} />}
     </div>
   );
 }
