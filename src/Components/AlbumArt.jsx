@@ -6,17 +6,25 @@ import { getScaledCoverArtUrl } from "../features/api";
 function AlbumArt({ id, description }) {
   const auth = useSelector(selectAuth);
 
-  const url = getScaledCoverArtUrl({ id, size: 64, ...auth });
   return (
     <picture className={`rounded overflow-hidden w-full`}>
       <source
-        srcSet={`${getScaledCoverArtUrl({ id, size: 256, ...auth })} 256w`}
-      />
-      <source
-        srcSet={`${getScaledCoverArtUrl({ id, size: 128, ...auth })} 128w`}
+        srcSet={`${getScaledCoverArtUrl({
+          id,
+          size: 256,
+          ...auth,
+        })} 1x, ${getScaledCoverArtUrl({
+          id,
+          size: 512,
+          ...auth,
+        })} 2x`}
       />
 
-      <img src={url} alt={description} loading="lazy" />
+      <img
+        src={getScaledCoverArtUrl({ id, size: 64, ...auth })}
+        alt={description}
+        loading="lazy"
+      />
     </picture>
   );
 }
