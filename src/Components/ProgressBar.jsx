@@ -68,8 +68,15 @@ function ProgressBar({ length, position }) {
           className={`absolute h-full bg-green-200`}
           style={{ width: `${mousePercent}%` }}
         >
-          <div className={`absolute right-0 -mr-4 -mt-4 leading-none`}>
-            <Duration time={mouseSongPos} />
+          <div
+            className={`w-6 h-6 absolute -right-3 -top-1 leading-none rounded-full border-4 border-green-400 bg-white`}
+          />
+          <div
+            className={`absolute right-0 w-12 -mt-8 -mr-6 flex items-center`}
+          >
+            <div className={`px-2 py-1 leading-none shadow rounded bg-white`}>
+              <Duration time={mouseSongPos} />
+            </div>
           </div>
         </div>
       ) : (
