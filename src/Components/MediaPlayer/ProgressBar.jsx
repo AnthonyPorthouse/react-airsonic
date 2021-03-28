@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import Duration from "./Duration";
-import AudioContext from "./AudioContext";
+import Duration from "../Duration";
+import AudioContext from "../AudioContext";
 
 function ProgressBar({ length, position }) {
   const audio = useContext(AudioContext);
@@ -33,6 +33,19 @@ function ProgressBar({ length, position }) {
     };
   });
 
+  const seekPosition = (e) => {
+    const bar = progressBar.current;
+    const barBounding = bar.getBoundingClientRect();
+
+    const position = e.pageX - barBounding.x;
+
+    const percentagePosition = position / barBounding.width;
+
+    const value = length * percentagePosition;
+    setMousePercent(percentagePosition * 100);
+    setMouseSongPos(value);
+  };
+
   const seek = (e) => {
     e.preventDefault();
     audio.currentTime = mouseSongPos;
@@ -42,20 +55,9 @@ function ProgressBar({ length, position }) {
     <div
       ref={progressBar}
       className={`bg-gray-200 h-4 w-full inline-block relative`}
-      onMouseEnter={(e) => showPositionEnabled(true)}
-      onMouseLeave={(e) => showPositionEnabled(false)}
-      onMouseMove={(e) => {
-        const bar = progressBar.current;
-        const barBounding = bar.getBoundingClientRect();
-
-        const position = e.pageX - barBounding.x;
-
-        const percentagePosition = position / barBounding.width;
-
-        const value = length * percentagePosition;
-        setMousePercent(percentagePosition * 100);
-        setMouseSongPos(value);
-      }}
+      onMouseEnter={() => showPositionEnabled(true)}
+      onMouseLeave={() => showPositionEnabled(false)}
+      onMouseMove={seekPosition}
       onClick={seek}
     >
       <div

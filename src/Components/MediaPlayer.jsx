@@ -3,15 +3,12 @@ import { getNextTrack, selectCurrentTrack } from "../features/playlistSlice";
 import { selectAuth } from "../features/authSlice";
 import { getStreamUrl } from "../features/api";
 import { useEffect, useRef, useState } from "react";
-import ProgressBar from "./ProgressBar";
-import Duration from "./Duration";
-import MediaControls from "./MediaControls";
-import TrackInfo from "./TrackInfo";
 import AudioContext from "./AudioContext";
 import MediaSession from "./MediaSession";
 import TitleInfo from "./TitleInfo";
 import AlbumArt from "./AlbumArt";
 import { getSongById } from "../features/songSlice";
+import MediaInfo from "./MediaPlayer/MediaInfo";
 
 function MediaPlayer() {
   const auth = useSelector(selectAuth);
@@ -76,23 +73,11 @@ function MediaPlayer() {
           >
             <AlbumArt id={currentTrackInfo.coverArt} />
           </div>
-          <div className={`flex-grow flex flex-col gap-y-3`}>
-            <div className={`flex items-center justify-items-stretch`}>
-              <div className={`flex-grow`}>
-                <TrackInfo track={currentTrack} />
-              </div>
-              <div className={`flex-shrink-0`}>
-                <MediaControls />
-              </div>
-            </div>
-            <div className={`w-full flex flex-col`}>
-              <ProgressBar length={duration} position={currentTime} />
-              <div className={`flex justify-between`}>
-                <Duration time={currentTime} />
-                <Duration time={duration} />
-              </div>
-            </div>
-          </div>
+          <MediaInfo
+            track={currentTrack}
+            duration={duration}
+            currentTime={currentTime}
+          />
         </div>
       </MediaSession>
     </AudioContext.Provider>
