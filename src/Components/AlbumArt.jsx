@@ -3,29 +3,35 @@ import { useSelector } from "react-redux";
 import { selectAuth } from "../features/authSlice";
 import { getScaledCoverArtUrl } from "../features/api";
 
-function AlbumArt({ id, description }) {
+function AlbumArt({ id, description, sizes }) {
   const auth = useSelector(selectAuth);
 
-  return (
-    <picture className={`rounded overflow-hidden w-full`}>
-      <source
-        srcSet={`${getScaledCoverArtUrl({
-          id,
-          size: 256,
-          ...auth,
-        })} 1x, ${getScaledCoverArtUrl({
-          id,
-          size: 512,
-          ...auth,
-        })} 2x`}
-      />
+  const dimensions = (() => {
+    const modifier = 32;
+    const min = 32;
+    const max = 1024;
+    const values = [];
 
-      <img
-        src={getScaledCoverArtUrl({ id, size: 64, ...auth })}
-        alt={description}
-        loading="lazy"
-      />
-    </picture>
+    for (let i = min; i <= max; i += modifier) {
+      values.push(`${getScaledCoverArtUrl({ id, size: i, ...auth })} ${i}w`);
+    }
+
+    return values.join(", ");
+  })();
+
+  return (
+    <img
+      alt={description}
+      className={`rounded overflow-hidden w-full`}
+      srcSet={dimensions}
+      sizes={
+        sizes ||
+        `(min-width: 1024px) 16vw,
+        (min-width: 768px) and (max-width: 1024px) 25vw,
+        50vw`
+      }
+      loading="lazy"
+    />
   );
 }
 

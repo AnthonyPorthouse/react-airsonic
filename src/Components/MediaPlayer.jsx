@@ -71,7 +71,7 @@ function MediaPlayer() {
             className={`flex-shrink hidden md:block`}
             style={{ width: "100px" }}
           >
-            <AlbumArt id={currentTrackInfo.coverArt} />
+            <AlbumArt id={currentTrackInfo.coverArt} sizes={`100px`} />
           </div>
           <MediaInfo
             track={currentTrack}
