@@ -7,14 +7,16 @@ import playlistsReducer from "../features/playlistsSlice";
 import songReducer from "../features/songSlice";
 import searchReducer from "../features/searchSlice";
 
+export const reducers = {
+  auth: authReducer,
+  albums: albumsReducer,
+  artists: artistsReducer,
+  playlist: playlistReducer,
+  playlists: playlistsReducer,
+  songs: songReducer,
+  search: searchReducer,
+};
+
 export default configureStore({
-  reducer: {
-    auth: authReducer,
-    albums: albumsReducer,
-    artists: artistsReducer,
-    playlist: playlistReducer,
-    playlists: playlistsReducer,
-    songs: songReducer,
-    search: searchReducer,
-  },
+  reducer: reducers,
 });
