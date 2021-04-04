@@ -22,19 +22,13 @@ function App() {
 
   return (
     <main className={`w-screen h-screen flex flex-col bg-gray-50`}>
-      <Suspense
-        fallback={
-          <div className={`w-screen h-screen`}>
-            <Spinner />
-          </div>
-        }
-      >
-        {loggedIn ? <Nav /> : null}
+      <Suspense fallback={<div />}>{loggedIn ? <Nav /> : null}</Suspense>
 
-        <TitleInfo />
+      <TitleInfo />
 
-        <div className={`overflow-y-auto flex-grow`}>
-          <div className="mx-6 my-6">
+      <div className={`overflow-y-auto flex-grow`}>
+        <div className="mx-6 my-6">
+          <Suspense fallback={<Spinner />}>
             <Switch>
               <Route path={"/login"}>
                 <LogIn />
@@ -64,9 +58,11 @@ function App() {
                 <Search />
               </AuthenticatedRoute>
             </Switch>
-          </div>
+          </Suspense>
         </div>
+      </div>
 
+      <Suspense fallback={<div />}>
         {loggedIn ? <MediaPlayer /> : null}
       </Suspense>
     </main>
