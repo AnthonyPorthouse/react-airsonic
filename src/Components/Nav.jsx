@@ -13,10 +13,14 @@ function Nav() {
   let [show, setShow] = useState(false);
 
   return (
-    <nav className={`text-2xl px-6 py-3 bg-white w-full shadow z-50`}>
+    <nav
+      className={`text-2xl px-6 py-3 bg-white w-full shadow z-50 flex justify-between md:static items-center`}
+    >
+      <h1 className={`md:hidden`}>Ra</h1>
+
       <button
         onClick={toggleMenu}
-        className={`md:hidden w-6 h-6`}
+        className={`md:hidden w-6 h-6 my-auto`}
         aria-label={`Show Menu`}
       >
         <MenuIcon />
