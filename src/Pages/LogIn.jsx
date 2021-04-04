@@ -53,6 +53,7 @@ function LogIn() {
           <label className={`block w-full`}>
             Server
             <input
+              data-testid="server"
               className={`block w-full`}
               type="url"
               value={server}
@@ -62,6 +63,7 @@ function LogIn() {
           <label className={`block w-full`}>
             Username
             <input
+              data-testid="username"
               className={`block w-full`}
               type="text"
               value={username}
@@ -71,13 +73,16 @@ function LogIn() {
           <label className={`block w-full`}>
             Password
             <input
+              data-testid="password"
               className={`block w-full`}
               type="password"
               value={password}
               onChange={(e) => dispatch(setPassword(e.target.value))}
             />
           </label>
-          <button className={`block w-full`}>Log In</button>
+          <button data-testid="login" className={`block w-full`}>
+            Log In
+          </button>
         </form>
         {result ? <div>{result["subsonic-response"].status}</div> : null}
       </div>

@@ -52,6 +52,8 @@
   },
   "devDependencies": {
     "@redux-devtools/core": "^3.7.0",
+    "jest-localstorage-mock": "^2.4.8",
+    "msw": "^0.28.1",
     "prettier": "2.2.1"
   }
 }
