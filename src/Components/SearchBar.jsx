@@ -5,7 +5,7 @@ import { selectAuth } from "../features/authSlice";
 import { useHistory } from "react-router-dom";
 import { getSearchResultsFromApi } from "../features/searchSlice";
 
-function SearchBar() {
+function SearchBar({ onSubmit }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -24,6 +24,9 @@ function SearchBar() {
       onSubmit={(event) => {
         event.preventDefault();
         search(filter);
+        if (onSubmit) {
+          onSubmit(event);
+        }
       }}
       autoComplete="off"
     >

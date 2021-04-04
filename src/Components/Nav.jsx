@@ -6,7 +6,6 @@ import { useState } from "react";
 
 function Nav() {
   const toggleMenu = (e) => {
-    e.preventDefault();
     setShow(!show);
   };
 
@@ -52,6 +51,7 @@ function Nav() {
               <NavLink
                 className={`inline-block w-full md:w-auto`}
                 to={`/albums`}
+                onClick={toggleMenu}
               >
                 Albums
               </NavLink>
@@ -60,6 +60,7 @@ function Nav() {
               <NavLink
                 className={`inline-block w-full md:w-auto`}
                 to={`/artists`}
+                onClick={toggleMenu}
               >
                 Artists
               </NavLink>
@@ -68,12 +69,13 @@ function Nav() {
               <NavLink
                 className={`inline-block w-full md:w-auto`}
                 to={`/playlists`}
+                onClick={toggleMenu}
               >
                 Playlists
               </NavLink>
             </li>
             <li className={"w-full md:w-auto md:ml-auto"}>
-              <SearchBar />
+              <SearchBar onSubmit={toggleMenu} />
             </li>
           </ul>
         </div>
