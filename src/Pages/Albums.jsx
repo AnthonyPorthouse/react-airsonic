@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAuth } from "../features/authSlice";
-import AlbumList from "../Components/AlbumList";
 import {
   getAllAlbumsFromApi,
   getAllAlbums,
   areAllAlbumsLoaded,
 } from "../features/albumsSlice";
+import Spinner from "../Components/Spinner";
+
+const AlbumList = lazy(() => import("../Components/AlbumList"));
 
 function Albums() {
   const auth = useSelector(selectAuth);
@@ -30,7 +32,9 @@ function Albums() {
     <div>
       <h1 className={`text-2xl`}>All Albums</h1>
 
-      <AlbumList albums={albums} />
+      <Suspense fallback={<Spinner />}>
+        <AlbumList albums={albums} />
+      </Suspense>
     </div>
   );
 }

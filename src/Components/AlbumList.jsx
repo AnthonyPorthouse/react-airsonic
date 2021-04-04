@@ -1,13 +1,17 @@
-import Album from "./Album";
-import Grid from "./Grid";
+import { lazy, Suspense } from "react";
+
+const Album = lazy(() => import("./Album"));
+const Grid = lazy(() => import("./Grid"));
 
 function AlbumList({ className, albums }) {
   return (
-    <Grid className={className}>
-      {albums.map((album) => (
-        <Album key={album.id} album={album} />
-      ))}
-    </Grid>
+    <Suspense fallback={<div />}>
+      <Grid className={className}>
+        {albums.map((album) => (
+          <Album key={album.id} album={album} />
+        ))}
+      </Grid>
+    </Suspense>
   );
 }
 
