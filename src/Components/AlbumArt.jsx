@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectAuth } from "../features/authSlice";
 import { getScaledCoverArtUrl } from "../features/api";
 
 function AlbumArt({ id, description, sizes }) {
   const auth = useSelector(selectAuth);
+  const el = useRef(null);
+
+  const [width, setWidth] = useState(null);
+
+  useEffect(() => {
+    setWidth(el.current ? el.current.offsetWidth : 0);
+  }, []);
 
   const dimensions = (() => {
     const modifier = 32;
@@ -21,6 +28,9 @@ function AlbumArt({ id, description, sizes }) {
 
   return (
     <img
+      ref={el}
+      width={width}
+      height={width}
       alt={description}
       className={`rounded overflow-hidden w-full`}
       srcSet={dimensions}
