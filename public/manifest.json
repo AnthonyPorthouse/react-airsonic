@@ -23,9 +23,22 @@
       "sizes": "1024x1024"
     },
     {
-      "src": "ra-logo.svg",
-      "purpose": "maskable any",
-      "sizes": "any"
+      "src": "logo192maskable.png",
+      "format": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo512maskable.png",
+      "format": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo1024maskable.png",
+      "format": "image/png",
+      "sizes": "1024x1024",
+      "purpose": "any maskable"
     }
   ],
   "start_url": ".",
