@@ -21,11 +21,6 @@
       "src": "logo1024.png",
       "format": "image/png",
       "sizes": "1024x1024"
-    },
-    {
-      "src": "ra-logo.svg",
-      "purpose": "maskable any",
-      "sizes": "any"
     }
   ],
   "start_url": ".",
