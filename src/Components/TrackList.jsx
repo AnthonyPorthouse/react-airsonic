@@ -26,13 +26,13 @@ function TrackList({ tracks }) {
   })()
 
   const rowRenderer = ({ key, index, style }) => (
-      <li
+      <div
         style={style}
         className={classNames(`py-2`, `px-4`, index % 2 === 0 ? "bg-white" : "bg-gray-100")}
         key={key}
       >
         <TrackListItem track={tracks[index]} />
-      </li>
+      </div>
   )
 
   return (
