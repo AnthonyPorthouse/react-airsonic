@@ -14,7 +14,10 @@ function TrackList({ tracks }) {
   const rowHeight = 40;
 
   const listHeight = (() => {
-    const maxHeight = windowHeight - (trackListRef.current?.offsetTop || 0) - 26;
+    const maxHeight = Math.min(
+      windowHeight - (trackListRef.current?.offsetTop || 0) - 26,
+      10 * rowHeight
+    );
 
     const calculatedHeight = tracks.length * rowHeight;
 
