@@ -42,8 +42,9 @@ function ProgressBar({ length, position }) {
     const percentagePosition = position / barBounding.width;
 
     const value = length * percentagePosition;
-    setMousePercent(percentagePosition * 100);
-    setMouseSongPos(value);
+
+    setMousePercent(Math.max(0, Math.min(100, percentagePosition * 100)));
+    setMouseSongPos(Math.max(0, Math.min(audio.duration, value)));
   };
 
   const seek = (e) => {

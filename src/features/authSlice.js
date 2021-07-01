@@ -2,10 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import API from "./api";
 import uuid from "uuid";
 import md5 from "md5";
-import { Cookies } from "react-cookie";
 
 const salt = uuid.v4();
-const cookies = new Cookies();
 
 export const ping = createAsyncThunk("auth/ping", async (auth, thunkAPI) => {
   return await API.ping({ ...auth });
