@@ -4,6 +4,7 @@ import { ReactComponent as MenuIcon } from "../images/menu.svg";
 import { ReactComponent as CloseIcon } from "../images/close.svg";
 import { ReactComponent as Logo } from "../images/logo.svg";
 import { useState } from "react";
+import Update from "./Updater/Update";
 
 function Nav() {
   const toggleMenu = (e) => {
@@ -78,8 +79,9 @@ function Nav() {
                 Playlists
               </NavLink>
             </li>
-            <li className={"w-full md:w-auto md:ml-auto"}>
+            <li className={"w-full md:w-auto md:ml-auto flex gap-3"}>
               <SearchBar onSubmit={toggleMenu} />
+              <Update />
             </li>
           </ul>
         </div>
