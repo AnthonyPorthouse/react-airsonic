@@ -50,7 +50,7 @@ function TrackListItem({ track }) {
 
   return (
     <div className={`flex gap-6 overflow-hidden`}>
-      {currentTrackId === track.id ? nowPlaying : playButton}
+      {Number(currentTrackId) === Number(track.id) ? nowPlaying : playButton}
       <div className={`flex-grow gap-6 hidden md:flex`}>
         <span className={`w-1/12 text-right`}>
           {track.discNumber ? `${track.discNumber} / ` : null}
