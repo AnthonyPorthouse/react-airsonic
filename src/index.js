@@ -8,7 +8,7 @@ import { Provider } from "react-redux";
 import store from "./app/store";
 import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import UpdateProvider from "./Components/Updater/UpdateProvider";
+import { setUpdateAvailable } from "./features/updateSlice";
 
 let updateRequired = false;
 
@@ -32,7 +32,7 @@ ReactDOM.render(
 // Learn more about service workers: https://cra.link/PWA
 serviceWorkerRegistration.register({
   onUpdate: () => {
-    updateRequired = true;
+    store.dispatch(setUpdateAvailable(true));
   },
 });
 

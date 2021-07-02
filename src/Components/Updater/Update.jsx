@@ -1,10 +1,9 @@
-import UpdateContext from "./UpdateContext";
-import { useContext } from "react";
-
 import { ReactComponent as UpdateIcon } from "../../images/update.svg";
+import { isUpdateAvailable } from "../../features/updateSlice";
+import { useSelector } from "react-redux";
 
 function Update() {
-  const updateNeeded = useContext(UpdateContext);
+  const updateNeeded = useSelector(isUpdateAvailable);
 
   const refreshApplication = (e) => {
     e.preventDefault();
