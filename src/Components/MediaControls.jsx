@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import AudioContext from "./AudioContext";
+import AudioContext from "./Audio/AudioContext";
 import PlayButton from "./MediaControls/PlayButton";
 import PauseButton from "./MediaControls/PauseButton";
 import StopButton from "./MediaControls/StopButton";

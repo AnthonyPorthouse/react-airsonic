@@ -3,7 +3,7 @@ import { getNextTrack, selectCurrentTrack } from "../features/playlistSlice";
 import { selectAuth } from "../features/authSlice";
 import { getStreamUrl } from "../features/api";
 import { useEffect, useRef, useState } from "react";
-import AudioContext from "./AudioContext";
+import AudioProvider from "./Audio/AudioProvider";
 import MediaSession from "./MediaSession";
 import TitleInfo from "./TitleInfo";
 import AlbumArt from "./AlbumArt";
@@ -62,7 +62,7 @@ function MediaPlayer() {
   }
 
   return (
-    <AudioContext.Provider value={audio.current}>
+    <AudioProvider value={audio.current}>
       <MediaSession track={currentTrack}>
         <TitleInfo nowPlaying={currentTrack} />
 
@@ -80,7 +80,7 @@ function MediaPlayer() {
           />
         </div>
       </MediaSession>
-    </AudioContext.Provider>
+    </AudioProvider>
   );
 }
 

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import Duration from "../Duration";
-import AudioContext from "../AudioContext";
+import AudioContext from "../Audio/AudioContext";
 
 function ProgressBar({ length, position }) {
   const audio = useContext(AudioContext);
