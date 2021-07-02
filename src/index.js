@@ -14,15 +14,13 @@ let updateRequired = false;
 
 ReactDOM.render(
   <React.StrictMode>
-    <UpdateProvider value={updateRequired}>
-      <HelmetProvider>
-        <Provider store={store}>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </Provider>
-      </HelmetProvider>
-    </UpdateProvider>
+    <HelmetProvider>
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
+    </HelmetProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
