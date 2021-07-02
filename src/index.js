@@ -10,8 +10,6 @@ import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { setUpdateAvailable } from "./features/updateSlice";
 
-let updateRequired = false;
-
 ReactDOM.render(
   <React.StrictMode>
     <HelmetProvider>
