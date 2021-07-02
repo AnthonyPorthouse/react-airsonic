@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import logo from "../images/logo192.png";
 import {
   setServer,
   setPassword,
@@ -50,6 +51,12 @@ function LogIn() {
     <div className={`flex flex-auto items-center h-auto`}>
       <div className={`mx-auto w-64`}>
         <form className={`grid grid-cols-1 gap-6`} onSubmit={submit}>
+          <img
+            className={`mx-auto`}
+            src={logo}
+            alt="Ra Logo"
+            role="presentation"
+          />
           <label className={`block w-full`}>
             Server
             <input
