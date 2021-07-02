@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
 import SearchBar from "./SearchBar";
+import logo from "../images/logo192.png";
 import { ReactComponent as MenuIcon } from "../images/menu.svg";
 import { ReactComponent as CloseIcon } from "../images/close.svg";
-import { ReactComponent as Logo } from "../images/logo.svg";
 import { useState } from "react";
 import Update from "./Updater/Update";
 
@@ -17,7 +17,11 @@ function Nav() {
     <nav
       className={`text-2xl px-6 py-3 bg-white w-full shadow z-50 flex justify-between md:static items-center`}
     >
-      <Logo className={`absolute w-12 h-12 md:w-16 md:h-16`} />
+      <img
+        src={logo}
+        alt="Ra Logo"
+        className={`absolute w-12 h-12 md:w-16 md:h-16`}
+      />
 
       <div className={`md:hidden flex w-full items-center justify-end`}>
         <button
@@ -37,7 +41,7 @@ function Nav() {
         <div className={`px-6 py-3 md:p-0`}>
           <div className={`md:hidden flex items-center justify-between`}>
             <span className={`inline-block w-6`} />
-            <Logo className={`w-16 h-16`} />
+            <img src={logo} alt="Ra logo" className={`w-16 h-16`} />
             <button
               onClick={toggleMenu}
               className={`w-6 h-6`}

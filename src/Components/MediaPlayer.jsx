@@ -58,7 +58,7 @@ function MediaPlayer() {
   }, [audio, auth, currentTrack, currentTrackUrl]);
 
   if (!currentTrack) {
-    return <div />;
+    return null;
   }
 
   return (

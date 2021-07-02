@@ -5,17 +5,24 @@ import { List } from "react-virtualized";
 import { useRef } from "react";
 import classNames from "classnames";
 import { useWindowHeight } from "@react-hook/window-size";
+import { useSelector } from "react-redux";
+import { selectCurrentTrack } from "../features/playlistSlice";
 
 function TrackList({ tracks }) {
   const windowHeight = useWindowHeight();
 
   const trackListRef = useRef(null);
+  const currentTrack = useSelector(selectCurrentTrack);
 
+  const mediaBarOffset = 124;
   const rowHeight = 40;
 
   const listHeight = (() => {
     const maxHeight = Math.max(
-      windowHeight - (trackListRef.current?.offsetTop || 0) - 26,
+      windowHeight -
+        (trackListRef.current?.offsetTop || 0) -
+        (currentTrack ? mediaBarOffset : 0) -
+        26,
       10 * rowHeight
     );
 

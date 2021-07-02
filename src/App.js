@@ -22,7 +22,7 @@ function App() {
 
   return (
     <main className={`w-screen h-screen flex flex-col bg-gray-50`}>
-      <Suspense fallback={<div />}>{loggedIn ? <Nav /> : null}</Suspense>
+      <Suspense fallback={null}>{loggedIn ? <Nav /> : null}</Suspense>
 
       <TitleInfo />
 
@@ -62,9 +62,7 @@ function App() {
         </div>
       </div>
 
-      <Suspense fallback={<div />}>
-        {loggedIn ? <MediaPlayer /> : null}
-      </Suspense>
+      <Suspense fallback={null}>{loggedIn ? <MediaPlayer /> : null}</Suspense>
     </main>
   );
 }

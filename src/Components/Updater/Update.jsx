@@ -7,7 +7,7 @@ function Update() {
 
   const refreshApplication = (e) => {
     e.preventDefault();
-    window.location.reload();
+    window.location.reload(true);
   };
 
   if (updateNeeded) {

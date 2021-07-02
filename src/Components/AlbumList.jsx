@@ -5,7 +5,7 @@ const Grid = lazy(() => import("./Grid"));
 
 function AlbumList({ className, albums }) {
   return (
-    <Suspense fallback={<div />}>
+    <Suspense fallback={null}>
       <Grid className={className}>
         {albums.map((album) => (
           <Album key={album.id} album={album} />

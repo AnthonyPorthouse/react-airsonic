@@ -26,7 +26,7 @@ function Artist() {
   }, [artist, auth, dispatch, id, loading]);
 
   if (!artist) {
-    return <div />;
+    return null;
   }
 
   return (
