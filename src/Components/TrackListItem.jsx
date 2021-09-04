@@ -54,7 +54,7 @@ function TrackListItem({ track }) {
       <div className={`flex-grow gap-6 hidden md:flex`}>
         <span className={`w-1/12 text-right`}>
           {track.discNumber ? `${track.discNumber} / ` : null}
-          {` ${track.track} `}
+          {track.track ? track.track : null}
         </span>
         <span className={`w-1/6 truncate`}>{track.artist}</span>
         <span className={`flex-grow w-0 truncate`}>{track.title}</span>
