@@ -5,16 +5,16 @@ import {
 } from "@reduxjs/toolkit";
 import API, { Album, Artist, ArtistRequest, Auth } from "./api";
 import { setAlbum } from "./albumsSlice";
-import { RootState } from "../app/store";
+import { AppDispatch, RootState } from "../app/store";
 
 export const getArtistsFromApi = createAsyncThunk<Artist[], Auth>(
   "artists/getArtistsFromApi",
-  async (auth, thunkAPI) => {
+  async (auth) => {
     return await API.getArtists(auth);
   }
 );
 
-export const getArtistFromApi = createAsyncThunk<Artist, ArtistRequest>(
+export const getArtistFromApi = createAsyncThunk<Artist, ArtistRequest, { dispatch: AppDispatch }>(
   "artists/getArtistFromApi",
   async (req, { dispatch }) => {
     const [artist, albums] = await API.getArtist(req);
