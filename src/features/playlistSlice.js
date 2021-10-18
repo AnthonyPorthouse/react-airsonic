@@ -25,12 +25,8 @@ export const playlistSlice = createSlice({
   },
 });
 
-export const {
-  setCurrentTrack,
-  setTracks,
-  setPlaying,
-  getNextTrack,
-} = playlistSlice.actions;
+export const { setCurrentTrack, setTracks, setPlaying, getNextTrack } =
+  playlistSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

@@ -87,9 +87,11 @@ export async function getSearchResults({
   );
   const json = await result.json();
 
-  const { song: songs, album: albums, artist: artists } = json[
-    "subsonic-response"
-  ].searchResult3;
+  const {
+    song: songs,
+    album: albums,
+    artist: artists,
+  } = json["subsonic-response"].searchResult3;
 
   return [artists || [], albums || [], songs || []];
 }
