@@ -1,8 +1,14 @@
 import React from "react";
+import { Artist } from "../features/api";
 import ArtistItem from "./ArtistItem";
 import Grid from "./Grid";
 
-function ArtistList({ className, artists }) {
+interface ArtistListProps {
+  className?: string;
+  artists: Artist[];
+}
+
+function ArtistList({ className, artists }: ArtistListProps) {
   return (
     <Grid className={className}>
       {artists.map((artist) => (

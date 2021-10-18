@@ -1,18 +1,22 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { selectAuth } from "../features/authSlice";
 import AlbumList from "../Components/AlbumList";
 import { getArtistFromApi, getArtistById } from "../features/artistsSlice";
 import { getAlbumsByIds } from "../features/albumsSlice";
 
-function Artist() {
-  const { id } = useParams();
+type ArtistParams = {
+  id: string;
+};
 
-  const dispatch = useDispatch();
-  const auth = useSelector(selectAuth);
-  const artist = useSelector((state) => getArtistById(state, id));
-  const albums = useSelector((state) =>
+function Artist() {
+  const { id } = useParams<ArtistParams>();
+
+  const dispatch = useAppDispatch();
+  const auth = useAppSelector(selectAuth);
+  const artist = useAppSelector((state) => getArtistById(state, id));
+  const albums = useAppSelector((state) =>
     getAlbumsByIds(state, artist?.albums || [])
   );
 

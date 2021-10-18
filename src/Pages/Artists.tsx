@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ArtistList from "../Components/ArtistList";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import {
   getArtistsFromApi,
   areArtistsLoaded,
@@ -9,10 +9,10 @@ import {
 import { selectAuth } from "../features/authSlice";
 
 function Artists() {
-  const dispatch = useDispatch();
-  const artistsLoaded = useSelector(areArtistsLoaded);
-  const artists = useSelector(getArtistsAlphabetically);
-  const auth = useSelector(selectAuth);
+  const dispatch = useAppDispatch();
+  const artistsLoaded = useAppSelector(areArtistsLoaded);
+  const artists = useAppSelector(getArtistsAlphabetically);
+  const auth = useAppSelector(selectAuth);
 
   const [loading, setLoading] = useState(false);
 

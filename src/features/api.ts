@@ -32,9 +32,18 @@ export type Song = {
   album: string;
   artist: string;
   track: number;
+  discNumber?: number;
   coverArt: string;
   albumId: string;
   artistId: string;
+};
+
+export type Artist = {
+  id: string;
+  name: string;
+  coverArt: string;
+  albumCount: string;
+  albums: string[];
 };
 
 function generateAuthParams({ username, token, salt }: AuthParams) {
@@ -59,22 +68,15 @@ export async function getAllAlbums({ server, username, token, salt }: Auth) {
   return json["subsonic-response"].albumList2.album;
 }
 
-type AirsonicArtist = {
-  id: string;
-  name: string;
-  coverArt: string;
-  albumCount: string;
-};
-
 export async function getArtists({ server, username, token, salt }: Auth) {
   const authParams = generateAuthParams({ username, token, salt });
   const result = await fetch(`${server}/rest/getArtists?${authParams}`);
   const json = await result.json();
 
-  const artists: AirsonicArtist[] = [];
+  const artists: Artist[] = [];
 
   json["subsonic-response"].artists.index.forEach(
-    (index: { artist: AirsonicArtist[] }) => {
+    (index: { artist: Artist[] }) => {
       index.artist.forEach((artist) => artists.push(artist));
     }
   );
@@ -82,7 +84,7 @@ export async function getArtists({ server, username, token, salt }: Auth) {
   return artists;
 }
 
-interface ArtistRequest extends Auth {
+export interface ArtistRequest extends Auth {
   id: string;
 }
 
@@ -92,7 +94,7 @@ export async function getArtist({
   username,
   token,
   salt,
-}: ArtistRequest) {
+}: ArtistRequest): Promise<[Artist, Album[]]> {
   const authParams = generateAuthParams({ username, token, salt });
   const result = await fetch(`${server}/rest/getArtist?id=${id}&${authParams}`);
   const json = await result.json();

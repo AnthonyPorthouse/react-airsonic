@@ -3,36 +3,46 @@ import {
   createSelector,
   createSlice,
 } from "@reduxjs/toolkit";
-import API from "./api";
+import API, { Album, Artist, ArtistRequest, Auth } from "./api";
 import { setAlbum } from "./albumsSlice";
+import { RootState } from "../app/store";
 
-export const getArtistsFromApi = createAsyncThunk(
+export const getArtistsFromApi = createAsyncThunk<Artist[], Auth>(
   "artists/getArtistsFromApi",
   async (auth, thunkAPI) => {
     return await API.getArtists(auth);
   }
 );
 
-export const getArtistFromApi = createAsyncThunk(
+export const getArtistFromApi = createAsyncThunk<Artist, ArtistRequest>(
   "artists/getArtistFromApi",
   async (req, { dispatch }) => {
     const [artist, albums] = await API.getArtist(req);
-    albums.forEach((album) => dispatch((state) => setAlbum(state, album)));
-    artist.albums = albums.map((album) => album.id);
+    albums.forEach((album: Album) => dispatch(setAlbum(album)));
+    artist.albums = albums.map((album: Album) => album.id);
 
     return artist;
   }
 );
+
+interface ArtistsState {
+  artists: {
+    [key: string]: Artist;
+  };
+  loaded: boolean;
+}
 
 export const artistsSlice = createSlice({
   name: "artists",
   initialState: {
     artists: {},
     loaded: false,
-  },
+  } as ArtistsState,
   reducers: {
     setArtists: (state, action) => {
-      action.payload.forEach((artist) => (state.artists[artist.id] = artist));
+      action.payload.forEach(
+        (artist: Artist) => (state.artists[artist.id] = artist)
+      );
     },
     setArtist: (state, action) => {
       const artist = action.payload;
@@ -43,32 +53,32 @@ export const artistsSlice = createSlice({
       );
     },
   },
-  extraReducers: {
-    [getArtistsFromApi.pending]: (state, action) => {
-      state.loaded = true;
-    },
-    [getArtistsFromApi.fulfilled]: (state, action) => {
+  extraReducers: (builder) => {
+    builder.addCase(getArtistsFromApi.pending, (state) => {
+      state.loaded = false;
+    });
+
+    builder.addCase(getArtistsFromApi.fulfilled, (state, action) => {
       state.loaded = true;
       action.payload.forEach((artist) => (state.artists[artist.id] = artist));
-    },
-    [getArtistFromApi.fulfilled]: (state, action) => {
+    });
+
+    builder.addCase(getArtistFromApi.fulfilled, (state, action) => {
       const artist = action.payload;
       state.artists[artist.id] = artist;
-    },
+    });
   },
 });
 
 export const { setArtists } = artistsSlice.actions;
 
-// The function below is called a selector and allows us to select a value from
-// the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state) => state.counter.value)`
-export const getArtists = (state) =>
+export const getArtists = (state: RootState) =>
   Object.keys(state.artists.artists).map((key) => state.artists.artists[key]);
-export const getArtistById = (state, id) => state.artists.artists[id];
-export const getArtistsByIds = (state, ids) =>
+export const getArtistById = (state: RootState, id: string) =>
+  state.artists.artists[id];
+export const getArtistsByIds = (state: RootState, ids: string[]) =>
   ids.map((id) => state.artists.artists[id]);
-export const areArtistsLoaded = (state) => state.artists.loaded;
+export const areArtistsLoaded = (state: RootState) => state.artists.loaded;
 
 export const getArtistsAlphabetically = createSelector(
   [getArtists],
