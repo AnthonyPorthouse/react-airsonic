@@ -1,5 +1,5 @@
 import { ReactComponent as FastForward } from "../../images/fast-forward.svg";
-import { getNextTrack } from "../../features/playlistSlice";
+import { getNextTrack } from "../../app/features/playlistSlice";
 import { useDispatch } from "react-redux";
 
 function SkipButton() {

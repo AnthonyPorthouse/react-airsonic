@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { selectAuth } from "../features/authSlice";
+import { selectAuth } from "../app/features/authSlice";
 import { useEffect, useState } from "react";
 import TrackList from "../Components/TrackList";
 import AlbumHeader from "../Components/AlbumHeader";
-import { getSongsByIds } from "../features/songSlice";
-import { getAlbumById, getAlbumFromApi } from "../features/albumsSlice";
+import { getSongsByIds } from "../app/features/songSlice";
+import { getAlbumById, getAlbumFromApi } from "../app/features/albumsSlice";
 import Spinner from "../Components/Spinner";
 
 type AlbumParams = {

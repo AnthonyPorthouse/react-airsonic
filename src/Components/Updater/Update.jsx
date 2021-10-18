@@ -1,5 +1,5 @@
 import { ReactComponent as UpdateIcon } from "../../images/update.svg";
-import { isUpdateAvailable } from "../../features/updateSlice";
+import { isUpdateAvailable } from "../../app/features/updateSlice";
 import { useSelector } from "react-redux";
 
 function Update() {

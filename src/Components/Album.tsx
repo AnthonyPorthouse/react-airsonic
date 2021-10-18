@@ -1,6 +1,6 @@
 import AlbumArt from "./AlbumArt";
 import { Link } from "react-router-dom";
-import { Album as ApiAlbum } from "../features/api";
+import { Album as ApiAlbum } from "../app/features/api";
 
 interface AlbumProps {
   album: ApiAlbum;

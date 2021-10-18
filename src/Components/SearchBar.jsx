@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { ReactComponent as Search } from "../images/search.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { selectAuth } from "../features/authSlice";
+import { selectAuth } from "../app/features/authSlice";
 import { useHistory } from "react-router-dom";
-import { getSearchResultsFromApi } from "../features/searchSlice";
+import { getSearchResultsFromApi } from "../app/features/searchSlice";
 
 function SearchBar({ onSubmit }) {
   const dispatch = useDispatch();

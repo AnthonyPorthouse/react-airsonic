@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { selectAuth } from "../features/authSlice";
+import { selectAuth } from "../app/features/authSlice";
 import AlbumList from "../Components/AlbumList";
-import { getArtistFromApi, getArtistById } from "../features/artistsSlice";
-import { getAlbumsByIds } from "../features/albumsSlice";
+import { getArtistFromApi, getArtistById } from "../app/features/artistsSlice";
+import { getAlbumsByIds } from "../app/features/albumsSlice";
 
 type ArtistParams = {
   id: string;

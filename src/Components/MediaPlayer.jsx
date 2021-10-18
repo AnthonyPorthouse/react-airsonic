@@ -1,13 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getNextTrack, selectCurrentTrack } from "../features/playlistSlice";
-import { selectAuth } from "../features/authSlice";
-import { getStreamUrl } from "../features/api";
+import {
+  getNextTrack,
+  selectCurrentTrack,
+} from "../app/features/playlistSlice";
+import { selectAuth } from "../app/features/authSlice";
+import { getStreamUrl } from "../app/features/api";
 import { useEffect, useRef, useState } from "react";
 import AudioProvider from "./Audio/AudioProvider";
 import MediaSession from "./MediaSession";
 import TitleInfo from "./TitleInfo";
 import AlbumArt from "./AlbumArt";
-import { getSongById } from "../features/songSlice";
+import { getSongById } from "../app/features/songSlice";
 import MediaInfo from "./MediaPlayer/MediaInfo";
 
 function MediaPlayer() {

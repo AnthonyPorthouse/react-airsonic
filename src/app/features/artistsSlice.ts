@@ -5,7 +5,7 @@ import {
 } from "@reduxjs/toolkit";
 import API, { Album, Artist, ArtistRequest, Auth } from "./api";
 import { setAlbum } from "./albumsSlice";
-import { AppDispatch, RootState } from "../app/store";
+import { AppDispatch, RootState } from "../store";
 
 export const getArtistsFromApi = createAsyncThunk<Artist[], Auth>(
   "artists/getArtistsFromApi",
@@ -14,16 +14,17 @@ export const getArtistsFromApi = createAsyncThunk<Artist[], Auth>(
   }
 );
 
-export const getArtistFromApi = createAsyncThunk<Artist, ArtistRequest, { dispatch: AppDispatch }>(
-  "artists/getArtistFromApi",
-  async (req, { dispatch }) => {
-    const [artist, albums] = await API.getArtist(req);
-    albums.forEach((album: Album) => dispatch(setAlbum(album)));
-    artist.albums = albums.map((album: Album) => album.id);
+export const getArtistFromApi = createAsyncThunk<
+  Artist,
+  ArtistRequest,
+  { dispatch: AppDispatch }
+>("artists/getArtistFromApi", async (req, { dispatch }) => {
+  const [artist, albums] = await API.getArtist(req);
+  albums.forEach((album: Album) => dispatch(setAlbum(album)));
+  artist.albums = albums.map((album: Album) => album.id);
 
-    return artist;
-  }
-);
+  return artist;
+});
 
 interface ArtistsState {
   artists: {

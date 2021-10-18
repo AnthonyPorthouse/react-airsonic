@@ -1,6 +1,6 @@
 import AlbumArt from "./AlbumArt";
 import { useDispatch } from "react-redux";
-import { getNextTrack, setTracks } from "../features/playlistSlice";
+import { getNextTrack, setTracks } from "../app/features/playlistSlice";
 
 function AlbumHeader({ album }) {
   const dispatch = useDispatch();

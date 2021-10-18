@@ -5,8 +5,8 @@ import {
   getArtistsFromApi,
   areArtistsLoaded,
   getArtistsAlphabetically,
-} from "../features/artistsSlice";
-import { selectAuth } from "../features/authSlice";
+} from "../app/features/artistsSlice";
+import { selectAuth } from "../app/features/authSlice";
 
 function Artists() {
   const dispatch = useAppDispatch();

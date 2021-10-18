@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { useSelector } from "react-redux";
-import { getSongById } from "../features/songSlice";
+import { getSongById } from "../app/features/songSlice";
 
 function TitleInfo({ nowPlaying = null }) {
   const song = useSelector((state) => getSongById(state, nowPlaying));

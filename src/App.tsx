@@ -1,7 +1,7 @@
 import React, { ReactNode, Suspense } from "react";
 import LogIn from "./Pages/LogIn";
 import { useAppSelector } from "./app/hooks";
-import { selectSuccess } from "./features/authSlice";
+import { selectSuccess } from "./app/features/authSlice";
 import { Switch, Route, Redirect } from "react-router-dom";
 import TitleInfo from "./Components/TitleInfo";
 import Spinner from "./Components/Spinner";

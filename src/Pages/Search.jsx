@@ -3,10 +3,10 @@ import React from "react";
 import AlbumList from "../Components/AlbumList";
 import TrackList from "../Components/TrackList";
 import { useSelector } from "react-redux";
-import { getArtistsByIds } from "../features/artistsSlice";
-import { getResults } from "../features/searchSlice";
-import { getAlbumsByIds } from "../features/albumsSlice";
-import { getSongsByIds } from "../features/songSlice";
+import { getArtistsByIds } from "../app/features/artistsSlice";
+import { getResults } from "../app/features/searchSlice";
+import { getAlbumsByIds } from "../app/features/albumsSlice";
+import { getSongsByIds } from "../app/features/songSlice";
 
 function Search() {
   const results = useSelector(getResults);

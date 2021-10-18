@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import API, { Auth } from "./api";
 import uuid from "uuid";
 import md5 from "md5";
-import { RootState } from "../app/store";
+import { RootState } from "../store";
 
 const salt = uuid.v4();
 

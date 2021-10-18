@@ -1,11 +1,11 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { selectAuth } from "../features/authSlice";
+import { selectAuth } from "../app/features/authSlice";
 import {
   getAllAlbumsFromApi,
   getAllAlbums,
   areAllAlbumsLoaded,
-} from "../features/albumsSlice";
+} from "../app/features/albumsSlice";
 import Spinner from "../Components/Spinner";
 
 const AlbumList = lazy(() => import("../Components/AlbumList"));

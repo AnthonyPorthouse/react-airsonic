@@ -1,14 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectAuth } from "../features/authSlice";
+import { selectAuth } from "../app/features/authSlice";
 import {
   getPlaylistById,
   getPlaylistFromApi,
-} from "../features/playlistsSlice";
+} from "../app/features/playlistsSlice";
 import { useEffect, useState } from "react";
 import AlbumHeader from "../Components/AlbumHeader";
 import TrackList from "../Components/TrackList";
-import { getSongsByIds } from "../features/songSlice";
+import { getSongsByIds } from "../app/features/songSlice";
 
 function Playlist() {
   const { id } = useParams();

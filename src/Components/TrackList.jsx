@@ -6,7 +6,7 @@ import { useRef } from "react";
 import classNames from "classnames";
 import { useWindowHeight } from "@react-hook/window-size";
 import { useSelector } from "react-redux";
-import { selectCurrentTrack } from "../features/playlistSlice";
+import { selectCurrentTrack } from "../app/features/playlistSlice";
 
 function TrackList({ tracks }) {
   const windowHeight = useWindowHeight();

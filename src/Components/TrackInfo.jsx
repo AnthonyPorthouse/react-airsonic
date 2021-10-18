@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { getSongById } from "../features/songSlice";
+import { getSongById } from "../app/features/songSlice";
 
 function TrackInfo({ track }) {
   const song = useSelector((state) => getSongById(state, track));

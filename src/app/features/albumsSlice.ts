@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { AppDispatch, RootState } from "../app/store";
+import { AppDispatch, RootState } from "../store";
 import API, { Album, AlbumRequest, Auth } from "./api";
 import { addSongs } from "./songSlice";
 
@@ -10,18 +10,19 @@ export const getAllAlbumsFromApi = createAsyncThunk<Album[], Auth>(
   }
 );
 
-export const getAlbumFromApi = createAsyncThunk<Album, AlbumRequest, { dispatch: AppDispatch}>(
-  "albums/getAlbum",
-  async (req, { dispatch }) => {
-    const [album, songs] = await API.getAlbum(req);
+export const getAlbumFromApi = createAsyncThunk<
+  Album,
+  AlbumRequest,
+  { dispatch: AppDispatch }
+>("albums/getAlbum", async (req, { dispatch }) => {
+  const [album, songs] = await API.getAlbum(req);
 
-    album.tracks = songs.map((song) => song.id);
-    dispatch(addSongs(songs));
-    dispatch(setAlbum(album));
+  album.tracks = songs.map((song) => song.id);
+  dispatch(addSongs(songs));
+  dispatch(setAlbum(album));
 
-    return album;
-  }
-);
+  return album;
+});
 
 interface AlbumState {
   albumOrder: string[];

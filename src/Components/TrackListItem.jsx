@@ -5,7 +5,7 @@ import {
   getNextTrack,
   selectCurrentTrack,
   setTracks,
-} from "../features/playlistSlice";
+} from "../app/features/playlistSlice";
 import Duration from "./Duration";
 import { useContext } from "react";
 import AlbumContext from "./AlbumContext";

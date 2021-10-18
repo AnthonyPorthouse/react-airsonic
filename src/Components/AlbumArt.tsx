@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import { selectAuth } from "../features/authSlice";
-import { getScaledCoverArtUrl } from "../features/api";
+import { selectAuth } from "../app/features/authSlice";
+import { getScaledCoverArtUrl } from "../app/features/api";
 
 interface AlbumArtProps {
   id: string;

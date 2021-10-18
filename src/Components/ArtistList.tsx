@@ -1,5 +1,5 @@
 import React from "react";
-import { Artist } from "../features/api";
+import { Artist } from "../app/features/api";
 import ArtistItem from "./ArtistItem";
 import Grid from "./Grid";
 

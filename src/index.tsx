@@ -8,7 +8,7 @@ import { Provider } from "react-redux";
 import store from "./app/store";
 import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import { setUpdateAvailable } from "./features/updateSlice";
+import { setUpdateAvailable } from "./app/features/updateSlice";
 
 ReactDOM.render(
   <React.StrictMode>

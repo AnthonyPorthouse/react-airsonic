@@ -11,7 +11,7 @@ import {
   ping,
   selectSuccess,
   selectAuth,
-} from "../features/authSlice";
+} from "../app/features/authSlice";
 
 import { useHistory } from "react-router-dom";
 

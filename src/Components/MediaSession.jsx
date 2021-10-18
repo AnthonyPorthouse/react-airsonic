@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSongById } from "../features/songSlice";
-import { getCoverArtUrl } from "../features/api";
-import { selectAuth } from "../features/authSlice";
-import { getNextTrack } from "../features/playlistSlice";
+import { getSongById } from "../app/features/songSlice";
+import { getCoverArtUrl } from "../app/features/api";
+import { selectAuth } from "../app/features/authSlice";
+import { getNextTrack } from "../app/features/playlistSlice";
 
 function MediaSession({ track, children }) {
   const dispatch = useDispatch();

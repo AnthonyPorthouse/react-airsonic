@@ -46,6 +46,15 @@ export type Artist = {
   albums: string[];
 };
 
+export type Playlist = {
+  id: string;
+  name: string;
+  comment: string;
+  songCount: number;
+  coverArt: string;
+  tracks: string[];
+};
+
 function generateAuthParams({ username, token, salt }: AuthParams) {
   return `u=${username}&t=${token}&s=${salt}&v=1.15.0&c=react-airsonic&f=json`;
 }
@@ -124,7 +133,12 @@ export async function getAlbum({
   return [album, songs];
 }
 
-export async function getPlaylists({ server, username, token, salt }: Auth) {
+export async function getPlaylists({
+  server,
+  username,
+  token,
+  salt,
+}: Auth): Promise<Playlist[]> {
   const authParams = generateAuthParams({ username, token, salt });
   const result = await fetch(`${server}/rest/getPlaylists?${authParams}`);
   const json = await result.json();
@@ -132,7 +146,7 @@ export async function getPlaylists({ server, username, token, salt }: Auth) {
   return json["subsonic-response"].playlists.playlist;
 }
 
-interface PlaylistRequest extends Auth {
+export interface PlaylistRequest extends Auth {
   id: string;
 }
 
@@ -142,7 +156,7 @@ export async function getPlaylist({
   username,
   token,
   salt,
-}: PlaylistRequest) {
+}: PlaylistRequest): Promise<[Playlist, Song[]]> {
   const authParams = generateAuthParams({ username, token, salt });
   const result = await fetch(
     `${server}/rest/getPlaylist?id=${id}&${authParams}`
