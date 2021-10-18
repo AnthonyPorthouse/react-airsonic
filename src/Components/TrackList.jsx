@@ -1,7 +1,7 @@
 import TrackListItem from "./TrackListItem";
 import AlbumContext from "./AlbumContext";
 
-import { List } from "react-virtualized";
+import { FixedSizeList as List } from "react-window";
 import { useRef } from "react";
 import classNames from "classnames";
 import { useWindowHeight } from "@react-hook/window-size";
@@ -35,7 +35,7 @@ function TrackList({ tracks }) {
     return calculatedHeight;
   })();
 
-  const rowRenderer = ({ key, index, style }) => (
+  const rowRenderer = ({ index, style }) => (
     <div
       style={style}
       className={classNames(
@@ -43,7 +43,6 @@ function TrackList({ tracks }) {
         `px-4`,
         index % 2 === 0 ? "bg-white" : "bg-gray-100"
       )}
-      key={key}
     >
       <TrackListItem track={tracks[index]} />
     </div>
@@ -60,10 +59,11 @@ function TrackList({ tracks }) {
           <List
             height={listHeight}
             width={trackListRef.current?.offsetWidth || 0}
-            rowCount={tracks.length}
-            rowHeight={rowHeight}
-            rowRenderer={rowRenderer}
-          />
+            itemCount={tracks.length}
+            itemSize={rowHeight}
+          >
+            {rowRenderer}
+          </List>
         </div>
       </section>
     </AlbumContext.Provider>
