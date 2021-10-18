@@ -6,9 +6,12 @@ import { RootState } from "../app/store";
 
 const salt = uuid.v4();
 
-export const ping = createAsyncThunk("auth/ping", async (auth: Auth, thunkAPI) => {
-  return await API.ping({ ...auth });
-});
+export const ping = createAsyncThunk(
+  "auth/ping",
+  async (auth: Auth, thunkAPI) => {
+    return await API.ping({ ...auth });
+  }
+);
 
 interface AuthState {
   salt: string;
@@ -47,9 +50,9 @@ export const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(ping.fulfilled, (state, {payload}) => {
+    builder.addCase(ping.fulfilled, (state, { payload }) => {
       state.success = payload;
-    })
+    });
   },
 });
 

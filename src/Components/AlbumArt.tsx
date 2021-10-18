@@ -1,13 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectAuth } from "../features/authSlice";
 import { getScaledCoverArtUrl } from "../features/api";
 
-function AlbumArt({ id, description, sizes }) {
-  const auth = useSelector(selectAuth);
-  const el = useRef(null);
+interface AlbumArtProps {
+  id: string;
+  description: string;
+  sizes?: string;
+}
 
-  const [width, setWidth] = useState(null);
+function AlbumArt({ id, description, sizes }: AlbumArtProps) {
+  const auth = useSelector(selectAuth);
+  const el = useRef<HTMLImageElement>(null);
+
+  const [width, setWidth] = useState<number>(0);
 
   useEffect(() => {
     setWidth(el.current ? el.current.offsetWidth : 0);
@@ -20,7 +26,9 @@ function AlbumArt({ id, description, sizes }) {
     const values = [];
 
     for (let i = min; i <= max; i += modifier) {
-      values.push(`${getScaledCoverArtUrl({ id, size: i, ...auth })} ${i}w`);
+      values.push(
+        `${getScaledCoverArtUrl({ id, size: String(i), ...auth })} ${i}w`
+      );
     }
 
     return values.join(", ");

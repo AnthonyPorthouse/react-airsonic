@@ -10,7 +10,7 @@ import Spinner from "../Components/Spinner";
 
 type AlbumParams = {
   id: string;
-}
+};
 
 function Album() {
   const { id } = useParams<AlbumParams>();

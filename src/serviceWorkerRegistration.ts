@@ -11,8 +11,8 @@
 // opt-in, read https://cra.link/PWA
 
 interface ServiceWorkerConfig {
-  onUpdate? (registration: ServiceWorkerRegistration): void
-  onSuccess? (registration: ServiceWorkerRegistration): void
+  onUpdate?(registration: ServiceWorkerRegistration): void;
+  onSuccess?(registration: ServiceWorkerRegistration): void;
 }
 
 const isLocalhost = Boolean(

@@ -67,7 +67,14 @@ function App() {
   );
 }
 
-function AuthenticatedRoute({ children, ...rest }: {children: ReactNode, path: string, exact?: boolean}) {
+function AuthenticatedRoute({
+  children,
+  ...rest
+}: {
+  children: ReactNode;
+  path: string;
+  exact?: boolean;
+}) {
   const loginSuccessful = useAppSelector(selectSuccess);
 
   return (

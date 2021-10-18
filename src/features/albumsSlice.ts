@@ -3,10 +3,7 @@ import { RootState } from "../app/store";
 import API, { Album, AlbumRequest, Auth } from "./api";
 import { addSongs } from "./songSlice";
 
-export const getAllAlbumsFromApi = createAsyncThunk<
-  Album[],
-  Auth
->(
+export const getAllAlbumsFromApi = createAsyncThunk<Album[], Auth>(
   "albums/getAllAlbums",
   async (req: Auth) => {
     return await API.getAllAlbums(req);
@@ -29,7 +26,7 @@ export const getAlbumFromApi = createAsyncThunk<Album, AlbumRequest>(
 interface AlbumState {
   albumOrder: string[];
   albums: {
-    [key: string]: Album
+    [key: string]: Album;
   };
   loaded: boolean;
 }
@@ -43,7 +40,9 @@ export const albumsSlice = createSlice({
   } as AlbumState,
   reducers: {
     setAlbums: (state, action) => {
-      action.payload.forEach((album: Album) => (state.albums[album.id] = album));
+      action.payload.forEach(
+        (album: Album) => (state.albums[album.id] = album)
+      );
     },
     setAlbum: (state, action) => {
       const album = action.payload;
@@ -62,14 +61,15 @@ export const albumsSlice = createSlice({
     builder.addCase(getAllAlbumsFromApi.fulfilled, (state, action) => {
       state.loaded = true;
       state.albumOrder = action.payload.map((album) => album.id);
-      action.payload.forEach((album: Album) => (state.albums[album.id] = album));
+      action.payload.forEach(
+        (album: Album) => (state.albums[album.id] = album)
+      );
     });
 
     builder.addCase(getAlbumFromApi.fulfilled, (state, { payload: album }) => {
       state.loaded = true;
       state.albums[album.id] = Object.assign({}, state.albums[album.id], album);
     });
-
   },
 });
 
@@ -79,7 +79,8 @@ export const getAllAlbums = (state: RootState) =>
   state.albums.albumOrder.map((id) => state.albums.albums[id]);
 export const getAlbumsByIds = (state: RootState, ids: string[]) =>
   ids.map((id) => state.albums.albums[id]);
-export const getAlbumById = (state: RootState, id: string) => state.albums.albums[id];
+export const getAlbumById = (state: RootState, id: string) =>
+  state.albums.albums[id];
 export const areAllAlbumsLoaded = (state: RootState) => state.albums.loaded;
 
 export default albumsSlice.reducer;

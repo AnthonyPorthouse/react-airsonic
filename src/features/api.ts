@@ -23,7 +23,7 @@ export type Album = {
   year: number;
   genre: string;
   tracks: string[];
-}
+};
 
 export type Song = {
   id: string;
@@ -35,8 +35,7 @@ export type Song = {
   coverArt: string;
   albumId: string;
   artistId: string;
-}
-
+};
 
 function generateAuthParams({ username, token, salt }: AuthParams) {
   return `u=${username}&t=${token}&s=${salt}&v=1.15.0&c=react-airsonic&f=json`;

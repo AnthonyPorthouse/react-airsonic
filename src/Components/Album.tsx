@@ -1,7 +1,12 @@
 import AlbumArt from "./AlbumArt";
 import { Link } from "react-router-dom";
+import { Album as ApiAlbum } from "../features/api";
 
-function Album({ album }) {
+interface AlbumProps {
+  album: ApiAlbum;
+}
+
+function Album({ album }: AlbumProps) {
   const { id, name, artist, coverArt } = album;
 
   return (
