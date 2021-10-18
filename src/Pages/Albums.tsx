@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { selectAuth } from "../features/authSlice";
 import {
   getAllAlbumsFromApi,
@@ -11,11 +11,11 @@ import Spinner from "../Components/Spinner";
 const AlbumList = lazy(() => import("../Components/AlbumList"));
 
 function Albums() {
-  const auth = useSelector(selectAuth);
-  const albums = useSelector(getAllAlbums);
-  const albumsLoaded = useSelector(areAllAlbumsLoaded);
+  const auth = useAppSelector(selectAuth);
+  const albums = useAppSelector(getAllAlbums);
+  const albumsLoaded = useAppSelector(areAllAlbumsLoaded);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const [loading, setLoading] = useState(false);
 
@@ -33,7 +33,7 @@ function Albums() {
       <h1 className={`text-2xl`}>All Albums</h1>
 
       <Suspense fallback={<Spinner />}>
-        <AlbumList albums={albums} />
+        <AlbumList albums={albums} className={undefined} />
       </Suspense>
     </div>
   );

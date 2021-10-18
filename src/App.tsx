@@ -1,6 +1,6 @@
-import React, { Suspense } from "react";
+import React, { ReactNode, Suspense } from "react";
 import LogIn from "./Pages/LogIn";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "./app/hooks";
 import { selectSuccess } from "./features/authSlice";
 import { Switch, Route, Redirect } from "react-router-dom";
 import TitleInfo from "./Components/TitleInfo";
@@ -18,7 +18,7 @@ const Nav = React.lazy(() => import("./Components/Nav"));
 const MediaPlayer = React.lazy(() => import("./Components/MediaPlayer"));
 
 function App() {
-  const loggedIn = useSelector(selectSuccess);
+  const loggedIn = useAppSelector(selectSuccess);
 
   return (
     <main className={`w-screen h-screen flex flex-col bg-gray-50`}>
@@ -67,8 +67,8 @@ function App() {
   );
 }
 
-function AuthenticatedRoute({ children, ...rest }) {
-  const loginSuccessful = useSelector(selectSuccess);
+function AuthenticatedRoute({ children, ...rest }: {children: ReactNode, path: string, exact?: boolean}) {
+  const loginSuccessful = useAppSelector(selectSuccess);
 
   return (
     <Route

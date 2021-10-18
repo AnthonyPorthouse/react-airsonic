@@ -1,15 +1,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import API from "./api";
+import { RootState } from "../app/store";
+import API, { Album, AlbumRequest, Auth } from "./api";
 import { addSongs } from "./songSlice";
 
-export const getAllAlbumsFromApi = createAsyncThunk(
+export const getAllAlbumsFromApi = createAsyncThunk<
+  Album[],
+  Auth
+>(
   "albums/getAllAlbums",
-  async (req, thunkAPI) => {
+  async (req: Auth) => {
     return await API.getAllAlbums(req);
   }
 );
 
-export const getAlbumFromApi = createAsyncThunk(
+export const getAlbumFromApi = createAsyncThunk<Album, AlbumRequest>(
   "albums/getAlbum",
   async (req, { dispatch }) => {
     const [album, songs] = await API.getAlbum(req);
@@ -22,16 +26,24 @@ export const getAlbumFromApi = createAsyncThunk(
   }
 );
 
+interface AlbumState {
+  albumOrder: string[];
+  albums: {
+    [key: string]: Album
+  };
+  loaded: boolean;
+}
+
 export const albumsSlice = createSlice({
   name: "albums",
   initialState: {
     albumOrder: [],
     albums: {},
     loaded: false,
-  },
+  } as AlbumState,
   reducers: {
     setAlbums: (state, action) => {
-      action.payload.forEach((album) => (state.albums[album.id] = album));
+      action.payload.forEach((album: Album) => (state.albums[album.id] = album));
     },
     setAlbum: (state, action) => {
       const album = action.payload;
@@ -41,34 +53,33 @@ export const albumsSlice = createSlice({
       state.loaded = action.payload;
     },
   },
-  extraReducers: {
-    [getAllAlbumsFromApi.pending]: (state, action) => {
+  extraReducers: (builder) => {
+    builder.addCase(getAllAlbumsFromApi.pending, (state) => {
       state.loaded = false;
       state.albums = {};
-    },
-    [getAllAlbumsFromApi.fulfilled]: (state, action) => {
+    });
+
+    builder.addCase(getAllAlbumsFromApi.fulfilled, (state, action) => {
       state.loaded = true;
       state.albumOrder = action.payload.map((album) => album.id);
-      action.payload.forEach((album) => (state.albums[album.id] = album));
-    },
-    [getAlbumFromApi.fulfilled]: (state, action) => {
+      action.payload.forEach((album: Album) => (state.albums[album.id] = album));
+    });
+
+    builder.addCase(getAlbumFromApi.fulfilled, (state, { payload: album }) => {
       state.loaded = true;
-      const album = action.payload;
       state.albums[album.id] = Object.assign({}, state.albums[album.id], album);
-    },
+    });
+
   },
 });
 
 export const { setAlbums, setAlbum, setLoaded } = albumsSlice.actions;
 
-// The function below is called a selector and allows us to select a value from
-// the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state) => state.counter.value)`
-export const getAllAlbums = (state) =>
+export const getAllAlbums = (state: RootState) =>
   state.albums.albumOrder.map((id) => state.albums.albums[id]);
-export const getAlbumsByIds = (state, ids) =>
+export const getAlbumsByIds = (state: RootState, ids: string[]) =>
   ids.map((id) => state.albums.albums[id]);
-export const getAlbumById = (state, id) => state.albums.albums[id];
-export const areAllAlbumsLoaded = (state) => state.albums.loaded;
+export const getAlbumById = (state: RootState, id: string) => state.albums.albums[id];
+export const areAllAlbumsLoaded = (state: RootState) => state.albums.loaded;
 
 export default albumsSlice.reducer;

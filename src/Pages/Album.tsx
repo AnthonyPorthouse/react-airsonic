@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { selectAuth } from "../features/authSlice";
 import { useEffect, useState } from "react";
 import TrackList from "../Components/TrackList";
@@ -8,13 +8,17 @@ import { getSongsByIds } from "../features/songSlice";
 import { getAlbumById, getAlbumFromApi } from "../features/albumsSlice";
 import Spinner from "../Components/Spinner";
 
-function Album() {
-  const { id } = useParams();
-  const dispatch = useDispatch();
+type AlbumParams = {
+  id: string;
+}
 
-  const auth = useSelector(selectAuth);
-  const album = useSelector((state) => getAlbumById(state, id));
-  const songs = useSelector((state) =>
+function Album() {
+  const { id } = useParams<AlbumParams>();
+  const dispatch = useAppDispatch();
+
+  const auth = useAppSelector(selectAuth);
+  const album = useAppSelector((state) => getAlbumById(state, id));
+  const songs = useAppSelector((state) =>
     getSongsByIds(state, album.tracks || [])
   );
 

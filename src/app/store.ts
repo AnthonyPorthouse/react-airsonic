@@ -19,6 +19,11 @@ export const reducers = {
   update: updateReducer,
 };
 
-export default configureStore({
+export const store = configureStore({
   reducer: reducers,
 });
+
+export default store;
+
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
