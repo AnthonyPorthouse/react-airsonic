@@ -28,7 +28,7 @@ ReactDOM.render(
 // Learn more about service workers: https://cra.link/PWA
 serviceWorkerRegistration.register({
   onUpdate: (registration) => {
-    registration.waiting.postMessage({ type: "SKIP_WAITING" });
+    registration.waiting?.postMessage({ type: "SKIP_WAITING" });
     store.dispatch(setUpdateAvailable(true));
   },
 });
