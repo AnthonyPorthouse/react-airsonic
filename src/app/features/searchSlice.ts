@@ -6,9 +6,9 @@ import { addSongs } from "./songSlice";
 import { AppDispatch, RootState } from "../store";
 
 type SearchResults = {
-  artists: string[];
-  albums: string[];
-  songs: string[];
+  artists: ArtistIds;
+  albums: AlbumIds;
+  songs: SongIds;
 };
 
 export const getSearchResultsFromApi = createAsyncThunk<
@@ -70,7 +70,7 @@ export const searchSlice = createSlice({
   },
 });
 
-export const getResults = (state: RootState) => ({
+export const getResults = (state: RootState): SearchResults => ({
   artists: state.search.artists,
   albums: state.search.albums,
   songs: state.search.songs,

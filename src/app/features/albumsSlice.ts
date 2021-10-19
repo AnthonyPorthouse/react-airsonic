@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AppDispatch, RootState } from "../store";
-import API, {Album, AlbumIds, AlbumRequest, Auth} from "./api";
+import API, {Album, AlbumIds, AlbumRequest, Albums, Auth} from "./api";
 import { addSongs } from "./songSlice";
 
 export const getAllAlbumsFromApi = createAsyncThunk<Album[], Auth>(
@@ -76,11 +76,11 @@ export const albumsSlice = createSlice({
 
 export const { setAlbums, setAlbum, setLoaded } = albumsSlice.actions;
 
-export const getAllAlbums = (state: RootState) =>
+export const getAllAlbums = (state: RootState): Albums =>
   state.albums.albumOrder.map((id) => state.albums.albums[id]);
-export const getAlbumsByIds = (state: RootState, ids: string[]) =>
+export const getAlbumsByIds = (state: RootState, ids: string[]): Albums =>
   ids.map((id) => state.albums.albums[id]);
-export const getAlbumById = (state: RootState, id: string) =>
+export const getAlbumById = (state: RootState, id: string): Album =>
   state.albums.albums[id];
 export const areAllAlbumsLoaded = (state: RootState) => state.albums.loaded;
 
