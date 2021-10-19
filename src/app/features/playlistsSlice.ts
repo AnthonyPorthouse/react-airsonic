@@ -7,7 +7,7 @@ import {
   PlaylistRequest,
 } from "./api";
 import { addSongs } from "./songSlice";
-import { AppDispatch } from "../store";
+import { AppDispatch, RootState } from "../store";
 
 export const getPlaylistsFromApi = createAsyncThunk<Playlist[], Auth>(
   "playlists/getPlayListsFromApi",
@@ -31,7 +31,7 @@ export const getPlaylistFromApi = createAsyncThunk<
 
 interface PlaylistState {
   playlists: {
-    [key: string]: Playlist,
+    [key: string]: Playlist;
   };
   loaded: boolean;
 }
@@ -43,35 +43,37 @@ export const playlistsSlice = createSlice({
     loaded: false,
   } as PlaylistState,
   reducers: {
-    setPlaylists: (state, action) => {
-      state.playlists = action.payload;
+    setPlaylists: (state, { payload }: {payload: {[key: string]: Playlist}}) => {
+      state.playlists = payload;
     },
   },
-  extraReducers: {
-    [getPlaylistsFromApi.fulfilled]: (state, action) => {
+  extraReducers: (builder) => {
+    builder.addCase(getPlaylistsFromApi.fulfilled, (state, action) => {
       state.loaded = true;
       action.payload.forEach(
         (playlist) => (state.playlists[playlist.id] = playlist)
       );
-    },
-    [getPlaylistFromApi.fulfilled]: (state, action) => {
+    });
+
+    builder.addCase(getPlaylistFromApi.fulfilled, (state, action) => {
       const playlist = action.payload;
       state.playlists[playlist.id] = Object.assign(
         {},
         state.playlists[playlist.id],
         playlist
       );
-    },
+    });
   },
 });
 
-export const { setPlayLists } = playlistsSlice.actions;
+export const { setPlaylists } = playlistsSlice.actions;
 
-export const arePlaylistsLoaded = (state) => state.playlists.loaded;
-export const getAllPlaylists = (state) =>
+export const arePlaylistsLoaded = (state: RootState) => state.playlists.loaded;
+export const getAllPlaylists = (state: RootState) =>
   Object.keys(state.playlists.playlists).map(
     (id) => state.playlists.playlists[id]
   );
-export const getPlaylistById = (state, id) => state.playlists.playlists[id];
+export const getPlaylistById = (state: RootState, id: string) =>
+  state.playlists.playlists[id];
 
 export default playlistsSlice.reducer;

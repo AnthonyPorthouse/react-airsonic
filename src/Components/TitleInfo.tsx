@@ -1,11 +1,15 @@
 import { Helmet } from "react-helmet-async";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../app/hooks";
 import { getSongById } from "../app/features/songSlice";
 
-function TitleInfo({ nowPlaying = null }) {
-  const song = useSelector((state) => getSongById(state, nowPlaying));
+interface TitleInfoProps {
+  nowPlaying?: string
+}
 
-  if (!nowPlaying) {
+function TitleInfo({ nowPlaying }: TitleInfoProps) {
+  const song = useAppSelector((state) => getSongById(state, nowPlaying));
+
+  if (!nowPlaying || !song) {
     return (
       <Helmet>
         <title>Ra</title>
