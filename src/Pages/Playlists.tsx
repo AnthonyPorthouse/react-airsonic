@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import {
   arePlaylistsLoaded,
   getAllPlaylists,
@@ -8,13 +7,14 @@ import {
 import { selectAuth } from "../app/features/authSlice";
 import Grid from "../Components/Grid";
 import Playlist from "../Components/Playlist";
+import {useAppDispatch, useAppSelector} from "../app/hooks";
 
 function Playlists() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const auth = useSelector(selectAuth);
-  const playlistsLoaded = useSelector(arePlaylistsLoaded);
-  const playlists = useSelector(getAllPlaylists);
+  const auth = useAppSelector(selectAuth);
+  const playlistsLoaded = useAppSelector(arePlaylistsLoaded);
+  const playlists = useAppSelector(getAllPlaylists);
 
   const [loading, setLoading] = useState(false);
 

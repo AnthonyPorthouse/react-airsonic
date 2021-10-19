@@ -65,7 +65,7 @@ export const selectServer = (state: RootState) => state.auth.server;
 export const selectUsername = (state: RootState) => state.auth.username;
 export const selectPassword = (state: RootState) => state.auth.password;
 export const selectSuccess = (state: RootState) => state.auth.success;
-export const selectAuth = (state: RootState) => ({
+export const selectAuth = (state: RootState): Auth => ({
   server: state.auth.server,
   username: state.auth.username,
   token: state.auth.token,

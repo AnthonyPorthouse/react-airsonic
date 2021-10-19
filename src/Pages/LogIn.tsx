@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import {SyntheticEvent, useEffect, useState} from "react";
+import { useAppSelector, useAppDispatch } from "../app/hooks";
 import logo from "../images/logo192.png";
 import {
   setServer,
@@ -16,19 +16,18 @@ import {
 import { useHistory } from "react-router-dom";
 
 function LogIn() {
-  const server = useSelector(selectServer);
-  const username = useSelector(selectUsername);
-  const password = useSelector(selectPassword);
-  const loggedIn = useSelector(selectSuccess);
-  const auth = useSelector(selectAuth);
+  const server = useAppSelector(selectServer);
+  const username = useAppSelector(selectUsername);
+  const password = useAppSelector(selectPassword);
+  const loggedIn = useAppSelector(selectSuccess);
+  const auth = useAppSelector(selectAuth);
 
   const history = useHistory();
-  const dispatch = useDispatch();
-  const [result] = useState();
+  const dispatch = useAppDispatch();
 
   const [autoLoginAttempted, setAutoLoginAttempted] = useState(false);
 
-  const submit = (e) => {
+  const submit = (e: SyntheticEvent) => {
     e.preventDefault();
     dispatch(ping(auth));
   };
@@ -91,7 +90,6 @@ function LogIn() {
             Log In
           </button>
         </form>
-        {result ? <div>{result["subsonic-response"].status}</div> : null}
       </div>
     </div>
   );

@@ -22,7 +22,7 @@ export type Album = {
   created: string;
   year: number;
   genre: string;
-  tracks: string[];
+  tracks: SongIds;
 };
 export type Albums = Album[];
 export type AlbumIds = string[];
@@ -47,7 +47,7 @@ export type Artist = {
   name: string;
   coverArt: string;
   albumCount: string;
-  albums: string[];
+  albums: AlbumIds;
 };
 export type Artists = Artist[];
 export type ArtistIds = string[];
@@ -58,7 +58,7 @@ export type Playlist = {
   comment: string;
   songCount: number;
   coverArt: string;
-  tracks: string[];
+  tracks: SongIds;
 };
 export type Playlists = Playlist[];
 export type PlaylistIds = string[];

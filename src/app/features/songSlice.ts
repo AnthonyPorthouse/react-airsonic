@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-import {Song, SongIds} from "./api";
+import {Song, SongIds, Songs} from "./api";
 
 interface SongState {
   songs: {
@@ -22,9 +22,9 @@ const songSlice = createSlice({
 
 export const { addSongs } = songSlice.actions;
 
-export const getAllSongs = (state: RootState) => state.songs.songs;
+export const getAllSongs = (state: RootState): Songs => Object.values(state.songs.songs);
 
-export const getSongById = (state: RootState, id?: string) => {
+export const getSongById = (state: RootState, id?: string): Song|null => {
   if (!id) {
     return null;
   }
@@ -32,7 +32,7 @@ export const getSongById = (state: RootState, id?: string) => {
   return state.songs.songs[id];
 };
 
-export const getSongsByIds = (state: RootState, ids: SongIds) =>
+export const getSongsByIds = (state: RootState, ids: SongIds): Songs =>
   ids.map((id) => state.songs.songs[id]);
 
 export default songSlice.reducer;
