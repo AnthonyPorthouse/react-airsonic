@@ -1,17 +1,20 @@
 import { ReactComponent as Stop } from "../../images/stop.svg";
 import { useContext } from "react";
 import AudioContext from "../Audio/AudioContext";
+import {SyntheticEvent} from "react";
 
 function StopButton() {
   /**
    * @type audio {Audio}
    */
-  const audio = useContext(AudioContext);
+  const audio = useContext(AudioContext).current;
 
-  const stop = (e) => {
+  const stop = (e: SyntheticEvent) => {
     e.preventDefault();
-    audio.pause();
-    audio.currentTime = 0;
+    if (audio) {
+      audio.pause();
+      audio.currentTime = 0;
+    }
   };
 
   return (

@@ -1,13 +1,14 @@
 import { ReactComponent as UpdateIcon } from "../../images/update.svg";
 import { isUpdateAvailable } from "../../app/features/updateSlice";
-import { useSelector } from "react-redux";
+import {useAppSelector} from "../../app/hooks";
+import {SyntheticEvent} from "react";
 
 function Update() {
-  const updateNeeded = useSelector(isUpdateAvailable);
+  const updateNeeded = useAppSelector(isUpdateAvailable);
 
-  const refreshApplication = (e) => {
+  const refreshApplication = (e: SyntheticEvent) => {
     e.preventDefault();
-    window.location.reload(true);
+    window.location.reload();
   };
 
   if (updateNeeded) {

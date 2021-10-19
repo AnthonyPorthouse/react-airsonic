@@ -1,22 +1,37 @@
 import AlbumArt from "./AlbumArt";
-import { useDispatch } from "react-redux";
 import { getNextTrack, setTracks } from "../app/features/playlistSlice";
+import {useAppDispatch} from "../app/hooks";
+import {SongIds} from "../app/features/api";
+import {SyntheticEvent} from "react";
 
-function AlbumHeader({ album }) {
-  const dispatch = useDispatch();
+interface Playable {
+  id: string;
+  coverArt: string;
+  name: string;
+  tracks: SongIds;
+  artist?: string;
+  year?: number;
+}
 
-  const playAll = (e) => {
+interface AlbumHeaderProps {
+  album: Playable;
+}
+
+function AlbumHeader({ album }: AlbumHeaderProps) {
+  const dispatch = useAppDispatch();
+
+  const playAll = (e: SyntheticEvent) => {
     e.preventDefault();
     dispatch(setTracks(album.tracks));
     dispatch(getNextTrack());
   };
 
-  const shuffleAll = (e) => {
+  const shuffleAll = (e: SyntheticEvent) => {
     e.preventDefault();
 
     let tracks = album.tracks.slice();
 
-    const shuffle = (array) => {
+    const shuffle = (array: SongIds) => {
       for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * i);
         [array[i], array[j]] = [array[j], array[i]];
