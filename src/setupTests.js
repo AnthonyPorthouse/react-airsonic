@@ -5,8 +5,8 @@
 import "@testing-library/jest-dom";
 import "jest-localstorage-mock";
 
-import { server } from "./mocks/server.js";
-
-beforeAll(() => server.listen());
-afterEach(() => server.resetHandlers());
-afterAll(() => server.close());
+// import { server } from "./mocks/server.js";
+//
+// beforeAll(() => server.listen());
+// afterEach(() => server.resetHandlers());
+// afterAll(() => server.close());
