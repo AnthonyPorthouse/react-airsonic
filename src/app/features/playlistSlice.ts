@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
+import {SongIds} from "./api";
 
 interface PlaylistState {
   currentTrack?: string;
-  tracks: string[];
+  tracks: SongIds;
   playing: boolean;
 }
 

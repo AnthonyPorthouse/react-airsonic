@@ -3,7 +3,7 @@ import { useAppSelector } from "../app/hooks";
 import { getSongById } from "../app/features/songSlice";
 
 interface TitleInfoProps {
-  nowPlaying?: string
+  nowPlaying?: string;
 }
 
 function TitleInfo({ nowPlaying }: TitleInfoProps) {

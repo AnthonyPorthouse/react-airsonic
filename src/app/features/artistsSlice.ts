@@ -3,7 +3,7 @@ import {
   createSelector,
   createSlice,
 } from "@reduxjs/toolkit";
-import API, { Album, Artist, ArtistRequest, Auth } from "./api";
+import API, {Album, Artist, ArtistIds, ArtistRequest, Auth} from "./api";
 import { setAlbum } from "./albumsSlice";
 import { AppDispatch, RootState } from "../store";
 
@@ -77,7 +77,7 @@ export const getArtists = (state: RootState) =>
   Object.keys(state.artists.artists).map((key) => state.artists.artists[key]);
 export const getArtistById = (state: RootState, id: string) =>
   state.artists.artists[id];
-export const getArtistsByIds = (state: RootState, ids: string[]) =>
+export const getArtistsByIds = (state: RootState, ids: ArtistIds) =>
   ids.map((id) => state.artists.artists[id]);
 export const areArtistsLoaded = (state: RootState) => state.artists.loaded;
 

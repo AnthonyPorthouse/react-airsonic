@@ -43,7 +43,10 @@ export const playlistsSlice = createSlice({
     loaded: false,
   } as PlaylistState,
   reducers: {
-    setPlaylists: (state, { payload }: {payload: {[key: string]: Playlist}}) => {
+    setPlaylists: (
+      state,
+      { payload }: { payload: { [key: string]: Playlist } }
+    ) => {
       state.playlists = payload;
     },
   },

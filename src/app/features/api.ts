@@ -24,6 +24,8 @@ export type Album = {
   genre: string;
   tracks: string[];
 };
+export type Albums = Album[];
+export type AlbumIds = string[];
 
 export type Song = {
   id: string;
@@ -37,6 +39,8 @@ export type Song = {
   albumId: string;
   artistId: string;
 };
+export type Songs = Song[];
+export type SongIds = string[];
 
 export type Artist = {
   id: string;
@@ -45,6 +49,8 @@ export type Artist = {
   albumCount: string;
   albums: string[];
 };
+export type Artists = Artist[];
+export type ArtistIds = string[];
 
 export type Playlist = {
   id: string;
@@ -54,6 +60,8 @@ export type Playlist = {
   coverArt: string;
   tracks: string[];
 };
+export type Playlists = Playlist[];
+export type PlaylistIds = string[];
 
 function generateAuthParams({ username, token, salt }: AuthParams) {
   return `u=${username}&t=${token}&s=${salt}&v=1.15.0&c=react-airsonic&f=json`;
@@ -67,7 +75,7 @@ export async function ping({ server, username, token, salt }: Auth) {
   return json["subsonic-response"].status === "ok";
 }
 
-export async function getAllAlbums({ server, username, token, salt }: Auth) {
+export async function getAllAlbums({ server, username, token, salt }: Auth): Promise<Albums> {
   const authParams = generateAuthParams({ username, token, salt });
   const result = await fetch(
     `${server}/rest/getAlbumList2?type=alphabeticalByArtist&size=500&${authParams}`
@@ -77,7 +85,7 @@ export async function getAllAlbums({ server, username, token, salt }: Auth) {
   return json["subsonic-response"].albumList2.album;
 }
 
-export async function getArtists({ server, username, token, salt }: Auth) {
+export async function getArtists({ server, username, token, salt }: Auth): Promise<Artists> {
   const authParams = generateAuthParams({ username, token, salt });
   const result = await fetch(`${server}/rest/getArtists?${authParams}`);
   const json = await result.json();
@@ -103,7 +111,7 @@ export async function getArtist({
   username,
   token,
   salt,
-}: ArtistRequest): Promise<[Artist, Album[]]> {
+}: ArtistRequest): Promise<[Artist, Albums]> {
   const authParams = generateAuthParams({ username, token, salt });
   const result = await fetch(`${server}/rest/getArtist?id=${id}&${authParams}`);
   const json = await result.json();
@@ -123,7 +131,7 @@ export async function getAlbum({
   username,
   token,
   salt,
-}: AlbumRequest): Promise<[Album, Song[]]> {
+}: AlbumRequest): Promise<[Album, Songs]> {
   const authParams = generateAuthParams({ username, token, salt });
   const result = await fetch(`${server}/rest/getAlbum?id=${id}&${authParams}`);
   const json = await result.json();
@@ -138,7 +146,7 @@ export async function getPlaylists({
   username,
   token,
   salt,
-}: Auth): Promise<Playlist[]> {
+}: Auth): Promise<Playlists> {
   const authParams = generateAuthParams({ username, token, salt });
   const result = await fetch(`${server}/rest/getPlaylists?${authParams}`);
   const json = await result.json();
@@ -156,7 +164,7 @@ export async function getPlaylist({
   username,
   token,
   salt,
-}: PlaylistRequest): Promise<[Playlist, Song[]]> {
+}: PlaylistRequest): Promise<[Playlist, Songs]> {
   const authParams = generateAuthParams({ username, token, salt });
   const result = await fetch(
     `${server}/rest/getPlaylist?id=${id}&${authParams}`
@@ -168,7 +176,7 @@ export async function getPlaylist({
   return [playlist, songs];
 }
 
-interface SearchRequest extends Auth {
+export interface SearchRequest extends Auth {
   query: string;
 }
 
@@ -178,7 +186,7 @@ export async function getSearchResults({
   username,
   token,
   salt,
-}: SearchRequest) {
+}: SearchRequest): Promise<[Artists, Albums, Songs]> {
   const authParams = generateAuthParams({ username, token, salt });
   const result = await fetch(
     `${server}/rest/search3?query=${query}&artistCount=4&albumCount=4&songCount=100&${authParams}`
