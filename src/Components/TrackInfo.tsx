@@ -2,7 +2,7 @@ import { getSongById } from "../app/features/songSlice";
 import { useAppSelector } from "../app/hooks";
 
 interface TrackInfoProps {
-  track: string
+  track: string;
 }
 
 function TrackInfo({ track }: TrackInfoProps) {

@@ -12,7 +12,7 @@ import { Song } from "../app/features/api";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 
 interface TrackListItemProps {
-  track: Song
+  track: Song;
 }
 
 function TrackListItem({ track }: TrackListItemProps) {

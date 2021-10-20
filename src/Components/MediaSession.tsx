@@ -48,7 +48,7 @@ function MediaSession({ track, children }: MediaSessionProps) {
     });
   }, [auth, dispatch, song, track]);
 
-  return <div>children</div>;
+  return <div>{children}</div>;
 }
 
 export default MediaSession;

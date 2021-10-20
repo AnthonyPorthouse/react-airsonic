@@ -22,7 +22,9 @@ function MediaPlayer() {
   const currentTrackInfo = useSelector((state: RootState) =>
     getSongById(state, currentTrack)
   );
-  const currentTrackUrl = currentTrack ? getStreamUrl({ id: currentTrack, ...auth }) : null;
+  const currentTrackUrl = currentTrack
+    ? getStreamUrl({ id: currentTrack, ...auth })
+    : null;
 
   const dispatch = useDispatch();
 

@@ -10,7 +10,7 @@ import { selectCurrentTrack } from "../app/features/playlistSlice";
 import { Songs } from "../app/features/api";
 
 interface TrackListProps {
-  tracks: Songs
+  tracks: Songs;
 }
 
 function TrackList({ tracks }: TrackListProps) {
@@ -40,9 +40,12 @@ function TrackList({ tracks }: TrackListProps) {
     return calculatedHeight;
   })();
 
-  const rowRenderer = ({ index, style }: {
+  const rowRenderer = ({
+    index,
+    style,
+  }: {
     index: number;
-    style: CSSProperties
+    style: CSSProperties;
   }) => (
     <div
       style={style}
@@ -66,7 +69,7 @@ function TrackList({ tracks }: TrackListProps) {
         >
           <List
             height={listHeight}
-            width={trackListRef.current?.offsetWidth || '100%'}
+            width={trackListRef.current?.offsetWidth || "100%"}
             itemCount={tracks.length}
             itemSize={rowHeight}
           >

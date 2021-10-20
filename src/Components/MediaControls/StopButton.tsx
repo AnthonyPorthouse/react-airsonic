@@ -7,7 +7,7 @@ function StopButton() {
   /**
    * @type audio {Audio}
    */
-  const audio = useContext(AudioContext).current;
+  const audio = useContext(AudioContext);
 
   const stop = (e: SyntheticEvent) => {
     e.preventDefault();

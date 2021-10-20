@@ -1,13 +1,18 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { SyntheticEvent, useContext, useEffect, useRef, useState } from "react";
 import Duration from "../Duration";
 import AudioContext from "../Audio/AudioContext";
 
-function ProgressBar({ length, position }) {
+interface ProgressBarProps {
+  length: number;
+  position: number;
+}
+
+function ProgressBar({ length, position }: ProgressBarProps) {
   const audio = useContext(AudioContext);
 
   const progress = (position / length) * 100;
 
-  const progressBar = useRef(null);
+  const progressBar = useRef<HTMLDivElement>(null);
 
   const [showPosition, showPositionEnabled] = useState(false);
   const [mousePercent, setMousePercent] = useState(0);
@@ -16,8 +21,8 @@ function ProgressBar({ length, position }) {
   const [bufferPercent, setBufferPercent] = useState(0);
 
   useEffect(() => {
-    const progressHandler = (e) => {
-      if (!audio.buffered?.length) {
+    const progressHandler = () => {
+      if (!audio?.buffered.length) {
         return;
       }
       const buffered = audio.buffered.end(audio.buffered.length - 1);
@@ -26,15 +31,21 @@ function ProgressBar({ length, position }) {
       setBufferPercent((buffered / duration) * 100);
     };
 
-    audio.addEventListener("progress", progressHandler);
+    audio?.addEventListener("progress", progressHandler);
 
     return () => {
-      audio.removeEventListener("progress", progressHandler);
+      audio?.removeEventListener("progress", progressHandler);
     };
   });
 
-  const seekPosition = (e) => {
+  const seekPosition = (e: { pageX: number }) => {
     const bar = progressBar.current;
+
+    if (!bar || !audio) {
+      console.debug(bar, audio);
+      return;
+    }
+
     const barBounding = bar.getBoundingClientRect();
 
     const position = e.pageX - barBounding.x;
@@ -47,8 +58,13 @@ function ProgressBar({ length, position }) {
     setMouseSongPos(Math.max(0, Math.min(audio.duration, value)));
   };
 
-  const seek = (e) => {
+  const seek = (e: SyntheticEvent) => {
     e.preventDefault();
+
+    if (!audio) {
+      return;
+    }
+
     audio.currentTime = mouseSongPos;
   };
 

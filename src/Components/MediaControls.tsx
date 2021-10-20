@@ -6,7 +6,7 @@ import SkipButton from "./MediaControls/SkipButton";
 import { useContext } from "react";
 
 function MediaControls() {
-  const audio = useContext(AudioContext).current;
+  const audio = useContext(AudioContext);
 
   const playPauseButton = () => {
     if (audio?.paused) {
