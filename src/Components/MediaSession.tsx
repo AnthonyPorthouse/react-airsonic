@@ -1,19 +1,28 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { ReactNode, useEffect } from "react";
 import { getSongById } from "../app/features/songSlice";
 import { getCoverArtUrl } from "../app/features/api";
 import { selectAuth } from "../app/features/authSlice";
 import { getNextTrack } from "../app/features/playlistSlice";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 
-function MediaSession({ track, children }) {
-  const dispatch = useDispatch();
+interface MediaSessionProps {
+  track: string;
+  children: ReactNode;
+}
 
-  const auth = useSelector(selectAuth);
+function MediaSession({ track, children }: MediaSessionProps) {
+  const dispatch = useAppDispatch();
 
-  const song = useSelector((state) => getSongById(state, track));
+  const auth = useAppSelector(selectAuth);
+
+  const song = useAppSelector((state) => getSongById(state, track));
 
   useEffect(() => {
     if (!("mediaSession" in navigator)) {
+      return;
+    }
+
+    if (!song) {
       return;
     }
 
@@ -39,7 +48,7 @@ function MediaSession({ track, children }) {
     });
   }, [auth, dispatch, song, track]);
 
-  return children;
+  return <div>children</div>;
 }
 
 export default MediaSession;

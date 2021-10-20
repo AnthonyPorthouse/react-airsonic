@@ -1,19 +1,23 @@
-import { useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import { ReactComponent as Search } from "../images/search.svg";
-import { useDispatch, useSelector } from "react-redux";
 import { selectAuth } from "../app/features/authSlice";
 import { useHistory } from "react-router-dom";
 import { getSearchResultsFromApi } from "../app/features/searchSlice";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 
-function SearchBar({ onSubmit }) {
-  const dispatch = useDispatch();
+interface SearchBarProps {
+  onSubmit(e: SyntheticEvent): void;
+}
+
+function SearchBar({ onSubmit }: SearchBarProps) {
+  const dispatch = useAppDispatch();
   const history = useHistory();
 
-  const auth = useSelector(selectAuth);
+  const auth = useAppSelector(selectAuth);
 
   const [filter, setFilter] = useState("");
 
-  const search = (query) => {
+  const search = (query: string) => {
     dispatch(getSearchResultsFromApi({ query, ...auth }));
     history.push("/search");
   };

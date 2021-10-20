@@ -1,7 +1,7 @@
 import { addSeconds, lightFormat } from "date-fns";
 
 interface DurationProps {
-  time: number
+  time: number;
 }
 
 function Duration({ time }: DurationProps) {

@@ -38,6 +38,7 @@ export type Song = {
   coverArt: string;
   albumId: string;
   artistId: string;
+  duration: number;
 };
 export type Songs = Song[];
 export type SongIds = string[];
@@ -75,7 +76,12 @@ export async function ping({ server, username, token, salt }: Auth) {
   return json["subsonic-response"].status === "ok";
 }
 
-export async function getAllAlbums({ server, username, token, salt }: Auth): Promise<Albums> {
+export async function getAllAlbums({
+  server,
+  username,
+  token,
+  salt,
+}: Auth): Promise<Albums> {
   const authParams = generateAuthParams({ username, token, salt });
   const result = await fetch(
     `${server}/rest/getAlbumList2?type=alphabeticalByArtist&size=500&${authParams}`
@@ -85,7 +91,12 @@ export async function getAllAlbums({ server, username, token, salt }: Auth): Pro
   return json["subsonic-response"].albumList2.album;
 }
 
-export async function getArtists({ server, username, token, salt }: Auth): Promise<Artists> {
+export async function getArtists({
+  server,
+  username,
+  token,
+  salt,
+}: Auth): Promise<Artists> {
   const authParams = generateAuthParams({ username, token, salt });
   const result = await fetch(`${server}/rest/getArtists?${authParams}`);
   const json = await result.json();

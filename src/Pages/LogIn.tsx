@@ -1,4 +1,4 @@
-import {SyntheticEvent, useEffect, useState} from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from "../app/hooks";
 import logo from "../images/logo192.png";
 import {

@@ -1,7 +1,7 @@
 import { ReactComponent as Stop } from "../../images/stop.svg";
 import { useContext } from "react";
 import AudioContext from "../Audio/AudioContext";
-import {SyntheticEvent} from "react";
+import { SyntheticEvent } from "react";
 
 function StopButton() {
   /**

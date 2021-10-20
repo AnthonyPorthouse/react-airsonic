@@ -1,16 +1,14 @@
 import AudioContext from "./AudioContext";
-import {ReactChildren} from "react";
+import { ReactNode } from "react";
 
 interface AudioProviderProps {
-  value: any
-  children: ReactChildren
+  value: any;
+  children: ReactNode;
 }
 
 function AudioProvider({ value, children }: AudioProviderProps) {
   return (
-    <AudioContext.Provider value={value}>
-      {children}
-    </AudioContext.Provider>
+    <AudioContext.Provider value={value}>{children}</AudioContext.Provider>
   );
 }
 

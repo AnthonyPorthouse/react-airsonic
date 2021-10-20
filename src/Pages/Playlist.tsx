@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import AlbumHeader from "../Components/AlbumHeader";
 import TrackList from "../Components/TrackList";
 import { getSongsByIds } from "../app/features/songSlice";
-import {RootState} from "../app/store";
+import { RootState } from "../app/store";
 
 interface PlaylistParams {
   id: string;
@@ -20,7 +20,9 @@ function Playlist() {
   const dispatch = useDispatch();
 
   const auth = useSelector(selectAuth);
-  const playlist = useSelector((state: RootState) => getPlaylistById(state, id));
+  const playlist = useSelector((state: RootState) =>
+    getPlaylistById(state, id)
+  );
   const songs = useSelector((state: RootState) =>
     getSongsByIds(state, playlist.tracks || [])
   );

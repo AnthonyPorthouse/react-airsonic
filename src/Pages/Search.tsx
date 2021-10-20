@@ -5,7 +5,7 @@ import { getArtistsByIds } from "../app/features/artistsSlice";
 import { getResults } from "../app/features/searchSlice";
 import { getAlbumsByIds } from "../app/features/albumsSlice";
 import { getSongsByIds } from "../app/features/songSlice";
-import {useAppSelector} from "../app/hooks";
+import { useAppSelector } from "../app/hooks";
 
 function Search() {
   const results = useAppSelector(getResults);
@@ -13,7 +13,9 @@ function Search() {
   const artists = useAppSelector((state) =>
     getArtistsByIds(state, results.artists)
   );
-  const albums = useAppSelector((state) => getAlbumsByIds(state, results.albums));
+  const albums = useAppSelector((state) =>
+    getAlbumsByIds(state, results.albums)
+  );
   const songs = useAppSelector((state) => getSongsByIds(state, results.songs));
 
   return (

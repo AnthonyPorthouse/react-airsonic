@@ -12,16 +12,17 @@ import TitleInfo from "./TitleInfo";
 import AlbumArt from "./AlbumArt";
 import { getSongById } from "../app/features/songSlice";
 import MediaInfo from "./MediaPlayer/MediaInfo";
+import { RootState } from "../app/store";
 
 function MediaPlayer() {
   const auth = useSelector(selectAuth);
 
   const audio = useRef(new Audio());
   const currentTrack = useSelector(selectCurrentTrack);
-  const currentTrackInfo = useSelector((state) =>
+  const currentTrackInfo = useSelector((state: RootState) =>
     getSongById(state, currentTrack)
   );
-  const currentTrackUrl = getStreamUrl({ id: currentTrack, ...auth });
+  const currentTrackUrl = currentTrack ? getStreamUrl({ id: currentTrack, ...auth }) : null;
 
   const dispatch = useDispatch();
 
@@ -46,11 +47,7 @@ function MediaPlayer() {
   }, [dispatch, setCurrentTime]);
 
   useEffect(() => {
-    if (!currentTrack) {
-      return;
-    }
-
-    if (!currentTrackUrl) {
+    if (!currentTrack || !currentTrackUrl) {
       return;
     }
 
@@ -60,7 +57,7 @@ function MediaPlayer() {
     }
   }, [audio, auth, currentTrack, currentTrackUrl]);
 
-  if (!currentTrack) {
+  if (!currentTrack || !currentTrackInfo) {
     return null;
   }
 

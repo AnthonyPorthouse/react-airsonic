@@ -7,7 +7,7 @@ import {
 import { selectAuth } from "../app/features/authSlice";
 import Grid from "../Components/Grid";
 import Playlist from "../Components/Playlist";
-import {useAppDispatch, useAppSelector} from "../app/hooks";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 
 function Playlists() {
   const dispatch = useAppDispatch();

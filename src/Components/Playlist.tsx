@@ -1,8 +1,12 @@
-import React from "react";
 import AlbumArt from "./AlbumArt";
 import { Link } from "react-router-dom";
+import { Playlist as ApiPlaylist } from "../app/features/api";
 
-function Playlist({ playlist }) {
+interface PlaylistProps {
+  playlist: ApiPlaylist;
+}
+
+function Playlist({ playlist }: PlaylistProps) {
   const { id, name, coverArt } = playlist;
 
   return (

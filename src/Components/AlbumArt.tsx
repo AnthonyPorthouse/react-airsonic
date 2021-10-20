@@ -5,7 +5,7 @@ import { getScaledCoverArtUrl } from "../app/features/api";
 
 interface AlbumArtProps {
   id: string;
-  description: string;
+  description?: string;
   sizes?: string;
 }
 

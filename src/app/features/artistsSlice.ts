@@ -3,7 +3,14 @@ import {
   createSelector,
   createSlice,
 } from "@reduxjs/toolkit";
-import API, {Album, Artist, ArtistIds, ArtistRequest, Artists, Auth} from "./api";
+import API, {
+  Album,
+  Artist,
+  ArtistIds,
+  ArtistRequest,
+  Artists,
+  Auth,
+} from "./api";
 import { setAlbum } from "./albumsSlice";
 import { AppDispatch, RootState } from "../store";
 

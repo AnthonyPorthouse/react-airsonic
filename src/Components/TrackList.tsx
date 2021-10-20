@@ -2,16 +2,21 @@ import TrackListItem from "./TrackListItem";
 import AlbumContext from "./AlbumContext";
 
 import { FixedSizeList as List } from "react-window";
-import { useRef } from "react";
+import { CSSProperties, useRef } from "react";
 import classNames from "classnames";
 import { useWindowHeight } from "@react-hook/window-size";
 import { useSelector } from "react-redux";
 import { selectCurrentTrack } from "../app/features/playlistSlice";
+import { Songs } from "../app/features/api";
 
-function TrackList({ tracks }) {
+interface TrackListProps {
+  tracks: Songs
+}
+
+function TrackList({ tracks }: TrackListProps) {
   const windowHeight = useWindowHeight();
 
-  const trackListRef = useRef(null);
+  const trackListRef = useRef<HTMLDivElement>(null);
   const currentTrack = useSelector(selectCurrentTrack);
 
   const mediaBarOffset = 124;
@@ -35,7 +40,10 @@ function TrackList({ tracks }) {
     return calculatedHeight;
   })();
 
-  const rowRenderer = ({ index, style }) => (
+  const rowRenderer = ({ index, style }: {
+    index: number;
+    style: CSSProperties
+  }) => (
     <div
       style={style}
       className={classNames(
@@ -58,7 +66,7 @@ function TrackList({ tracks }) {
         >
           <List
             height={listHeight}
-            width={trackListRef.current?.offsetWidth || 0}
+            width={trackListRef.current?.offsetWidth || '100%'}
             itemCount={tracks.length}
             itemSize={rowHeight}
           >

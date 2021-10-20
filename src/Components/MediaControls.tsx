@@ -1,12 +1,11 @@
-import { useContext } from "react";
 import AudioContext from "./Audio/AudioContext";
 import PlayButton from "./MediaControls/PlayButton";
 import PauseButton from "./MediaControls/PauseButton";
 import StopButton from "./MediaControls/StopButton";
 import SkipButton from "./MediaControls/SkipButton";
+import { useContext } from "react";
 
 function MediaControls() {
-  /** @var audio {Audio} */
   const audio = useContext(AudioContext).current;
 
   const playPauseButton = () => {

@@ -1,8 +1,16 @@
-import { useSelector } from "react-redux";
 import { getSongById } from "../app/features/songSlice";
+import { useAppSelector } from "../app/hooks";
 
-function TrackInfo({ track }) {
-  const song = useSelector((state) => getSongById(state, track));
+interface TrackInfoProps {
+  track: string
+}
+
+function TrackInfo({ track }: TrackInfoProps) {
+  const song = useAppSelector((state) => getSongById(state, track));
+
+  if (!song) {
+    return null;
+  }
 
   return (
     <div className={`grid text-left w-full`}>

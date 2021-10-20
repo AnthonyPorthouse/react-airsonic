@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-import {Song, SongIds, Songs} from "./api";
+import { Song, SongIds, Songs } from "./api";
 
 interface SongState {
   songs: {
@@ -22,9 +22,10 @@ const songSlice = createSlice({
 
 export const { addSongs } = songSlice.actions;
 
-export const getAllSongs = (state: RootState): Songs => Object.values(state.songs.songs);
+export const getAllSongs = (state: RootState): Songs =>
+  Object.values(state.songs.songs);
 
-export const getSongById = (state: RootState, id?: string): Song|null => {
+export const getSongById = (state: RootState, id?: string): Song | null => {
   if (!id) {
     return null;
   }

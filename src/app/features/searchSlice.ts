@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import API, {AlbumIds, ArtistIds, SearchRequest, SongIds} from "./api";
+import API, { AlbumIds, ArtistIds, SearchRequest, SongIds } from "./api";
 import { setArtists } from "./artistsSlice";
 import { setAlbums } from "./albumsSlice";
 import { addSongs } from "./songSlice";

@@ -1,8 +1,8 @@
 import AlbumArt from "./AlbumArt";
 import { getNextTrack, setTracks } from "../app/features/playlistSlice";
-import {useAppDispatch} from "../app/hooks";
-import {SongIds} from "../app/features/api";
-import {SyntheticEvent} from "react";
+import { useAppDispatch } from "../app/hooks";
+import { SongIds } from "../app/features/api";
+import { SyntheticEvent } from "react";
 
 interface Playable {
   id: string;

@@ -1,22 +1,27 @@
 import { ReactComponent as Play } from "../images/play.svg";
 import { ReactComponent as NowPlaying } from "../images/play-active.svg";
-import { useDispatch, useSelector } from "react-redux";
 import {
   getNextTrack,
   selectCurrentTrack,
   setTracks,
 } from "../app/features/playlistSlice";
 import Duration from "./Duration";
-import { useContext } from "react";
+import { SyntheticEvent, useContext } from "react";
 import AlbumContext from "./AlbumContext";
+import { Song } from "../app/features/api";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 
-function TrackListItem({ track }) {
-  const dispatch = useDispatch();
+interface TrackListItemProps {
+  track: Song
+}
+
+function TrackListItem({ track }: TrackListItemProps) {
+  const dispatch = useAppDispatch();
   const tracks = useContext(AlbumContext);
 
-  const currentTrackId = useSelector(selectCurrentTrack);
+  const currentTrackId = useAppSelector(selectCurrentTrack);
 
-  const play = (e) => {
+  const play = (e: SyntheticEvent) => {
     e.preventDefault();
 
     const startingIndex = tracks.findIndex((t) => t.id === track.id);

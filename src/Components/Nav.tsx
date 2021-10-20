@@ -7,7 +7,7 @@ import { useState } from "react";
 import Update from "./Updater/Update";
 
 function Nav() {
-  const toggleMenu = (e) => {
+  const toggleMenu = () => {
     setShow(!show);
   };
 
