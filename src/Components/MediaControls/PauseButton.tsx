@@ -1,5 +1,5 @@
 import { ReactComponent as Pause } from "../../images/pause.svg";
-import { useContext } from "react";
+import { SyntheticEvent, useContext } from "react";
 import AudioContext from "../Audio/AudioContext";
 
 function PauseButton() {
@@ -8,9 +8,9 @@ function PauseButton() {
    */
   const audio = useContext(AudioContext);
 
-  const pause = (e) => {
+  const pause = (e: SyntheticEvent) => {
     e.preventDefault();
-    audio.pause();
+    audio?.pause();
   };
 
   return (

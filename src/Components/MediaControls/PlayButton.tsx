@@ -1,5 +1,5 @@
 import { ReactComponent as Play } from "../../images/play.svg";
-import { useContext } from "react";
+import { SyntheticEvent, useContext } from "react";
 import AudioContext from "../Audio/AudioContext";
 
 function PlayButton() {
@@ -8,9 +8,9 @@ function PlayButton() {
    */
   const audio = useContext(AudioContext);
 
-  const play = (e) => {
+  const play = (e: SyntheticEvent) => {
     e.preventDefault();
-    audio.play().catch(() => {});
+    audio?.play().catch(() => {});
   };
 
   return (

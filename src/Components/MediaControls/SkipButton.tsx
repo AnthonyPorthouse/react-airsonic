@@ -1,14 +1,15 @@
 import { ReactComponent as FastForward } from "../../images/fast-forward.svg";
 import { getNextTrack } from "../../app/features/playlistSlice";
-import { useDispatch } from "react-redux";
+import { SyntheticEvent } from "react";
+import { useAppDispatch } from "../../app/hooks";
 
 function SkipButton() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   /**
    * @type audio {Audio}
    */
 
-  const skipTrack = (e) => {
+  const skipTrack = (e: SyntheticEvent) => {
     e.preventDefault();
     dispatch(getNextTrack());
   };

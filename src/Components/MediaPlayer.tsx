@@ -76,7 +76,7 @@ function MediaPlayer() {
             <AlbumArt id={currentTrackInfo.coverArt} sizes={`100px`} />
           </div>
           <MediaInfo
-            track={currentTrack}
+            trackId={currentTrack}
             duration={duration}
             currentTime={currentTime}
           />

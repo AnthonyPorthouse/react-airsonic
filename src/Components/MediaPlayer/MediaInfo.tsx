@@ -3,12 +3,18 @@ import MediaControls from "../MediaControls";
 import ProgressBar from "./ProgressBar";
 import Duration from "../Duration";
 
-function MediaInfo({ track, duration, currentTime }) {
+interface MediaInfoProps {
+  trackId: string;
+  duration: number;
+  currentTime: number;
+}
+
+function MediaInfo({ trackId, duration, currentTime }: MediaInfoProps) {
   return (
     <div className={`flex-grow flex flex-col gap-y-3`}>
       <div className={`flex items-center justify-items-stretch`}>
         <div className={`flex-grow`}>
-          <TrackInfo track={track} />
+          <TrackInfo trackId={trackId} />
         </div>
         <div className={`flex-shrink-0`}>
           <MediaControls />

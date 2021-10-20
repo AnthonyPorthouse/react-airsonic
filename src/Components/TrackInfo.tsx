@@ -2,11 +2,11 @@ import { getSongById } from "../app/features/songSlice";
 import { useAppSelector } from "../app/hooks";
 
 interface TrackInfoProps {
-  track: string;
+  trackId: string;
 }
 
-function TrackInfo({ track }: TrackInfoProps) {
-  const song = useAppSelector((state) => getSongById(state, track));
+function TrackInfo({ trackId }: TrackInfoProps) {
+  const song = useAppSelector((state) => getSongById(state, trackId));
 
   if (!song) {
     return null;
