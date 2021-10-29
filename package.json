@@ -35,7 +35,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "CHOKIDAR_USEPOLLING=true REACT_APP_COMMIT_SHA=dev craco start",
+    "start": "REACT_APP_COMMIT_SHA=dev craco start",
     "build": "REACT_APP_COMMIT_SHA=`git rev-parse --short HEAD` craco build",
     "test": "craco test",
     "eject": "react-scripts eject"

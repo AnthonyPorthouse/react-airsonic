@@ -3,6 +3,7 @@ import { getNextTrack, setTracks } from "../app/features/playlistSlice";
 import { useAppDispatch } from "../app/hooks";
 import { SongIds } from "../app/features/api";
 import { SyntheticEvent } from "react";
+import AlbumButton from "./AlbumButton";
 
 interface Playable {
   id: string;
@@ -48,16 +49,12 @@ function AlbumHeader({ album }: AlbumHeaderProps) {
     <section className={`flex flex-col gap-6`}>
       <div className={`grid grid-cols-3 lg:grid-cols-1 gap-6 w-full lg:w-64`}>
         <AlbumArt id={album.coverArt} description={album.name} />
-        <div className={`col-span-2 lg:col-span-1`}>
+        <div className={`flex flex-col col-span-2 lg:col-span-1 gap-y-2`}>
           <h1 className={`text-2xl lg:text-3xl`}>{album.name}</h1>
           <h2 className={`text-xl`}>{album.artist}</h2>
           <h3>{album.year}</h3>
-          <button className={`w-full`} onClick={playAll}>
-            Play All
-          </button>
-          <button className={`w-full`} onClick={shuffleAll}>
-            Shuffle All
-          </button>
+          <AlbumButton onClick={playAll}>Play All</AlbumButton>
+          <AlbumButton onClick={shuffleAll}>Shuffle All</AlbumButton>
         </div>
       </div>
     </section>
