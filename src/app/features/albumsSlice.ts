@@ -68,7 +68,6 @@ export const albumsSlice = createSlice({
     });
 
     builder.addCase(getAlbumFromApi.fulfilled, (state, { payload: album }) => {
-      state.loaded = true;
       state.albums[album.id] = Object.assign({}, state.albums[album.id], album);
     });
   },
