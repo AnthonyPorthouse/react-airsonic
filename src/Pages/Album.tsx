@@ -19,17 +19,23 @@ function Album() {
   const auth = useAppSelector(selectAuth);
   const album = useAppSelector((state) => getAlbumById(state, id));
   const songs = useAppSelector((state) =>
-    getSongsByIds(state, album.tracks || [])
+    getSongsByIds(state, album?.tracks || [])
   );
 
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (!loading && !album?.tracks) {
+    if (!loading && (!album || !album?.tracks)) {
       dispatch(getAlbumFromApi({ id, ...auth }));
       setLoading(true);
     }
   }, [album, auth, dispatch, id, loading]);
+
+  if (!album) {
+    return (<div className={`flex flex-auto flex-col lg:flex-row gap-6`}>
+      <Spinner />
+    </div>);
+  }
 
   return (
     <div className={`flex flex-auto flex-col lg:flex-row gap-6`}>

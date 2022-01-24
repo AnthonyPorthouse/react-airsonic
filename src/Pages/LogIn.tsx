@@ -13,7 +13,11 @@ import {
   selectAuth,
 } from "../app/features/authSlice";
 
-import { useHistory } from "react-router-dom";
+import {useHistory, useLocation} from "react-router-dom";
+
+interface stateType {
+  from : {pathname: string }
+}
 
 function LogIn() {
   const server = useAppSelector(selectServer);
@@ -21,6 +25,9 @@ function LogIn() {
   const password = useAppSelector(selectPassword);
   const loggedIn = useAppSelector(selectSuccess);
   const auth = useAppSelector(selectAuth);
+  const location = useLocation<stateType>();
+
+  const { from } = location.state || { from: {pathname: '/' }};
 
   const history = useHistory();
   const dispatch = useAppDispatch();
@@ -42,9 +49,9 @@ function LogIn() {
 
   useEffect(() => {
     if (loggedIn) {
-      history.push("/");
+      history.replace(from);
     }
-  }, [loggedIn, history]);
+  }, [from, loggedIn, history]);
 
   return (
     <div className={`flex flex-auto items-center h-auto`}>
