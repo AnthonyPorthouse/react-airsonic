@@ -3,6 +3,7 @@ import { getNextTrack, setTracks } from "../app/features/playlistSlice";
 import { useAppDispatch } from "../app/hooks";
 import { SongIds } from "../app/features/api";
 import { SyntheticEvent } from "react";
+import { useTranslation } from "react-i18next";
 
 interface Playable {
   id: string;
@@ -18,6 +19,8 @@ interface AlbumHeaderProps {
 }
 
 function AlbumHeader({ album }: AlbumHeaderProps) {
+  const { t } = useTranslation("albums");
+
   const dispatch = useAppDispatch();
 
   const playAll = (e: SyntheticEvent) => {
@@ -53,10 +56,10 @@ function AlbumHeader({ album }: AlbumHeaderProps) {
           <h2 className={`text-xl`}>{album.artist}</h2>
           <h3>{album.year}</h3>
           <button className={`w-full`} onClick={playAll}>
-            Play All
+            {t("playAll")}
           </button>
           <button className={`w-full`} onClick={shuffleAll}>
-            Shuffle All
+            {t("shuffleAll")}
           </button>
         </div>
       </div>

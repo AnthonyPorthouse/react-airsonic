@@ -5,8 +5,11 @@ import { ReactComponent as MenuIcon } from "../images/menu.svg";
 import { ReactComponent as CloseIcon } from "../images/close.svg";
 import { useState } from "react";
 import Update from "./Updater/Update";
+import { useTranslation } from "react-i18next";
 
 function Nav() {
+  const { t } = useTranslation("nav");
+
   const toggleMenu = () => {
     setShow(!show);
   };
@@ -19,7 +22,7 @@ function Nav() {
     >
       <img
         src={logo}
-        alt="Ra Logo"
+        alt={t("title", { ns: "common" })}
         className={`absolute w-12 h-12 md:w-16 md:h-16`}
       />
 
@@ -27,7 +30,7 @@ function Nav() {
         <button
           onClick={toggleMenu}
           className={`w-6 h-6 my-auto`}
-          aria-label={`Show Menu`}
+          aria-label={t("showMenu")}
         >
           <MenuIcon />
         </button>
@@ -41,11 +44,15 @@ function Nav() {
         <div className={`px-6 py-3 md:p-0`}>
           <div className={`md:hidden flex items-center justify-between`}>
             <span className={`inline-block w-6`} />
-            <img src={logo} alt="Ra logo" className={`w-16 h-16`} />
+            <img
+              src={logo}
+              alt={t("title", { ns: "common" })}
+              className={`w-16 h-16`}
+            />
             <button
               onClick={toggleMenu}
               className={`w-6 h-6`}
-              aria-label={`Close Menu`}
+              aria-label={t("nav.closeMenu")}
             >
               <CloseIcon />
             </button>
@@ -62,7 +69,7 @@ function Nav() {
                 to={`/albums`}
                 onClick={toggleMenu}
               >
-                Albums
+                {t("albums")}
               </NavLink>
             </li>
             <li>
@@ -71,7 +78,7 @@ function Nav() {
                 to={`/artists`}
                 onClick={toggleMenu}
               >
-                Artists
+                {t("artists")}
               </NavLink>
             </li>
             <li>
@@ -80,7 +87,7 @@ function Nav() {
                 to={`/playlists`}
                 onClick={toggleMenu}
               >
-                Playlists
+                {t("playlists")}
               </NavLink>
             </li>
             <li className={"w-full md:w-auto md:ml-auto flex gap-3"}>

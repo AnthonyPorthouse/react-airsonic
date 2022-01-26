@@ -32,9 +32,11 @@ function Album() {
   }, [album, auth, dispatch, id, loading]);
 
   if (!album) {
-    return (<div className={`flex flex-auto flex-col lg:flex-row gap-6`}>
-      <Spinner />
-    </div>);
+    return (
+      <div className={`flex flex-auto flex-col lg:flex-row gap-6`}>
+        <Spinner />
+      </div>
+    );
   }
 
   return (
