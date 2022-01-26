@@ -1,8 +1,11 @@
 import { ReactComponent as Play } from "../../images/play.svg";
 import { SyntheticEvent, useContext } from "react";
 import AudioContext from "../Audio/AudioContext";
+import { useTranslation } from "react-i18next";
 
 function PlayButton() {
+  const { t } = useTranslation("media");
+
   /**
    * @type audio {Audio}
    */
@@ -14,7 +17,11 @@ function PlayButton() {
   };
 
   return (
-    <button className={`inline-block w-12`} title={`Play Track`} onClick={play}>
+    <button
+      className={`inline-block w-12`}
+      title={t("playTrack")}
+      onClick={play}
+    >
       <Play className={`w-full`} />
     </button>
   );

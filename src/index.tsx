@@ -9,6 +9,7 @@ import store from "./app/store";
 import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { setUpdateAvailable } from "./app/features/updateSlice";
+import './i18n'
 
 ReactDOM.render(
   <React.StrictMode>

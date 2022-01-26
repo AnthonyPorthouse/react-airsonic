@@ -8,12 +8,14 @@ import { useWindowHeight } from "@react-hook/window-size";
 import { useSelector } from "react-redux";
 import { selectCurrentTrack } from "../app/features/playlistSlice";
 import { Songs } from "../app/features/api";
+import { useTranslation } from "react-i18next";
 
 interface TrackListProps {
   tracks: Songs;
 }
 
 function TrackList({ tracks }: TrackListProps) {
+  const { t } = useTranslation("albums");
   const windowHeight = useWindowHeight();
 
   const trackListRef = useRef<HTMLDivElement>(null);
@@ -62,7 +64,7 @@ function TrackList({ tracks }: TrackListProps) {
   return (
     <AlbumContext.Provider value={tracks}>
       <section className={`flex-auto self-start w-full`}>
-        <h1 className={`text-xl`}>Tracks</h1>
+        <h1 className={`text-xl`}>{t("tracks")}</h1>
         <div
           ref={trackListRef}
           className={`divide-y divide-gray-200 border border-grey-200`}

@@ -4,12 +4,14 @@ import { selectAuth } from "../app/features/authSlice";
 import { useHistory } from "react-router-dom";
 import { getSearchResultsFromApi } from "../app/features/searchSlice";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { useTranslation } from "react-i18next";
 
 interface SearchBarProps {
   onSubmit(e: SyntheticEvent): void;
 }
 
 function SearchBar({ onSubmit }: SearchBarProps) {
+  const { t } = useTranslation("search");
   const dispatch = useAppDispatch();
   const history = useHistory();
 
@@ -46,11 +48,11 @@ function SearchBar({ onSubmit }: SearchBarProps) {
           autoComplete="off"
           type="search"
           name="search"
-          placeholder="Search"
+          placeholder={t("search")}
           value={filter}
           onChange={(event) => setFilter(event.target.value)}
         />
-        <button className={"px-3 py-2"} aria-label={"Search"}>
+        <button className={"px-3 py-2"} aria-label={t("search")}>
           <Search className={"h-6"} />
         </button>
       </div>

@@ -10,12 +10,15 @@ import { SyntheticEvent, useContext } from "react";
 import AlbumContext from "./AlbumContext";
 import { Song } from "../app/features/api";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { useTranslation } from "react-i18next";
 
 interface TrackListItemProps {
   track: Song;
 }
 
 function TrackListItem({ track }: TrackListItemProps) {
+  const { t } = useTranslation("media");
+
   const dispatch = useAppDispatch();
   const tracks = useContext(AlbumContext);
 
@@ -34,7 +37,7 @@ function TrackListItem({ track }: TrackListItemProps) {
     <button
       onClick={play}
       className={`flex gap-6 md:block w-full md:w-6 flex-shrink-0`}
-      title={`Play Track`}
+      title={t("playTrack")}
     >
       <Play className={`flex-shrink-0 w-6 md:w-full`} />
       <span className={`truncate md:hidden`}>{track.title}</span>

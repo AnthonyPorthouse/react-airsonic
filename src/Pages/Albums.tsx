@@ -7,10 +7,13 @@ import {
   areAllAlbumsLoaded,
 } from "../app/features/albumsSlice";
 import Spinner from "../Components/Spinner";
+import { useTranslation } from "react-i18next";
 
 const AlbumList = lazy(() => import("../Components/AlbumList"));
 
 function Albums() {
+  const { t } = useTranslation("albums");
+
   const auth = useAppSelector(selectAuth);
   const albums = useAppSelector(getAllAlbums);
   const albumsLoaded = useAppSelector(areAllAlbumsLoaded);
@@ -30,7 +33,7 @@ function Albums() {
 
   return (
     <div>
-      <h1 className={`text-2xl`}>All Albums</h1>
+      <h1 className={`text-2xl`}>{t("allAlbums")}</h1>
 
       <Suspense fallback={<Spinner />}>
         <AlbumList albums={albums} className={undefined} />
