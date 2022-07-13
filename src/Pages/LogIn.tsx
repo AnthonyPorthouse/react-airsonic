@@ -13,11 +13,7 @@ import {
   selectAuth,
 } from "../app/features/authSlice";
 
-import {useHistory, useLocation} from "react-router-dom";
-
-interface stateType {
-  from : {pathname: string }
-}
+import { useNavigate, useLocation } from "react-router-dom";
 
 function LogIn() {
   const server = useAppSelector(selectServer);
@@ -25,12 +21,11 @@ function LogIn() {
   const password = useAppSelector(selectPassword);
   const loggedIn = useAppSelector(selectSuccess);
   const auth = useAppSelector(selectAuth);
-  const location = useLocation<stateType>();
+  const location = useLocation();
 
-  const { from } = location.state || { from: {pathname: '/' }};
-
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const from = (location.state as any)?.from?.pathname || "/";
 
   const [autoLoginAttempted, setAutoLoginAttempted] = useState(false);
 
@@ -49,9 +44,9 @@ function LogIn() {
 
   useEffect(() => {
     if (loggedIn) {
-      history.replace(from);
+      navigate(from, { replace: true });
     }
-  }, [from, loggedIn, history]);
+  }, [from, loggedIn, navigate]);
 
   return (
     <div className={`flex flex-auto items-center h-auto`}>

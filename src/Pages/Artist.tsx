@@ -11,7 +11,7 @@ type ArtistParams = {
 };
 
 function Artist() {
-  const { id } = useParams<ArtistParams>();
+  const id = useParams<ArtistParams>()["id"] || "";
 
   const dispatch = useAppDispatch();
   const auth = useAppSelector(selectAuth);

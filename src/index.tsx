@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
@@ -9,9 +9,13 @@ import store from "./app/store";
 import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { setUpdateAvailable } from "./app/features/updateSlice";
-import './i18n'
+import "./i18n";
 
-ReactDOM.render(
+const container = document.getElementById("root");
+
+const root = createRoot(container!);
+
+root.render(
   <React.StrictMode>
     <HelmetProvider>
       <Provider store={store}>
@@ -20,8 +24,7 @@ ReactDOM.render(
         </BrowserRouter>
       </Provider>
     </HelmetProvider>
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );
 
 // If you want your app to work offline and load faster, you can change
