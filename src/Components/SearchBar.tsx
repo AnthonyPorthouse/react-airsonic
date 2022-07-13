@@ -1,7 +1,7 @@
 import { SyntheticEvent, useState } from "react";
 import { ReactComponent as Search } from "../images/search.svg";
 import { selectAuth } from "../app/features/authSlice";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getSearchResultsFromApi } from "../app/features/searchSlice";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { useTranslation } from "react-i18next";
@@ -13,7 +13,7 @@ interface SearchBarProps {
 function SearchBar({ onSubmit }: SearchBarProps) {
   const { t } = useTranslation("search");
   const dispatch = useAppDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const auth = useAppSelector(selectAuth);
 
@@ -21,7 +21,7 @@ function SearchBar({ onSubmit }: SearchBarProps) {
 
   const search = (query: string) => {
     dispatch(getSearchResultsFromApi({ query, ...auth }));
-    history.push("/search");
+    navigate("/search");
   };
 
   return (

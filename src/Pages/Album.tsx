@@ -13,7 +13,7 @@ type AlbumParams = {
 };
 
 function Album() {
-  const { id } = useParams<AlbumParams>();
+  const id: string = useParams<AlbumParams>()["id"] || "";
   const dispatch = useAppDispatch();
 
   const auth = useAppSelector(selectAuth);

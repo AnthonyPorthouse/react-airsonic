@@ -11,12 +11,12 @@ import TrackList from "../Components/TrackList";
 import { getSongsByIds } from "../app/features/songSlice";
 import { RootState } from "../app/store";
 
-interface PlaylistParams {
+type PlaylistParams = {
   id: string;
-}
+};
 
 function Playlist() {
-  const { id } = useParams<PlaylistParams>();
+  const id = useParams<PlaylistParams>()["id"] || "";
   const dispatch = useDispatch();
 
   const auth = useSelector(selectAuth);

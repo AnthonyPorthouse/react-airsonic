@@ -1,8 +1,8 @@
-import React, { ReactNode, Suspense } from "react";
+import React, { Suspense } from "react";
 import LogIn from "./Pages/LogIn";
 import { useAppSelector } from "./app/hooks";
 import { selectSuccess } from "./app/features/authSlice";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Routes, Route, Navigate, Outlet } from "react-router-dom";
 import TitleInfo from "./Components/TitleInfo";
 import Spinner from "./Components/Spinner";
 
@@ -29,35 +29,33 @@ function App() {
       <div className={`overflow-y-auto flex-grow`}>
         <div className="mx-6 my-6">
           <Suspense fallback={<Spinner />}>
-            <Switch>
-              <Route path={"/login"}>
-                <LogIn />
+            <Routes>
+              <Route path={"/login"} element={<LogIn />} />
+
+              <Route path={"/"} element={<RequireAuth redirectTo="/login" />}>
+                <Route index element={<Albums />} />
               </Route>
-              <AuthenticatedRoute path={"/"} exact={true}>
-                <Albums />
-              </AuthenticatedRoute>
-              <AuthenticatedRoute path={"/artists"} exact={true}>
-                <Artists />
-              </AuthenticatedRoute>
-              <AuthenticatedRoute path={"/artists/:id"}>
-                <Artist />
-              </AuthenticatedRoute>
-              <AuthenticatedRoute path={"/albums"} exact={true}>
-                <Albums />
-              </AuthenticatedRoute>
-              <AuthenticatedRoute path={"/albums/:id"}>
-                <Album />
-              </AuthenticatedRoute>
-              <AuthenticatedRoute path={"/playlists"} exact={true}>
-                <Playlists />
-              </AuthenticatedRoute>
-              <AuthenticatedRoute path={"/playlists/:id"}>
-                <Playlist />
-              </AuthenticatedRoute>
-              <AuthenticatedRoute path={"/search"}>
-                <Search />
-              </AuthenticatedRoute>
-            </Switch>
+
+              <Route
+                path={"/artists"}
+                element={<RequireAuth redirectTo="/login" />}
+              >
+                <Route index element={<Artists />} />
+                <Route path=":id" element={<Artist />} />
+              </Route>
+
+              <Route path={"/albums"}>
+                <Route index element={<Albums />} />
+                <Route path={":id"} element={<Album />} />
+              </Route>
+
+              <Route path={"/playlists"}>
+                <Route index element={<Playlists />} />
+                <Route path={":id"} element={<Playlist />} />
+              </Route>
+
+              <Route path={"/search/*"} element={<Search />} />
+            </Routes>
           </Suspense>
         </div>
       </div>
@@ -67,33 +65,10 @@ function App() {
   );
 }
 
-function AuthenticatedRoute({
-  children,
-  ...rest
-}: {
-  children: ReactNode;
-  path: string;
-  exact?: boolean;
-}) {
+function RequireAuth({ redirectTo }: { redirectTo: string }) {
   const loginSuccessful = useAppSelector(selectSuccess);
 
-  return (
-    <Route
-      {...rest}
-      render={({ location }) => {
-        return loginSuccessful ? (
-          children
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: location },
-            }}
-          />
-        );
-      }}
-    />
-  );
+  return loginSuccessful ? <Outlet /> : <Navigate to={redirectTo} />;
 }
 
 export default App;
