@@ -18,7 +18,7 @@ function TrackList({ tracks }: TrackListProps) {
   const windowHeight = useWindowHeight();
 
   const trackListRef = useRef<HTMLDivElement>(null);
-  const { currentTrack } = useTrackList();
+  const { getCurrentTrack } = useTrackList();
 
   const mediaBarOffset = 124;
   const rowHeight = 40;
@@ -27,7 +27,7 @@ function TrackList({ tracks }: TrackListProps) {
     const maxHeight = Math.max(
       windowHeight -
         (trackListRef.current?.offsetTop || 0) -
-        (currentTrack() ? mediaBarOffset : 0) -
+        (getCurrentTrack() ? mediaBarOffset : 0) -
         26,
       10 * rowHeight
     );
