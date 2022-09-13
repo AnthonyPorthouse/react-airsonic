@@ -5,10 +5,9 @@ import { FixedSizeList as List } from "react-window";
 import { CSSProperties, useRef } from "react";
 import classNames from "classnames";
 import { useWindowHeight } from "@react-hook/window-size";
-import { useSelector } from "react-redux";
-import { selectCurrentTrack } from "../app/features/playlistSlice";
-import { Songs } from "../app/features/api";
 import { useTranslation } from "react-i18next";
+import { Songs } from "../api/songs";
+import { useTrackList } from "../hooks";
 
 interface TrackListProps {
   tracks: Songs;
@@ -19,7 +18,7 @@ function TrackList({ tracks }: TrackListProps) {
   const windowHeight = useWindowHeight();
 
   const trackListRef = useRef<HTMLDivElement>(null);
-  const currentTrack = useSelector(selectCurrentTrack);
+  const { currentTrack } = useTrackList();
 
   const mediaBarOffset = 124;
   const rowHeight = 40;
@@ -28,7 +27,7 @@ function TrackList({ tracks }: TrackListProps) {
     const maxHeight = Math.max(
       windowHeight -
         (trackListRef.current?.offsetTop || 0) -
-        (currentTrack ? mediaBarOffset : 0) -
+        (currentTrack() ? mediaBarOffset : 0) -
         26,
       10 * rowHeight
     );

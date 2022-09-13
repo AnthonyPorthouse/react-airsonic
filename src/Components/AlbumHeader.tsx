@@ -1,13 +1,12 @@
 import AlbumArt from "./AlbumArt";
-import { getNextTrack, setTracks } from "../app/features/playlistSlice";
-import { useAppDispatch } from "../app/hooks";
-import { SongIds } from "../app/features/api";
 import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
+import { SongIds, Songs } from "../api/songs";
+import { useTrackList } from "../hooks";
 
 interface Playable {
   id: string;
-  coverArt: string;
+  coverArt?: string;
   name: string;
   tracks: SongIds;
   artist?: string;
@@ -16,25 +15,25 @@ interface Playable {
 
 interface AlbumHeaderProps {
   album: Playable;
+  tracks: Songs;
 }
 
-function AlbumHeader({ album }: AlbumHeaderProps) {
+function AlbumHeader({ album, tracks }: AlbumHeaderProps) {
   const { t } = useTranslation("albums");
 
-  const dispatch = useAppDispatch();
+  const { setTrackList } = useTrackList();
 
   const playAll = (e: SyntheticEvent) => {
     e.preventDefault();
-    dispatch(setTracks(album.tracks));
-    dispatch(getNextTrack());
+    setTrackList(tracks);
   };
 
   const shuffleAll = (e: SyntheticEvent) => {
     e.preventDefault();
 
-    let tracks = album.tracks.slice();
+    const shuffle = (songs: Songs) => {
+      const array = Array.from(songs);
 
-    const shuffle = (array: SongIds) => {
       for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * i);
         [array[i], array[j]] = [array[j], array[i]];
@@ -43,8 +42,7 @@ function AlbumHeader({ album }: AlbumHeaderProps) {
       return array;
     };
 
-    dispatch(setTracks(shuffle(tracks)));
-    dispatch(getNextTrack());
+    setTrackList(shuffle(tracks));
   };
 
   return (

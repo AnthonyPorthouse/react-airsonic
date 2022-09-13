@@ -1,42 +1,36 @@
-import React, { lazy, Suspense, useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { selectAuth } from "../app/features/authSlice";
-import {
-  getAllAlbumsFromApi,
-  getAllAlbums,
-  areAllAlbumsLoaded,
-} from "../app/features/albumsSlice";
+import React, { lazy, Suspense } from "react";
+
 import Spinner from "../Components/Spinner";
 import { useTranslation } from "react-i18next";
+import { useQuery } from "@tanstack/react-query";
+import { getAlbums } from "../api/albums";
+import { useAuth } from "../api/auth";
 
 const AlbumList = lazy(() => import("../Components/AlbumList"));
 
 function Albums() {
   const { t } = useTranslation("albums");
 
-  const auth = useAppSelector(selectAuth);
-  const albums = useAppSelector(getAllAlbums);
-  const albumsLoaded = useAppSelector(areAllAlbumsLoaded);
+  const auth = useAuth();
 
-  const dispatch = useAppDispatch();
-
-  const [loading, setLoading] = useState(false);
-
-  const fetchAlbums = !loading && !albumsLoaded;
-
-  useEffect(() => {
-    if (fetchAlbums) {
-      dispatch(getAllAlbumsFromApi(auth));
-      setLoading(true);
+  const { isSuccess, data } = useQuery(
+    ["albums"],
+    () => getAlbums(auth.credentials),
+    {
+      enabled: auth.isAuthenticated,
     }
-  }, [auth, dispatch, fetchAlbums]);
+  );
 
   return (
     <div>
       <h1 className={`text-2xl`}>{t("allAlbums")}</h1>
 
       <Suspense fallback={<Spinner />}>
-        <AlbumList albums={albums} className={undefined} />
+        <AlbumList
+          albums={
+            isSuccess ? data.sort((a, b) => a.name.localeCompare(b.name)) : []
+          }
+        />
       </Suspense>
     </div>
   );

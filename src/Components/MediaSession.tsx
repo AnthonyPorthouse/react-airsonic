@@ -1,39 +1,35 @@
 import { ReactNode, useEffect } from "react";
-import { getSongById } from "../app/features/songSlice";
-import { getCoverArtUrl } from "../app/features/api";
-import { selectAuth } from "../app/features/authSlice";
-import { getNextTrack } from "../app/features/playlistSlice";
-import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { getCoverArtUrl } from "../api/artwork";
+import { Song } from "../api/songs";
+import { useAuth } from "../api/auth";
+import { useTrackList } from "../hooks";
 
 interface MediaSessionProps {
-  track: string;
+  track: Song;
   children: ReactNode;
 }
 
 function MediaSession({ track, children }: MediaSessionProps) {
-  const dispatch = useAppDispatch();
-
-  const auth = useAppSelector(selectAuth);
-
-  const song = useAppSelector((state) => getSongById(state, track));
+  const auth = useAuth();
+  const { nextTrack } = useTrackList();
 
   useEffect(() => {
     if (!("mediaSession" in navigator)) {
       return;
     }
 
-    if (!song) {
+    if (!track) {
       return;
     }
 
     const mediaSession = navigator.mediaSession;
 
-    const artwork = getCoverArtUrl({ id: song.coverArt, ...auth });
+    const artwork = getCoverArtUrl(track.coverArt, auth.credentials);
 
     mediaSession.metadata = new window.MediaMetadata({
-      title: song.title,
-      artist: song.artist,
-      album: song.album,
+      title: track.title,
+      artist: track.artist,
+      album: track.album,
 
       artwork: [
         {
@@ -44,9 +40,9 @@ function MediaSession({ track, children }: MediaSessionProps) {
     });
 
     mediaSession.setActionHandler("nexttrack", () => {
-      dispatch(getNextTrack());
+      nextTrack();
     });
-  }, [auth, dispatch, song, track]);
+  }, [auth, nextTrack, track]);
 
   return <div>{children}</div>;
 }

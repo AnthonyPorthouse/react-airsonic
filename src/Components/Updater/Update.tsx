@@ -1,10 +1,8 @@
 import { ReactComponent as UpdateIcon } from "../../images/update.svg";
-import { isUpdateAvailable } from "../../app/features/updateSlice";
-import { useAppSelector } from "../../app/hooks";
 import { SyntheticEvent } from "react";
 
 function Update() {
-  const updateNeeded = useAppSelector(isUpdateAvailable);
+  const updateNeeded = false;
 
   const refreshApplication = (e: SyntheticEvent) => {
     e.preventDefault();

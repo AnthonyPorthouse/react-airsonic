@@ -1,21 +1,18 @@
-import { getSongById } from "../app/features/songSlice";
-import { useAppSelector } from "../app/hooks";
+import { Song } from "../api/songs";
 
 interface TrackInfoProps {
-  trackId: string;
+  track: Song;
 }
 
-function TrackInfo({ trackId }: TrackInfoProps) {
-  const song = useAppSelector((state) => getSongById(state, trackId));
-
-  if (!song) {
+function TrackInfo({ track }: TrackInfoProps) {
+  if (!track) {
     return null;
   }
 
   return (
     <div className={`grid text-left w-full`}>
-      <span className={`font-bold truncate`}>{song.title}</span>
-      <span className={`truncate`}>{song.artist}</span>
+      <span className={`font-bold truncate`}>{track.title}</span>
+      <span className={`truncate`}>{track.artist}</span>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import AlbumArt from "./AlbumArt";
 import { Link } from "react-router-dom";
-import { Playlist as ApiPlaylist } from "../app/features/api";
+import { Playlist as ApiPlaylist } from "../api/playlists";
 
 interface PlaylistProps {
   playlist: ApiPlaylist;
