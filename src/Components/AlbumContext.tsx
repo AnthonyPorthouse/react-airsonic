@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { Songs } from "../app/features/api";
+import { Songs } from "../api/songs";
 
 const AlbumContext = createContext<Songs>([]);
 

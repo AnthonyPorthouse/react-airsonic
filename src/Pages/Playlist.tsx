@@ -1,15 +1,10 @@
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { selectAuth } from "../app/features/authSlice";
-import {
-  getPlaylistById,
-  getPlaylistFromApi,
-} from "../app/features/playlistsSlice";
-import { useEffect, useState } from "react";
 import AlbumHeader from "../Components/AlbumHeader";
 import TrackList from "../Components/TrackList";
-import { getSongsByIds } from "../app/features/songSlice";
-import { RootState } from "../app/store";
+import { useAuth } from "../api/auth";
+import { getPlaylist } from "../api/playlists";
+import { useQuery } from "@tanstack/react-query";
+import Spinner from "../Components/Spinner";
 
 type PlaylistParams = {
   id: string;
@@ -17,31 +12,29 @@ type PlaylistParams = {
 
 function Playlist() {
   const id = useParams<PlaylistParams>()["id"] || "";
-  const dispatch = useDispatch();
+  const auth = useAuth();
 
-  const auth = useSelector(selectAuth);
-  const playlist = useSelector((state: RootState) =>
-    getPlaylistById(state, id)
-  );
-  const songs = useSelector((state: RootState) =>
-    getSongsByIds(state, playlist.tracks || [])
-  );
-
-  const [loading, setLoading] = useState(false);
-
-  const playlistNeedsLoaded = !loading && !playlist?.tracks;
-
-  useEffect(() => {
-    if (playlistNeedsLoaded) {
-      dispatch(getPlaylistFromApi({ id, ...auth }));
-      setLoading(true);
+  const { isSuccess, data } = useQuery(
+    ["playlist", id],
+    () => getPlaylist(id, auth.credentials),
+    {
+      enabled: auth.isAuthenticated,
     }
-  }, [auth, dispatch, id, playlistNeedsLoaded]);
+  );
+
+  if (isSuccess) {
+    const [playlist, songs] = data;
+    return (
+      <div className={`flex flex-auto flex-col lg:flex-row gap-6`}>
+        <AlbumHeader album={playlist} tracks={songs} />
+        {<TrackList tracks={songs} />}
+      </div>
+    );
+  }
 
   return (
-    <div className={`flex flex-auto flex-col lg:flex-row gap-6`}>
-      <AlbumHeader album={playlist} />
-      {<TrackList tracks={songs} />}
+    <div>
+      <Spinner />
     </div>
   );
 }

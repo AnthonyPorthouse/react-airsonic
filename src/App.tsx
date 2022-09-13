@@ -1,10 +1,11 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useContext, useEffect, useState } from "react";
 import LogIn from "./Pages/LogIn";
-import { useAppSelector } from "./app/hooks";
-import { selectSuccess } from "./app/features/authSlice";
-import { Routes, Route, Navigate, Outlet } from "react-router-dom";
+import { Routes, Route, Outlet, useNavigate } from "react-router-dom";
 import TitleInfo from "./Components/TitleInfo";
 import Spinner from "./Components/Spinner";
+import { AuthContext, Authenticated, useAuth } from "./api/auth";
+import { TrackListContext } from "./hooks";
+import { Songs } from "./api/songs";
 
 const Artists = React.lazy(() => import("./Pages/Artists"));
 const Artist = React.lazy(() => import("./Pages/Artist"));
@@ -18,57 +19,84 @@ const Nav = React.lazy(() => import("./Components/Nav"));
 const MediaPlayer = React.lazy(() => import("./Components/MediaPlayer"));
 
 function App() {
-  const loggedIn = useAppSelector(selectSuccess);
+  const [auth, setAuth] = useState<Authenticated>(useContext(AuthContext));
+
+  const [trackList, setTrackList] = useState<Songs>([]);
+  const currentTrack = () => trackList[0];
+  const nextTrack = () => setTrackList(trackList.slice(1));
+
+  const requireAuth = <RequireAuth redirectTo={"/login"} />;
 
   return (
-    <main className={`w-screen h-screen flex flex-col bg-gray-50`}>
-      <Suspense fallback={null}>{loggedIn ? <Nav /> : null}</Suspense>
-
-      <TitleInfo />
-
-      <div className={`overflow-y-auto flex-grow`}>
-        <div className="mx-6 my-6">
-          <Suspense fallback={<Spinner />}>
-            <Routes>
-              <Route path={"/login"} element={<LogIn />} />
-
-              <Route path={"/"} element={<RequireAuth redirectTo="/login" />}>
-                <Route index element={<Albums />} />
-              </Route>
-
-              <Route
-                path={"/artists"}
-                element={<RequireAuth redirectTo="/login" />}
-              >
-                <Route index element={<Artists />} />
-                <Route path=":id" element={<Artist />} />
-              </Route>
-
-              <Route path={"/albums"}>
-                <Route index element={<Albums />} />
-                <Route path={":id"} element={<Album />} />
-              </Route>
-
-              <Route path={"/playlists"}>
-                <Route index element={<Playlists />} />
-                <Route path={":id"} element={<Playlist />} />
-              </Route>
-
-              <Route path={"/search/*"} element={<Search />} />
-            </Routes>
+    <AuthContext.Provider value={auth}>
+      <TrackListContext.Provider
+        value={{ trackList, setTrackList, currentTrack, nextTrack }}
+      >
+        <main className={`w-screen h-screen flex flex-col bg-gray-50`}>
+          <Suspense fallback={null}>
+            {auth.isAuthenticated ? <Nav /> : null}
           </Suspense>
-        </div>
-      </div>
 
-      <Suspense fallback={null}>{loggedIn ? <MediaPlayer /> : null}</Suspense>
-    </main>
+          <TitleInfo />
+
+          <div className={`overflow-y-auto flex-grow`}>
+            <div className="mx-6 my-6">
+              <Suspense fallback={<Spinner />}>
+                <Routes>
+                  <Route
+                    path={"/login"}
+                    element={<LogIn setAuth={setAuth} />}
+                  />
+
+                  <Route path={"/"} element={requireAuth}>
+                    <Route index element={<Albums />} />
+                  </Route>
+
+                  <Route path={"/artists"} element={requireAuth}>
+                    <Route index element={<Artists />} />
+                    <Route path=":id" element={<Artist />} />
+                  </Route>
+
+                  <Route path={"/albums"} element={requireAuth}>
+                    <Route index element={<Albums />} />
+                    <Route path={":id"} element={<Album />} />
+                  </Route>
+
+                  <Route path={"/playlists"} element={requireAuth}>
+                    <Route index element={<Playlists />} />
+                    <Route path={":id"} element={<Playlist />} />
+                  </Route>
+
+                  <Route path={"/search/*"} element={requireAuth}>
+                    <Route index element={<Search />} />
+                  </Route>
+                </Routes>
+              </Suspense>
+            </div>
+          </div>
+
+          <Suspense fallback={null}>
+            {auth.isAuthenticated ? <MediaPlayer /> : null}
+          </Suspense>
+        </main>
+      </TrackListContext.Provider>
+    </AuthContext.Provider>
   );
 }
 
 function RequireAuth({ redirectTo }: { redirectTo: string }) {
-  const loginSuccessful = useAppSelector(selectSuccess);
+  const auth = useAuth();
+  const navigate = useNavigate();
 
-  return loginSuccessful ? <Outlet /> : <Navigate to={redirectTo} />;
+  const { isAuthenticated } = auth;
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      return () => navigate("/login");
+    }
+  }, [isAuthenticated, navigate]);
+
+  return <Outlet />;
 }
 
 export default App;

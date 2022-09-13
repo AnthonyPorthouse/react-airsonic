@@ -4,25 +4,33 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
-import { Provider } from "react-redux";
-import store from "./app/store";
 import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import { setUpdateAvailable } from "./app/features/updateSlice";
 import "./i18n";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const container = document.getElementById("root");
 
 const root = createRoot(container!);
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      suspense: true,
+    },
+  },
+});
+
 root.render(
   <React.StrictMode>
     <HelmetProvider>
-      <Provider store={store}>
-        <BrowserRouter>
+      <BrowserRouter>
+        <QueryClientProvider client={queryClient}>
           <App />
-        </BrowserRouter>
-      </Provider>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+      </BrowserRouter>
     </HelmetProvider>
   </React.StrictMode>
 );
@@ -33,7 +41,8 @@ root.render(
 serviceWorkerRegistration.register({
   onUpdate: (registration) => {
     registration.waiting?.postMessage({ type: "SKIP_WAITING" });
-    store.dispatch(setUpdateAvailable(true));
+    // TODO: find a way to fix the below
+    //store.dispatch(setUpdateAvailable(true));
   },
 });
 

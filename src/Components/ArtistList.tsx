@@ -1,11 +1,11 @@
 import React from "react";
-import { Artist } from "../app/features/api";
 import ArtistItem from "./ArtistItem";
 import Grid from "./Grid";
+import { Artists } from "../api/artists";
 
 interface ArtistListProps {
   className?: string;
-  artists: Artist[];
+  artists: Artists;
 }
 
 function ArtistList({ className, artists }: ArtistListProps) {

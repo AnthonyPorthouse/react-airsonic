@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { selectAuth } from "../app/features/authSlice";
 import AlbumList from "../Components/AlbumList";
-import { getArtistFromApi, getArtistById } from "../app/features/artistsSlice";
-import { getAlbumsByIds } from "../app/features/albumsSlice";
+import { useAuth } from "../api/auth";
+import { useQuery } from "@tanstack/react-query";
+import { getArtist } from "../api/artists";
 
 type ArtistParams = {
   id: string;
@@ -12,34 +10,29 @@ type ArtistParams = {
 
 function Artist() {
   const id = useParams<ArtistParams>()["id"] || "";
+  const auth = useAuth();
 
-  const dispatch = useAppDispatch();
-  const auth = useAppSelector(selectAuth);
-  const artist = useAppSelector((state) => getArtistById(state, id));
-  const albums = useAppSelector((state) =>
-    getAlbumsByIds(state, artist?.albums || [])
+  const { isSuccess, data } = useQuery(
+    ["artist", id],
+    () => getArtist(id, auth.credentials),
+    {
+      enabled: auth.isAuthenticated,
+    }
   );
 
-  const [loading, setLoading] = useState(false);
+  if (isSuccess) {
+    const [artist, albums] = data;
 
-  useEffect(() => {
-    if (!loading && !artist?.albums) {
-      dispatch(getArtistFromApi({ id, ...auth }));
-      setLoading(true);
-    }
-  }, [artist, auth, dispatch, id, loading]);
+    return (
+      <div>
+        <h1 className={`text-2xl`}>{artist.name}</h1>
 
-  if (!artist) {
-    return null;
+        <AlbumList albums={albums} />
+      </div>
+    );
   }
 
-  return (
-    <div>
-      <h1 className={`text-2xl`}>{artist.name}</h1>
-
-      <AlbumList albums={albums} />
-    </div>
-  );
+  return <div></div>;
 }
 
 export default Artist;

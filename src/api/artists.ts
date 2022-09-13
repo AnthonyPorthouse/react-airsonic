@@ -1,0 +1,55 @@
+import { AlbumIds, Albums } from "./albums";
+import { Credentials, generateAuthParams } from "./auth";
+
+export type Artist = {
+  id: string;
+  name: string;
+  coverArt: string;
+  albumCount: string;
+  albums: AlbumIds;
+};
+export type Artists = Artist[];
+export type ArtistIds = string[];
+
+export async function getArtists({
+  server,
+  username,
+  password,
+}: Credentials): Promise<Artists> {
+  const authParams = generateAuthParams({ username, password });
+  const result = await fetch(`${server}/rest/getArtists?${authParams}`);
+
+  if (!result.ok) {
+    throw new Error("Network Request Failed");
+  }
+
+  const json = await result.json();
+
+  const artists: Artist[] = [];
+
+  json["subsonic-response"].artists.index.forEach(
+    (index: { artist: Artist[] }) => {
+      index.artist.forEach((artist) => artists.push(artist));
+    }
+  );
+
+  return artists;
+}
+
+export async function getArtist(
+  id: string,
+  { server, username, password }: Credentials
+): Promise<[Artist, Albums]> {
+  const authParams = generateAuthParams({ username, password });
+  const result = await fetch(`${server}/rest/getArtist?id=${id}&${authParams}`);
+
+  if (!result.ok) {
+    throw new Error("Network Request Failed");
+  }
+
+  const json = await result.json();
+
+  const { album: albums, ...artist } = json["subsonic-response"].artist;
+
+  return [artist, albums];
+}

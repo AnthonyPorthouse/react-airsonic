@@ -1,22 +1,34 @@
 import ArtistList from "../Components/ArtistList";
 import AlbumList from "../Components/AlbumList";
 import TrackList from "../Components/TrackList";
-import { getArtistsByIds } from "../app/features/artistsSlice";
-import { getResults } from "../app/features/searchSlice";
-import { getAlbumsByIds } from "../app/features/albumsSlice";
-import { getSongsByIds } from "../app/features/songSlice";
-import { useAppSelector } from "../app/hooks";
+import { useSearchParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { getSearchResults } from "../api/search";
+import { useAuth } from "../api/auth";
+import Spinner from "../Components/Spinner";
 
 function Search() {
-  const results = useAppSelector(getResults);
+  const [params] = useSearchParams();
+  const query = params.get("query") || "";
+  const auth = useAuth();
 
-  const artists = useAppSelector((state) =>
-    getArtistsByIds(state, results.artists)
+  const { isSuccess, data } = useQuery(
+    ["search", query],
+    () => getSearchResults(query, auth.credentials),
+    {
+      enabled: auth.isAuthenticated,
+    }
   );
-  const albums = useAppSelector((state) =>
-    getAlbumsByIds(state, results.albums)
-  );
-  const songs = useAppSelector((state) => getSongsByIds(state, results.songs));
+
+  if (!isSuccess) {
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
+  }
+
+  const [artists, albums, songs] = data;
 
   return (
     <div className={`grid grid-cols-1 md:grid-cols-2 gap-6`}>

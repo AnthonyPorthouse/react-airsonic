@@ -1,56 +1,76 @@
-import { SyntheticEvent, useEffect, useState } from "react";
-import { useAppSelector, useAppDispatch } from "../app/hooks";
-import logo from "../images/logo192.png";
 import {
-  setServer,
-  setPassword,
-  setUsername,
-  selectServer,
-  selectPassword,
-  selectUsername,
-  ping,
-  selectSuccess,
-  selectAuth,
-} from "../app/features/authSlice";
+  Dispatch,
+  SetStateAction,
+  SyntheticEvent,
+  useEffect,
+  useState,
+} from "react";
+import logo from "../images/logo192.png";
+
+import { Authenticated, ping, useAuth } from "../api/auth";
 
 import { useNavigate, useLocation } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
-function LogIn() {
-  const server = useAppSelector(selectServer);
-  const username = useAppSelector(selectUsername);
-  const password = useAppSelector(selectPassword);
-  const loggedIn = useAppSelector(selectSuccess);
-  const auth = useAppSelector(selectAuth);
+function LogIn({
+  setAuth,
+}: {
+  setAuth: Dispatch<SetStateAction<Authenticated>>;
+}) {
+  const auth = useAuth();
+
+  const [server, setServer] = useState(auth.credentials.server);
+  const [username, setUsername] = useState(auth.credentials.username);
+  const [password, setPassword] = useState(auth.credentials.password);
+
   const location = useLocation();
-
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+
   const from = (location.state as any)?.from?.pathname || "/";
 
-  const [autoLoginAttempted, setAutoLoginAttempted] = useState(false);
+  const { isError, isSuccess, data } = useQuery(
+    ["auth", auth.credentials],
+    () => ping(auth.credentials),
+    {
+      enabled: auth.credentials.server !== "",
+    }
+  );
 
   const submit = (e: SyntheticEvent) => {
     e.preventDefault();
-    dispatch(ping(auth));
+
+    setAuth((prevState) =>
+      Object.assign({}, prevState, {
+        isAuthenticated: false,
+        credentials: {
+          server,
+          username,
+          password,
+        },
+      })
+    );
   };
 
   useEffect(() => {
-    if (!autoLoginAttempted && server) {
-      dispatch(ping(auth));
+    if (isSuccess && data.authenticated) {
+      localStorage.setItem("ra.server", server);
+      localStorage.setItem("ra.username", username);
+      localStorage.setItem("ra.password", password);
+      setAuth(Object.assign({}, auth, { isAuthenticated: true }));
     }
-
-    setAutoLoginAttempted(true);
-  }, [auth, autoLoginAttempted, dispatch, server]);
+  }, [auth, data, isSuccess, password, server, setAuth, username]);
 
   useEffect(() => {
-    if (loggedIn) {
-      navigate(from, { replace: true });
+    if (auth.isAuthenticated) {
+      navigate(from);
     }
-  }, [from, loggedIn, navigate]);
+  }, [auth.isAuthenticated, navigate, from]);
 
   return (
     <div className={`flex flex-auto items-center h-auto`}>
       <div className={`mx-auto w-64`}>
+        {isError ? <div> Something Went Wrong</div> : null}
+
         <form className={`grid grid-cols-1 gap-6`} onSubmit={submit}>
           <img
             className={`mx-auto`}
@@ -65,7 +85,7 @@ function LogIn() {
               className={`block w-full`}
               type="url"
               value={server}
-              onChange={(e) => dispatch(setServer(e.target.value))}
+              onChange={(e) => setServer(e.target.value)}
             />
           </label>
           <label className={`block w-full`}>
@@ -75,7 +95,7 @@ function LogIn() {
               className={`block w-full`}
               type="text"
               value={username}
-              onChange={(e) => dispatch(setUsername(e.target.value))}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </label>
           <label className={`block w-full`}>
@@ -85,7 +105,7 @@ function LogIn() {
               className={`block w-full`}
               type="password"
               value={password}
-              onChange={(e) => dispatch(setPassword(e.target.value))}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </label>
           <button data-testid="login" className={`block w-full`}>

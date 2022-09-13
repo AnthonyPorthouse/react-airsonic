@@ -1,23 +1,35 @@
 import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
-import { selectAuth } from "../app/features/authSlice";
-import { getScaledCoverArtUrl } from "../app/features/api";
+import { getScaledCoverArtUrl } from "../api/artwork";
+import { useAuth } from "../api/auth";
 
 interface AlbumArtProps {
-  id: string;
+  id?: string;
   description?: string;
   sizes?: string;
 }
 
 function AlbumArt({ id, description, sizes }: AlbumArtProps) {
-  const auth = useSelector(selectAuth);
+  const auth = useAuth();
   const el = useRef<HTMLImageElement>(null);
 
-  const [width, setWidth] = useState<number>(0);
+  const [width, setWidth] = useState<number>(1);
 
   useEffect(() => {
     setWidth(el.current ? el.current.offsetWidth : 0);
   }, []);
+
+  if (!id) {
+    return (
+      <img
+        ref={el}
+        width={width}
+        height={width}
+        alt={description}
+        className={`rounded overflow-hidden w-full`}
+        src={"data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="}
+      />
+    );
+  }
 
   const dimensions = (() => {
     const modifier = 32;
@@ -27,7 +39,7 @@ function AlbumArt({ id, description, sizes }: AlbumArtProps) {
 
     for (let i = min; i <= max; i += modifier) {
       values.push(
-        `${getScaledCoverArtUrl({ id, size: String(i), ...auth })} ${i}w`
+        `${getScaledCoverArtUrl(id, String(i), auth.credentials)} ${i}w`
       );
     }
 

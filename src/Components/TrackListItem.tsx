@@ -1,16 +1,11 @@
 import { ReactComponent as Play } from "../images/play.svg";
 import { ReactComponent as NowPlaying } from "../images/play-active.svg";
-import {
-  getNextTrack,
-  selectCurrentTrack,
-  setTracks,
-} from "../app/features/playlistSlice";
 import Duration from "./Duration";
 import { SyntheticEvent, useContext } from "react";
 import AlbumContext from "./AlbumContext";
-import { Song } from "../app/features/api";
-import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { useTranslation } from "react-i18next";
+import { Song } from "../api/songs";
+import { useTrackList } from "../hooks";
 
 interface TrackListItemProps {
   track: Song;
@@ -19,18 +14,15 @@ interface TrackListItemProps {
 function TrackListItem({ track }: TrackListItemProps) {
   const { t } = useTranslation("media");
 
-  const dispatch = useAppDispatch();
   const tracks = useContext(AlbumContext);
 
-  const currentTrackId = useAppSelector(selectCurrentTrack);
+  const { currentTrack, setTrackList } = useTrackList();
 
   const play = (e: SyntheticEvent) => {
     e.preventDefault();
 
     const startingIndex = tracks.findIndex((t) => t.id === track.id);
-
-    dispatch(setTracks(tracks.slice(startingIndex).map((t) => t.id)));
-    dispatch(getNextTrack());
+    setTrackList(tracks.slice(startingIndex));
   };
 
   const playButton = (
@@ -58,7 +50,7 @@ function TrackListItem({ track }: TrackListItemProps) {
 
   return (
     <div className={`flex gap-6 overflow-hidden`}>
-      {Number(currentTrackId) === Number(track.id) ? nowPlaying : playButton}
+      {Number(currentTrack) === Number(track.id) ? nowPlaying : playButton}
       <div className={`flex-grow gap-6 hidden md:flex`}>
         <span className={`w-1/12 text-right`}>
           {track.discNumber ? `${track.discNumber} / ` : null}

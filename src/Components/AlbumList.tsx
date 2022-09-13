@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { Album } from "../app/features/api";
+import { Album } from "../api/albums";
 
 const AlbumView = lazy(() => import("./Album"));
 const Grid = lazy(() => import("./Grid"));

@@ -1,19 +1,15 @@
 import { ReactComponent as FastForward } from "../../images/fast-forward.svg";
-import { getNextTrack } from "../../app/features/playlistSlice";
 import { SyntheticEvent } from "react";
-import { useAppDispatch } from "../../app/hooks";
 import { useTranslation } from "react-i18next";
+import { useTrackList } from "../../hooks";
 
 function SkipButton() {
   const { t } = useTranslation("media");
-  const dispatch = useAppDispatch();
-  /**
-   * @type audio {Audio}
-   */
+  const { nextTrack } = useTrackList();
 
   const skipTrack = (e: SyntheticEvent) => {
     e.preventDefault();
-    dispatch(getNextTrack());
+    nextTrack();
   };
 
   return (

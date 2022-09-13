@@ -1,12 +1,10 @@
 import { useParams } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { selectAuth } from "../app/features/authSlice";
-import { useEffect, useState } from "react";
 import TrackList from "../Components/TrackList";
 import AlbumHeader from "../Components/AlbumHeader";
-import { getSongsByIds } from "../app/features/songSlice";
-import { getAlbumById, getAlbumFromApi } from "../app/features/albumsSlice";
 import Spinner from "../Components/Spinner";
+import { useQuery } from "@tanstack/react-query";
+import { getAlbum } from "../api/albums";
+import { useAuth } from "../api/auth";
 
 type AlbumParams = {
   id: string;
@@ -14,35 +12,31 @@ type AlbumParams = {
 
 function Album() {
   const id: string = useParams<AlbumParams>()["id"] || "";
-  const dispatch = useAppDispatch();
 
-  const auth = useAppSelector(selectAuth);
-  const album = useAppSelector((state) => getAlbumById(state, id));
-  const songs = useAppSelector((state) =>
-    getSongsByIds(state, album?.tracks || [])
+  const auth = useAuth();
+
+  const { isSuccess, data } = useQuery(
+    ["albums", id],
+    () => getAlbum(id, auth.credentials),
+    {
+      enabled: auth.isAuthenticated,
+    }
   );
 
-  const [loading, setLoading] = useState(false);
+  if (isSuccess) {
+    const [album, songs] = data;
 
-  useEffect(() => {
-    if (!loading && (!album || !album?.tracks)) {
-      dispatch(getAlbumFromApi({ id, ...auth }));
-      setLoading(true);
-    }
-  }, [album, auth, dispatch, id, loading]);
-
-  if (!album) {
     return (
       <div className={`flex flex-auto flex-col lg:flex-row gap-6`}>
-        <Spinner />
+        <AlbumHeader album={album} tracks={songs} />
+        <TrackList tracks={songs} />
       </div>
     );
   }
 
   return (
     <div className={`flex flex-auto flex-col lg:flex-row gap-6`}>
-      <AlbumHeader album={album} />
-      {!album?.tracks ? <Spinner /> : <TrackList tracks={songs} />}
+      <Spinner />
     </div>
   );
 }

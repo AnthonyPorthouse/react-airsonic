@@ -1,15 +1,12 @@
 import { Helmet } from "react-helmet-async";
-import { useAppSelector } from "../app/hooks";
-import { getSongById } from "../app/features/songSlice";
+import { Song } from "../api/songs";
 
 interface TitleInfoProps {
-  nowPlaying?: string;
+  nowPlaying?: Song;
 }
 
 function TitleInfo({ nowPlaying }: TitleInfoProps) {
-  const song = useAppSelector((state) => getSongById(state, nowPlaying));
-
-  if (!nowPlaying || !song) {
+  if (!nowPlaying) {
     return (
       <Helmet>
         <title>Ra</title>
@@ -19,7 +16,7 @@ function TitleInfo({ nowPlaying }: TitleInfoProps) {
 
   return (
     <Helmet>
-      <title>{`Ra | ${song.artist} - ${song.title}`}</title>
+      <title>{`Ra | ${nowPlaying.artist} - ${nowPlaying.title}`}</title>
     </Helmet>
   );
 }
