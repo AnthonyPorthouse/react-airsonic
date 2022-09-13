@@ -1,4 +1,4 @@
-import uuid from "uuid";
+import { v4 as uuid } from "uuid";
 import md5 from "md5";
 import { createContext, useContext } from "react";
 
@@ -26,7 +26,7 @@ export function useAuth() {
   return useContext<Authenticated>(AuthContext);
 }
 
-export const salt = uuid.v4();
+export const salt = uuid();
 
 function getToken(password: string) {
   return md5(`${password}${salt}`);
