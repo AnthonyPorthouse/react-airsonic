@@ -22,15 +22,27 @@ function App() {
   const [auth, setAuth] = useState<Authenticated>(useContext(AuthContext));
 
   const [trackList, setTrackList] = useState<Songs>([]);
-  const currentTrack = () => trackList[0];
-  const nextTrack = () => setTrackList(trackList.slice(1));
+  const [trackListPosition, setTrackListPosition] = useState(0);
+  const getCurrentTrack = () => trackList[trackListPosition];
+  const nextTrack = () =>
+    setTrackListPosition(
+      Math.max(0, Math.min(trackList.length - 1, trackListPosition + 1))
+    );
 
   const requireAuth = <RequireAuth redirectTo={"/login"} />;
 
   return (
     <AuthContext.Provider value={auth}>
       <TrackListContext.Provider
-        value={{ trackList, setTrackList, currentTrack, nextTrack }}
+        value={{
+          trackList,
+          setTrackList: (songs: Songs) => {
+            setTrackListPosition(0);
+            setTrackList(songs);
+          },
+          getCurrentTrack,
+          nextTrack,
+        }}
       >
         <main className={`w-screen h-screen flex flex-col bg-gray-50`}>
           <Suspense fallback={null}>

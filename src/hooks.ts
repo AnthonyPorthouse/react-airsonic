@@ -4,7 +4,7 @@ import { Song, Songs } from "./api/songs";
 export interface TrackList {
   trackList: Songs;
   setTrackList(tracks: Songs): void;
-  currentTrack(): Song | null;
+  getCurrentTrack(): Song | null;
   nextTrack(): void;
 }
 
@@ -16,7 +16,7 @@ export const TrackListContext = createContext<TrackList>({
     console.log(`Setting Tracks`, tracks);
     trackList = tracks;
   },
-  currentTrack: () => trackList[0],
+  getCurrentTrack: () => trackList[0],
   nextTrack: () => (trackList = trackList.slice(1)),
 });
 

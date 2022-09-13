@@ -16,7 +16,7 @@ function TrackListItem({ track }: TrackListItemProps) {
 
   const tracks = useContext(AlbumContext);
 
-  const { currentTrack, setTrackList } = useTrackList();
+  const { getCurrentTrack, setTrackList } = useTrackList();
 
   const play = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -50,7 +50,7 @@ function TrackListItem({ track }: TrackListItemProps) {
 
   return (
     <div className={`flex gap-6 overflow-hidden`}>
-      {Number(currentTrack) === Number(track.id) ? nowPlaying : playButton}
+      {getCurrentTrack()?.id === track.id ? nowPlaying : playButton}
       <div className={`flex-grow gap-6 hidden md:flex`}>
         <span className={`w-1/12 text-right`}>
           {track.discNumber ? `${track.discNumber} / ` : null}

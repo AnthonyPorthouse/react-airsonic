@@ -13,9 +13,9 @@ function MediaPlayer() {
 
   const audio = useRef(new Audio());
 
-  const { currentTrack, nextTrack } = useTrackList();
+  const { getCurrentTrack, nextTrack } = useTrackList();
 
-  const nowPlaying = currentTrack();
+  const nowPlaying = getCurrentTrack();
 
   const currentTrackUrl = nowPlaying
     ? getStreamUrl(nowPlaying.id, auth.credentials)
