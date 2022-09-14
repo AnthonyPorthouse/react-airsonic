@@ -44,9 +44,23 @@ export function generateAuthParams({
   )}&s=${salt}&v=1.15.0&c=react-airsonic&f=json`;
 }
 
+export function sanitizeServer(url: string) {
+  if (
+    (url !== null || url !== "") &&
+    !url.startsWith("http://") &&
+    !url.startsWith("https://")
+  ) {
+    throw new Error(`Invalid Server URL ${url}`);
+  }
+
+  return url;
+}
+
 export async function ping({ server, username, password }: Credentials) {
   const authParams = generateAuthParams({ username, password });
-  const result = await fetch(`${server}/rest/ping?${authParams}`);
+  const result = await fetch(
+    `${sanitizeServer(server)}/rest/ping?${authParams}`
+  );
 
   if (!result.ok) {
     throw new Error("Network Request Failed");

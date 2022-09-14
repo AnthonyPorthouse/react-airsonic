@@ -1,5 +1,5 @@
 import { AlbumIds, Albums } from "./albums";
-import { Credentials, generateAuthParams } from "./auth";
+import { Credentials, generateAuthParams, sanitizeServer } from "./auth";
 
 export type Artist = {
   id: string;
@@ -17,7 +17,9 @@ export async function getArtists({
   password,
 }: Credentials): Promise<Artists> {
   const authParams = generateAuthParams({ username, password });
-  const result = await fetch(`${server}/rest/getArtists?${authParams}`);
+  const result = await fetch(
+    `${sanitizeServer(server)}/rest/getArtists?${authParams}`
+  );
 
   if (!result.ok) {
     throw new Error("Network Request Failed");
@@ -41,7 +43,9 @@ export async function getArtist(
   { server, username, password }: Credentials
 ): Promise<[Artist, Albums]> {
   const authParams = generateAuthParams({ username, password });
-  const result = await fetch(`${server}/rest/getArtist?id=${id}&${authParams}`);
+  const result = await fetch(
+    `${sanitizeServer(server)}/rest/getArtist?id=${id}&${authParams}`
+  );
 
   if (!result.ok) {
     throw new Error("Network Request Failed");

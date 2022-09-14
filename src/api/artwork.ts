@@ -1,11 +1,11 @@
-import { Credentials, generateAuthParams } from "./auth";
+import { Credentials, generateAuthParams, sanitizeServer } from "./auth";
 
 export function getCoverArtUrl(
   id: string,
   { server, username, password }: Credentials
 ) {
   const authParams = generateAuthParams({ username, password });
-  return `${server}/rest/getCoverArt?id=${id}&${authParams}`;
+  return `${sanitizeServer(server)}/rest/getCoverArt?id=${id}&${authParams}`;
 }
 
 export function getScaledCoverArtUrl(
@@ -14,5 +14,7 @@ export function getScaledCoverArtUrl(
   { server, username, password }: Credentials
 ) {
   const authParams = generateAuthParams({ username, password });
-  return `${server}/rest/getCoverArt?id=${id}&size=${size}&${authParams}`;
+  return `${sanitizeServer(
+    server
+  )}/rest/getCoverArt?id=${id}&size=${size}&${authParams}`;
 }

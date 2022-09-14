@@ -1,4 +1,4 @@
-import { Credentials, generateAuthParams } from "./auth";
+import { Credentials, generateAuthParams, sanitizeServer } from "./auth";
 import { Artists } from "./artists";
 import { Albums } from "./albums";
 import { Songs } from "./songs";
@@ -9,7 +9,9 @@ export async function getSearchResults(
 ): Promise<[Artists, Albums, Songs]> {
   const authParams = generateAuthParams({ username, password });
   const result = await fetch(
-    `${server}/rest/search3?query=${query}&artistCount=4&albumCount=4&songCount=100&${authParams}`
+    `${sanitizeServer(
+      server
+    )}/rest/search3?query=${query}&artistCount=4&albumCount=4&songCount=100&${authParams}`
   );
 
   if (!result.ok) {

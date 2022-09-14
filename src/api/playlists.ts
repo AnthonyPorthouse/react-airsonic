@@ -1,5 +1,5 @@
 import { SongIds, Songs } from "./songs";
-import { Credentials, generateAuthParams } from "./auth";
+import { Credentials, generateAuthParams, sanitizeServer } from "./auth";
 
 export type Playlist = {
   id: string;
@@ -18,7 +18,9 @@ export async function getPlaylists({
   password,
 }: Credentials): Promise<Playlists> {
   const authParams = generateAuthParams({ username, password });
-  const result = await fetch(`${server}/rest/getPlaylists?${authParams}`);
+  const result = await fetch(
+    `${sanitizeServer(server)}/rest/getPlaylists?${authParams}`
+  );
 
   if (!result.ok) {
     throw new Error("Network Request Failed");
@@ -35,7 +37,7 @@ export async function getPlaylist(
 ): Promise<[Playlist, Songs]> {
   const authParams = generateAuthParams({ username, password });
   const result = await fetch(
-    `${server}/rest/getPlaylist?id=${id}&${authParams}`
+    `${sanitizeServer(server)}/rest/getPlaylist?id=${id}&${authParams}`
   );
 
   if (!result.ok) {
