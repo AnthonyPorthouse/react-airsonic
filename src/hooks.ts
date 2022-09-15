@@ -13,7 +13,6 @@ let trackList: Songs = [];
 export const TrackListContext = createContext<TrackList>({
   trackList: [],
   setTrackList: (tracks: Songs) => {
-    console.log(`Setting Tracks`, tracks);
     trackList = tracks;
   },
   getCurrentTrack: () => trackList[0],

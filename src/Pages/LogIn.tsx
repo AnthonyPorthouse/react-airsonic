@@ -26,7 +26,7 @@ function LogIn({
   const location = useLocation();
   const navigate = useNavigate();
 
-  const from = (location.state as any)?.from?.pathname || "/";
+  const from = (location.state as any)?.from || "/";
 
   const { isError, isSuccess, data } = useQuery(
     ["auth", auth.credentials],
@@ -62,7 +62,9 @@ function LogIn({
 
   useEffect(() => {
     if (auth.isAuthenticated) {
-      navigate(from);
+      navigate(from, {
+        replace: true,
+      });
     }
   }, [auth.isAuthenticated, navigate, from]);
 

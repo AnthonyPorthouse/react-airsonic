@@ -1,6 +1,12 @@
 import React, { Suspense, useContext, useEffect, useState } from "react";
 import LogIn from "./Pages/LogIn";
-import { Routes, Route, Outlet, useNavigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  Outlet,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import TitleInfo from "./Components/TitleInfo";
 import Spinner from "./Components/Spinner";
 import { AuthContext, Authenticated, useAuth } from "./api/auth";
@@ -29,7 +35,10 @@ function App() {
       Math.max(0, Math.min(trackList.length - 1, trackListPosition + 1))
     );
 
-  const requireAuth = <RequireAuth redirectTo={"/login"} />;
+  const location = useLocation();
+  const url = `${location.pathname}${location.search}`;
+
+  const requireAuth = <RequireAuth redirectTo={url} />;
 
   return (
     <AuthContext.Provider value={auth}>
@@ -99,14 +108,19 @@ function App() {
 function RequireAuth({ redirectTo }: { redirectTo: string }) {
   const auth = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { isAuthenticated } = auth;
 
   useEffect(() => {
     if (!isAuthenticated) {
-      return () => navigate("/login");
+      navigate("/login", {
+        state: {
+          from: redirectTo,
+        },
+      });
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, location.pathname, navigate, redirectTo]);
 
   return <Outlet />;
 }
