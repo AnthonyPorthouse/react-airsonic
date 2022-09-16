@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { getScaledCoverArtUrl } from "../api/artwork";
 import { useAuth } from "../api/auth";
+import md5 from "md5";
 
 interface AlbumArtProps {
   id?: string;
@@ -14,19 +15,24 @@ function AlbumArt({ id, description, sizes }: AlbumArtProps) {
 
   const [width, setWidth] = useState<number>(1);
 
+  const hash = useMemo(() => {
+    return md5(description || "").slice(0, 6);
+  }, [description]);
+
   useEffect(() => {
     setWidth(el.current ? el.current.offsetWidth : 0);
   }, []);
 
   if (!id) {
     return (
-      <img
+      <div
         ref={el}
-        width={width}
-        height={width}
-        alt={description}
-        className={`rounded overflow-hidden w-full`}
-        src={"data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="}
+        style={{
+          width: `100%`,
+          height: `${width}px`,
+          backgroundColor: `#${hash}`,
+        }}
+        className={`rounded overflow-hidden max-w-full max-h-full`}
       />
     );
   }
