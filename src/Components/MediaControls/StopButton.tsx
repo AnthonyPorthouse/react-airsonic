@@ -3,6 +3,7 @@ import { useContext } from "react";
 import AudioContext from "../Audio/AudioContext";
 import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
+import { useTrackList } from "../../hooks";
 
 function StopButton() {
   const { t } = useTranslation("media");
@@ -10,12 +11,14 @@ function StopButton() {
    * @type audio {Audio}
    */
   const audio = useContext(AudioContext);
+  const { setTrackList } = useTrackList();
 
   const stop = (e: SyntheticEvent) => {
     e.preventDefault();
     if (audio) {
       audio.pause();
       audio.currentTime = 0;
+      setTrackList([]);
     }
   };
 

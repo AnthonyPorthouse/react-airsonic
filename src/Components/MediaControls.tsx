@@ -4,6 +4,7 @@ import PauseButton from "./MediaControls/PauseButton";
 import StopButton from "./MediaControls/StopButton";
 import SkipButton from "./MediaControls/SkipButton";
 import { useContext } from "react";
+import FullscreenButton from "./MediaControls/FullscreenButton";
 
 function MediaControls() {
   const audio = useContext(AudioContext);
@@ -21,6 +22,7 @@ function MediaControls() {
       {playPauseButton()}
       <StopButton />
       <SkipButton />
+      <FullscreenButton />
     </div>
   );
 }

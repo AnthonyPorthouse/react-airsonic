@@ -1,5 +1,4 @@
 import { ReactComponent as Play } from "../images/play.svg";
-import { ReactComponent as NowPlaying } from "../images/play-active.svg";
 import Duration from "./Duration";
 import { SyntheticEvent, useContext } from "react";
 import AlbumContext from "./AlbumContext";
@@ -41,9 +40,7 @@ function TrackListItem({ track }: TrackListItemProps) {
       className={`flex gap-6 md:block w-full md:w-6 flex-shrink-0`}
       title={`Currently Playing`}
     >
-      <NowPlaying
-        className={`flex-shrink-0 w-6 md:w-full stroke-current text-green-400`}
-      />
+      <Play className={`flex-shrink-0 w-6 md:w-full text-green-400`} />
       <span className={`truncate md:hidden`}>{track.title}</span>
     </div>
   );
