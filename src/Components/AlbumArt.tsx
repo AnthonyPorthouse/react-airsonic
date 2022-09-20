@@ -29,10 +29,9 @@ function AlbumArt({ id, description, sizes }: AlbumArtProps) {
         ref={el}
         style={{
           width: `100%`,
-          height: `${width}px`,
           backgroundColor: `#${hash}`,
         }}
-        className={`rounded overflow-hidden max-w-full max-h-full`}
+        className={`rounded overflow-hidden max-w-full aspect-square`}
       />
     );
   }
