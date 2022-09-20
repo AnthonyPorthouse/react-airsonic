@@ -12,7 +12,7 @@ interface FullscreenProps {
 }
 
 function Fullscreen({ track, currentTime, duration }: FullscreenProps) {
-  const { isFullscreen, setIsFullscreen } = useFullscreen();
+  const { isFullscreen } = useFullscreen();
 
   if (!isFullscreen) {
     return null;
