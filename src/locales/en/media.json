@@ -2,5 +2,7 @@
   "playTrack": "Play Track",
   "pauseTrack": "Pause Track",
   "nextTrack": "Skip Track",
-  "stopTrack": "Stop Track"
+  "stopTrack": "Stop Track",
+  "enterFullscreen": "Enter Fullscreen",
+  "exitFullscreen": "Exit Fullscreen"
 }
