@@ -9,6 +9,7 @@ import { HelmetProvider } from "react-helmet-async";
 import "./i18n";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { UpdateAvailableContext } from "./Components/Updater/Update";
 
 const container = document.getElementById("root");
 
@@ -16,12 +17,16 @@ const root = createRoot(container!);
 
 const queryClient = new QueryClient();
 
+let updateAvailable = false;
+
 root.render(
   <React.StrictMode>
     <HelmetProvider>
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
-          <App />
+          <UpdateAvailableContext.Provider value={updateAvailable}>
+            <App />
+          </UpdateAvailableContext.Provider>
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </BrowserRouter>
@@ -35,8 +40,7 @@ root.render(
 serviceWorkerRegistration.register({
   onUpdate: (registration) => {
     registration.waiting?.postMessage({ type: "SKIP_WAITING" });
-    // TODO: find a way to fix the below
-    //store.dispatch(setUpdateAvailable(true));
+    updateAvailable = true;
   },
 });
 

@@ -1,8 +1,8 @@
 import { ReactComponent as UpdateIcon } from "../../images/update.svg";
-import { SyntheticEvent } from "react";
+import { createContext, SyntheticEvent, useContext } from "react";
 
 function Update() {
-  const updateNeeded = false;
+  const updateNeeded = useUpdateAvailable();
 
   const refreshApplication = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -21,6 +21,14 @@ function Update() {
   }
 
   return null;
+}
+
+type UpdateAvailable = boolean;
+
+export const UpdateAvailableContext = createContext<UpdateAvailable>(false);
+
+export function useUpdateAvailable() {
+  return useContext<UpdateAvailable>(UpdateAvailableContext);
 }
 
 export default Update;
