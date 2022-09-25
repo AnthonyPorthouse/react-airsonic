@@ -24,5 +24,9 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-node-
             ${{ runner.OS }}-
-      - run: npm ci
-      - run: npm run test
+      - name: Install Node Dependencies
+        run: npm ci
+      - name: Check Formatting
+        run: npx prettier --check .
+      - name: Build Project
+        run: npm build
