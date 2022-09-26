@@ -14,7 +14,10 @@ function ProgressBar({ length, position }: ProgressBarProps) {
 
   const progressBar = useRef<HTMLDivElement>(null);
 
+  const trackPosition = useRef<HTMLDivElement>(null);
+
   const [showPosition, showPositionEnabled] = useState(false);
+  const [mousePosX, setMousePosX] = useState(0);
   const [mousePercent, setMousePercent] = useState(0);
   const [mouseSongPos, setMouseSongPos] = useState(0);
 
@@ -49,6 +52,7 @@ function ProgressBar({ length, position }: ProgressBarProps) {
     const barBounding = bar.getBoundingClientRect();
 
     const position = e.pageX - barBounding.x;
+    setMousePosX(position);
 
     const percentagePosition = position / barBounding.width;
 
@@ -68,6 +72,45 @@ function ProgressBar({ length, position }: ProgressBarProps) {
     audio.currentTime = mouseSongPos;
   };
 
+  const renderMousePosition = () => {
+    const offset = 40;
+    const rightPos = Math.min(
+      (progressBar.current?.offsetWidth || offset) - offset,
+      mousePosX
+    );
+
+    const pos = Math.max(offset, rightPos);
+
+    return (
+      <div
+        className={`absolute h-full bg-green-200`}
+        style={{ width: `${mousePercent}%` }}
+      >
+        <div
+          className={`w-6 h-6 absolute -right-3 -top-1 leading-none rounded-full border-4 border-green-400 bg-white`}
+        />
+        <div
+          ref={trackPosition}
+          style={{ left: `${pos}px` }}
+          className={`absolute left-0 w-12 -mt-8 -ml-6 flex items-center`}
+        >
+          <div className={`px-2 py-1 leading-none shadow rounded bg-white`}>
+            <Duration time={mouseSongPos} />
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const renderBasicProgressBar = () => {
+    return (
+      <div
+        className={`absolute h-full bg-green-200`}
+        style={{ width: `${progress}%` }}
+      />
+    );
+  };
+
   return (
     <div
       ref={progressBar}
@@ -82,28 +125,7 @@ function ProgressBar({ length, position }: ProgressBarProps) {
         style={{ width: `${bufferPercent}%` }}
       />
 
-      {showPosition ? (
-        <div
-          className={`absolute h-full bg-green-200`}
-          style={{ width: `${mousePercent}%` }}
-        >
-          <div
-            className={`w-6 h-6 absolute -right-3 -top-1 leading-none rounded-full border-4 border-green-400 bg-white`}
-          />
-          <div
-            className={`absolute right-0 w-12 -mt-8 -mr-6 flex items-center`}
-          >
-            <div className={`px-2 py-1 leading-none shadow rounded bg-white`}>
-              <Duration time={mouseSongPos} />
-            </div>
-          </div>
-        </div>
-      ) : (
-        <div
-          className={`absolute h-full bg-green-200`}
-          style={{ width: `${progress}%` }}
-        />
-      )}
+      {showPosition ? renderMousePosition() : renderBasicProgressBar()}
     </div>
   );
 }
