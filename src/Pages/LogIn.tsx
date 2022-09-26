@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import {
   Dispatch,
   SetStateAction,
@@ -5,12 +6,10 @@ import {
   useEffect,
   useState,
 } from "react";
-import logo from "../images/logo192.png";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { Authenticated, ping, useAuth } from "../api/auth";
-
-import { useNavigate, useLocation } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import logo from "../images/logo192.png";
 
 function LogIn({
   setAuth,

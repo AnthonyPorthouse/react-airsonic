@@ -1,5 +1,5 @@
-import { SongIds, Songs } from "./songs";
 import { Credentials, generateAuthParams, sanitizeServer } from "./auth";
+import { SongIds, Songs } from "./songs";
 
 export type Playlist = {
   id: string;

@@ -1,7 +1,8 @@
+import md5 from "md5";
 import { useEffect, useMemo, useRef, useState } from "react";
+
 import { getScaledCoverArtUrl } from "../api/artwork";
 import { useAuth } from "../api/auth";
-import md5 from "md5";
 
 interface AlbumArtProps {
   id?: string;

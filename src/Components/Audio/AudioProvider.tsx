@@ -1,5 +1,6 @@
-import AudioContext from "./AudioContext";
 import { ReactNode } from "react";
+
+import AudioContext from "./AudioContext";
 
 interface AudioProviderProps {
   value: any;

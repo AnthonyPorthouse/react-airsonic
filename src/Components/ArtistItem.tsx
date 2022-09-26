@@ -1,7 +1,8 @@
 import React from "react";
-import AlbumArt from "./AlbumArt";
 import { Link } from "react-router-dom";
+
 import { Artist } from "../api/artists";
+import AlbumArt from "./AlbumArt";
 
 interface ArtistItemProps {
   artist: Artist;

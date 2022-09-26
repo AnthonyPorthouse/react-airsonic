@@ -1,8 +1,9 @@
-import { useParams } from "react-router-dom";
-import AlbumList from "../Components/AlbumList";
-import { useAuth } from "../api/auth";
 import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
+
+import AlbumList from "../Components/AlbumList";
 import { getArtist } from "../api/artists";
+import { useAuth } from "../api/auth";
 
 type ArtistParams = {
   id: string;

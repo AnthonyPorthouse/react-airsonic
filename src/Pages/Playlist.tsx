@@ -1,10 +1,11 @@
+import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
+
 import AlbumHeader from "../Components/AlbumHeader";
+import Spinner from "../Components/Spinner";
 import TrackList from "../Components/TrackList";
 import { useAuth } from "../api/auth";
 import { getPlaylist } from "../api/playlists";
-import { useQuery } from "@tanstack/react-query";
-import Spinner from "../Components/Spinner";
 
 type PlaylistParams = {
   id: string;

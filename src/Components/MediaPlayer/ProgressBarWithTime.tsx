@@ -1,6 +1,7 @@
-import ProgressBar from "./ProgressBar";
-import Duration from "../Duration";
 import classNames from "classnames";
+
+import Duration from "../Duration";
+import ProgressBar from "./ProgressBar";
 
 export function ProgressBarWithTime({
   length,

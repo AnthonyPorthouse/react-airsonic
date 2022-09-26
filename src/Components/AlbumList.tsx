@@ -1,4 +1,5 @@
-import { lazy, Suspense } from "react";
+import { Suspense, lazy } from "react";
+
 import { Album } from "../api/albums";
 
 const AlbumView = lazy(() => import("./Album"));

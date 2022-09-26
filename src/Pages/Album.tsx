@@ -1,8 +1,9 @@
+import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import TrackList from "../Components/TrackList";
+
 import AlbumHeader from "../Components/AlbumHeader";
 import Spinner from "../Components/Spinner";
-import { useQuery } from "@tanstack/react-query";
+import TrackList from "../Components/TrackList";
 import { getAlbum } from "../api/albums";
 import { useAuth } from "../api/auth";
 

@@ -1,9 +1,10 @@
-import React from "react";
-import { render as rtlRender } from "@testing-library/react";
-import { configureStore } from "@reduxjs/toolkit";
-import { Provider } from "react-redux";
-import { HelmetProvider } from "react-helmet-async";
 // Import your own reducer
+import { configureStore } from "@reduxjs/toolkit";
+import { render as rtlRender } from "@testing-library/react";
+import React from "react";
+import { HelmetProvider } from "react-helmet-async";
+import { Provider } from "react-redux";
+
 import { reducers } from "./app/store";
 
 function render(

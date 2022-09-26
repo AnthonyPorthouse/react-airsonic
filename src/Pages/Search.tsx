@@ -1,11 +1,12 @@
-import ArtistList from "../Components/ArtistList";
-import AlbumList from "../Components/AlbumList";
-import TrackList from "../Components/TrackList";
-import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { getSearchResults } from "../api/search";
-import { useAuth } from "../api/auth";
+import { useSearchParams } from "react-router-dom";
+
+import AlbumList from "../Components/AlbumList";
+import ArtistList from "../Components/ArtistList";
 import Spinner from "../Components/Spinner";
+import TrackList from "../Components/TrackList";
+import { useAuth } from "../api/auth";
+import { getSearchResults } from "../api/search";
 
 function Search() {
   const [params] = useSearchParams();

@@ -1,6 +1,6 @@
-import { Credentials, generateAuthParams, sanitizeServer } from "./auth";
-import { Artists } from "./artists";
 import { Albums } from "./albums";
+import { Artists } from "./artists";
+import { Credentials, generateAuthParams, sanitizeServer } from "./auth";
 import { Songs } from "./songs";
 
 export async function getSearchResults(
