@@ -6,6 +6,7 @@ import { ReactComponent as CloseIcon } from "../images/close.svg";
 import { useState } from "react";
 import Update from "./Updater/Update";
 import { useTranslation } from "react-i18next";
+import LoggedInAs from "./Nav/LoggedInAs";
 
 function Nav() {
   const { t } = useTranslation("nav");
@@ -90,7 +91,12 @@ function Nav() {
                 {t("playlists")}
               </NavLink>
             </li>
-            <li className={"w-full md:w-auto md:ml-auto flex gap-3"}>
+            <li
+              className={
+                "w-full md:w-auto md:ml-auto flex flex-col md:flex-row gap-6 md:gap-3"
+              }
+            >
+              <LoggedInAs />
               <SearchBar onSubmit={toggleMenu} />
               <Update />
             </li>

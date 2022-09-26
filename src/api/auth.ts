@@ -9,11 +9,13 @@ export interface Credentials {
 }
 
 export type Authenticated = {
+  logout(): void;
   isAuthenticated: boolean;
   credentials: Credentials;
 };
 
 export const AuthContext = createContext<Authenticated>({
+  logout: () => {},
   isAuthenticated: false,
   credentials: {
     server: localStorage.getItem("ra.server") || "",
@@ -21,6 +23,8 @@ export const AuthContext = createContext<Authenticated>({
     password: localStorage.getItem("ra.password") || "",
   },
 });
+
+AuthContext.displayName = "Auth";
 
 export function useAuth() {
   return useContext<Authenticated>(AuthContext);
@@ -58,11 +62,15 @@ export function sanitizeServer(url: string) {
 
 export async function ping({ server, username, password }: Credentials) {
   const authParams = generateAuthParams({ username, password });
-  const result = await fetch(
-    `${sanitizeServer(server)}/rest/ping?${authParams}`
-  );
 
-  if (!result.ok) {
+  let result: Response | null = null;
+  try {
+    result = await fetch(`${sanitizeServer(server)}/rest/ping?${authParams}`);
+  } catch (e: any) {
+    console.warn(e);
+  }
+
+  if (!result || !result.ok) {
     throw new Error("Network Request Failed");
   }
 

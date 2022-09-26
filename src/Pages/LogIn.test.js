@@ -21,11 +21,15 @@ jest.mock("react-router-dom", () => ({
 test.skip("page repopulates with old data", async () => {
   render(<LogIn />);
 
-  await waitFor(() => {
-    expect(localStorage.getItem).toHaveBeenLastCalledWith("server");
-    expect(localStorage.getItem).toHaveBeenLastCalledWith("username");
-    expect(localStorage.getItem).toHaveBeenLastCalledWith("password");
-  });
+  await waitFor(() =>
+    expect(localStorage.getItem).toHaveBeenLastCalledWith("ra.server")
+  );
+  await waitFor(() =>
+    expect(localStorage.getItem).toHaveBeenLastCalledWith("ra.username")
+  );
+  await waitFor(() =>
+    expect(localStorage.getItem).toHaveBeenLastCalledWith("ra.password")
+  );
 });
 
 test.skip("submitting login form authenticates user", async () => {

@@ -18,6 +18,7 @@ function TrackList({ tracks }: TrackListProps) {
   const windowHeight = useWindowHeight();
 
   const trackListRef = useRef<HTMLDivElement>(null);
+  const innerTrackListRef = useRef<HTMLDivElement>(null);
   const { getCurrentTrack } = useTrackList();
 
   const mediaBarOffset = 124;
@@ -26,7 +27,7 @@ function TrackList({ tracks }: TrackListProps) {
   const listHeight = (() => {
     const maxHeight = Math.max(
       windowHeight -
-        (trackListRef.current?.offsetTop || 0) -
+        (innerTrackListRef.current?.offsetTop || 0) -
         (getCurrentTrack() ? mediaBarOffset : 0) -
         26,
       10 * rowHeight
@@ -62,11 +63,11 @@ function TrackList({ tracks }: TrackListProps) {
 
   return (
     <AlbumContext.Provider value={tracks}>
-      <section className={`flex-auto self-start w-full`}>
+      <section className={`flex-auto self-start w-full`} ref={trackListRef}>
         <h1 className={`text-xl`}>{t("tracks")}</h1>
         <div
-          ref={trackListRef}
-          className={`divide-y divide-gray-200 border border-grey-200`}
+          ref={innerTrackListRef}
+          className={`divide-y divide-gray-200 border border-grey-200 w-full`}
         >
           <List
             height={listHeight}
