@@ -6,6 +6,7 @@ import {
   Outlet,
   useNavigate,
   useLocation,
+  redirect,
 } from "react-router-dom";
 import TitleInfo from "./Components/TitleInfo";
 import Spinner from "./Components/Spinner";
@@ -27,6 +28,22 @@ const MediaPlayer = React.lazy(() => import("./Components/MediaPlayer"));
 function App() {
   const [auth, setAuth] = useState<Authenticated>(useContext(AuthContext));
 
+  const logout = () => {
+    redirect("/login");
+
+    localStorage.setItem("ra.password", "");
+
+    setAuth({
+      isAuthenticated: false,
+      logout,
+      credentials: {
+        username: auth.credentials.username,
+        password: "",
+        server: auth.credentials.server,
+      },
+    });
+  };
+
   const [trackList, setTrackList] = useState<Songs>([]);
   const [trackListPosition, setTrackListPosition] = useState(0);
   const getCurrentTrack = () => trackList[trackListPosition];
@@ -41,7 +58,7 @@ function App() {
   const requireAuth = <RequireAuth redirectTo={url} />;
 
   return (
-    <AuthContext.Provider value={auth}>
+    <AuthContext.Provider value={{ ...auth, logout }}>
       <TrackListContext.Provider
         value={{
           trackList,

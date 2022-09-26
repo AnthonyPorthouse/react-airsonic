@@ -17,6 +17,7 @@
     "react": "^18.0.0",
     "react-cookie": "^4.0.3",
     "react-dom": "^18.0.0",
+    "react-focus-lock": "^2.9.1",
     "react-helmet-async": "^1.0.9",
     "react-i18next": "^11.15.3",
     "react-router-dom": "^6.0.0",
