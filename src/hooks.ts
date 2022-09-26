@@ -1,5 +1,6 @@
-import { Song, Songs } from "./api/songs";
 import { createContext, useContext } from "react";
+
+import { Song, Songs } from "./api/songs";
 
 export interface TrackList {
   trackList: Songs;
