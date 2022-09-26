@@ -3,7 +3,7 @@ import classNames from "classnames";
 import AlbumArt from "../AlbumArt";
 import { useFullscreen } from "./FullscreenContext";
 import FullscreenButton from "../MediaControls/FullscreenButton";
-import ProgressBar from "./ProgressBar";
+import { ProgressBarWithTime } from "./ProgressBarWithTime";
 
 interface FullscreenProps {
   track: Song;
@@ -66,7 +66,11 @@ function Fullscreen({ track, currentTime, duration }: FullscreenProps) {
           </div>
         </div>
         <div className="flex">
-          <ProgressBar length={duration} position={currentTime} />
+          <ProgressBarWithTime
+            length={duration}
+            position={currentTime}
+            className={`text-2xl`}
+          />
         </div>
       </div>
 

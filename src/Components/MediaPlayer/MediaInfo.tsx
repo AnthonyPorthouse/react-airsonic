@@ -1,8 +1,7 @@
 import TrackInfo from "../TrackInfo";
 import MediaControls from "../MediaControls";
-import ProgressBar from "./ProgressBar";
-import Duration from "../Duration";
 import { Song } from "../../api/songs";
+import { ProgressBarWithTime } from "./ProgressBarWithTime";
 
 interface MediaInfoProps {
   track: Song;
@@ -21,13 +20,7 @@ function MediaInfo({ track, duration, currentTime }: MediaInfoProps) {
           <MediaControls />
         </div>
       </div>
-      <div className={`w-full flex flex-col`}>
-        <ProgressBar length={duration} position={currentTime} />
-        <div className={`flex justify-between`}>
-          <Duration time={currentTime} />
-          <Duration time={duration} />
-        </div>
-      </div>
+      <ProgressBarWithTime length={duration} position={currentTime} />
     </div>
   );
 }
