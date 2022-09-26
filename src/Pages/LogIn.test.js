@@ -1,8 +1,9 @@
-import { render, screen } from "../testUtils";
-import userEvent from "@testing-library/user-event";
-import LogIn from "./LogIn";
-import { MemoryRouter } from "react-router-dom";
 import { waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { MemoryRouter } from "react-router-dom";
+
+import { render, screen } from "../testUtils";
+import LogIn from "./LogIn";
 
 const mockHistoryPush = jest.fn();
 

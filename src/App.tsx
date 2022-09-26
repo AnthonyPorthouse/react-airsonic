@@ -1,18 +1,20 @@
 import React, { Suspense, useContext, useEffect, useState } from "react";
-import LogIn from "./Pages/LogIn";
 import {
-  Routes,
-  Route,
   Outlet,
-  useNavigate,
-  useLocation,
+  Route,
+  Routes,
   redirect,
+  useLocation,
+  useNavigate,
 } from "react-router-dom";
-import TitleInfo from "./Components/TitleInfo";
+
 import Spinner from "./Components/Spinner";
+import TitleInfo from "./Components/TitleInfo";
+import LogIn from "./Pages/LogIn";
+import NowPlaying from "./Pages/NowPlaying";
 import { AuthContext, Authenticated, useAuth } from "./api/auth";
-import { TrackListContext } from "./hooks";
 import { Songs } from "./api/songs";
+import { TrackListContext } from "./hooks";
 
 const Artists = React.lazy(() => import("./Pages/Artists"));
 const Artist = React.lazy(() => import("./Pages/Artist"));
@@ -87,7 +89,11 @@ function App() {
                   />
 
                   <Route path={"/"} element={requireAuth}>
-                    <Route index element={<Albums />} />
+                    <Route index element={<HomepageRedirect />} />
+                  </Route>
+
+                  <Route path={"/now-playing"} element={requireAuth}>
+                    <Route index element={<NowPlaying />} />
                   </Route>
 
                   <Route path={"/artists"} element={requireAuth}>
@@ -140,6 +146,16 @@ function RequireAuth({ redirectTo }: { redirectTo: string }) {
   }, [isAuthenticated, location.pathname, navigate, redirectTo]);
 
   return <Outlet />;
+}
+
+function HomepageRedirect() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate("/albums");
+  });
+
+  return null;
 }
 
 export default App;

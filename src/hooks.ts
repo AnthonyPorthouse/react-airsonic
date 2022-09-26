@@ -1,5 +1,5 @@
-import { createContext, useContext } from "react";
 import { Song, Songs } from "./api/songs";
+import { createContext, useContext } from "react";
 
 export interface TrackList {
   trackList: Songs;
@@ -18,6 +18,8 @@ export const TrackListContext = createContext<TrackList>({
   getCurrentTrack: () => trackList[0],
   nextTrack: () => (trackList = trackList.slice(1)),
 });
+
+TrackListContext.displayName = "TrackListProvider";
 
 export function useTrackList() {
   return useContext(TrackListContext);

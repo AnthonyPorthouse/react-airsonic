@@ -1,7 +1,8 @@
-import { ReactComponent as FastForward } from "../../images/fast-forward.svg";
 import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
+
 import { useTrackList } from "../../hooks";
+import { ReactComponent as FastForward } from "../../images/fast-forward.svg";
 
 function SkipButton() {
   const { t } = useTranslation("media");

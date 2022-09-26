@@ -1,13 +1,13 @@
-import TrackListItem from "./TrackListItem";
-import AlbumContext from "./AlbumContext";
-
-import { FixedSizeList as List } from "react-window";
-import { CSSProperties, useRef } from "react";
-import classNames from "classnames";
 import { useWindowHeight } from "@react-hook/window-size";
+import classNames from "classnames";
+import { CSSProperties, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { FixedSizeList as List } from "react-window";
+
 import { Songs } from "../api/songs";
 import { useTrackList } from "../hooks";
+import AlbumContext from "./AlbumContext";
+import TrackListItem from "./TrackListItem";
 
 interface TrackListProps {
   tracks: Songs;

@@ -1,8 +1,9 @@
-import AlbumArt from "./AlbumArt";
 import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
+
 import { SongIds, Songs } from "../api/songs";
 import { useTrackList } from "../hooks";
+import AlbumArt from "./AlbumArt";
 
 interface Playable {
   id: string;

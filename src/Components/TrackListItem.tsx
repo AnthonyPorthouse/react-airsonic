@@ -1,10 +1,11 @@
-import { ReactComponent as Play } from "../images/play.svg";
-import Duration from "./Duration";
 import { SyntheticEvent, useContext } from "react";
-import AlbumContext from "./AlbumContext";
 import { useTranslation } from "react-i18next";
+
 import { Song } from "../api/songs";
 import { useTrackList } from "../hooks";
+import { ReactComponent as Play } from "../images/play.svg";
+import AlbumContext from "./AlbumContext";
+import Duration from "./Duration";
 
 interface TrackListItemProps {
   track: Song;

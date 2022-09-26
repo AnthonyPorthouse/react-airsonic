@@ -1,8 +1,8 @@
-import React, { lazy, Suspense } from "react";
+import { useQuery } from "@tanstack/react-query";
+import React, { Suspense, lazy } from "react";
+import { useTranslation } from "react-i18next";
 
 import Spinner from "../Components/Spinner";
-import { useTranslation } from "react-i18next";
-import { useQuery } from "@tanstack/react-query";
 import { getAlbums } from "../api/albums";
 import { useAuth } from "../api/auth";
 

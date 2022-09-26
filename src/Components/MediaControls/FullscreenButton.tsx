@@ -1,6 +1,7 @@
-import { ReactComponent as Fullscreen } from "../../images/fullscreen.svg";
-import { useTranslation } from "react-i18next";
 import { SyntheticEvent } from "react";
+import { useTranslation } from "react-i18next";
+
+import { ReactComponent as Fullscreen } from "../../images/fullscreen.svg";
 import { useFullscreen } from "../MediaPlayer/FullscreenContext";
 
 function FullscreenButton() {

@@ -1,7 +1,8 @@
 import { SyntheticEvent, useState } from "react";
-import { ReactComponent as Search } from "../images/search.svg";
-import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+
+import { ReactComponent as Search } from "../images/search.svg";
 
 interface SearchBarProps {
   onSubmit(e: SyntheticEvent): void;

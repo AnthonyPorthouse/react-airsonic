@@ -1,7 +1,8 @@
-import { render, screen } from "./testUtils";
-import { MemoryRouter } from "react-router-dom";
-import App from "./App";
 import { waitFor } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+
+import App from "./App";
+import { render, screen } from "./testUtils";
 
 test("Shows the log in form", async () => {
   render(<App />, { initialState: {}, wrapper: MemoryRouter });

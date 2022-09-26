@@ -1,6 +1,6 @@
-import TrackInfo from "../TrackInfo";
-import MediaControls from "../MediaControls";
 import { Song } from "../../api/songs";
+import TrackInfo from "../TrackInfo";
+import MediaControls from "./MediaControls";
 import { ProgressBarWithTime } from "./ProgressBarWithTime";
 
 interface MediaInfoProps {

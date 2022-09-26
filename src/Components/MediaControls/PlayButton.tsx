@@ -1,7 +1,8 @@
-import { ReactComponent as Play } from "../../images/play.svg";
 import { SyntheticEvent, useContext } from "react";
-import AudioContext from "../Audio/AudioContext";
 import { useTranslation } from "react-i18next";
+
+import { ReactComponent as Play } from "../../images/play.svg";
+import AudioContext from "../Audio/AudioContext";
 
 function PlayButton() {
   const { t } = useTranslation("media");

@@ -10,6 +10,8 @@ export const FullscreenContext = createContext<Fullscreen>({
   setIsFullscreen: (isFullscreen) => {},
 });
 
+FullscreenContext.displayName = "Fullscreen";
+
 export function useFullscreen() {
   return useContext<Fullscreen>(FullscreenContext);
 }

@@ -1,12 +1,13 @@
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import SearchBar from "./SearchBar";
+
+import { ReactComponent as CloseIcon } from "../images/close.svg";
 import logo from "../images/logo192.png";
 import { ReactComponent as MenuIcon } from "../images/menu.svg";
-import { ReactComponent as CloseIcon } from "../images/close.svg";
-import { useState } from "react";
-import Update from "./Updater/Update";
-import { useTranslation } from "react-i18next";
 import LoggedInAs from "./Nav/LoggedInAs";
+import SearchBar from "./SearchBar";
+import Update from "./Updater/Update";
 
 function Nav() {
   const { t } = useTranslation("nav");
@@ -67,12 +68,22 @@ function Nav() {
             <li>
               <NavLink
                 className={`inline-block w-full md:w-auto`}
+                to={`/now-playing`}
+                onClick={toggleMenu}
+              >
+                {t("now-playing")}
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className={`inline-block w-full md:w-auto`}
                 to={`/albums`}
                 onClick={toggleMenu}
               >
                 {t("albums")}
               </NavLink>
             </li>
+
             <li>
               <NavLink
                 className={`inline-block w-full md:w-auto`}

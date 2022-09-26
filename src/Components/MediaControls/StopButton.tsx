@@ -1,9 +1,10 @@
-import { ReactComponent as Stop } from "../../images/stop.svg";
 import { useContext } from "react";
-import AudioContext from "../Audio/AudioContext";
 import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
+
 import { useTrackList } from "../../hooks";
+import { ReactComponent as Stop } from "../../images/stop.svg";
+import AudioContext from "../Audio/AudioContext";
 
 function StopButton() {
   const { t } = useTranslation("media");

@@ -1,10 +1,11 @@
-import { Song } from "../../api/songs";
 import classNames from "classnames";
-import AlbumArt from "../AlbumArt";
-import { useFullscreen } from "./FullscreenContext";
-import FullscreenButton from "../MediaControls/FullscreenButton";
-import { ProgressBarWithTime } from "./ProgressBarWithTime";
 import FocusLock from "react-focus-lock";
+
+import { Song } from "../../api/songs";
+import AlbumArt from "../AlbumArt";
+import FullscreenButton from "../MediaControls/FullscreenButton";
+import { useFullscreen } from "./FullscreenContext";
+import { ProgressBarWithTime } from "./ProgressBarWithTime";
 
 interface FullscreenProps {
   track: Song;

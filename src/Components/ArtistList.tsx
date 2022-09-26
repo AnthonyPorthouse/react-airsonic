@@ -1,7 +1,8 @@
 import React from "react";
+
+import { Artists } from "../api/artists";
 import ArtistItem from "./ArtistItem";
 import Grid from "./Grid";
-import { Artists } from "../api/artists";
 
 interface ArtistListProps {
   className?: string;

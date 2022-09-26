@@ -1,9 +1,9 @@
-import Grid from "../Components/Grid";
-import Playlist from "../Components/Playlist";
-import { useAuth } from "../api/auth";
 import { useQuery } from "@tanstack/react-query";
 
+import Grid from "../Components/Grid";
+import Playlist from "../Components/Playlist";
 import Spinner from "../Components/Spinner";
+import { useAuth } from "../api/auth";
 import { getPlaylists } from "../api/playlists";
 
 function Playlists() {
