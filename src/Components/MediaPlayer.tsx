@@ -29,6 +29,33 @@ function MediaPlayer() {
 
   const [isFullscreen, setIsFullscreen] = useState(false);
 
+  const setFullscreen = async (enableFullscreen: boolean) => {
+    if (enableFullscreen) {
+      try {
+        await document.body.requestFullscreen();
+      } catch (e) {
+        console.error(e);
+      }
+    } else {
+      try {
+        await document.exitFullscreen();
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  };
+
+  useEffect(() => {
+    function onFullscreenChange() {
+      setIsFullscreen(document.fullscreenElement !== null);
+    }
+
+    document.addEventListener("fullscreenchange", onFullscreenChange);
+
+    return () =>
+      document.removeEventListener("fullscreenchange", onFullscreenChange);
+  }, []);
+
   useEffect(() => {
     audio.current.addEventListener("loadeddata", (e) => {
       audio.current.play().catch(() => {});
@@ -67,7 +94,7 @@ function MediaPlayer() {
       <FullscreenContext.Provider
         value={{
           isFullscreen,
-          setIsFullscreen,
+          setIsFullscreen: setFullscreen,
         }}
       >
         <MediaSession track={nowPlaying}>

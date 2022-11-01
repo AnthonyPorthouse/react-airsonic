@@ -13,6 +13,10 @@ function FullscreenButton() {
     setIsFullscreen(!isFullscreen);
   };
 
+  if (!document.fullscreenEnabled) {
+    return null;
+  }
+
   return (
     <button
       className={`inline-block w-12`}
