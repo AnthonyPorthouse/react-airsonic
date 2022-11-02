@@ -1,7 +1,7 @@
+import { PauseIcon } from "@heroicons/react/24/solid";
 import { SyntheticEvent, useContext } from "react";
 import { useTranslation } from "react-i18next";
 
-import { ReactComponent as Pause } from "../../images/pause.svg";
 import AudioContext from "../Audio/AudioContext";
 
 function PauseButton() {
@@ -22,7 +22,7 @@ function PauseButton() {
       title={t("pauseTrack")}
       onClick={pause}
     >
-      <Pause className={`w-full`} />
+      <PauseIcon className={`w-full`} />
     </button>
   );
 }

@@ -1,9 +1,9 @@
+import { PlayIcon } from "@heroicons/react/24/solid";
 import { SyntheticEvent, useContext } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Song } from "../api/songs";
 import { useTrackList } from "../hooks";
-import { ReactComponent as Play } from "../images/play.svg";
 import AlbumContext from "./AlbumContext";
 import Duration from "./Duration";
 
@@ -31,7 +31,7 @@ function TrackListItem({ track }: TrackListItemProps) {
       className={`flex gap-6 md:block w-full md:w-6 flex-shrink-0`}
       title={t("playTrack")}
     >
-      <Play className={`flex-shrink-0 w-6 md:w-full`} />
+      <PlayIcon className={`flex-shrink-0 w-6 md:w-full`} />
       <span className={`truncate md:hidden`}>{track.title}</span>
     </button>
   );
@@ -41,7 +41,7 @@ function TrackListItem({ track }: TrackListItemProps) {
       className={`flex gap-6 md:block w-full md:w-6 flex-shrink-0`}
       title={`Currently Playing`}
     >
-      <Play className={`flex-shrink-0 w-6 md:w-full text-green-400`} />
+      <PlayIcon className={`flex-shrink-0 w-6 md:w-full text-green-400`} />
       <span className={`truncate md:hidden`}>{track.title}</span>
     </div>
   );

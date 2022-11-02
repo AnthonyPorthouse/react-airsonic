@@ -1,9 +1,9 @@
+import { StopIcon } from "@heroicons/react/24/solid";
 import { useContext } from "react";
 import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
 
 import { useTrackList } from "../../hooks";
-import { ReactComponent as Stop } from "../../images/stop.svg";
 import AudioContext from "../Audio/AudioContext";
 
 function StopButton() {
@@ -29,7 +29,7 @@ function StopButton() {
       title={t("stopTrack")}
       onClick={stop}
     >
-      <Stop className={`w-full`} />
+      <StopIcon className={`w-full`} />
     </button>
   );
 }

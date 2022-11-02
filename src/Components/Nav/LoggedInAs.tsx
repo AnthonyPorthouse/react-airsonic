@@ -1,8 +1,8 @@
+import { UserIcon } from "@heroicons/react/24/solid";
 import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
 
 import { useAuth } from "../../api/auth";
-import { ReactComponent as UserIcon } from "../../images/user.svg";
 
 function LoggedInAs() {
   const { username, server } = useAuth().credentials;
