@@ -1,7 +1,7 @@
+import { PlayIcon } from "@heroicons/react/24/solid";
 import { SyntheticEvent, useContext } from "react";
 import { useTranslation } from "react-i18next";
 
-import { ReactComponent as Play } from "../../images/play.svg";
 import AudioContext from "../Audio/AudioContext";
 
 function PlayButton() {
@@ -23,7 +23,7 @@ function PlayButton() {
       title={t("playTrack")}
       onClick={play}
     >
-      <Play className={`w-full`} />
+      <PlayIcon className={`w-full`} />
     </button>
   );
 }

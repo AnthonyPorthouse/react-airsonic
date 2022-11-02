@@ -1,10 +1,9 @@
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 
-import { ReactComponent as CloseIcon } from "../images/close.svg";
 import logo from "../images/logo192.png";
-import { ReactComponent as MenuIcon } from "../images/menu.svg";
 import LoggedInAs from "./Nav/LoggedInAs";
 import SearchBar from "./SearchBar";
 import Update from "./Updater/Update";
@@ -34,7 +33,7 @@ function Nav() {
           className={`w-6 h-6 my-auto`}
           aria-label={t("showMenu")}
         >
-          <MenuIcon />
+          <Bars3Icon />
         </button>
       </div>
 
@@ -56,7 +55,7 @@ function Nav() {
               className={`w-6 h-6`}
               aria-label={t("nav.closeMenu")}
             >
-              <CloseIcon />
+              <XMarkIcon />
             </button>
           </div>
 

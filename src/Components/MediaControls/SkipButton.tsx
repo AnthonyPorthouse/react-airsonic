@@ -1,8 +1,8 @@
+import { ForwardIcon } from "@heroicons/react/24/solid";
 import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
 
 import { useTrackList } from "../../hooks";
-import { ReactComponent as FastForward } from "../../images/fast-forward.svg";
 
 function SkipButton() {
   const { t } = useTranslation("media");
@@ -19,7 +19,7 @@ function SkipButton() {
       className={`inline-block w-12`}
       title={t("nextTrack")}
     >
-      <FastForward className={`w-full`} />
+      <ForwardIcon className={`w-full`} />
     </button>
   );
 }

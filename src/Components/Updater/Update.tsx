@@ -1,6 +1,5 @@
+import { CloudArrowUpIcon } from "@heroicons/react/24/solid";
 import { SyntheticEvent, createContext, useContext } from "react";
-
-import { ReactComponent as UpdateIcon } from "../../images/update.svg";
 
 function Update() {
   const updateNeeded = useUpdateAvailable();
@@ -16,7 +15,7 @@ function Update() {
         onClick={refreshApplication}
         title="Update available. Click here to reload RA"
       >
-        <UpdateIcon />
+        <CloudArrowUpIcon />
       </button>
     );
   }

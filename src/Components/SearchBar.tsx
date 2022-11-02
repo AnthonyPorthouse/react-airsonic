@@ -1,8 +1,7 @@
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { SyntheticEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-
-import { ReactComponent as Search } from "../images/search.svg";
 
 interface SearchBarProps {
   onSubmit(e: SyntheticEvent): void;
@@ -47,7 +46,7 @@ function SearchBar({ onSubmit }: SearchBarProps) {
           onChange={(event) => setFilter(event.target.value)}
         />
         <button className={"px-3 py-2"} aria-label={t("search")}>
-          <Search className={"h-6"} />
+          <MagnifyingGlassIcon className={"h-6"} />
         </button>
       </div>
     </form>

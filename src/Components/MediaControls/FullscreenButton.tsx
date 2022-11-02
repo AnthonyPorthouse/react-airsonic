@@ -1,7 +1,10 @@
+import {
+  ArrowsPointingInIcon,
+  ArrowsPointingOutIcon,
+} from "@heroicons/react/24/solid";
 import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
 
-import { ReactComponent as Fullscreen } from "../../images/fullscreen.svg";
 import { useFullscreen } from "../MediaPlayer/FullscreenContext";
 
 function FullscreenButton() {
@@ -17,13 +20,25 @@ function FullscreenButton() {
     return null;
   }
 
+  if (isFullscreen) {
+    return (
+      <button
+        className={`inline-block w-12`}
+        title={t("exitFullscreen")}
+        onClick={fullScreen}
+      >
+        <ArrowsPointingInIcon className={`w-full`} />
+      </button>
+    );
+  }
+
   return (
     <button
       className={`inline-block w-12`}
-      title={t(isFullscreen ? "exitFullscreen" : "enterFullscreen")}
+      title={t("enterFullscreen")}
       onClick={fullScreen}
     >
-      <Fullscreen className={`w-full`} />
+      <ArrowsPointingOutIcon className={`w-full`} />
     </button>
   );
 }
