@@ -9,7 +9,7 @@ import SearchBar from "./SearchBar";
 import Update from "./Updater/Update";
 
 function Nav() {
-  const { t } = useTranslation("nav");
+  const { t } = useTranslation(["nav", "common"]);
 
   const toggleMenu = () => {
     setShow(!show);
@@ -23,7 +23,7 @@ function Nav() {
     >
       <img
         src={logo}
-        alt={t("title", { ns: "common" })}
+        alt={t("common:title")}
         className={`absolute w-12 h-12 md:w-16 md:h-16`}
       />
 
@@ -31,7 +31,7 @@ function Nav() {
         <button
           onClick={toggleMenu}
           className={`w-6 h-6 my-auto`}
-          aria-label={t("showMenu")}
+          aria-label={t`nav:show-menu`}
         >
           <Bars3Icon />
         </button>
@@ -45,15 +45,11 @@ function Nav() {
         <div className={`px-6 py-3 md:p-0`}>
           <div className={`md:hidden flex items-center justify-between`}>
             <span className={`inline-block w-6`} />
-            <img
-              src={logo}
-              alt={t("title", { ns: "common" })}
-              className={`w-16 h-16`}
-            />
+            <img src={logo} alt={t("common:title")} className={`w-16 h-16`} />
             <button
               onClick={toggleMenu}
               className={`w-6 h-6`}
-              aria-label={t("nav.closeMenu")}
+              aria-label={t`nav:close-menu`}
             >
               <XMarkIcon />
             </button>
@@ -70,7 +66,7 @@ function Nav() {
                 to={`/now-playing`}
                 onClick={toggleMenu}
               >
-                {t("now-playing")}
+                {t`nav:now-playing`}
               </NavLink>
             </li>
             <li>
