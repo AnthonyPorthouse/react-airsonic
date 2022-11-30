@@ -31,7 +31,7 @@ function Nav() {
         <button
           onClick={toggleMenu}
           className={`w-6 h-6 my-auto`}
-          aria-label={t`nav:show-menu`}
+          aria-label={t("nav:show-menu")}
         >
           <Bars3Icon />
         </button>
@@ -49,7 +49,7 @@ function Nav() {
             <button
               onClick={toggleMenu}
               className={`w-6 h-6`}
-              aria-label={t`nav:close-menu`}
+              aria-label={t("nav:close-menu")}
             >
               <XMarkIcon />
             </button>
@@ -66,7 +66,7 @@ function Nav() {
                 to={`/now-playing`}
                 onClick={toggleMenu}
               >
-                {t`nav:now-playing`}
+                {t("nav:now-playing")}
               </NavLink>
             </li>
             <li>
@@ -75,7 +75,7 @@ function Nav() {
                 to={`/albums`}
                 onClick={toggleMenu}
               >
-                {t("albums")}
+                {t("nav:albums")}
               </NavLink>
             </li>
 
@@ -85,7 +85,7 @@ function Nav() {
                 to={`/artists`}
                 onClick={toggleMenu}
               >
-                {t("artists")}
+                {t("nav:artists")}
               </NavLink>
             </li>
             <li>
@@ -94,7 +94,7 @@ function Nav() {
                 to={`/playlists`}
                 onClick={toggleMenu}
               >
-                {t("playlists")}
+                {t("nav:playlists")}
               </NavLink>
             </li>
             <li
