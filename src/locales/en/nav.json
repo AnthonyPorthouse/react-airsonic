@@ -6,5 +6,7 @@
   "logout": "Logout",
 
   "show-menu": "Show Menu",
-  "close-menu": "Close Menu"
+  "close-menu": "Close Menu",
+
+  "show-settings": "Show Settings"
 }

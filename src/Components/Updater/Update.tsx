@@ -1,8 +1,10 @@
 import { CloudArrowUpIcon } from "@heroicons/react/24/solid";
-import { SyntheticEvent, createContext, useContext } from "react";
+import { SyntheticEvent } from "react";
+
+import { useUpdateAvailable } from "../../hooks/useUpdateAvailable";
 
 function Update() {
-  const updateNeeded = useUpdateAvailable();
+  const [updateNeeded] = useUpdateAvailable();
 
   const refreshApplication = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -15,21 +17,12 @@ function Update() {
         onClick={refreshApplication}
         title="Update available. Click here to reload RA"
       >
-        <CloudArrowUpIcon />
+        <CloudArrowUpIcon className={`h-6`} />
       </button>
     );
   }
 
   return null;
-}
-
-type UpdateAvailable = boolean;
-
-export const UpdateAvailableContext = createContext<UpdateAvailable>(false);
-UpdateAvailableContext.displayName = "UpdateAvailable";
-
-export function useUpdateAvailable() {
-  return useContext<UpdateAvailable>(UpdateAvailableContext);
 }
 
 export default Update;
