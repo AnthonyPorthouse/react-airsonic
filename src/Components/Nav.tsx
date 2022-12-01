@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import logo from "../images/logo192.png";
 import LoggedInAs from "./Nav/LoggedInAs";
 import SearchBar from "./SearchBar";
+import ShowSettings from "./Settings/ShowSettings";
 import Update from "./Updater/Update";
 
 function Nav() {
@@ -19,7 +20,7 @@ function Nav() {
 
   return (
     <nav
-      className={`text-2xl px-6 py-3 bg-white w-full shadow z-50 flex justify-between md:static items-center`}
+      className={`text-2xl px-6 py-3 bg-white w-full shadow z-10 flex justify-between md:static items-center`}
     >
       <img
         src={logo}
@@ -57,7 +58,7 @@ function Nav() {
 
           <hr className={`md:hidden my-3`} />
 
-          <ul
+          <menu
             className={`flex flex-col md:pl-20 md:flex-row gap-6 md:items-center flex-wrap `}
           >
             <li>
@@ -105,8 +106,9 @@ function Nav() {
               <LoggedInAs />
               <SearchBar onSubmit={toggleMenu} />
               <Update />
+              <ShowSettings />
             </li>
-          </ul>
+          </menu>
         </div>
       </div>
     </nav>
