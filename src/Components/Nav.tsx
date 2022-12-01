@@ -100,7 +100,7 @@ function Nav() {
             </li>
             <li
               className={
-                "w-full md:w-auto md:ml-auto flex flex-col md:flex-row gap-6 md:gap-3"
+                "w-full md:w-auto lg:ml-auto flex flex-col md:flex-row gap-6 md:gap-3"
               }
             >
               <LoggedInAs />

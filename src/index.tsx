@@ -5,12 +5,12 @@ import { createRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import ReactModal from "react-modal";
 import { BrowserRouter } from "react-router-dom";
+import { registerSW } from "virtual:pwa-register";
 
 import App from "./App";
 import "./i18n";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 const container = document.getElementById("root") as HTMLElement;
 
@@ -40,9 +40,8 @@ if (import.meta.env.DEV) {
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://cra.link/PWA
-serviceWorkerRegistration.register({
-  onUpdate: (registration) => {
-    registration.waiting?.postMessage({ type: "SKIP_WAITING" });
+registerSW({
+  onNeedRefresh: () => {
     document.dispatchEvent(new Event("update_available"));
   },
 });
