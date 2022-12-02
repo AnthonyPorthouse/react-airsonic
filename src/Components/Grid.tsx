@@ -1,8 +1,8 @@
-import { ReactNodeArray } from "react";
+import { ReactNode } from "react";
 
 interface GridProps {
   className?: string;
-  children: ReactNodeArray;
+  children: ReactNode[];
 }
 
 function Grid({ className, children }: GridProps) {
