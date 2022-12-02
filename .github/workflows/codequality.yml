@@ -1,6 +1,9 @@
-name: "CI"
+name: "Code Quality"
 
-on: ["pull_request"]
+on:
+  push:
+    branches:
+      main
 
 jobs:
   build:
@@ -20,7 +23,7 @@ jobs:
           node-version: ${{ matrix.node }}
       - name: Install Node Dependencies
         run: npm ci
-      - name: Check Formatting
-        run: npx prettier --check .
-      - name: Build Project
-        run: npm run build
+      - uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
