@@ -24,7 +24,7 @@ function Albums() {
   let albums: Album[] = [];
 
   if (isSuccess && data) {
-    albums = data.sort((a, b) => a.name.localeCompare(b.name));
+    albums = [...data].sort((a, b) => a.name.localeCompare(b.name));
   }
 
   return (
