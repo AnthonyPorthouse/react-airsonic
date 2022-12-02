@@ -8,31 +8,17 @@ jobs:
 
     strategy:
       matrix:
-        node: [18, latest]
+        node: [latest]
 
     steps:
       - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
       - name: Use Node.js ${{ matrix.node }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-      - name: Cache Node.js modules
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-node-
-            ${{ runner.OS }}-
       - name: Install Node Dependencies
         run: npm ci
       - name: Check Formatting
         run: npx prettier --check .
-      - uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
       - name: Build Project
         run: npm run build
