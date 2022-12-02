@@ -25,7 +25,7 @@ function LogIn({
   const location = useLocation();
   const navigate = useNavigate();
 
-  const from = (location.state as any)?.from || "/";
+  const from = location.state?.from || "/";
 
   const { isError, isSuccess, data } = useQuery(
     ["auth", auth.credentials],

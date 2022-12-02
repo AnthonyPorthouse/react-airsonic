@@ -3,7 +3,7 @@ import React, { Suspense, lazy } from "react";
 import { useTranslation } from "react-i18next";
 
 import Spinner from "../Components/Spinner";
-import { getAlbums } from "../api/albums";
+import { Album, getAlbums } from "../api/albums";
 import { useAuth } from "../api/auth";
 
 const AlbumList = lazy(() => import("../Components/AlbumList"));
@@ -21,16 +21,18 @@ function Albums() {
     }
   );
 
+  let albums: Album[] = [];
+
+  if (isSuccess && data) {
+    albums = data.sort((a, b) => a.name.localeCompare(b.name));
+  }
+
   return (
     <div>
       <h1 className={`text-2xl`}>{t("allAlbums")}</h1>
 
       <Suspense fallback={<Spinner />}>
-        <AlbumList
-          albums={
-            isSuccess ? data.sort((a, b) => a.name.localeCompare(b.name)) : []
-          }
-        />
+        <AlbumList albums={albums} />
       </Suspense>
     </div>
   );

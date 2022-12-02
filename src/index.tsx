@@ -16,7 +16,7 @@ const container = document.getElementById("root") as HTMLElement;
 
 ReactModal.setAppElement(container);
 
-const root = createRoot(container!);
+const root = createRoot(container);
 
 const queryClient = new QueryClient();
 

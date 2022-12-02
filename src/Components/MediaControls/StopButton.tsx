@@ -1,6 +1,5 @@
 import { StopIcon } from "@heroicons/react/24/solid";
-import { useContext } from "react";
-import { SyntheticEvent } from "react";
+import { SyntheticEvent, useContext } from "react";
 import { useTranslation } from "react-i18next";
 
 import { useTrackList } from "../../hooks";
