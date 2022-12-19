@@ -9,7 +9,7 @@ import { registerSW } from "virtual:pwa-register";
 
 import App from "./App";
 import "./i18n";
-import "./index.css?inline";
+import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
 const container = document.getElementById("root") as HTMLElement;
