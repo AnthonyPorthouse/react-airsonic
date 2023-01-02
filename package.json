@@ -60,7 +60,7 @@
     "@redux-devtools/core": "^3.7.0",
     "@tailwindcss/forms": "^0.5.2",
     "@trivago/prettier-plugin-sort-imports": "^4.0.0",
-    "@types/jest": "^29.2.4",
+    "@types/jest": "^29.2.5",
     "@types/md5": "^2.3.1",
     "@types/node": "^18.11.15",
     "@types/react": "^18.0.26",
