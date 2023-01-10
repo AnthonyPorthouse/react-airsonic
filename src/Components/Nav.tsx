@@ -1,5 +1,5 @@
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 
@@ -12,11 +12,11 @@ import Update from "./Updater/Update";
 function Nav() {
   const { t } = useTranslation(["nav", "common"]);
 
-  const toggleMenu = () => {
-    setShow(!show);
-  };
-
   let [show, setShow] = useState(false);
+
+  const toggleMenu = useCallback(() => {
+    setShow(!show);
+  }, [show]);
 
   return (
     <nav
