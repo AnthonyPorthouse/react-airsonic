@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { useAuth } from "../api/auth";
 import { getStreamUrl } from "../api/stream";
@@ -84,6 +84,14 @@ function MediaPlayer() {
     }
   }, [audio, auth, nowPlaying, currentTrackUrl]);
 
+  const fullscreenValue = useMemo(
+    () => ({
+      isFullscreen,
+      setIsFullscreen: setFullscreen,
+    }),
+    [isFullscreen]
+  );
+
   if (!nowPlaying) {
     audio.current.pause();
     return null;
@@ -91,12 +99,7 @@ function MediaPlayer() {
 
   return (
     <AudioProvider value={audio.current}>
-      <FullscreenContext.Provider
-        value={{
-          isFullscreen,
-          setIsFullscreen: setFullscreen,
-        }}
-      >
+      <FullscreenContext.Provider value={fullscreenValue}>
         <MediaSession track={nowPlaying}>
           <TitleInfo nowPlaying={nowPlaying} />
 
