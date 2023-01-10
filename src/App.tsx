@@ -12,6 +12,8 @@ import Spinner from "./Components/Spinner";
 import TitleInfo from "./Components/TitleInfo";
 import LogIn from "./Pages/LogIn";
 import NowPlaying from "./Pages/NowPlaying";
+import Podcast from "./Pages/Podcast";
+import Podcasts from "./Pages/Podcasts";
 import { AuthContext, Authenticated, useAuth } from "./api/auth";
 import { Songs } from "./api/songs";
 import { TrackListContext } from "./hooks";
@@ -109,6 +111,11 @@ function App() {
                   <Route path={"/playlists"} element={requireAuth}>
                     <Route index element={<Playlists />} />
                     <Route path={":id"} element={<Playlist />} />
+                  </Route>
+
+                  <Route path={"/podcasts"} element={requireAuth}>
+                    <Route index element={<Podcasts />} />
+                    <Route path={":id"} element={<Podcast />} />
                   </Route>
 
                   <Route path={"/search/*"} element={requireAuth}>

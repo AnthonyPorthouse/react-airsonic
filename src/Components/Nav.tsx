@@ -98,6 +98,15 @@ function Nav() {
                 {t("nav:playlists")}
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                className={`inline-block w-full md:w-auto`}
+                to={`/podcasts`}
+                onClick={toggleMenu}
+              >
+                {t("nav:podcasts")}
+              </NavLink>
+            </li>
             <li
               className={
                 "w-full md:w-auto lg:ml-auto flex flex-col md:flex-row gap-6 md:gap-3"

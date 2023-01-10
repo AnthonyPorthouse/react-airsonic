@@ -4,10 +4,19 @@ interface DurationProps {
   time: number;
 }
 
+const minute = 60;
+const hour = minute * 60;
+
 function Duration({ time }: DurationProps) {
-  const start = new Date(0, 0, 0, 0, 0, 0, 0);
-  const end = addSeconds(start, time);
-  const duration = lightFormat(end, "m:ss");
+  let duration = `${Math.floor((time % hour) / minute)
+    .toString()
+    .padStart(2, "0")}:${Math.floor(time % minute)
+    .toString()
+    .padStart(2, "0")}`;
+
+  if (time > hour) {
+    duration = `${Math.floor(time / hour)}:${duration}`;
+  }
 
   return <span>{duration}</span>;
 }
