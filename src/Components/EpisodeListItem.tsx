@@ -47,7 +47,7 @@ function EpisodeListItem({ episode }: EpisodeListItemProps) {
     <button
       onClick={play}
       className={`flex gap-6 md:block w-full md:w-6 flex-shrink-0`}
-      title={t("playTrack")}
+      title={t("media:playTrack")}
     >
       <PlayIcon className={`flex-shrink-0 w-6 md:w-full`} />
       <span className={`truncate md:hidden`}>{episode.title}</span>
