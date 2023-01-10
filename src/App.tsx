@@ -1,4 +1,11 @@
-import React, { Suspense, useContext, useEffect, useState } from "react";
+import React, {
+  Suspense,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import {
   Outlet,
   Route,
@@ -12,8 +19,6 @@ import Spinner from "./Components/Spinner";
 import TitleInfo from "./Components/TitleInfo";
 import LogIn from "./Pages/LogIn";
 import NowPlaying from "./Pages/NowPlaying";
-import Podcast from "./Pages/Podcast";
-import Podcasts from "./Pages/Podcasts";
 import { AuthContext, Authenticated, useAuth } from "./api/auth";
 import { Songs } from "./api/songs";
 import { TrackListContext } from "./hooks";
@@ -25,6 +30,8 @@ const Album = React.lazy(() => import("./Pages/Album"));
 const Playlists = React.lazy(() => import("./Pages/Playlists"));
 const Playlist = React.lazy(() => import("./Pages/Playlist"));
 const Search = React.lazy(() => import("./Pages/Search"));
+const Podcasts = React.lazy(() => import("./Pages/Podcasts"));
+const Podcast = React.lazy(() => import("./Pages/Podcast"));
 
 const Nav = React.lazy(() => import("./Components/Nav"));
 const MediaPlayer = React.lazy(() => import("./Components/MediaPlayer"));
@@ -32,21 +39,22 @@ const MediaPlayer = React.lazy(() => import("./Components/MediaPlayer"));
 function App() {
   const [auth, setAuth] = useState<Authenticated>(useContext(AuthContext));
 
-  const logout = () => {
+  const logout = useCallback(() => {
     redirect("/login");
 
     localStorage.setItem("ra.password", "");
 
-    setAuth({
-      isAuthenticated: false,
-      logout,
-      credentials: {
-        username: auth.credentials.username,
-        password: "",
-        server: auth.credentials.server,
-      },
-    });
-  };
+    setAuth(
+      Object.assign({}, auth, {
+        isAuthenticated: false,
+        credentials: {
+          username: auth.credentials.username,
+          password: "",
+          server: auth.credentials.server,
+        },
+      })
+    );
+  }, [auth]);
 
   const [trackList, setTrackList] = useState<Songs>([]);
   const [trackListPosition, setTrackListPosition] = useState(0);
@@ -61,19 +69,24 @@ function App() {
 
   const requireAuth = <RequireAuth redirectTo={url} />;
 
+  const authValue = useMemo(() => ({ ...auth, logout }), [auth, logout]);
+
+  const trackListValue = useMemo(
+    () => ({
+      trackList,
+      setTrackList: (songs: Songs) => {
+        setTrackListPosition(0);
+        setTrackList(songs);
+      },
+      getCurrentTrack,
+      nextTrack,
+    }),
+    [trackList]
+  );
+
   return (
-    <AuthContext.Provider value={{ ...auth, logout }}>
-      <TrackListContext.Provider
-        value={{
-          trackList,
-          setTrackList: (songs: Songs) => {
-            setTrackListPosition(0);
-            setTrackList(songs);
-          },
-          getCurrentTrack,
-          nextTrack,
-        }}
-      >
+    <AuthContext.Provider value={authValue}>
+      <TrackListContext.Provider value={trackListValue}>
         <main className={`w-screen h-screen flex flex-col bg-gray-50`}>
           <Suspense fallback={null}>
             {auth.isAuthenticated ? <Nav /> : null}
