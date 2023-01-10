@@ -1,6 +1,5 @@
-import { Album } from "./albums";
 import { Credentials, generateAuthParams, sanitizeServer } from "./auth";
-import { Song, Songs } from "./songs";
+import { Song } from "./songs";
 
 export type Podcast = {
   id: string;

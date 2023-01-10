@@ -8,7 +8,7 @@ interface PodcastProps {
 }
 
 function Podcast({ podcast }: PodcastProps) {
-  const { id, title, description, coverArt } = podcast;
+  const { id, title, coverArt } = podcast;
 
   return (
     <Link

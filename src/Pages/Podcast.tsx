@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
-import AlbumHeader from "../Components/AlbumHeader";
 import EpisodeList from "../Components/EpisodeList";
 import Spinner from "../Components/Spinner";
 import { useAuth } from "../api/auth";
@@ -25,7 +24,7 @@ function Podcast() {
   );
 
   if (isSuccess) {
-    const [podcast, episodes] = data;
+    const [_podcast, episodes] = data;
 
     return (
       <div className={`flex flex-auto flex-col lg:flex-row gap-6`}>
