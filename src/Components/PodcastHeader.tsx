@@ -1,9 +1,6 @@
-import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
 
 import type { Podcast } from "../api/podcasts";
-import { SongIds, Songs } from "../api/songs";
-import { useTrackList } from "../hooks";
 import AlbumArt from "./AlbumArt";
 
 interface PodcastHeaderProps {
