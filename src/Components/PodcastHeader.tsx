@@ -1,5 +1,3 @@
-import { useTranslation } from "react-i18next";
-
 import type { Podcast } from "../api/podcasts";
 import AlbumArt from "./AlbumArt";
 
@@ -8,8 +6,6 @@ interface PodcastHeaderProps {
 }
 
 function AlbumHeader({ podcast }: PodcastHeaderProps) {
-  const { t } = useTranslation("podcasts");
-
   return (
     <section className={`flex flex-col gap-6`}>
       <div className={`grid grid-cols-3 lg:grid-cols-1 gap-6 w-full lg:w-64`}>
