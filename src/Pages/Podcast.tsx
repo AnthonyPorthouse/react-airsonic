@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
 import EpisodeList from "../Components/EpisodeList";
+import PodcastHeader from "../Components/PodcastHeader";
 import Spinner from "../Components/Spinner";
 import { useAuth } from "../api/auth";
 import { getPodcast } from "../api/podcasts";
@@ -24,11 +25,11 @@ function Podcast() {
   );
 
   if (isSuccess) {
-    const [_podcast, episodes] = data;
+    const [podcast, episodes] = data;
 
     return (
       <div className={`flex flex-auto flex-col lg:flex-row gap-6`}>
-        {/*<AlbumHeader album={album} tracks={songs} />*/}
+        <PodcastHeader podcast={podcast} />
         <EpisodeList episodes={episodes} />
       </div>
     );
