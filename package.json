@@ -71,7 +71,7 @@
     "@vitejs/plugin-react": "^3.0.0",
     "autoprefixer": "^10.0.0",
     "jest-localstorage-mock": "^2.4.8",
-    "msw": "^0.49.1",
+    "msw": "^1.0.0",
     "postcss": "^8.4.19",
     "prettier": "2.8.1",
     "tailwindcss": "3.2.4",
