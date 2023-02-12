@@ -1,12 +1,12 @@
 import { Cog6ToothIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import classNames from "classnames";
-import { useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ReactModal from "react-modal";
 
 import { useSetting } from "../../hooks/useSettings";
 
-function ShowSettings() {
+function ShowSettings({ onClick }: { onClick(event?: SyntheticEvent): void }) {
   const { t } = useTranslation(["nav", "settings"]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,6 +14,7 @@ function ShowSettings() {
   const [lastFmApiKey, setLastFmApiKey] = useSetting("lastFmApiKey");
 
   const openModal = () => {
+    onClick()
     setIsModalOpen(true);
   };
 
@@ -34,10 +35,14 @@ function ShowSettings() {
       <ReactModal
         className={classNames(
           `fixed`,
-          `left-1/4`,
-          `right-1/4`,
-          `top-1/4`,
-          `bottom-1/4`,
+          `left-0`,
+          `md:left-1/4`,
+          `right-0`,
+          `md:right-1/4`,
+          `top-12`,
+          `md:top-1/4`,
+          `bottom-0`,
+          `md:bottom-1/4`,
           `bg-white`,
           `p-2`,
           `px-4`

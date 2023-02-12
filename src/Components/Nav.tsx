@@ -115,7 +115,7 @@ function Nav() {
               <LoggedInAs />
               <SearchBar onSubmit={toggleMenu} />
               <Update />
-              <ShowSettings />
+              <ShowSettings onClick={toggleMenu} />
             </li>
           </menu>
         </div>
