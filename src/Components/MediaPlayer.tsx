@@ -84,13 +84,10 @@ function MediaPlayer() {
     }
   }, [audio, auth, nowPlaying, currentTrackUrl]);
 
-  const fullscreenValue = useMemo(
-    () => ({
+  const fullscreenValue = {
       isFullscreen,
       setIsFullscreen: setFullscreen,
-    }),
-    [isFullscreen]
-  );
+    };
 
   if (!nowPlaying) {
     audio.current.pause();

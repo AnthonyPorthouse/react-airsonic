@@ -58,11 +58,6 @@ function App() {
 
   const [trackList, setTrackList] = useState<Songs>([]);
   const [trackListPosition, setTrackListPosition] = useState(0);
-  const getCurrentTrack = () => trackList[trackListPosition];
-  const nextTrack = () =>
-    setTrackListPosition(
-      Math.max(0, Math.min(trackList.length - 1, trackListPosition + 1))
-    );
 
   const location = useLocation();
   const url = `${location.pathname}${location.search}`;
@@ -71,18 +66,24 @@ function App() {
 
   const authValue = useMemo(() => ({ ...auth, logout }), [auth, logout]);
 
-  const trackListValue = useMemo(
-    () => ({
-      trackList,
-      setTrackList: (songs: Songs) => {
-        setTrackListPosition(0);
-        setTrackList(songs);
-      },
-      getCurrentTrack,
-      nextTrack,
-    }),
-    [trackList]
-  );
+  const trackListValue = {
+    trackList,
+    setTrackList: (songs: Songs) => {
+      setTrackListPosition(0);
+      setTrackList(songs);
+    },
+    getCurrentTrack: useCallback(
+      () => trackList[trackListPosition],
+      [trackList, trackListPosition]
+    ),
+    nextTrack: useCallback(
+      () =>
+        setTrackListPosition(
+          Math.max(0, Math.min(trackList.length - 1, trackListPosition + 1))
+        ),
+      [trackList, trackListPosition]
+    ),
+  };
 
   return (
     <AuthContext.Provider value={authValue}>
