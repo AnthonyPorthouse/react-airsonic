@@ -49,17 +49,15 @@ function TrackListItem({ track }: TrackListItemProps) {
   return (
     <div className={`flex gap-6 overflow-hidden`}>
       {getCurrentTrack()?.id === track.id ? nowPlaying : playButton}
-      <div className={`flex-grow gap-6 hidden md:flex`}>
-        <span className={`w-1/12 text-right`}>
-          {track.discNumber ? `${track.discNumber} / ` : null}
-          {track.track ? track.track : null}
-        </span>
-        <span className={`w-1/6 truncate`}>{track.artist}</span>
-        <span className={`flex-grow w-0 truncate`}>{track.title}</span>
-        <span className={`text-right`}>
-          <Duration time={track.duration} />
-        </span>
-      </div>
+      <span className={`hidden md:block w-1/12 text-right`}>
+        {track.discNumber ? `${track.discNumber} / ` : null}
+        {track.track ? track.track : null}
+      </span>
+      <span className={`hidden md:block w-1/6 truncate`}>{track.artist}</span>
+      <span className={`hidden md:block flex-grow w-0 truncate`}>{track.title}</span>
+      <span className={`hidden md:block text-right`}>
+        <Duration time={track.duration} />
+      </span>
     </div>
   );
 }
