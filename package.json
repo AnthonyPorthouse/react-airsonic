@@ -63,7 +63,7 @@
     "@types/jest": "^29.5.0",
     "@types/md5": "^2.3.2",
     "@types/node": "^18.15.11",
-    "@types/react": "^18.0.33",
+    "@types/react": "^18.2.5",
     "@types/react-dom": "^18.0.11",
     "@types/react-modal": "^3.13.1",
     "@types/react-window": "^1.8.5",
