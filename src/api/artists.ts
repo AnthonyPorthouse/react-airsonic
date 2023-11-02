@@ -18,7 +18,7 @@ export async function getArtists({
 }: Credentials): Promise<Artists> {
   const authParams = generateAuthParams({ username, password });
   const result = await fetch(
-    `${sanitizeServer(server)}/rest/getArtists?${authParams}`
+    `${sanitizeServer(server)}/rest/getArtists.view?${authParams}`
   );
 
   if (!result.ok) {
@@ -44,7 +44,7 @@ export async function getArtist(
 ): Promise<[Artist, Albums]> {
   const authParams = generateAuthParams({ username, password });
   const result = await fetch(
-    `${sanitizeServer(server)}/rest/getArtist?id=${id}&${authParams}`
+    `${sanitizeServer(server)}/rest/getArtist.view?id=${id}&${authParams}`
   );
 
   if (!result.ok) {

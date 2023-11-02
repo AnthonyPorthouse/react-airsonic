@@ -65,7 +65,7 @@ export async function ping({ server, username, password }: Credentials) {
 
   let result: Response | null = null;
   try {
-    result = await fetch(`${sanitizeServer(server)}/rest/ping?${authParams}`);
+    result = await fetch(`${sanitizeServer(server)}/rest/ping.view?${authParams}`);
   } catch (e: any) {
     console.warn(e);
   }

@@ -42,7 +42,7 @@ export async function getPodcasts({
 }: Credentials): Promise<Podcasts> {
   const authParams = generateAuthParams({ username, password });
   const result = await fetch(
-    `${sanitizeServer(server)}/rest/getPodcasts?${authParams}`
+    `${sanitizeServer(server)}/rest/getPodcasts.view?${authParams}`
   );
 
   if (!result.ok) {
@@ -60,7 +60,7 @@ export async function getPodcast(
 ): Promise<[Podcast, Episode[]]> {
   const authParams = generateAuthParams({ username, password });
   const result = await fetch(
-    `${sanitizeServer(server)}/rest/getPodcasts?id=${id}&${authParams}`
+    `${sanitizeServer(server)}/rest/getPodcasts.view?id=${id}&${authParams}`
   );
 
   if (!result.ok) {
@@ -91,7 +91,7 @@ export async function downloadEpisode(
   const result = await fetch(
     `${sanitizeServer(
       server
-    )}/rest/downloadPodcastEpisode?id=${id}&${authParams}`
+    )}/rest/downloadPodcastEpisode.view?id=${id}&${authParams}`
   );
 
   if (!result.ok) {

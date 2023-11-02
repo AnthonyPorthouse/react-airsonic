@@ -5,5 +5,5 @@ export function getStreamUrl(
   { server, username, password }: Credentials
 ) {
   const authParams = generateAuthParams({ username, password });
-  return `${sanitizeServer(server)}/rest/stream?id=${id}&${authParams}`;
+  return `${sanitizeServer(server)}/rest/stream.view?id=${id}&${authParams}`;
 }

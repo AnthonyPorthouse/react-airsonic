@@ -5,7 +5,7 @@ export function getCoverArtUrl(
   { server, username, password }: Credentials
 ) {
   const authParams = generateAuthParams({ username, password });
-  return `${sanitizeServer(server)}/rest/getCoverArt?id=${id}&${authParams}`;
+  return `${sanitizeServer(server)}/rest/getCoverArt.view?id=${id}&${authParams}`;
 }
 
 export function getScaledCoverArtUrl(
@@ -16,5 +16,5 @@ export function getScaledCoverArtUrl(
   const authParams = generateAuthParams({ username, password });
   return `${sanitizeServer(
     server
-  )}/rest/getCoverArt?id=${id}&size=${size}&${authParams}`;
+  )}/rest/getCoverArt.view?id=${id}&size=${size}&${authParams}`;
 }
