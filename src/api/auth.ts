@@ -63,6 +63,8 @@ export function sanitizeServer(url: string) {
 export async function ping({ server, username, password }: Credentials) {
   const authParams = generateAuthParams({ username, password });
 
+  console.log(username, password)
+
   let result: Response | null = null;
   try {
     result = await fetch(`${sanitizeServer(server)}/rest/ping.view?${authParams}`);

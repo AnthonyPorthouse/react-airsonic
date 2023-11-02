@@ -27,10 +27,10 @@ function LogIn({
 
   const from = location.state?.from || "/";
 
-  const { isError, isSuccess, data } = useQuery(
-    ["auth", auth.credentials],
-    () => ping(auth.credentials),
-    {
+  const { isError, isSuccess, data } = useQuery(    {
+
+    queryKey: ["auth", auth.credentials],
+    queryFn: () => ping(auth.credentials),
       enabled: auth.credentials.server !== "",
     }
   );

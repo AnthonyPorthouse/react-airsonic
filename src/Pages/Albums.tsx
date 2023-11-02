@@ -13,10 +13,10 @@ function Albums() {
 
   const auth = useAuth();
 
-  const { isSuccess, data } = useQuery(
-    ["albums"],
-    () => getAlbums(auth.credentials),
-    {
+  const { isSuccess, data } = useQuery(    {
+
+    queryKey: ["albums"],
+    queryFn: () => getAlbums(auth.credentials),
       enabled: auth.isAuthenticated,
     }
   );

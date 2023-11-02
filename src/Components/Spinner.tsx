@@ -1,4 +1,4 @@
-import { ReactComponent as SpinnerIcon } from "../images/spinner.svg";
+import SpinnerIcon from "../images/spinner.svg?react";
 
 function Spinner() {
   return (

@@ -23,10 +23,10 @@ function EpisodeListItem({ episode }: EpisodeListItemProps) {
 
   const { getCurrentTrack, setTrackList } = useTrackList();
 
-  const { refetch } = useQuery(
-    ["downloadPodcast", episode.id],
-    () => downloadEpisode(episode.id, auth.credentials),
-    { enabled: false }
+  const { refetch } = useQuery({
+    queryKey: ["downloadPodcast", episode.id],
+    queryFn: () => downloadEpisode(episode.id, auth.credentials),
+    enabled: false }
   );
 
   const play = (e: SyntheticEvent) => {

@@ -15,10 +15,10 @@ function Playlist() {
   const id = useParams<PlaylistParams>()["id"] || "";
   const auth = useAuth();
 
-  const { isSuccess, data } = useQuery(
-    ["playlist", id],
-    () => getPlaylist(id, auth.credentials),
-    {
+  const { isSuccess, data } = useQuery(    {
+
+    queryKey: ["playlist", id],
+    queryFn: () => getPlaylist(id, auth.credentials),
       enabled: auth.isAuthenticated,
     }
   );
