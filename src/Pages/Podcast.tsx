@@ -16,13 +16,12 @@ function Podcast() {
 
   const auth = useAuth();
 
-  const { isSuccess, data } = useQuery(    {
+  const { isSuccess, data } = useQuery({
     queryKey: ["podcasts", id],
     queryFn: () => getPodcast(id, auth.credentials),
 
-      enabled: auth.isAuthenticated,
-    }
-  );
+    enabled: auth.isAuthenticated,
+  });
 
   if (isSuccess) {
     const [podcast, episodes] = data;

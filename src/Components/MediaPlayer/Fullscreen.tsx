@@ -27,7 +27,7 @@ function Fullscreen({ track, currentTime, duration }: FullscreenProps) {
         "w-screen",
         "h-screen",
         "bg-white",
-        "z-50"
+        "z-50",
       )}
     >
       <FocusLock>
@@ -38,7 +38,7 @@ function Fullscreen({ track, currentTime, duration }: FullscreenProps) {
             "p-5",
             "gap-5",
             "justify-around",
-            "h-screen"
+            "h-screen",
           )}
         >
           <div className={classNames("flex", "flex-1", "gap-5")}>
@@ -47,7 +47,7 @@ function Fullscreen({ track, currentTime, duration }: FullscreenProps) {
                 "w-1/4",
                 "flex",
                 "flex-col",
-                "justify-center"
+                "justify-center",
               )}
             >
               <div className={classNames("w-full")}>
@@ -61,7 +61,7 @@ function Fullscreen({ track, currentTime, duration }: FullscreenProps) {
                 "justify-center",
                 "gap-4",
                 "w-3/4",
-                "text-center"
+                "text-center",
               )}
             >
               <h1 className={classNames("text-6xl")}>{track.title}</h1>

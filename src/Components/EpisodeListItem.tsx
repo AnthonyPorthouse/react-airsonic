@@ -26,8 +26,8 @@ function EpisodeListItem({ episode }: EpisodeListItemProps) {
   const { refetch } = useQuery({
     queryKey: ["downloadPodcast", episode.id],
     queryFn: () => downloadEpisode(episode.id, auth.credentials),
-    enabled: false }
-  );
+    enabled: false,
+  });
 
   const play = (e: SyntheticEvent) => {
     e.preventDefault();

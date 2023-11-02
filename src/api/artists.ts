@@ -18,7 +18,7 @@ export async function getArtists({
 }: Credentials): Promise<Artists> {
   const authParams = generateAuthParams({ username, password });
   const result = await fetch(
-    `${sanitizeServer(server)}/rest/getArtists.view?${authParams}`
+    `${sanitizeServer(server)}/rest/getArtists.view?${authParams}`,
   );
 
   if (!result.ok) {
@@ -32,7 +32,7 @@ export async function getArtists({
   json["subsonic-response"].artists.index.forEach(
     (index: { artist: Artist[] }) => {
       index.artist.forEach((artist) => artists.push(artist));
-    }
+    },
   );
 
   return artists;
@@ -40,11 +40,11 @@ export async function getArtists({
 
 export async function getArtist(
   id: string,
-  { server, username, password }: Credentials
+  { server, username, password }: Credentials,
 ): Promise<[Artist, Albums]> {
   const authParams = generateAuthParams({ username, password });
   const result = await fetch(
-    `${sanitizeServer(server)}/rest/getArtist.view?id=${id}&${authParams}`
+    `${sanitizeServer(server)}/rest/getArtist.view?id=${id}&${authParams}`,
   );
 
   if (!result.ok) {

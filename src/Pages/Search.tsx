@@ -13,13 +13,11 @@ function Search() {
   const query = params.get("query") || "";
   const auth = useAuth();
 
-  const { isSuccess, data } = useQuery(    {
-
+  const { isSuccess, data } = useQuery({
     queryKey: ["search", query],
     queryFn: () => getSearchResults(query, auth.credentials),
-      enabled: auth.isAuthenticated,
-    }
-  );
+    enabled: auth.isAuthenticated,
+  });
 
   if (!isSuccess) {
     return (

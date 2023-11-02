@@ -23,13 +23,13 @@ test.skip("page repopulates with old data", async () => {
   render(<LogIn />);
 
   await waitFor(() =>
-    expect(localStorage.getItem).toHaveBeenLastCalledWith("ra.server")
+    expect(localStorage.getItem).toHaveBeenLastCalledWith("ra.server"),
   );
   await waitFor(() =>
-    expect(localStorage.getItem).toHaveBeenLastCalledWith("ra.username")
+    expect(localStorage.getItem).toHaveBeenLastCalledWith("ra.username"),
   );
   await waitFor(() =>
-    expect(localStorage.getItem).toHaveBeenLastCalledWith("ra.password")
+    expect(localStorage.getItem).toHaveBeenLastCalledWith("ra.password"),
   );
 });
 

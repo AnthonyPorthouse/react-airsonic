@@ -85,9 +85,9 @@ function MediaPlayer() {
   }, [audio, auth, nowPlaying, currentTrackUrl]);
 
   const fullscreenValue = {
-      isFullscreen,
-      setIsFullscreen: setFullscreen,
-    };
+    isFullscreen,
+    setIsFullscreen: setFullscreen,
+  };
 
   if (!nowPlaying) {
     audio.current.pause();

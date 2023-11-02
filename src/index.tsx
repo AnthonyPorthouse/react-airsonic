@@ -30,7 +30,7 @@ root.render(
         </QueryClientProvider>
       </BrowserRouter>
     </HelmetProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 
 if (import.meta.env.DEV) {

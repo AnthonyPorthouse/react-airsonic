@@ -13,13 +13,11 @@ function Albums() {
 
   const auth = useAuth();
 
-  const { isSuccess, data } = useQuery(    {
-
+  const { isSuccess, data } = useQuery({
     queryKey: ["albums"],
     queryFn: () => getAlbums(auth.credentials),
-      enabled: auth.isAuthenticated,
-    }
-  );
+    enabled: auth.isAuthenticated,
+  });
 
   let albums: Album[] = [];
 

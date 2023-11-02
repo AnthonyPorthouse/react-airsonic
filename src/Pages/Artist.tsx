@@ -17,8 +17,7 @@ function Artist() {
     queryKey: ["artist", id],
     queryFn: () => getArtist(id, auth.credentials),
     enabled: auth.isAuthenticated,
-  }
-  );
+  });
 
   if (isSuccess) {
     const [artist, albums] = data;

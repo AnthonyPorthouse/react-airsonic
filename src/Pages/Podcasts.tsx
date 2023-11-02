@@ -8,13 +8,11 @@ import { getPodcasts } from "../api/podcasts";
 function Podcasts() {
   const auth = useAuth();
 
-  const { isSuccess, data } = useQuery(    {
-
+  const { isSuccess, data } = useQuery({
     queryKey: ["podcasts"],
     queryFn: () => getPodcasts(auth.credentials),
-      enabled: auth.isAuthenticated,
-    }
-  );
+    enabled: auth.isAuthenticated,
+  });
 
   if (isSuccess) {
     return (

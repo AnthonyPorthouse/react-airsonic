@@ -14,7 +14,7 @@ function ShowSettings({ onClick }: { onClick(event?: SyntheticEvent): void }) {
   const [lastFmApiKey, setLastFmApiKey] = useSetting("lastFmApiKey");
 
   const openModal = () => {
-    onClick()
+    onClick();
     setIsModalOpen(true);
   };
 
@@ -45,7 +45,7 @@ function ShowSettings({ onClick }: { onClick(event?: SyntheticEvent): void }) {
           `md:bottom-1/4`,
           `bg-white`,
           `p-2`,
-          `px-4`
+          `px-4`,
         )}
         isOpen={isModalOpen}
         onRequestClose={closeModal}
@@ -59,7 +59,7 @@ function ShowSettings({ onClick }: { onClick(event?: SyntheticEvent): void }) {
             `flex`,
             `flex-row`,
             `justify-between`,
-            `mb-4`
+            `mb-4`,
           )}
         >
           <h1 className={`text-xl`}>{t("settings:modal-title")}</h1>

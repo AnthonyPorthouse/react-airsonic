@@ -44,7 +44,7 @@ export function generateAuthParams({
   password: string;
 }) {
   return `u=${username}&t=${getToken(
-    password
+    password,
   )}&s=${salt}&v=1.15.0&c=react-airsonic&f=json`;
 }
 
@@ -63,11 +63,13 @@ export function sanitizeServer(url: string) {
 export async function ping({ server, username, password }: Credentials) {
   const authParams = generateAuthParams({ username, password });
 
-  console.log(username, password)
+  console.log(username, password);
 
   let result: Response | null = null;
   try {
-    result = await fetch(`${sanitizeServer(server)}/rest/ping.view?${authParams}`);
+    result = await fetch(
+      `${sanitizeServer(server)}/rest/ping.view?${authParams}`,
+    );
   } catch (e: any) {
     console.warn(e);
   }

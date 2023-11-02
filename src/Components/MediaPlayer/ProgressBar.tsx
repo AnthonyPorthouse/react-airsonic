@@ -77,7 +77,7 @@ function ProgressBar({ length, position }: ProgressBarProps) {
     const offset = 40;
     const rightPos = Math.min(
       (progressBar.current?.offsetWidth || offset) - offset,
-      mousePosX
+      mousePosX,
     );
 
     const pos = Math.max(offset, rightPos);
