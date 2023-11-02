@@ -30,7 +30,7 @@ function EpisodeList({ episodes }: EpisodeListProps) {
         (innerEpisodeListRef.current?.offsetTop || 0) -
         (getCurrentTrack() ? mediaBarOffset : 0) -
         26,
-      10 * rowHeight
+      10 * rowHeight,
     );
 
     const calculatedHeight = episodes.length * rowHeight;
@@ -54,7 +54,7 @@ function EpisodeList({ episodes }: EpisodeListProps) {
       className={classNames(
         `py-2`,
         `px-4`,
-        index % 2 === 0 ? "bg-white" : "bg-gray-100"
+        index % 2 === 0 ? "bg-white" : "bg-gray-100",
       )}
     >
       <EpisodeListItem episode={episodes[index]} />

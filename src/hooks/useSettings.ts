@@ -4,7 +4,7 @@ export function useSetting(name: string): [string, (value: string) => void] {
   const calculatedKey = `settings.${name}`;
 
   const [setting, setSetting] = useState<string>(
-    localStorage.getItem(calculatedKey) ?? ""
+    localStorage.getItem(calculatedKey) ?? "",
   );
 
   function dispatch(value: string) {

@@ -52,7 +52,7 @@ function App() {
           password: "",
           server: auth.credentials.server,
         },
-      })
+      }),
     );
   }, [auth]);
 
@@ -74,14 +74,14 @@ function App() {
     },
     getCurrentTrack: useCallback(
       () => trackList[trackListPosition],
-      [trackList, trackListPosition]
+      [trackList, trackListPosition],
     ),
     nextTrack: useCallback(
       () =>
         setTrackListPosition(
-          Math.max(0, Math.min(trackList.length - 1, trackListPosition + 1))
+          Math.max(0, Math.min(trackList.length - 1, trackListPosition + 1)),
         ),
-      [trackList, trackListPosition]
+      [trackList, trackListPosition],
     ),
   };
 

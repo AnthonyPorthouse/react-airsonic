@@ -5,13 +5,13 @@ import { Songs } from "./songs";
 
 export async function getSearchResults(
   query: string,
-  { server, username, password }: Credentials
+  { server, username, password }: Credentials,
 ): Promise<[Artists, Albums, Songs]> {
   const authParams = generateAuthParams({ username, password });
   const result = await fetch(
     `${sanitizeServer(
-      server
-    )}/rest/search3.view?query=${query}&artistCount=4&albumCount=4&songCount=100&${authParams}`
+      server,
+    )}/rest/search3.view?query=${query}&artistCount=4&albumCount=4&songCount=100&${authParams}`,
   );
 
   if (!result.ok) {

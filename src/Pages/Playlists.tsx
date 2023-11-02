@@ -9,13 +9,11 @@ import { getPlaylists } from "../api/playlists";
 function Playlists() {
   const auth = useAuth();
 
-  const { isSuccess, data: playlists } = useQuery(
-    ["playlists"],
-    () => getPlaylists(auth.credentials),
-    {
-      enabled: auth.isAuthenticated,
-    }
-  );
+  const { isSuccess, data: playlists } = useQuery({
+    queryKey: ["playlists"],
+    queryFn: () => getPlaylists(auth.credentials),
+    enabled: auth.isAuthenticated,
+  });
 
   if (isSuccess) {
     return (

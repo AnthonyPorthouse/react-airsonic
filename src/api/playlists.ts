@@ -19,7 +19,7 @@ export async function getPlaylists({
 }: Credentials): Promise<Playlists> {
   const authParams = generateAuthParams({ username, password });
   const result = await fetch(
-    `${sanitizeServer(server)}/rest/getPlaylists.view?${authParams}`
+    `${sanitizeServer(server)}/rest/getPlaylists.view?${authParams}`,
   );
 
   if (!result.ok) {
@@ -33,11 +33,11 @@ export async function getPlaylists({
 
 export async function getPlaylist(
   id: string,
-  { server, username, password }: Credentials
+  { server, username, password }: Credentials,
 ): Promise<[Playlist, Songs]> {
   const authParams = generateAuthParams({ username, password });
   const result = await fetch(
-    `${sanitizeServer(server)}/rest/getPlaylist.view?id=${id}&${authParams}`
+    `${sanitizeServer(server)}/rest/getPlaylist.view?id=${id}&${authParams}`,
   );
 
   if (!result.ok) {

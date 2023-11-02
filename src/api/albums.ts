@@ -25,8 +25,8 @@ export async function getAlbums({
   const authParams = generateAuthParams({ username, password });
   const result = await fetch(
     `${sanitizeServer(
-      server
-    )}/rest/getAlbumList2.view?type=alphabeticalByArtist&size=500&${authParams}`
+      server,
+    )}/rest/getAlbumList2.view?type=alphabeticalByArtist&size=500&${authParams}`,
   );
 
   if (!result.ok) {
@@ -40,11 +40,11 @@ export async function getAlbums({
 
 export async function getAlbum(
   id: string,
-  { server, username, password }: Credentials
+  { server, username, password }: Credentials,
 ): Promise<[Album, Songs]> {
   const authParams = generateAuthParams({ username, password });
   const result = await fetch(
-    `${sanitizeServer(server)}/rest/getAlbum.view?id=${id}&${authParams}`
+    `${sanitizeServer(server)}/rest/getAlbum.view?id=${id}&${authParams}`,
   );
 
   if (!result.ok) {

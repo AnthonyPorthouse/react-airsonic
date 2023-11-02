@@ -54,7 +54,9 @@ function TrackListItem({ track }: TrackListItemProps) {
         {track.track ? track.track : null}
       </span>
       <span className={`hidden md:block w-1/6 truncate`}>{track.artist}</span>
-      <span className={`hidden md:block flex-grow w-0 truncate`}>{track.title}</span>
+      <span className={`hidden md:block flex-grow w-0 truncate`}>
+        {track.title}
+      </span>
       <span className={`hidden md:block text-right`}>
         <Duration time={track.duration} />
       </span>

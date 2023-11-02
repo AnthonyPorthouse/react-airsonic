@@ -8,13 +8,11 @@ import { useAuth } from "../api/auth";
 function Artists() {
   const auth = useAuth();
 
-  const { isSuccess, data } = useQuery(
-    ["artists"],
-    () => getArtists(auth.credentials),
-    {
-      enabled: auth.isAuthenticated,
-    }
-  );
+  const { isSuccess, data } = useQuery({
+    queryKey: ["artists"],
+    queryFn: () => getArtists(auth.credentials),
+    enabled: auth.isAuthenticated,
+  });
 
   if (isSuccess) {
     return (

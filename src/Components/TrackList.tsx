@@ -30,7 +30,7 @@ function TrackList({ tracks }: TrackListProps) {
         (innerTrackListRef.current?.offsetTop || 0) -
         (getCurrentTrack() ? mediaBarOffset : 0) -
         26,
-      10 * rowHeight
+      10 * rowHeight,
     );
 
     const calculatedHeight = tracks.length * rowHeight;
@@ -54,7 +54,7 @@ function TrackList({ tracks }: TrackListProps) {
       className={classNames(
         `py-2`,
         `px-4`,
-        index % 2 === 0 ? "bg-white" : "bg-gray-100"
+        index % 2 === 0 ? "bg-white" : "bg-gray-100",
       )}
     >
       <TrackListItem track={tracks[index]} />

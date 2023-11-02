@@ -45,7 +45,7 @@ function AlbumArt({ id, description, sizes }: AlbumArtProps) {
 
     for (let i = min; i <= max; i += modifier) {
       values.push(
-        `${getScaledCoverArtUrl(id, String(i), auth.credentials)} ${i}w`
+        `${getScaledCoverArtUrl(id, String(i), auth.credentials)} ${i}w`,
       );
     }
 

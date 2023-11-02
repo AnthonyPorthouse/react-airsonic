@@ -13,13 +13,11 @@ function Artist() {
   const id = useParams<ArtistParams>()["id"] || "";
   const auth = useAuth();
 
-  const { isSuccess, data } = useQuery(
-    ["artist", id],
-    () => getArtist(id, auth.credentials),
-    {
-      enabled: auth.isAuthenticated,
-    }
-  );
+  const { isSuccess, data } = useQuery({
+    queryKey: ["artist", id],
+    queryFn: () => getArtist(id, auth.credentials),
+    enabled: auth.isAuthenticated,
+  });
 
   if (isSuccess) {
     const [artist, albums] = data;

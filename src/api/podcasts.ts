@@ -30,7 +30,7 @@ export type DownloadedEpisode = Song & {
 export type Episode = SkippedEpisode | DownloadedEpisode;
 
 export function isDownloadedEpisode(
-  episode: Episode
+  episode: Episode,
 ): episode is DownloadedEpisode {
   return episode.status === "completed";
 }
@@ -42,7 +42,7 @@ export async function getPodcasts({
 }: Credentials): Promise<Podcasts> {
   const authParams = generateAuthParams({ username, password });
   const result = await fetch(
-    `${sanitizeServer(server)}/rest/getPodcasts.view?${authParams}`
+    `${sanitizeServer(server)}/rest/getPodcasts.view?${authParams}`,
   );
 
   if (!result.ok) {
@@ -56,11 +56,11 @@ export async function getPodcasts({
 
 export async function getPodcast(
   id: string,
-  { server, username, password }: Credentials
+  { server, username, password }: Credentials,
 ): Promise<[Podcast, Episode[]]> {
   const authParams = generateAuthParams({ username, password });
   const result = await fetch(
-    `${sanitizeServer(server)}/rest/getPodcasts.view?id=${id}&${authParams}`
+    `${sanitizeServer(server)}/rest/getPodcasts.view?id=${id}&${authParams}`,
   );
 
   if (!result.ok) {
@@ -85,13 +85,13 @@ export async function getPodcast(
 
 export async function downloadEpisode(
   id: string,
-  { server, username, password }: Credentials
+  { server, username, password }: Credentials,
 ): Promise<true> {
   const authParams = generateAuthParams({ username, password });
   const result = await fetch(
     `${sanitizeServer(
-      server
-    )}/rest/downloadPodcastEpisode.view?id=${id}&${authParams}`
+      server,
+    )}/rest/downloadPodcastEpisode.view?id=${id}&${authParams}`,
   );
 
   if (!result.ok) {
