@@ -68,7 +68,7 @@
     "@types/react-modal": "^3.16.3",
     "@types/react-window": "^1.8.8",
     "@types/uuid": "^9.0.7",
-    "@vitejs/plugin-react": "^4.1.1",
+    "@vitejs/plugin-react": "^4.2.0",
     "autoprefixer": "^10.4.16",
     "cross-env": "^7.0.3",
     "jest-localstorage-mock": "^2.4.26",
