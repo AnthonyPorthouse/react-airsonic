@@ -24,7 +24,7 @@
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.18.0",
     "react-window": "^1.8.9",
-    "typescript": "^5.2.2",
+    "typescript": "^5.3.3",
     "uuid": "^9.0.1",
     "web-vitals": "^3.5.0",
     "workbox-core": "^7.0.0",
