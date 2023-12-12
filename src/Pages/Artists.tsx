@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 
-import ArtistList from "../Components/ArtistList";
-import Spinner from "../Components/Spinner";
-import { getArtists } from "../api/artists";
-import { useAuth } from "../api/auth";
+import ArtistList from "../Components/ArtistList.js";
+import Spinner from "../Components/Spinner.js";
+import { getArtists } from "../api/artists.js";
+import { useAuth } from "../api/auth.js";
 
 function Artists() {
   const auth = useAuth();

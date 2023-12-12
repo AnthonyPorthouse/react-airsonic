@@ -2,10 +2,10 @@ import { PlayIcon } from "@heroicons/react/24/solid";
 import { SyntheticEvent, useContext } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Song } from "../api/songs";
-import { useTrackList } from "../hooks";
-import AlbumContext from "./AlbumContext";
-import Duration from "./Duration";
+import { Song } from "../api/songs.js";
+import { useTrackList } from "../hooks.js";
+import AlbumContext from "./AlbumContext.js";
+import Duration from "./Duration.js";
 
 interface TrackListItemProps {
   track: Song;

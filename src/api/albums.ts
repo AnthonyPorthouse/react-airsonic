@@ -1,5 +1,5 @@
-import { Credentials, generateAuthParams, sanitizeServer } from "./auth";
-import { SongIds, Songs } from "./songs";
+import { Credentials, generateAuthParams, sanitizeServer } from "./auth.js";
+import { SongIds, Songs } from "./songs.js";
 
 export type Album = {
   id: string;

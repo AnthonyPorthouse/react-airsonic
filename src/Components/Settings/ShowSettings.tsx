@@ -4,7 +4,7 @@ import { SyntheticEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ReactModal from "react-modal";
 
-import { useSetting } from "../../hooks/useSettings";
+import { useSetting } from "../../hooks/useSettings.js";
 
 function ShowSettings({ onClick }: { onClick(event?: SyntheticEvent): void }) {
   const { t } = useTranslation(["nav", "settings"]);

@@ -1,4 +1,4 @@
-import { Credentials, generateAuthParams, sanitizeServer } from "./auth";
+import { Credentials, generateAuthParams, sanitizeServer } from "./auth.js";
 
 export function getStreamUrl(
   id: string,

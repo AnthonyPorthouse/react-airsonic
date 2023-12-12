@@ -4,10 +4,10 @@ import { CSSProperties, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { FixedSizeList as List } from "react-window";
 
-import { Episode } from "../api/podcasts";
-import { useTrackList } from "../hooks";
-import EpisodeListItem from "./EpisodeListItem";
-import PodcastContext from "./PodcastContext";
+import { Episode } from "../api/podcasts.js";
+import { useTrackList } from "../hooks.js";
+import EpisodeListItem from "./EpisodeListItem.js";
+import PodcastContext from "./PodcastContext.js";
 
 interface EpisodeListProps {
   episodes: Episode[];

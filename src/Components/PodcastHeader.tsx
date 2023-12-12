@@ -1,5 +1,5 @@
-import type { Podcast } from "../api/podcasts";
-import AlbumArt from "./AlbumArt";
+import type { Podcast } from "../api/podcasts.js";
+import AlbumArt from "./AlbumArt.js";
 
 interface PodcastHeaderProps {
   podcast: Podcast;

@@ -1,9 +1,9 @@
 import { Suspense, lazy } from "react";
 
-import { Album } from "../api/albums";
+import { Album } from "../api/albums.js";
 
-const AlbumView = lazy(() => import("./Album"));
-const Grid = lazy(() => import("./Grid"));
+const AlbumView = lazy(() => import("./Album.js"));
+const Grid = lazy(() => import("./Grid.js"));
 
 interface AlbumListProps {
   className?: string;

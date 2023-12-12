@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 
-import AlbumList from "../Components/AlbumList";
-import ArtistList from "../Components/ArtistList";
-import Spinner from "../Components/Spinner";
-import TrackList from "../Components/TrackList";
-import { useAuth } from "../api/auth";
-import { getSearchResults } from "../api/search";
+import AlbumList from "../Components/AlbumList.js";
+import ArtistList from "../Components/ArtistList.js";
+import Spinner from "../Components/Spinner.js";
+import TrackList from "../Components/TrackList.js";
+import { useAuth } from "../api/auth.js";
+import { getSearchResults } from "../api/search.js";
 
 function Search() {
   const [params] = useSearchParams();

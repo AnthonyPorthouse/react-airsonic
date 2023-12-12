@@ -5,7 +5,7 @@ import {
 import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
 
-import { useFullscreen } from "../MediaPlayer/FullscreenContext";
+import { useFullscreen } from "../MediaPlayer/FullscreenContext.js";
 
 function FullscreenButton() {
   const { t } = useTranslation("media");

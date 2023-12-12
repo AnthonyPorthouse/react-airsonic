@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 
-import Grid from "../Components/Grid";
-import Playlist from "../Components/Playlist";
-import Spinner from "../Components/Spinner";
-import { useAuth } from "../api/auth";
-import { getPlaylists } from "../api/playlists";
+import Grid from "../Components/Grid.js";
+import Playlist from "../Components/Playlist.js";
+import Spinner from "../Components/Spinner.js";
+import { useAuth } from "../api/auth.js";
+import { getPlaylists } from "../api/playlists.js";
 
 function Playlists() {
   const auth = useAuth();

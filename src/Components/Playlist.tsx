@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
-import { Playlist as ApiPlaylist } from "../api/playlists";
-import AlbumArt from "./AlbumArt";
+import { Playlist as ApiPlaylist } from "../api/playlists.js";
+import AlbumArt from "./AlbumArt.js";
 
 interface PlaylistProps {
   playlist: ApiPlaylist;

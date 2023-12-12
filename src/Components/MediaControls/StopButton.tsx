@@ -2,8 +2,8 @@ import { StopIcon } from "@heroicons/react/24/solid";
 import { SyntheticEvent, useContext } from "react";
 import { useTranslation } from "react-i18next";
 
-import { useTrackList } from "../../hooks";
-import AudioContext from "../Audio/AudioContext";
+import { useTrackList } from "../../hooks.js";
+import AudioContext from "../Audio/AudioContext.js";
 
 function StopButton() {
   const { t } = useTranslation("media");

@@ -1,9 +1,9 @@
 import { ReactNode, useEffect } from "react";
 
-import { getCoverArtUrl } from "../api/artwork";
-import { useAuth } from "../api/auth";
-import { Song } from "../api/songs";
-import { useTrackList } from "../hooks";
+import { getCoverArtUrl } from "../api/artwork.js";
+import { useAuth } from "../api/auth.js";
+import { Song } from "../api/songs.js";
+import { useTrackList } from "../hooks.js";
 
 interface MediaSessionProps {
   track: Song;

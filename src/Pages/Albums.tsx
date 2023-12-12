@@ -2,11 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import React, { Suspense, lazy } from "react";
 import { useTranslation } from "react-i18next";
 
-import Spinner from "../Components/Spinner";
-import { Album, getAlbums } from "../api/albums";
-import { useAuth } from "../api/auth";
+import Spinner from "../Components/Spinner.js";
+import { Album, getAlbums } from "../api/albums.js";
+import { useAuth } from "../api/auth.js";
 
-const AlbumList = lazy(() => import("../Components/AlbumList"));
+const AlbumList = lazy(() => import("../Components/AlbumList.js"));
 
 function Albums() {
   const { t } = useTranslation("albums");

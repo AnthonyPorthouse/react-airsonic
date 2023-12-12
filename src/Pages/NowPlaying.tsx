@@ -1,5 +1,5 @@
-import TrackList from "../Components/TrackList";
-import { useTrackList } from "../hooks";
+import TrackList from "../Components/TrackList.js";
+import { useTrackList } from "../hooks.js";
 
 function NowPlaying() {
   const { trackList } = useTrackList();

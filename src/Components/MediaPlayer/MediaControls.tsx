@@ -1,11 +1,11 @@
 import { useContext } from "react";
 
-import AudioContext from "../Audio/AudioContext";
-import FullscreenButton from "../MediaControls/FullscreenButton";
-import PauseButton from "../MediaControls/PauseButton";
-import PlayButton from "../MediaControls/PlayButton";
-import SkipButton from "../MediaControls/SkipButton";
-import StopButton from "../MediaControls/StopButton";
+import AudioContext from "../Audio/AudioContext.js";
+import FullscreenButton from "../MediaControls/FullscreenButton.js";
+import PauseButton from "../MediaControls/PauseButton.js";
+import PlayButton from "../MediaControls/PlayButton.js";
+import SkipButton from "../MediaControls/SkipButton.js";
+import StopButton from "../MediaControls/StopButton.js";
 
 function MediaControls() {
   const audio = useContext(AudioContext);

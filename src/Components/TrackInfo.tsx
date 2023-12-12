@@ -1,4 +1,4 @@
-import { Song } from "../api/songs";
+import { Song } from "../api/songs.js";
 
 interface TrackInfoProps {
   track: Song;

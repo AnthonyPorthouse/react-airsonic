@@ -4,10 +4,10 @@ import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 
 import logo from "../images/logo192.png";
-import LoggedInAs from "./Nav/LoggedInAs";
-import SearchBar from "./SearchBar";
-import ShowSettings from "./Settings/ShowSettings";
-import Update from "./Updater/Update";
+import LoggedInAs from "./Nav/LoggedInAs.js";
+import SearchBar from "./SearchBar.js";
+import ShowSettings from "./Settings/ShowSettings.js";
+import Update from "./Updater/Update.js";
 
 function Nav() {
   const { t } = useTranslation(["nav", "common"]);

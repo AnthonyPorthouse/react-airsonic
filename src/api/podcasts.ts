@@ -1,5 +1,5 @@
-import { Credentials, generateAuthParams, sanitizeServer } from "./auth";
-import { Song } from "./songs";
+import { Credentials, generateAuthParams, sanitizeServer } from "./auth.js";
+import { Song } from "./songs.js";
 
 export type Podcast = {
   id: string;

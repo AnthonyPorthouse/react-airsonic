@@ -1,7 +1,7 @@
 import { CloudArrowUpIcon } from "@heroicons/react/24/solid";
 import { SyntheticEvent } from "react";
 
-import { useUpdateAvailable } from "../../hooks/useUpdateAvailable";
+import { useUpdateAvailable } from "../../hooks/useUpdateAvailable.js";
 
 function Update() {
   const [updateNeeded] = useUpdateAvailable();

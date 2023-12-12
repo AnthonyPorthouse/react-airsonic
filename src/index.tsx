@@ -7,10 +7,10 @@ import ReactModal from "react-modal";
 import { BrowserRouter } from "react-router-dom";
 import { registerSW } from "virtual:pwa-register";
 
-import App from "./App";
+import App from "./App.js";
 import "./i18n";
 import "./index.css";
-import reportWebVitals from "./reportWebVitals";
+import reportWebVitals from "./reportWebVitals.js";
 
 const container = document.getElementById("root") as HTMLElement;
 

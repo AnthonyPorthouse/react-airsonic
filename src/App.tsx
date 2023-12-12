@@ -15,26 +15,26 @@ import {
   useNavigate,
 } from "react-router-dom";
 
-import Spinner from "./Components/Spinner";
-import TitleInfo from "./Components/TitleInfo";
-import LogIn from "./Pages/LogIn";
-import NowPlaying from "./Pages/NowPlaying";
-import { AuthContext, Authenticated, useAuth } from "./api/auth";
-import { Songs } from "./api/songs";
-import { TrackListContext } from "./hooks";
+import Spinner from "./Components/Spinner.js";
+import TitleInfo from "./Components/TitleInfo.js";
+import LogIn from "./Pages/LogIn.js";
+import NowPlaying from "./Pages/NowPlaying.js";
+import { AuthContext, Authenticated, useAuth } from "./api/auth.js";
+import { Songs } from "./api/songs.js";
+import { TrackListContext } from "./hooks.js";
 
-const Artists = React.lazy(() => import("./Pages/Artists"));
-const Artist = React.lazy(() => import("./Pages/Artist"));
-const Albums = React.lazy(() => import("./Pages/Albums"));
-const Album = React.lazy(() => import("./Pages/Album"));
-const Playlists = React.lazy(() => import("./Pages/Playlists"));
-const Playlist = React.lazy(() => import("./Pages/Playlist"));
-const Search = React.lazy(() => import("./Pages/Search"));
-const Podcasts = React.lazy(() => import("./Pages/Podcasts"));
-const Podcast = React.lazy(() => import("./Pages/Podcast"));
+const Artists = React.lazy(() => import("./Pages/Artists.js"));
+const Artist = React.lazy(() => import("./Pages/Artist.js"));
+const Albums = React.lazy(() => import("./Pages/Albums.js"));
+const Album = React.lazy(() => import("./Pages/Album.js"));
+const Playlists = React.lazy(() => import("./Pages/Playlists.js"));
+const Playlist = React.lazy(() => import("./Pages/Playlist.js"));
+const Search = React.lazy(() => import("./Pages/Search.js"));
+const Podcasts = React.lazy(() => import("./Pages/Podcasts.js"));
+const Podcast = React.lazy(() => import("./Pages/Podcast.js"));
 
-const Nav = React.lazy(() => import("./Components/Nav"));
-const MediaPlayer = React.lazy(() => import("./Components/MediaPlayer"));
+const Nav = React.lazy(() => import("./Components/Nav.js"));
+const MediaPlayer = React.lazy(() => import("./Components/MediaPlayer.js"));
 
 function App() {
   const [auth, setAuth] = useState<Authenticated>(useContext(AuthContext));

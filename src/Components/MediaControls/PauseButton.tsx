@@ -2,7 +2,7 @@ import { PauseIcon } from "@heroicons/react/24/solid";
 import { SyntheticEvent, useContext } from "react";
 import { useTranslation } from "react-i18next";
 
-import AudioContext from "../Audio/AudioContext";
+import AudioContext from "../Audio/AudioContext.js";
 
 function PauseButton() {
   const { t } = useTranslation("media");

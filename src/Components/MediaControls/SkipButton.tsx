@@ -2,7 +2,7 @@ import { ForwardIcon } from "@heroicons/react/24/solid";
 import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
 
-import { useTrackList } from "../../hooks";
+import { useTrackList } from "../../hooks.js";
 
 function SkipButton() {
   const { t } = useTranslation("media");

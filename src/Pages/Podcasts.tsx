@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 
-import PodcastList from "../Components/PodcastList";
-import Spinner from "../Components/Spinner";
-import { useAuth } from "../api/auth";
-import { getPodcasts } from "../api/podcasts";
+import PodcastList from "../Components/PodcastList.js";
+import Spinner from "../Components/Spinner.js";
+import { useAuth } from "../api/auth.js";
+import { getPodcasts } from "../api/podcasts.js";
 
 function Podcasts() {
   const auth = useAuth();

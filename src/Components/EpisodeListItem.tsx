@@ -4,11 +4,11 @@ import { format, parseISO } from "date-fns";
 import { SyntheticEvent, useContext, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
-import { useAuth } from "../api/auth";
-import { Episode, downloadEpisode, isDownloadedEpisode } from "../api/podcasts";
-import { useTrackList } from "../hooks";
-import Duration from "./Duration";
-import PodcastContext from "./PodcastContext";
+import { useAuth } from "../api/auth.js";
+import { Episode, downloadEpisode, isDownloadedEpisode } from "../api/podcasts.js";
+import { useTrackList } from "../hooks.js";
+import Duration from "./Duration.js";
+import PodcastContext from "./PodcastContext.js";
 
 interface EpisodeListItemProps {
   episode: Episode;

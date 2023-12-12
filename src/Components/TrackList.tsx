@@ -4,10 +4,10 @@ import { CSSProperties, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { FixedSizeList as List } from "react-window";
 
-import { Songs } from "../api/songs";
-import { useTrackList } from "../hooks";
-import AlbumContext from "./AlbumContext";
-import TrackListItem from "./TrackListItem";
+import { Songs } from "../api/songs.js";
+import { useTrackList } from "../hooks.js";
+import AlbumContext from "./AlbumContext.js";
+import TrackListItem from "./TrackListItem.js";
 
 interface TrackListProps {
   tracks: Songs;

@@ -1,9 +1,9 @@
 import { Suspense, lazy } from "react";
 
-import type { Podcasts } from "../api/podcasts";
+import type { Podcasts } from "../api/podcasts.js";
 
-const PodcastView = lazy(() => import("./Podcast"));
-const Grid = lazy(() => import("./Grid"));
+const PodcastView = lazy(() => import("./Podcast.js"));
+const Grid = lazy(() => import("./Grid.js"));
 
 interface PodcastListProps {
   className?: string;

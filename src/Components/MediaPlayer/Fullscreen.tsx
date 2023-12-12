@@ -1,11 +1,11 @@
 import classNames from "classnames";
 import FocusLock from "react-focus-lock";
 
-import { Song } from "../../api/songs";
-import AlbumArt from "../AlbumArt";
-import FullscreenButton from "../MediaControls/FullscreenButton";
-import { useFullscreen } from "./FullscreenContext";
-import { ProgressBarWithTime } from "./ProgressBarWithTime";
+import { Song } from "../../api/songs.js";
+import AlbumArt from "../AlbumArt.js";
+import FullscreenButton from "../MediaControls/FullscreenButton.js";
+import { useFullscreen } from "./FullscreenContext.js";
+import { ProgressBarWithTime } from "./ProgressBarWithTime.js";
 
 interface FullscreenProps {
   track: Song;
@@ -30,7 +30,7 @@ function Fullscreen({ track, currentTime, duration }: FullscreenProps) {
         "z-50",
       )}
     >
-      <FocusLock>
+      <FocusLock.default>
         <div
           className={classNames(
             "flex",
@@ -82,7 +82,7 @@ function Fullscreen({ track, currentTime, duration }: FullscreenProps) {
         >
           <FullscreenButton />
         </div>
-      </FocusLock>
+      </FocusLock.default>
     </div>
   );
 }

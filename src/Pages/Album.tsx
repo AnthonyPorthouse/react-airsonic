@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
-import AlbumHeader from "../Components/AlbumHeader";
-import Spinner from "../Components/Spinner";
-import TrackList from "../Components/TrackList";
-import { getAlbum } from "../api/albums";
-import { useAuth } from "../api/auth";
+import AlbumHeader from "../Components/AlbumHeader.js";
+import Spinner from "../Components/Spinner.js";
+import TrackList from "../Components/TrackList.js";
+import { getAlbum } from "../api/albums.js";
+import { useAuth } from "../api/auth.js";
 
 type AlbumParams = {
   id: string;

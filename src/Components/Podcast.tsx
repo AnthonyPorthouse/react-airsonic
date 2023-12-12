@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
-import type { Podcast as ApiPodcast } from "../api/podcasts";
-import AlbumArt from "./AlbumArt";
+import type { Podcast as ApiPodcast } from "../api/podcasts.js";
+import AlbumArt from "./AlbumArt.js";
 
 interface PodcastProps {
   podcast: ApiPodcast;

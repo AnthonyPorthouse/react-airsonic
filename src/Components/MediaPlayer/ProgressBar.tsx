@@ -1,7 +1,7 @@
 import { SyntheticEvent, useContext, useEffect, useRef, useState } from "react";
 
-import AudioContext from "../Audio/AudioContext";
-import Duration from "../Duration";
+import AudioContext from "../Audio/AudioContext.js";
+import Duration from "../Duration.js";
 
 interface ProgressBarProps {
   length: number;

@@ -1,15 +1,15 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import { useAuth } from "../api/auth";
-import { getStreamUrl } from "../api/stream";
-import { useTrackList } from "../hooks";
-import AlbumArt from "./AlbumArt";
-import AudioProvider from "./Audio/AudioProvider";
-import Fullscreen from "./MediaPlayer/Fullscreen";
-import { FullscreenContext } from "./MediaPlayer/FullscreenContext";
-import MediaInfo from "./MediaPlayer/MediaInfo";
-import MediaSession from "./MediaSession";
-import TitleInfo from "./TitleInfo";
+import { useAuth } from "../api/auth.js";
+import { getStreamUrl } from "../api/stream.js";
+import { useTrackList } from "../hooks.js";
+import AlbumArt from "./AlbumArt.js";
+import AudioProvider from "./Audio/AudioProvider.js";
+import Fullscreen from "./MediaPlayer/Fullscreen.js";
+import { FullscreenContext } from "./MediaPlayer/FullscreenContext.js";
+import MediaInfo from "./MediaPlayer/MediaInfo.js";
+import MediaSession from "./MediaSession.js";
+import TitleInfo from "./TitleInfo.js";
 
 function MediaPlayer() {
   const auth = useAuth();

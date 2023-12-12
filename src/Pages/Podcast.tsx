@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
-import EpisodeList from "../Components/EpisodeList";
-import PodcastHeader from "../Components/PodcastHeader";
-import Spinner from "../Components/Spinner";
-import { useAuth } from "../api/auth";
-import { getPodcast } from "../api/podcasts";
+import EpisodeList from "../Components/EpisodeList.js";
+import PodcastHeader from "../Components/PodcastHeader.js";
+import Spinner from "../Components/Spinner.js";
+import { useAuth } from "../api/auth.js";
+import { getPodcast } from "../api/podcasts.js";
 
 type PodcastParams = {
   id: string;

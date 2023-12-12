@@ -2,7 +2,7 @@ import { UserIcon } from "@heroicons/react/24/solid";
 import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
 
-import { useAuth } from "../../api/auth";
+import { useAuth } from "../../api/auth.js";
 
 function LoggedInAs() {
   const { username, server } = useAuth().credentials;

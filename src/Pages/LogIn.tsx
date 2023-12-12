@@ -8,7 +8,7 @@ import {
 } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { Authenticated, ping, useAuth } from "../api/auth";
+import { Authenticated, ping, useAuth } from "../api/auth.js";
 import logo from "../images/logo192.png";
 
 function LogIn({

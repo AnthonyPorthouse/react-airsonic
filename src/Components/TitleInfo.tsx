@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 
-import { Song } from "../api/songs";
+import { Song } from "../api/songs.js";
 
 interface TitleInfoProps {
   nowPlaying?: Song;
