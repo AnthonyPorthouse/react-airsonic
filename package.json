@@ -58,7 +58,7 @@
     ]
   },
   "devDependencies": {
-    "@redux-devtools/core": "^3.14.0",
+    "@redux-devtools/core": "^4.0.0",
     "@tailwindcss/forms": "^0.5.7",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/jest": "^29.5.11",
