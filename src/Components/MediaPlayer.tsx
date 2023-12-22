@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { useAuth } from "../api/auth.js";
+import { Song } from "../api/songs.js";
 import { getStreamUrl } from "../api/stream.js";
 import { useTrackList } from "../hooks.js";
 import AlbumArt from "./AlbumArt.js";
@@ -10,7 +11,6 @@ import { FullscreenContext } from "./MediaPlayer/FullscreenContext.js";
 import MediaInfo from "./MediaPlayer/MediaInfo.js";
 import MediaSession from "./MediaSession.js";
 import TitleInfo from "./TitleInfo.js";
-import { Song } from "../api/songs.js";
 
 function MediaPlayer() {
   const auth = useAuth();
@@ -22,19 +22,21 @@ function MediaPlayer() {
   const nowPlaying = getCurrentTrack();
 
   const getInitialProgress = (song: Song | null) => {
-    if (!song || !song.isPodcast) { 
-      return 0
+    if (!song || !song.isPodcast) {
+      return 0;
     }
 
-    return Number(localStorage.getItem(`podcast_${song.id}`) || 0)
-  }
+    return Number(localStorage.getItem(`podcast_${song.id}`) || 0);
+  };
 
   const currentTrackUrl = nowPlaying
     ? getStreamUrl(nowPlaying.id, auth.credentials)
     : null;
 
   const [duration, setCurrentDuration] = useState(100);
-  const [currentTime, setCurrentTime] = useState(getInitialProgress(nowPlaying));
+  const [currentTime, setCurrentTime] = useState(
+    getInitialProgress(nowPlaying),
+  );
 
   const [isFullscreen, setIsFullscreen] = useState(false);
 
@@ -77,10 +79,12 @@ function MediaPlayer() {
     });
 
     audio.current.addEventListener("timeupdate", (e) => {
-
       if (nowPlaying?.isPodcast) {
-        localStorage.setItem(`podcast_${nowPlaying?.id}`, String(audio.current.currentTime || 0))
-      } 
+        localStorage.setItem(
+          `podcast_${nowPlaying?.id}`,
+          String(audio.current.currentTime || 0),
+        );
+      }
 
       setCurrentTime(audio.current.currentTime || 0);
       setCurrentDuration(audio.current.duration || 0);
@@ -95,7 +99,7 @@ function MediaPlayer() {
     if (audio.current.src !== currentTrackUrl) {
       audio.current.pause();
       audio.current.src = currentTrackUrl;
-      audio.current.currentTime = getInitialProgress(nowPlaying)
+      audio.current.currentTime = getInitialProgress(nowPlaying);
     }
   }, [audio, auth, nowPlaying, currentTrackUrl]);
 
