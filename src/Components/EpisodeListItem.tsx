@@ -91,7 +91,9 @@ function EpisodeListItem({ episode }: EpisodeListItemProps) {
         <div className={`flex-grow gap-6 hidden md:flex`}>
           <span className={`w-1/6 truncate`}>{publishDate}</span>
           <span className={`flex-grow w-0 truncate`}>{episode.title}</span>
-          <span className={`text-right`}>
+          <span className={`text-right flex gap-2`}>
+            <Duration time={Number(localStorage.getItem(`podcast_${episode.id}`) || 0)} />
+            <span>/</span> 
             <Duration time={episode.duration} />
           </span>
         </div>

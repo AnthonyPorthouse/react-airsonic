@@ -75,6 +75,7 @@ export async function getPodcast(
   episodes = episodes.map((episode: Episode) => {
     if (isDownloadedEpisode(episode)) {
       episode.id = episode.streamId;
+      episode.isPodcast = true;
     }
 
     return episode;
