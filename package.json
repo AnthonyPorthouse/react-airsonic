@@ -4,15 +4,15 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@heroicons/react": "^2.0.18",
+    "@heroicons/react": "^2.1.1",
     "@react-hook/window-size": "^3.1.1",
-    "@tanstack/react-query": "^5.14.0",
-    "@tanstack/react-query-devtools": "^5.14.2",
+    "@tanstack/react-query": "^5.14.2",
+    "@tanstack/react-query-devtools": "^5.14.5",
     "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.1",
     "classnames": "^2.3.2",
-    "date-fns": "^2.30.0",
+    "date-fns": "^3.0.6",
     "i18next": "^23.7.11",
     "i18next-resources-to-backend": "^1.2.0",
     "md5": "^2.3.0",
@@ -21,7 +21,7 @@
     "react-dom": "^18.2.0",
     "react-focus-lock": "^2.9.6",
     "react-helmet-async": "^2.0.4",
-    "react-i18next": "^13.5.0",
+    "react-i18next": "^14.0.0",
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.21.1",
     "react-window": "^1.8.10",
@@ -58,7 +58,6 @@
     ]
   },
   "devDependencies": {
-    "@redux-devtools/core": "^3.14.0",
     "@tailwindcss/forms": "^0.5.7",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/jest": "^29.5.11",
@@ -81,7 +80,6 @@
     "vite-plugin-pwa": "^0.17.4",
     "vite-plugin-svgr": "^4.2.0"
   },
-
   "overrides": {
     "msw": {
       "typescript": "$typescript"
