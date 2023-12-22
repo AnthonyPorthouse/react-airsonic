@@ -10,6 +10,7 @@ export type Song = {
   albumId: string;
   artistId: string;
   duration: number;
+  isPodcast: boolean;
 };
 export type Songs = Song[];
 export type SongIds = string[];
