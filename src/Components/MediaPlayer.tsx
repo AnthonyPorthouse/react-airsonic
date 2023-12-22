@@ -1,8 +1,6 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
-import { useAuth } from "../api/auth.js";
 import { Song } from "../api/songs.js";
-import { getStreamUrl } from "../api/stream.js";
 import { useTrackList } from "../hooks.js";
 import AlbumArt from "./AlbumArt.js";
 import AudioProvider from "./Audio/AudioProvider.js";
@@ -13,11 +11,7 @@ import MediaSession from "./MediaSession.js";
 import TitleInfo from "./TitleInfo.js";
 
 function MediaPlayer() {
-  const auth = useAuth();
-
-  const audio = useRef(new Audio());
-
-  const { getCurrentTrack, nextTrack } = useTrackList();
+  const { getCurrentTrack } = useTrackList();
 
   const nowPlaying = getCurrentTrack();
 
@@ -28,10 +22,6 @@ function MediaPlayer() {
 
     return Number(localStorage.getItem(`podcast_${song.id}`) || 0);
   };
-
-  const currentTrackUrl = nowPlaying
-    ? getStreamUrl(nowPlaying.id, auth.credentials)
-    : null;
 
   const [duration, setCurrentDuration] = useState(100);
   const [currentTime, setCurrentTime] = useState(
@@ -67,54 +57,20 @@ function MediaPlayer() {
       document.removeEventListener("fullscreenchange", onFullscreenChange);
   }, []);
 
-  useEffect(() => {
-    audio.current.addEventListener("loadeddata", (e) => {
-      audio.current.play().catch(() => {});
-    });
-
-    audio.current.addEventListener("ended", (e) => {
-      nextTrack();
-      setCurrentDuration(0);
-      setCurrentTime(0);
-    });
-
-    audio.current.addEventListener("timeupdate", (e) => {
-      if (nowPlaying?.isPodcast) {
-        localStorage.setItem(
-          `podcast_${nowPlaying?.id}`,
-          String(audio.current.currentTime || 0),
-        );
-      }
-
-      setCurrentTime(audio.current.currentTime || 0);
-      setCurrentDuration(audio.current.duration || 0);
-    });
-  }, [nextTrack, setCurrentTime]);
-
-  useEffect(() => {
-    if (!nowPlaying || !currentTrackUrl) {
-      return;
-    }
-
-    if (audio.current.src !== currentTrackUrl) {
-      audio.current.pause();
-      audio.current.src = currentTrackUrl;
-      audio.current.currentTime = getInitialProgress(nowPlaying);
-    }
-  }, [audio, auth, nowPlaying, currentTrackUrl]);
-
   const fullscreenValue = {
     isFullscreen,
     setIsFullscreen: setFullscreen,
   };
 
   if (!nowPlaying) {
-    audio.current.pause();
     return null;
   }
 
   return (
-    <AudioProvider value={audio.current}>
+    <AudioProvider
+      setCurrentDuration={setCurrentDuration}
+      setCurrentTime={setCurrentTime}
+    >
       <FullscreenContext.Provider value={fullscreenValue}>
         <MediaSession track={nowPlaying}>
           <TitleInfo nowPlaying={nowPlaying} />
