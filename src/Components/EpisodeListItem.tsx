@@ -1,6 +1,6 @@
 import { ArrowDownTrayIcon, PlayIcon } from "@heroicons/react/24/solid";
 import { useQuery } from "@tanstack/react-query";
-import { format } from 'date-fns/format'
+import { format } from "date-fns/format";
 import { parseISO } from "date-fns/parseISO";
 import { SyntheticEvent, useContext, useMemo } from "react";
 import { useTranslation } from "react-i18next";
