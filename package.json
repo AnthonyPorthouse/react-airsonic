@@ -37,7 +37,8 @@
   "scripts": {
     "start": "cross-env VITE_COMMIT_SHA=dev vite",
     "build": "tsc && VITE_COMMIT_SHA=`git rev-parse --short HEAD` vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "format": "prettier --write ."
   },
   "eslintConfig": {
     "extends": [

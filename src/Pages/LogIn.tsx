@@ -1,21 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import {
-  Dispatch,
-  SetStateAction,
-  SyntheticEvent,
-  useEffect,
-  useState,
-} from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { Authenticated, ping, useAuth } from "../api/auth.js";
+import { ping, useAuth } from "../api/auth.js";
 import logo from "../images/logo192.png";
 
-function LogIn({
-  setAuth,
-}: {
-  setAuth: Dispatch<SetStateAction<Authenticated>>;
-}) {
+function LogIn() {
   const auth = useAuth();
 
   const [server, setServer] = useState(auth.credentials.server);
@@ -36,16 +26,14 @@ function LogIn({
   const submit = (e: SyntheticEvent) => {
     e.preventDefault();
 
-    setAuth((prevState) =>
-      Object.assign({}, prevState, {
-        isAuthenticated: false,
-        credentials: {
-          server,
-          username,
-          password,
-        },
-      }),
-    );
+    auth.setAuth({
+      isAuthenticated: false,
+      credentials: {
+        server,
+        username,
+        password,
+      },
+    });
   };
 
   useEffect(() => {
@@ -53,9 +41,15 @@ function LogIn({
       localStorage.setItem("ra.server", server);
       localStorage.setItem("ra.username", username);
       localStorage.setItem("ra.password", password);
-      setAuth(Object.assign({}, auth, { isAuthenticated: true }));
+      auth.setAuth(
+        Object.assign(
+          {},
+          { credentials: auth.credentials, isAuthenticated: true },
+        ),
+      );
+      auth.setCredentials({ server, username, password });
     }
-  }, [auth, data, isSuccess, password, server, setAuth, username]);
+  }, [auth, data, isSuccess, password, server, username]);
 
   useEffect(() => {
     if (auth.isAuthenticated) {
