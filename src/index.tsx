@@ -8,6 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 import { registerSW } from "virtual:pwa-register";
 
 import App from "./App.js";
+import { AuthProvider } from "./api/auth.js";
 import "./i18n";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals.js";
@@ -25,7 +26,9 @@ root.render(
     <HelmetProvider>
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
-          <App />
+          <AuthProvider>
+            <App />
+          </AuthProvider>
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </BrowserRouter>
