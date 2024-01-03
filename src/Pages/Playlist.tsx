@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import AlbumHeader from "../Components/AlbumHeader.js";
 import Spinner from "../Components/Spinner.js";
 import TrackList from "../Components/TrackList.js";
-import { useAuth } from "../api/auth.js";
+import { useAuth } from "../Providers/AuthProvider.js";
 import { getPlaylist } from "../api/playlists.js";
 
 type PlaylistParams = {

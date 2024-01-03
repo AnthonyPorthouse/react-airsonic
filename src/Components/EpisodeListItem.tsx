@@ -5,13 +5,13 @@ import { parseISO } from "date-fns/parseISO";
 import { SyntheticEvent, useContext, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
-import { useAuth } from "../api/auth.js";
+import { useAuth } from "../Providers/AuthProvider.js";
+import { useTrackList } from "../Providers/TrackListProvider.js";
 import {
   Episode,
   downloadEpisode,
   isDownloadedEpisode,
 } from "../api/podcasts.js";
-import { useTrackList } from "../hooks.js";
 import Duration from "./Duration.js";
 import PodcastContext from "./PodcastContext.js";
 

@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import Grid from "../Components/Grid.js";
 import Playlist from "../Components/Playlist.js";
 import Spinner from "../Components/Spinner.js";
-import { useAuth } from "../api/auth.js";
+import { useAuth } from "../Providers/AuthProvider.js";
 import { getPlaylists } from "../api/playlists.js";
 
 function Playlists() {

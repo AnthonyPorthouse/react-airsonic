@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import EpisodeList from "../Components/EpisodeList.js";
 import PodcastHeader from "../Components/PodcastHeader.js";
 import Spinner from "../Components/Spinner.js";
-import { useAuth } from "../api/auth.js";
+import { useAuth } from "../Providers/AuthProvider.js";
 import { getPodcast } from "../api/podcasts.js";
 
 type PodcastParams = {

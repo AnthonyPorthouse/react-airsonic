@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
+import { useTrackList } from "../Providers/TrackListProvider.js";
 import { Song } from "../api/songs.js";
-import { useTrackList } from "../hooks.js";
 import AlbumArt from "./AlbumArt.js";
 import AudioProvider from "./Audio/AudioProvider.js";
 import Fullscreen from "./MediaPlayer/Fullscreen.js";

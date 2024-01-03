@@ -4,8 +4,8 @@ import { CSSProperties, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { FixedSizeList as List } from "react-window";
 
+import { useTrackList } from "../Providers/TrackListProvider.js";
 import { Songs } from "../api/songs.js";
-import { useTrackList } from "../hooks.js";
 import AlbumContext from "./AlbumContext.js";
 import TrackListItem from "./TrackListItem.js";
 

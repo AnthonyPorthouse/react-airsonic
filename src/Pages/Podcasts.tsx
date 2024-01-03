@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import PodcastList from "../Components/PodcastList.js";
 import Spinner from "../Components/Spinner.js";
-import { useAuth } from "../api/auth.js";
+import { useAuth } from "../Providers/AuthProvider.js";
 import { getPodcasts } from "../api/podcasts.js";
 
 function Podcasts() {

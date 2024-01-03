@@ -5,7 +5,7 @@ import AlbumList from "../Components/AlbumList.js";
 import ArtistList from "../Components/ArtistList.js";
 import Spinner from "../Components/Spinner.js";
 import TrackList from "../Components/TrackList.js";
-import { useAuth } from "../api/auth.js";
+import { useAuth } from "../Providers/AuthProvider.js";
 import { getSearchResults } from "../api/search.js";
 
 function Search() {

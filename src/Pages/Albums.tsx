@@ -3,8 +3,8 @@ import React, { Suspense, lazy } from "react";
 import { useTranslation } from "react-i18next";
 
 import Spinner from "../Components/Spinner.js";
+import { useAuth } from "../Providers/AuthProvider.js";
 import { Album, getAlbums } from "../api/albums.js";
-import { useAuth } from "../api/auth.js";
 
 const AlbumList = lazy(() => import("../Components/AlbumList.js"));
 

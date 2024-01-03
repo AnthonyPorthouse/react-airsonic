@@ -1,8 +1,8 @@
 import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
 
+import { useTrackList } from "../Providers/TrackListProvider.js";
 import { SongIds, Songs } from "../api/songs.js";
-import { useTrackList } from "../hooks.js";
 import AlbumArt from "./AlbumArt.js";
 
 interface Playable {

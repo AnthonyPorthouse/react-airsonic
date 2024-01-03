@@ -2,7 +2,7 @@ import { StopIcon } from "@heroicons/react/24/solid";
 import { SyntheticEvent, useContext } from "react";
 import { useTranslation } from "react-i18next";
 
-import { useTrackList } from "../../hooks.js";
+import { useTrackList } from "../../Providers/TrackListProvider.js";
 import AudioContext from "../Audio/AudioContext.js";
 
 function StopButton() {

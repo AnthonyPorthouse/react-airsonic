@@ -1,16 +1,8 @@
-import React, {
-  Suspense,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import React, { Suspense, useEffect } from "react";
 import {
   Outlet,
   Route,
   Routes,
-  redirect,
   useLocation,
   useNavigate,
 } from "react-router-dom";
@@ -19,14 +11,8 @@ import Spinner from "./Components/Spinner.js";
 import TitleInfo from "./Components/TitleInfo.js";
 import LogIn from "./Pages/LogIn.js";
 import NowPlaying from "./Pages/NowPlaying.js";
-import {
-  AuthContext,
-  AuthProvider,
-  Authenticated,
-  useAuth,
-} from "./api/auth.js";
-import { Songs } from "./api/songs.js";
-import { TrackListContext } from "./hooks.js";
+import { useAuth } from "./Providers/AuthProvider.js";
+import { TrackListProvider } from "./Providers/TrackListProvider.js";
 
 const Artists = React.lazy(() => import("./Pages/Artists.js"));
 const Artist = React.lazy(() => import("./Pages/Artist.js"));
@@ -44,35 +30,13 @@ const MediaPlayer = React.lazy(() => import("./Components/MediaPlayer.js"));
 function App() {
   const { isAuthenticated } = useAuth();
 
-  const [trackList, setTrackList] = useState<Songs>([]);
-  const [trackListPosition, setTrackListPosition] = useState(0);
-
   const location = useLocation();
   const url = `${location.pathname}${location.search}`;
 
   const requireAuth = <RequireAuth redirectTo={url} />;
 
-  const trackListValue = {
-    trackList,
-    setTrackList: (songs: Songs) => {
-      setTrackListPosition(0);
-      setTrackList(songs);
-    },
-    getCurrentTrack: useCallback(
-      () => trackList[trackListPosition],
-      [trackList, trackListPosition],
-    ),
-    nextTrack: useCallback(
-      () =>
-        setTrackListPosition(
-          Math.max(0, Math.min(trackList.length - 1, trackListPosition + 1)),
-        ),
-      [trackList, trackListPosition],
-    ),
-  };
-
   return (
-    <TrackListContext.Provider value={trackListValue}>
+    <TrackListProvider>
       <main className={`w-screen h-screen flex flex-col bg-gray-50`}>
         <Suspense fallback={null}>{isAuthenticated ? <Nav /> : null}</Suspense>
 
@@ -124,7 +88,7 @@ function App() {
           {isAuthenticated ? <MediaPlayer /> : null}
         </Suspense>
       </main>
-    </TrackListContext.Provider>
+    </TrackListProvider>
   );
 }
 

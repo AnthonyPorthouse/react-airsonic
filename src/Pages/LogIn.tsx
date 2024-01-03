@@ -2,7 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { SyntheticEvent, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { ping, useAuth } from "../api/auth.js";
+import { useAuth } from "../Providers/AuthProvider.js";
+import { ping } from "../api/auth.js";
 import logo from "../images/logo192.png";
 
 function LogIn() {
@@ -74,6 +75,7 @@ function LogIn() {
           <label className={`block w-full`}>
             Server
             <input
+              name="server"
               data-testid="server"
               className={`block w-full`}
               type="url"
@@ -84,6 +86,7 @@ function LogIn() {
           <label className={`block w-full`}>
             Username
             <input
+              name="username"
               data-testid="username"
               className={`block w-full`}
               type="text"
@@ -94,6 +97,7 @@ function LogIn() {
           <label className={`block w-full`}>
             Password
             <input
+              name="password"
               data-testid="password"
               className={`block w-full`}
               type="password"
