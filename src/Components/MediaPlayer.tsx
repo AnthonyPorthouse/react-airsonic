@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { useTrackList } from "../Providers/TrackListProvider.js";
 import { Song } from "../api/songs.js";
 import AlbumArt from "./AlbumArt.js";
-import AudioProvider from "./Audio/AudioProvider.js";
+import AudioProvider from "../Providers/AudioProvider.js";
 import Fullscreen from "./MediaPlayer/Fullscreen.js";
-import { FullscreenContext } from "./MediaPlayer/FullscreenContext.js";
 import MediaInfo from "./MediaPlayer/MediaInfo.js";
 import MediaSession from "./MediaSession.js";
 import TitleInfo from "./TitleInfo.js";
+import FullscreenProvider from "../Providers/FullscreenProvider.js";
 
 function MediaPlayer() {
   const { getCurrentTrack } = useTrackList();
@@ -28,39 +28,7 @@ function MediaPlayer() {
     getInitialProgress(nowPlaying),
   );
 
-  const [isFullscreen, setIsFullscreen] = useState(false);
-
-  const setFullscreen = async (enableFullscreen: boolean) => {
-    if (enableFullscreen) {
-      try {
-        await document.body.requestFullscreen();
-      } catch (e) {
-        console.error(e);
-      }
-    } else {
-      try {
-        await document.exitFullscreen();
-      } catch (e) {
-        console.error(e);
-      }
-    }
-  };
-
-  useEffect(() => {
-    function onFullscreenChange() {
-      setIsFullscreen(document.fullscreenElement !== null);
-    }
-
-    document.addEventListener("fullscreenchange", onFullscreenChange);
-
-    return () =>
-      document.removeEventListener("fullscreenchange", onFullscreenChange);
-  }, []);
-
-  const fullscreenValue = {
-    isFullscreen,
-    setIsFullscreen: setFullscreen,
-  };
+  
 
   if (!nowPlaying) {
     return null;
@@ -71,7 +39,7 @@ function MediaPlayer() {
       setCurrentDuration={setCurrentDuration}
       setCurrentTime={setCurrentTime}
     >
-      <FullscreenContext.Provider value={fullscreenValue}>
+      <FullscreenProvider>
         <MediaSession track={nowPlaying}>
           <TitleInfo nowPlaying={nowPlaying} />
 
@@ -94,7 +62,7 @@ function MediaPlayer() {
           duration={duration}
           currentTime={currentTime}
         />
-      </FullscreenContext.Provider>
+      </FullscreenProvider>
     </AudioProvider>
   );
 }
