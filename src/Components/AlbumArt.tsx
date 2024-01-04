@@ -8,9 +8,10 @@ interface AlbumArtProps {
   id?: string;
   description?: string;
   sizes?: string;
+  lazyLoad?: boolean;
 }
 
-function AlbumArt({ id, description, sizes }: AlbumArtProps) {
+function AlbumArt({ id, description, sizes, lazyLoad }: AlbumArtProps) {
   const auth = useAuth();
   const el = useRef<HTMLImageElement>(null);
 
@@ -66,7 +67,7 @@ function AlbumArt({ id, description, sizes }: AlbumArtProps) {
         (min-width: 768px) and (max-width: 1024px) 25vw,
         50vw`
       }
-      loading="lazy"
+      loading={lazyLoad ? 'lazy' : 'eager'}
     />
   );
 }

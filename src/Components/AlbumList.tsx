@@ -14,8 +14,8 @@ function AlbumList({ className, albums }: AlbumListProps) {
   return (
     <Suspense fallback={null}>
       <Grid className={className}>
-        {albums.map((album) => (
-          <AlbumView key={album.id} album={album} />
+        {albums.map((album, i) => (
+          <AlbumView key={album.id} album={album} lazyLoad={i >= 8} />
         ))}
       </Grid>
     </Suspense>
