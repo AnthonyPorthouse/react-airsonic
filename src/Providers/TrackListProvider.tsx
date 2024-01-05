@@ -27,7 +27,9 @@ export const TrackListContext = createContext<TrackList>({
   nextTrack: () => (trackList = trackList.slice(1)),
 });
 
-export function TrackListProvider({ children }: Readonly<{ children: ReactNode }>) {
+export function TrackListProvider({
+  children,
+}: Readonly<{ children: ReactNode }>) {
   const [trackList, setTrackList] = useState<Songs>([]);
   const [trackListPosition, setTrackListPosition] = useState(0);
 
@@ -53,13 +55,17 @@ export function TrackListProvider({ children }: Readonly<{ children: ReactNode }
       },
       getCurrentTrack,
       nextTrack,
-    }
-  }, [trackList, setTrackListPosition, setTrackList, getCurrentTrack, nextTrack])
+    };
+  }, [
+    trackList,
+    setTrackListPosition,
+    setTrackList,
+    getCurrentTrack,
+    nextTrack,
+  ]);
 
   return (
-    <TrackListContext.Provider
-      value={trackListValue}
-    >
+    <TrackListContext.Provider value={trackListValue}>
       {children}
     </TrackListContext.Provider>
   );

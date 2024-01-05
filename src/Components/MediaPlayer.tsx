@@ -19,7 +19,7 @@ function MediaPlayer() {
     if (song?.isPodcast) {
       return Number(localStorage.getItem(`podcast_${song.id}`) ?? 0);
     }
-    
+
     return 0;
   };
 

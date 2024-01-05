@@ -40,8 +40,8 @@ export default function FullscreenProvider({
     return {
       isFullscreen,
       setIsFullscreen: setFullscreen,
-    }
-  }, [isFullscreen, setFullscreen]) ;
+    };
+  }, [isFullscreen, setFullscreen]);
 
   return (
     <FullscreenContext.Provider value={fullscreenValue}>
