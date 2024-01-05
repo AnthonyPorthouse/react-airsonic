@@ -122,6 +122,20 @@ function ProgressBar({ length, position }: Readonly<ProgressBarProps>) {
       onMouseLeave={() => setShowPosition(false)}
       onMouseMove={seekPosition}
       onClick={seek}
+      onKeyDown={(e) => {
+        if (!audio) {
+          return;
+        }
+
+        if (e.key === "ArrowRight") {
+          audio.currentTime = Math.min(audio.duration, audio.currentTime + 10);
+        }
+
+        if (e.key === "ArrowLeft") {
+          audio.currentTime = Math.max(0, audio.currentTime - 10);
+        }
+      }}
+      tabIndex={0}
     >
       <div
         className={`h-full bg-gray-100 absolute`}
