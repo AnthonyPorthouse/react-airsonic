@@ -1,14 +1,14 @@
 import { useState } from "react";
 
+import AudioProvider from "../Providers/AudioProvider.js";
+import FullscreenProvider from "../Providers/FullscreenProvider.js";
 import { useTrackList } from "../Providers/TrackListProvider.js";
 import { Song } from "../api/songs.js";
 import AlbumArt from "./AlbumArt.js";
-import AudioProvider from "../Providers/AudioProvider.js";
 import Fullscreen from "./MediaPlayer/Fullscreen.js";
 import MediaInfo from "./MediaPlayer/MediaInfo.js";
 import MediaSession from "./MediaSession.js";
 import TitleInfo from "./TitleInfo.js";
-import FullscreenProvider from "../Providers/FullscreenProvider.js";
 
 function MediaPlayer() {
   const { getCurrentTrack } = useTrackList();
@@ -27,8 +27,6 @@ function MediaPlayer() {
   const [currentTime, setCurrentTime] = useState(
     getInitialProgress(nowPlaying),
   );
-
-  
 
   if (!nowPlaying) {
     return null;

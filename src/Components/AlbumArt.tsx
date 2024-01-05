@@ -67,7 +67,7 @@ function AlbumArt({ id, description, sizes, lazyLoad }: AlbumArtProps) {
         (min-width: 768px) and (max-width: 1024px) 25vw,
         50vw`
       }
-      loading={lazyLoad ? 'lazy' : 'eager'}
+      loading={lazyLoad ? "lazy" : "eager"}
     />
   );
 }

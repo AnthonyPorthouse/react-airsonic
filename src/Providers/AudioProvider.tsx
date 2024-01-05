@@ -1,10 +1,10 @@
 import { ReactNode, useEffect, useRef } from "react";
 
-import { useAuth } from "./AuthProvider.js";
-import { useTrackList } from "./TrackListProvider.js";
+import AudioContext from "../Components/Audio/AudioContext.js";
 import { Song } from "../api/songs.js";
 import { getStreamUrl } from "../api/stream.js";
-import AudioContext from "../Components/Audio/AudioContext.js";
+import { useAuth } from "./AuthProvider.js";
+import { useTrackList } from "./TrackListProvider.js";
 
 interface AudioProviderProps {
   children: ReactNode;
