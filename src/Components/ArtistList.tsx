@@ -9,7 +9,7 @@ interface ArtistListProps {
   artists: Artists;
 }
 
-function ArtistList({ className, artists }: ArtistListProps) {
+function ArtistList({ className, artists }: Readonly<ArtistListProps>) {
   return (
     <Grid className={className}>
       {artists.map((artist) => (

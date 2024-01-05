@@ -10,7 +10,7 @@ interface AlbumListProps {
   albums: Album[];
 }
 
-function AlbumList({ className, albums }: AlbumListProps) {
+function AlbumList({ className, albums }: Readonly<AlbumListProps>) {
   return (
     <Suspense fallback={null}>
       <Grid className={className}>

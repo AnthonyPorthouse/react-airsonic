@@ -8,7 +8,7 @@ interface ArtistItemProps {
   artist: Artist;
 }
 
-function ArtistItem({ artist }: ArtistItemProps) {
+function ArtistItem({ artist }: Readonly<ArtistItemProps>) {
   const { id, name, coverArt } = artist;
 
   return (

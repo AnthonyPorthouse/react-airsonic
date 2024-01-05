@@ -23,7 +23,7 @@ function AlbumArt({
   const [width, setWidth] = useState<number>(1);
 
   const hash = useMemo(() => {
-    return md5(description || "").slice(0, 6);
+    return md5(description ?? "").slice(0, 6);
   }, [description]);
 
   useEffect(() => {
@@ -67,7 +67,7 @@ function AlbumArt({
       className={`rounded overflow-hidden w-full`}
       srcSet={dimensions}
       sizes={
-        sizes ||
+        sizes ??
         `(min-width: 1024px) 16vw,
         (min-width: 768px) and (max-width: 1024px) 25vw,
         50vw`

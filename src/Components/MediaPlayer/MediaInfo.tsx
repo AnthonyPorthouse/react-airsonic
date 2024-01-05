@@ -9,7 +9,7 @@ interface MediaInfoProps {
   currentTime: number;
 }
 
-function MediaInfo({ track, duration, currentTime }: MediaInfoProps) {
+function MediaInfo({ track, duration, currentTime }: Readonly<MediaInfoProps>) {
   return (
     <div className={`flex-grow flex flex-col gap-y-3`}>
       <div className={`flex items-center justify-items-stretch`}>

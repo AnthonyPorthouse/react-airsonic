@@ -92,7 +92,7 @@ function App() {
   );
 }
 
-function RequireAuth({ redirectTo }: { redirectTo: string }) {
+function RequireAuth({ redirectTo }: Readonly<{ redirectTo: string }>) {
   const auth = useAuth();
   const navigate = useNavigate();
   const location = useLocation();

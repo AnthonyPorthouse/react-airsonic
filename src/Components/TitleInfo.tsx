@@ -6,7 +6,7 @@ interface TitleInfoProps {
   nowPlaying?: Song;
 }
 
-function TitleInfo({ nowPlaying }: TitleInfoProps) {
+function TitleInfo({ nowPlaying }: Readonly<TitleInfoProps>) {
   if (!nowPlaying) {
     return (
       <Helmet>

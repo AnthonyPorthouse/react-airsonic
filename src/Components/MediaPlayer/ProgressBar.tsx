@@ -8,7 +8,7 @@ interface ProgressBarProps {
   position: number;
 }
 
-function ProgressBar({ length, position }: ProgressBarProps) {
+function ProgressBar({ length, position }: Readonly<ProgressBarProps>) {
   const audio = useContext(AudioContext);
 
   const progress = (position / length) * 100;
@@ -17,7 +17,7 @@ function ProgressBar({ length, position }: ProgressBarProps) {
 
   const trackPosition = useRef<HTMLDivElement>(null);
 
-  const [showPosition, showPositionEnabled] = useState(false);
+  const [showPosition, setShowPosition] = useState(false);
   const [mousePosX, setMousePosX] = useState(0);
   const [mousePercent, setMousePercent] = useState(0);
   const [mouseSongPos, setMouseSongPos] = useState(0);
@@ -115,9 +115,11 @@ function ProgressBar({ length, position }: ProgressBarProps) {
   return (
     <div
       ref={progressBar}
+      role="progressbar"
+      aria-valuenow={progress}
       className={`bg-gray-200 h-4 w-full inline-block relative`}
-      onMouseEnter={() => showPositionEnabled(true)}
-      onMouseLeave={() => showPositionEnabled(false)}
+      onMouseEnter={() => setShowPosition(true)}
+      onMouseLeave={() => setShowPosition(false)}
       onMouseMove={seekPosition}
       onClick={seek}
     >

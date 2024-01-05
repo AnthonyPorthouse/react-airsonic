@@ -7,7 +7,7 @@ interface SearchBarProps {
   onSubmit(e: SyntheticEvent): void;
 }
 
-function SearchBar({ onSubmit }: SearchBarProps) {
+function SearchBar({ onSubmit }: Readonly<SearchBarProps>) {
   const { t } = useTranslation("search");
   const navigate = useNavigate();
 

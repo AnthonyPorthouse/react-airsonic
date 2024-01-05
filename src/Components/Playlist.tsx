@@ -7,7 +7,7 @@ interface PlaylistProps {
   playlist: ApiPlaylist;
 }
 
-function Playlist({ playlist }: PlaylistProps) {
+function Playlist({ playlist }: Readonly<PlaylistProps>) {
   const { id, name, coverArt } = playlist;
 
   return (

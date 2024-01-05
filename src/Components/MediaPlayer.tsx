@@ -23,7 +23,7 @@ function MediaPlayer() {
     return 0;
   };
 
-  const [duration, setCurrentDuration] = useState(100);
+  const [duration, setDuration] = useState(100);
   const [currentTime, setCurrentTime] = useState(
     getInitialProgress(nowPlaying),
   );
@@ -34,7 +34,7 @@ function MediaPlayer() {
 
   return (
     <AudioProvider
-      setCurrentDuration={setCurrentDuration}
+      setCurrentDuration={setDuration}
       setCurrentTime={setCurrentTime}
     >
       <FullscreenProvider>

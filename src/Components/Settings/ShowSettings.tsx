@@ -26,13 +26,13 @@ function ShowSettings({ onClick }: Readonly<ShowSettingsProps>) {
 
   return (
     <>
-      <a
+      <button
         className={classNames("flex", "items-center", "hover:cursor-pointer")}
         title={t("nav:show-settings")}
         onClick={openModal}
       >
         <Cog6ToothIcon className={`h-6`} />
-      </a>
+      </button>
 
       <ReactModal
         className={classNames(

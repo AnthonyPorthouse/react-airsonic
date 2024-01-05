@@ -7,11 +7,11 @@ export function ProgressBarWithTime({
   length,
   position,
   className,
-}: {
+}: Readonly<{
   length: number;
   position: number;
   className?: string;
-}) {
+}>) {
   return (
     <div className={classNames(`w-full flex flex-col`, className)}>
       <ProgressBar length={length} position={position} />

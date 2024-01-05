@@ -71,7 +71,7 @@ function LogIn() {
             role="presentation"
           />
           <label className={`block w-full`}>
-            Server
+            Server{" "}
             <input
               name="server"
               data-testid="server"
@@ -82,7 +82,7 @@ function LogIn() {
             />
           </label>
           <label className={`block w-full`}>
-            Username
+            Username{" "}
             <input
               name="username"
               data-testid="username"
@@ -93,7 +93,7 @@ function LogIn() {
             />
           </label>
           <label className={`block w-full`}>
-            Password
+            Password{" "}
             <input
               name="password"
               data-testid="password"

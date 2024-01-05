@@ -19,7 +19,7 @@ interface AlbumHeaderProps {
   tracks: Songs;
 }
 
-function AlbumHeader({ album, tracks }: AlbumHeaderProps) {
+function AlbumHeader({ album, tracks }: Readonly<AlbumHeaderProps>) {
   const { t } = useTranslation("albums");
 
   const { setTrackList } = useTrackList();

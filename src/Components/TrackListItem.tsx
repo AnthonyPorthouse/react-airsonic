@@ -11,7 +11,7 @@ interface TrackListItemProps {
   track: Song;
 }
 
-function TrackListItem({ track }: TrackListItemProps) {
+function TrackListItem({ track }: Readonly<TrackListItemProps>) {
   const { t } = useTranslation("media");
 
   const tracks = useContext(AlbumContext);

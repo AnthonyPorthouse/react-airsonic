@@ -13,7 +13,7 @@ interface TrackListProps {
   tracks: Songs;
 }
 
-function TrackList({ tracks }: TrackListProps) {
+function TrackList({ tracks }: Readonly<TrackListProps>) {
   const { t } = useTranslation("albums");
   const windowHeight = useWindowHeight();
 

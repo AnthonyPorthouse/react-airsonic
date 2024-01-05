@@ -4,7 +4,7 @@ interface TrackInfoProps {
   track: Song;
 }
 
-function TrackInfo({ track }: TrackInfoProps) {
+function TrackInfo({ track }: Readonly<TrackInfoProps>) {
   if (!track) {
     return null;
   }
