@@ -3,6 +3,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useMemo,
   useState,
 } from "react";
 
@@ -43,17 +44,21 @@ export function TrackListProvider({ children }: { children: ReactNode }) {
     [trackList, trackListPosition],
   );
 
+  const trackListValue = useMemo(() => {
+    return {
+      trackList,
+      setTrackList: (songs: Songs) => {
+        setTrackListPosition(0);
+        setTrackList(songs);
+      },
+      getCurrentTrack,
+      nextTrack,
+    }
+  }, [trackList, setTrackListPosition, setTrackList, getCurrentTrack, nextTrack])
+
   return (
     <TrackListContext.Provider
-      value={{
-        trackList,
-        setTrackList: (songs: Songs) => {
-          setTrackListPosition(0);
-          setTrackList(songs);
-        },
-        getCurrentTrack,
-        nextTrack,
-      }}
+      value={trackListValue}
     >
       {children}
     </TrackListContext.Provider>

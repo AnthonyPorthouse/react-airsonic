@@ -42,12 +42,7 @@ function LogIn() {
       localStorage.setItem("ra.server", server);
       localStorage.setItem("ra.username", username);
       localStorage.setItem("ra.password", password);
-      auth.setAuth(
-        Object.assign(
-          {},
-          { credentials: auth.credentials, isAuthenticated: true },
-        ),
-      );
+      auth.setAuth({credentials: {...auth.credentials}, isAuthenticated: true});
       auth.setCredentials({ server, username, password });
     }
   }, [auth, data, isSuccess, password, server, username]);

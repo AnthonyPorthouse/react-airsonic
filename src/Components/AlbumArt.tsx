@@ -11,7 +11,7 @@ interface AlbumArtProps {
   lazyLoad?: boolean;
 }
 
-function AlbumArt({ id, description, sizes, lazyLoad }: AlbumArtProps) {
+function AlbumArt({ id, description, sizes, lazyLoad }: Readonly<AlbumArtProps>) {
   const auth = useAuth();
   const el = useRef<HTMLImageElement>(null);
 

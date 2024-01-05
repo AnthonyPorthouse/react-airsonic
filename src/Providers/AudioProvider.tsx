@@ -16,7 +16,7 @@ function AudioProvider({
   children,
   setCurrentDuration,
   setCurrentTime,
-}: AudioProviderProps) {
+}: Readonly<AudioProviderProps>) {
   const auth = useAuth();
 
   const audio = useRef(new Audio());
@@ -30,11 +30,11 @@ function AudioProvider({
     : null;
 
   const getInitialProgress = (song: Song | null) => {
-    if (!song || !song.isPodcast) {
-      return 0;
+    if (song?.isPodcast) {
+      return Number(localStorage.getItem(`podcast_${song.id}`) ?? 0);
     }
 
-    return Number(localStorage.getItem(`podcast_${song.id}`) || 0);
+    return 0;
   };
 
   useEffect(() => {

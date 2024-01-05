@@ -49,7 +49,7 @@ export async function ping({ server, username, password }: Credentials) {
     console.warn(e);
   }
 
-  if (!result || !result.ok) {
+  if (!result?.ok) {
     throw new Error("Network Request Failed");
   }
 

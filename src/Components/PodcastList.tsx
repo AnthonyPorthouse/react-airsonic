@@ -10,7 +10,7 @@ interface PodcastListProps {
   podcasts: Podcasts;
 }
 
-function PodcastList({ className, podcasts }: PodcastListProps) {
+function PodcastList({ className, podcasts }: Readonly<PodcastListProps>) {
   return (
     <Suspense fallback={null}>
       <Grid className={className}>

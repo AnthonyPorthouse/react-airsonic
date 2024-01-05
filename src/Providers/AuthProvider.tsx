@@ -35,12 +35,12 @@ export const AuthContext = createContext<Authenticated>({
   setAuth: (auth) => {},
 });
 
-export function AuthProvider({ children }: { children: ReactNode }) {
+export function AuthProvider({ children }: Readonly<{ children: ReactNode }>) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [credentials, setCredentials] = useState({
-    server: localStorage.getItem("ra.server") || "",
-    username: localStorage.getItem("ra.username") || "",
-    password: localStorage.getItem("ra.password") || "",
+    server: localStorage.getItem("ra.server") ?? "",
+    username: localStorage.getItem("ra.username") ?? "",
+    password: localStorage.getItem("ra.password") ?? "",
   });
 
   const setAuth = useCallback(

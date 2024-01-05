@@ -6,7 +6,9 @@ import ReactModal from "react-modal";
 
 import { useSetting } from "../../hooks/useSettings.js";
 
-function ShowSettings({ onClick }: { onClick(event?: SyntheticEvent): void }) {
+type ShowSettingsProps = { onClick(event?: SyntheticEvent): void }
+
+function ShowSettings({ onClick }: Readonly<ShowSettingsProps>) {
   const { t } = useTranslation(["nav", "settings"]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -72,8 +74,9 @@ function ShowSettings({ onClick }: { onClick(event?: SyntheticEvent): void }) {
         </header>
 
         <main className={classNames(`grid`, `grid-cols-[1fr_2fr]`, `gap-2`)}>
-          <label className={classNames("py-2")}>LastFM API Key</label>
+          <label htmlFor="last-fm-setting" className={classNames("py-2")}>LastFM API Key</label>
           <input
+            id="last-fm-setting"
             className={classNames(`border-0 border-b px-1`)}
             type="text"
             value={lastFmApiKey}

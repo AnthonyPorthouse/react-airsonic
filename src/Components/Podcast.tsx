@@ -7,7 +7,7 @@ interface PodcastProps {
   podcast: ApiPodcast;
 }
 
-function Podcast({ podcast }: PodcastProps) {
+function Podcast({ podcast }: Readonly<PodcastProps>) {
   const { id, title, coverArt } = podcast;
 
   return (

@@ -13,7 +13,7 @@ interface EpisodeListProps {
   episodes: Episode[];
 }
 
-function EpisodeList({ episodes }: EpisodeListProps) {
+function EpisodeList({ episodes }: Readonly<EpisodeListProps>) {
   const { t } = useTranslation("podcasts");
   const windowHeight = useWindowHeight();
 

@@ -19,7 +19,7 @@ interface EpisodeListItemProps {
   episode: Episode;
 }
 
-function EpisodeListItem({ episode }: EpisodeListItemProps) {
+function EpisodeListItem({ episode }: Readonly<EpisodeListItemProps>) {
   const { t } = useTranslation(["media", "podcasts"]);
 
   const tracks = useContext(PodcastContext);
@@ -93,7 +93,7 @@ function EpisodeListItem({ episode }: EpisodeListItemProps) {
           <span className={`flex-grow w-0 truncate`}>{episode.title}</span>
           <span className={`text-right flex gap-2`}>
             <Duration
-              time={Number(localStorage.getItem(`podcast_${episode.id}`) || 0)}
+              time={Number(localStorage.getItem(`podcast_${episode.id}`) ?? 0)}
             />
             <span>/</span>
             <Duration time={episode.duration} />
