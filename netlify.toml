@@ -23,3 +23,9 @@ X-Content-Type-Options = "nosniff"
 Referrer-Policy = "no-referrer-when-downgrade"
 Permissions-Policy = ""
 Access-Control-Allow-Origin = "*"
+
+[[headers]]
+for = "/*.webmanifest"
+
+[headers.values]
+Content-Type = "application/manifest+json"
