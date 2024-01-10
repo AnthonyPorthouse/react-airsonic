@@ -29,3 +29,9 @@ for = "/*.webmanifest"
 
 [headers.values]
 Content-Type = "application/manifest+json"
+
+[[headers]]
+for = "/*.png"
+
+[headers.values]
+Cache-Control = "public, max-age=15780000"
