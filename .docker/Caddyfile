@@ -1,0 +1,10 @@
+:80 {
+    root * /usr/share/caddy
+
+    encode zstd gzip
+    try_files {path} /index.html
+    file_server
+
+    header Cache-Control max-age=15780000
+}
+

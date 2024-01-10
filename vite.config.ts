@@ -5,7 +5,13 @@ import svgrPlugin from "vite-plugin-svgr";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), svgrPlugin(), VitePWA()],
+  plugins: [
+    react(),
+    svgrPlugin(),
+    VitePWA({
+      manifestFilename: 'ra.webmanifest'
+    })
+  ],
   build: {
     outDir: "build",
   },
