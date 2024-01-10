@@ -14,7 +14,7 @@ function Album({ album, lazyLoad }: Readonly<AlbumProps>) {
   return (
     <Link
       to={`/albums/${id}`}
-      className={`group block w-full relative rounded overflow-hidden hover:shadow-lg`}
+      className={`group block w-full relative rounded overflow-hidden hover:shadow-lg focus:-translate-y-2 hover:-translate-y-2 transition`}
     >
       <AlbumArt id={coverArt} description={name} lazyLoad={lazyLoad} />
       <div
