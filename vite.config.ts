@@ -17,33 +17,33 @@ export default defineConfig({
         description: "An opinionated frontend for airsonic",
         icons: [
           {
-            src: "logo192.png",
+            src: "logo192.webp",
             sizes: "192x192",
           },
           {
-            src: "logo256.png",
+            src: "logo256.webp",
             sizes: "256x256",
           },
           {
-            src: "logo512.png",
+            src: "logo512.webp",
             sizes: "512x512",
           },
           {
-            src: "logo1024.png",
+            src: "logo1024.webp",
             sizes: "1024x1024",
           },
           {
-            src: "logo192maskable.png",
+            src: "logo192maskable.webp",
             sizes: "192x192",
             purpose: "maskable",
           },
           {
-            src: "logo512maskable.png",
+            src: "logo512maskable.webp",
             sizes: "512x512",
             purpose: "maskable",
           },
           {
-            src: "logo1024maskable.png",
+            src: "logo1024maskable.webp",
             sizes: "1024x1024",
             purpose: "maskable",
           },
@@ -55,31 +55,31 @@ export default defineConfig({
         background_color: "#000000",
         screenshots: [
           {
-            src: "/screenshots/wide_albums.png",
+            src: "/screenshots/wide_albums.webp",
             sizes: "1920x1080",
             form_factor: "wide",
             label: "Desktop album list",
           },
           {
-            src: "/screenshots/wide_album.png",
+            src: "/screenshots/wide_album.webp",
             sizes: "1920x1080",
             form_factor: "wide",
             label: "Desktop album view",
           },
           {
-            src: "/screenshots/wide_fullscreen.png",
+            src: "/screenshots/wide_fullscreen.webp",
             sizes: "1920x1080",
             form_factor: "wide",
             label: "Desktop fullscreen media view",
           },
           {
-            src: "/screenshots/phone_albums.png",
+            src: "/screenshots/phone_albums.webp",
             sizes: "721x1601",
             form_factor: "narrow",
             label: "Phone album list",
           },
           {
-            src: "/screenshots/phone_album.png",
+            src: "/screenshots/phone_album.webp",
             sizes: "721x1601",
             form_factor: "narrow",
             label: "Phone album view",
