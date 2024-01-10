@@ -35,3 +35,15 @@ for = "/*.png"
 
 [headers.values]
 Cache-Control = "public, max-age=15780000"
+
+[[headers]]
+for = "/*.webp"
+
+[headers.values]
+Cache-Control = "public, max-age=15780000"
+
+[[headers]]
+for = "/*.avif"
+
+[headers.values]
+Cache-Control = "public, max-age=15780000"

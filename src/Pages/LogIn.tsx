@@ -4,7 +4,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { useAuth } from "../Providers/AuthProvider.js";
 import { ping } from "../api/auth.js";
-import logo from "../images/logo192.png";
+import logoPng from "../images/logo192.png";
+import logoWebp from "../images/logo192.webp";
+import logoAvif from "../images/logo192.avif";
+
+import { t } from "i18next";
 
 function LogIn() {
   const auth = useAuth();
@@ -64,12 +68,20 @@ function LogIn() {
         {isError ? <div> Something Went Wrong</div> : null}
 
         <form className={`grid grid-cols-1 gap-6`} onSubmit={submit}>
-          <img
-            className={`mx-auto`}
-            src={logo}
-            alt="Ra Logo"
-            role="presentation"
-          />
+
+          <picture className="mx-auto">
+            <source srcSet={logoAvif} type="image/avif" />
+            <source srcSet={logoWebp} type="image/webp" />
+            <source srcSet={logoPng} type="image/png" />
+
+            <img
+              src={logoAvif}
+              alt={t("common:title")}
+              role="presentation"
+              className={`w-12 h-12 md:w-16 md:h-16`}
+            />
+          </picture>
+
           <label className={`block w-full`}>
             Server{" "}
             <input

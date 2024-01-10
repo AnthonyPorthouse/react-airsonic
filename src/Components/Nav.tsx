@@ -3,7 +3,9 @@ import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 
-import logo from "../images/logo192.png";
+import logoAvif from "../images/logo192.avif";
+import logoPng from "../images/logo192.png";
+import logoWebp from "../images/logo192.webp";
 import LoggedInAs from "./Nav/LoggedInAs.js";
 import SearchBar from "./SearchBar.js";
 import ShowSettings from "./Settings/ShowSettings.js";
@@ -22,11 +24,17 @@ function Nav() {
     <nav
       className={`text-2xl px-6 py-3 bg-white w-full shadow z-10 flex justify-between md:static items-center`}
     >
-      <img
-        src={logo}
-        alt={t("common:title")}
-        className={`absolute w-12 h-12 md:w-16 md:h-16`}
-      />
+      <picture className="absolute">
+        <source srcSet={logoAvif} type="image/avif" />
+        <source srcSet={logoWebp} type="image/webp" />
+        <source srcSet={logoPng} type="image/png" />
+
+        <img
+          src={logoAvif}
+          alt={t("common:title")}
+          className={`w-12 h-12 md:w-16 md:h-16`}
+        />
+      </picture>
 
       <div className={`md:hidden flex w-full items-center justify-end`}>
         <button
@@ -46,7 +54,12 @@ function Nav() {
         <div className={`px-6 py-3 md:p-0`}>
           <div className={`md:hidden flex items-center justify-between`}>
             <span className={`inline-block w-6`} />
-            <img src={logo} alt={t("common:title")} className={`w-16 h-16`} />
+            <picture className={`w-16 h-16`}>
+              <source srcSet={logoAvif} type="image/avif" />
+              <source srcSet={logoWebp} type="image/webp" />
+              <source srcSet={logoPng} type="image/png" />
+              <img src={logoAvif} alt={t("common:title")} />
+            </picture>
             <button
               onClick={toggleMenu}
               className={`w-6 h-6`}
