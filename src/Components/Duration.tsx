@@ -1,22 +1,20 @@
+import { Temporal } from 'temporal-polyfill'
+
 interface DurationProps {
   time: number;
 }
 
-const minute = 60;
-const hour = minute * 60;
+function to2Digits(number: number) {
+  return String(number).padStart(2, '0')
+}
 
 function Duration({ time }: Readonly<DurationProps>) {
-  let duration = `${Math.floor((time % hour) / minute)
-    .toString()
-    .padStart(2, "0")}:${Math.floor(time % minute)
-    .toString()
-    .padStart(2, "0")}`;
 
-  if (time > hour) {
-    duration = `${Math.floor(time / hour)}:${duration}`;
-  }
+  const duration = Temporal.Duration.from({ milliseconds: Math.floor(time * 1000), }).round({ largestUnit: 'hour' });
 
-  return <span>{duration}</span>;
+  const output = `${to2Digits(duration.hours)}:${to2Digits(duration.minutes)}:${to2Digits(duration.seconds)}`.replace('00:', '')
+
+  return <span>{output}</span>;
 }
 
 export default Duration;
