@@ -1,14 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
+import { t } from "i18next";
 import { SyntheticEvent, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { useAuth } from "../Providers/AuthProvider.js";
 import { ping } from "../api/auth.js";
+import logoAvif from "../images/logo192.avif";
 import logoPng from "../images/logo192.png";
 import logoWebp from "../images/logo192.webp";
-import logoAvif from "../images/logo192.avif";
-
-import { t } from "i18next";
 
 function LogIn() {
   const auth = useAuth();
@@ -68,7 +67,6 @@ function LogIn() {
         {isError ? <div> Something Went Wrong</div> : null}
 
         <form className={`grid grid-cols-1 gap-6`} onSubmit={submit}>
-
           <picture className="mx-auto">
             <source srcSet={logoAvif} type="image/avif" />
             <source srcSet={logoWebp} type="image/webp" />
