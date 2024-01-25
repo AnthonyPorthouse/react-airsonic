@@ -25,25 +25,30 @@ function Fullscreen({ track, currentTime, duration }: FullscreenProps) {
     <div
       className={classNames(
         "fixed",
-        "w-screen",
-        "h-screen",
+        "w-dvw",
+        "h-dvh",
         "bg-white",
         "z-50",
         "top-0",
       )}
     >
+      <div className="absolute top-0 w-dvw h-dvh flex items-center justify-center">
+          <AlbumArt id={track.coverArt} className={classNames('h-dvh w-dvw object-cover')} />
+      </div>
       <AutoFocusInside>
         <div
           className={classNames(
+            'relative',
             "flex",
             "flex-col",
-            "p-5",
             "gap-5",
             "justify-around",
             "h-screen",
+            'backdrop-filter',
+            'backdrop-blur-lg',
           )}
         >
-          <div className={classNames("flex", "flex-1", "gap-5")}>
+          <div className={classNames('m-5', "flex", "flex-1", "gap-5")}>
             <div
               className={classNames(
                 "w-1/4",
@@ -53,7 +58,7 @@ function Fullscreen({ track, currentTime, duration }: FullscreenProps) {
               )}
             >
               <div className={classNames("w-full")}>
-                <AlbumArt id={track.coverArt} />
+                <AlbumArt id={track.coverArt} className="shadow-lg" />
               </div>
             </div>
             <div
@@ -64,13 +69,14 @@ function Fullscreen({ track, currentTime, duration }: FullscreenProps) {
                 "gap-4",
                 "w-3/4",
                 "text-center",
+                "text-white"
               )}
             >
-              <h1 className={classNames("text-6xl")}>{track.title}</h1>
-              <h2 className={classNames("text-3xl")}>{track.artist}</h2>
+              <h1 className={classNames("text-6xl", 'drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]')}>{track.title}</h1>
+              <h2 className={classNames("text-3xl", 'drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]')}>{track.artist}</h2>
             </div>
           </div>
-          <div className="flex">
+          <div className="flex bg-white bg-opacity-20 p-5">
             <ProgressBarWithTime
               length={duration}
               position={currentTime}
