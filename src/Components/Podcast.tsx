@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 import type { Podcast as ApiPodcast } from "../api/podcasts.js";
-import AlbumArt from "./AlbumArt.js";
+import HoverableAlbumArt from "./HoverableAlbumArt.js";
 
 interface PodcastProps {
   podcast: ApiPodcast;
@@ -13,14 +13,10 @@ function Podcast({ podcast }: Readonly<PodcastProps>) {
   return (
     <Link
       to={`/podcasts/${id}`}
-      className={`block w-full relative rounded overflow-hidden hover:shadow-lg`}
     >
-      <AlbumArt id={coverArt} description={title} />
-      <div
-        className={`absolute top-0 left-0 w-full h-full transition-all duration-200 ease-in-out bg-white/75 opacity-0 hover:opacity-100 p-1 flex flex-col justify-center text-center`}
-      >
+      <HoverableAlbumArt coverArt={coverArt} artDescription={title}>
         <h1 className={`text-xl`}>{title}</h1>
-      </div>
+      </HoverableAlbumArt>
     </Link>
   );
 }
