@@ -11,9 +11,7 @@ function Podcast({ podcast }: Readonly<PodcastProps>) {
   const { id, title, coverArt } = podcast;
 
   return (
-    <Link
-      to={`/podcasts/${id}`}
-    >
+    <Link to={`/podcasts/${id}`}>
       <HoverableAlbumArt coverArt={coverArt} artDescription={title}>
         <h1 className={`text-xl`}>{title}</h1>
       </HoverableAlbumArt>
