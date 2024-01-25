@@ -33,22 +33,25 @@ function Fullscreen({ track, currentTime, duration }: FullscreenProps) {
       )}
     >
       <div className="absolute top-0 w-dvw h-dvh flex items-center justify-center">
-          <AlbumArt id={track.coverArt} className={classNames('h-dvh w-dvw object-cover')} />
+        <AlbumArt
+          id={track.coverArt}
+          className={classNames("h-dvh w-dvw object-cover")}
+        />
       </div>
       <AutoFocusInside>
         <div
           className={classNames(
-            'relative',
+            "relative",
             "flex",
             "flex-col",
             "gap-5",
             "justify-around",
             "h-screen",
-            'backdrop-filter',
-            'backdrop-blur-lg',
+            "backdrop-filter",
+            "backdrop-blur-lg",
           )}
         >
-          <div className={classNames('m-5', "flex", "flex-1", "gap-5")}>
+          <div className={classNames("m-5", "flex", "flex-1", "gap-5")}>
             <div
               className={classNames(
                 "w-1/4",
@@ -69,11 +72,25 @@ function Fullscreen({ track, currentTime, duration }: FullscreenProps) {
                 "gap-4",
                 "w-3/4",
                 "text-center",
-                "text-white"
+                "text-white",
               )}
             >
-              <h1 className={classNames("text-6xl", 'drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]')}>{track.title}</h1>
-              <h2 className={classNames("text-3xl", 'drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]')}>{track.artist}</h2>
+              <h1
+                className={classNames(
+                  "text-6xl",
+                  "drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]",
+                )}
+              >
+                {track.title}
+              </h1>
+              <h2
+                className={classNames(
+                  "text-3xl",
+                  "drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]",
+                )}
+              >
+                {track.artist}
+              </h2>
             </div>
           </div>
           <div className="flex bg-white bg-opacity-20 p-5">

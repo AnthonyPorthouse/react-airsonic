@@ -1,9 +1,9 @@
+import classNames from "classnames";
 import md5 from "md5";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { useAuth } from "../Providers/AuthProvider.js";
 import { getScaledCoverArtUrl } from "../api/artwork.js";
-import classNames from "classnames";
 
 interface AlbumArtProps {
   id?: string;
@@ -18,7 +18,7 @@ function AlbumArt({
   description,
   sizes,
   lazyLoad,
-  className
+  className,
 }: Readonly<AlbumArtProps>) {
   const auth = useAuth();
   const el = useRef<HTMLImageElement>(null);
@@ -41,7 +41,10 @@ function AlbumArt({
           width: `100%`,
           backgroundColor: `#${hash}`,
         }}
-        className={classNames(`rounded overflow-hidden max-w-full aspect-square`, className)}
+        className={classNames(
+          `rounded overflow-hidden max-w-full aspect-square`,
+          className,
+        )}
       />
     );
   }

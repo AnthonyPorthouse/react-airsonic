@@ -12,7 +12,10 @@ function Album({ album, lazyLoad }: Readonly<AlbumProps>) {
   const { id, name, artist, coverArt } = album;
 
   return (
-    <Link to={`/albums/${id}`} className={`group block w-full relative focus:ring-0`}>
+    <Link
+      to={`/albums/${id}`}
+      className={`group block w-full relative focus:ring-0`}
+    >
       <div className="group-focus:-translate-y-2 group-hover:-translate-y-2 group-focus:shadow-lg group-hover:shadow-lg overflow-hidden rounded transition group-focus:ring-inset">
         <AlbumArt id={coverArt} description={name} lazyLoad={lazyLoad} />
         <div

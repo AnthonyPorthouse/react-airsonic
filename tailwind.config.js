@@ -3,8 +3,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'work-sans': ['"Work Sans"', 'sans-serif'],
-      }
+        "work-sans": ['"Work Sans"', "sans-serif"],
+      },
     },
   },
   plugins: [require("@tailwindcss/forms")],
