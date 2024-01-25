@@ -37,7 +37,7 @@ function App() {
 
   return (
     <TrackListProvider>
-      <main className={`w-screen h-screen flex flex-col bg-gray-50`}>
+      <main className={`w-screen h-screen flex flex-col bg-gray-50 font-work-sans`}>
         <Suspense fallback={null}>{isAuthenticated ? <Nav /> : null}</Suspense>
 
         <TitleInfo />
