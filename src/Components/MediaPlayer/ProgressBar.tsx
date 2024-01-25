@@ -95,7 +95,7 @@ function ProgressBar({ length, position }: Readonly<ProgressBarProps>) {
           style={{ left: `${pos}px` }}
           className={`absolute left-0 w-12 -mt-[2em] -ml-6 flex justify-center items-center`}
         >
-          <div className={`px-2 py-1 leading-none shadow rounded bg-white`}>
+          <div className={`px-2 py-1 leading-none shadow rounded bg-white text-black`}>
             <Duration time={mouseSongPos} />
           </div>
         </div>
