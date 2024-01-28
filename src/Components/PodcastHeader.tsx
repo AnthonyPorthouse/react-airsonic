@@ -5,7 +5,7 @@ interface PodcastHeaderProps {
   podcast: Podcast;
 }
 
-function AlbumHeader({ podcast }: Readonly<PodcastHeaderProps>) {
+function PodcastHeader({ podcast }: Readonly<PodcastHeaderProps>) {
   return (
     <section className={`flex flex-col gap-6`}>
       <div className={`grid grid-cols-3 lg:grid-cols-1 gap-6 w-full lg:w-64`}>
@@ -19,4 +19,4 @@ function AlbumHeader({ podcast }: Readonly<PodcastHeaderProps>) {
   );
 }
 
-export default AlbumHeader;
+export default PodcastHeader;

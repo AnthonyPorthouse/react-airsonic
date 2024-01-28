@@ -1,10 +1,13 @@
 import { UserIcon } from "@heroicons/react/24/solid";
+import { useNavigate } from "@tanstack/react-router";
 import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
 
 import { useAuth } from "../../Providers/AuthProvider.js";
 
 function LoggedInAs() {
+  const navigate = useNavigate();
+
   const { username, server } = useAuth().credentials;
   const { logout } = useAuth();
 
@@ -13,6 +16,8 @@ function LoggedInAs() {
   const logoutHandler = (e: SyntheticEvent) => {
     e.preventDefault();
     logout();
+
+    navigate({ to: "/" });
   };
 
   return (

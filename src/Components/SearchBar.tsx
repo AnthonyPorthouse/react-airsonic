@@ -1,7 +1,7 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import { useNavigate } from "@tanstack/react-router";
 import { SyntheticEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 
 interface SearchBarProps {
   onSubmit(e: SyntheticEvent): void;
@@ -14,7 +14,12 @@ function SearchBar({ onSubmit }: Readonly<SearchBarProps>) {
   const [filter, setFilter] = useState("");
 
   const search = (query: string) => {
-    navigate(`/search?query=${encodeURI(query)}`);
+    navigate({
+      to: "/search",
+      search: {
+        query,
+      },
+    });
   };
 
   return (

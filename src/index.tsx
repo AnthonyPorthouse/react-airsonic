@@ -4,11 +4,11 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import ReactModal from "react-modal";
-import { BrowserRouter } from "react-router-dom";
 import { registerSW } from "virtual:pwa-register";
 
 import App from "./App.js";
 import { AuthProvider } from "./Providers/AuthProvider.js";
+import { TrackListProvider } from "./Providers/TrackListProvider.js";
 import "./i18n";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals.js";
@@ -19,19 +19,19 @@ ReactModal.setAppElement(container);
 
 const root = createRoot(container);
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 
 root.render(
   <React.StrictMode>
     <HelmetProvider>
-      <BrowserRouter>
-        <QueryClientProvider client={queryClient}>
-          <AuthProvider>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <TrackListProvider>
             <App />
-          </AuthProvider>
-          <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
-      </BrowserRouter>
+          </TrackListProvider>
+        </AuthProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
     </HelmetProvider>
   </React.StrictMode>,
 );
