@@ -103,7 +103,13 @@ function Fullscreen({ track, currentTime, duration }: FullscreenProps) {
         </div>
 
         <div
-          className={classNames("absolute", "left-5", "top-5", "text-white", 'drop-shadow')}
+          className={classNames(
+            "absolute",
+            "left-5",
+            "top-5",
+            "text-white",
+            "drop-shadow",
+          )}
         >
           <FullscreenButton />
         </div>

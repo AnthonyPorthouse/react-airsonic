@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 
 import { Album as ApiAlbum } from "../api/albums.js";
 import HoverableAlbumArt from "./HoverableAlbumArt.js";
@@ -13,7 +13,8 @@ function Album({ album, lazyLoad }: Readonly<AlbumProps>) {
 
   return (
     <Link
-      to={`/albums/${id}`}
+      to={`/albums/$albumId`}
+      params={{ albumId: id }}
       className={`group block w-full relative focus:ring-0`}
     >
       <HoverableAlbumArt coverArt={coverArt} artDescription={name} lazyLoad>

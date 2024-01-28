@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 
 import { Playlist as ApiPlaylist } from "../api/playlists.js";
 import HoverableAlbumArt from "./HoverableAlbumArt.js";
@@ -11,7 +11,7 @@ function Playlist({ playlist }: Readonly<PlaylistProps>) {
   const { id, name, coverArt } = playlist;
 
   return (
-    <Link to={`/playlists/${id}`}>
+    <Link to={`/playlists/$playlistId`} params={{ playlistId: id }}>
       <HoverableAlbumArt coverArt={coverArt} artDescription={name}>
         <h1>{name}</h1>
       </HoverableAlbumArt>

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 
 import { Artist } from "../api/artists.js";
 import HoverableAlbumArt from "./HoverableAlbumArt.js";
@@ -11,7 +11,7 @@ function ArtistItem({ artist }: Readonly<ArtistItemProps>) {
   const { id, name, coverArt } = artist;
 
   return (
-    <Link to={`/artists/${id}`}>
+    <Link to={`/artists/$artistId`} params={{ artistId: id }}>
       <HoverableAlbumArt coverArt={coverArt} artDescription={name}>
         <h1>{name}</h1>
       </HoverableAlbumArt>

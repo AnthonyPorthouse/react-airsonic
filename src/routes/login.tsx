@@ -1,13 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
+import { createFileRoute, getRouteApi } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
 import { t } from "i18next";
 import { SyntheticEvent, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { z } from "zod";
 
 import { useAuth } from "../Providers/AuthProvider.js";
 import { ping } from "../api/auth.js";
 import logoAvif from "../images/logo192.avif";
 import logoPng from "../images/logo192.png";
 import logoWebp from "../images/logo192.webp";
+
+export const Route = createFileRoute("/login")({
+  validateSearch: z.object({
+    redirect: z.string().catch("/"),
+  }),
+  component: LogIn,
+});
 
 function LogIn() {
   const auth = useAuth();
@@ -16,10 +25,9 @@ function LogIn() {
   const [username, setUsername] = useState(auth.credentials.username);
   const [password, setPassword] = useState(auth.credentials.password);
 
-  const location = useLocation();
   const navigate = useNavigate();
-
-  const from = location.state?.from || "/";
+  const routeApi = getRouteApi("/login");
+  const search = routeApi.useSearch();
 
   const { isError, isSuccess, data } = useQuery({
     queryKey: ["auth", auth.credentials],
@@ -55,11 +63,11 @@ function LogIn() {
 
   useEffect(() => {
     if (auth.isAuthenticated) {
-      navigate(from, {
-        replace: true,
+      navigate({
+        to: search.redirect,
       });
     }
-  }, [auth.isAuthenticated, navigate, from]);
+  }, [auth.isAuthenticated, navigate, search]);
 
   return (
     <div className={`flex flex-auto items-center h-auto`}>
@@ -121,5 +129,3 @@ function LogIn() {
     </div>
   );
 }
-
-export default LogIn;

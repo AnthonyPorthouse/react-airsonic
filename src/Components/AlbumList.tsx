@@ -1,24 +1,21 @@
 import { Suspense, lazy } from "react";
 
-import { Album } from "../api/albums.js";
-
-const AlbumView = lazy(() => import("./Album.js"));
-const Grid = lazy(() => import("./Grid.js"));
+import { Albums } from "../api/albums.js";
+import Album from "./Album.js";
+import Grid from "./Grid.js";
 
 interface AlbumListProps {
   className?: string;
-  albums: Album[];
+  albums: Albums;
 }
 
 function AlbumList({ className, albums }: Readonly<AlbumListProps>) {
   return (
-    <Suspense fallback={null}>
-      <Grid className={className}>
-        {albums.map((album, i) => (
-          <AlbumView key={album.id} album={album} lazyLoad={i >= 8} />
-        ))}
-      </Grid>
-    </Suspense>
+    <Grid className={className}>
+      {albums.map((album, i) => (
+        <Album key={album.id} album={album} lazyLoad={i >= 8} />
+      ))}
+    </Grid>
   );
 }
 

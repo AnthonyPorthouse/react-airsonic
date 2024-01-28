@@ -1,7 +1,7 @@
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
+import { Link } from "@tanstack/react-router";
 import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { NavLink } from "react-router-dom";
 
 import logoAvif from "../images/logo192.avif";
 import logoPng from "../images/logo192.png";
@@ -75,50 +75,50 @@ function Nav() {
             className={`flex flex-col md:pl-20 md:flex-row gap-6 md:items-center flex-wrap `}
           >
             <li>
-              <NavLink
+              <Link
                 className={`inline-block w-full md:w-auto`}
-                to={`/now-playing`}
+                to="/now-playing"
                 onClick={toggleMenu}
               >
                 {t("nav:now-playing")}
-              </NavLink>
+              </Link>
             </li>
             <li>
-              <NavLink
+              <Link
                 className={`inline-block w-full md:w-auto`}
-                to={`/albums`}
+                to="/albums"
                 onClick={toggleMenu}
               >
                 {t("nav:albums")}
-              </NavLink>
+              </Link>
             </li>
 
             <li>
-              <NavLink
+              <Link
                 className={`inline-block w-full md:w-auto`}
-                to={`/artists`}
+                to="/artists"
                 onClick={toggleMenu}
               >
                 {t("nav:artists")}
-              </NavLink>
+              </Link>
             </li>
             <li>
-              <NavLink
+              <Link
                 className={`inline-block w-full md:w-auto`}
                 to={`/playlists`}
                 onClick={toggleMenu}
               >
                 {t("nav:playlists")}
-              </NavLink>
+              </Link>
             </li>
             <li>
-              <NavLink
+              <Link
                 className={`inline-block w-full md:w-auto`}
                 to={`/podcasts`}
                 onClick={toggleMenu}
               >
                 {t("nav:podcasts")}
-              </NavLink>
+              </Link>
             </li>
             <li
               className={
