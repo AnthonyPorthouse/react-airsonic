@@ -1,10 +1,21 @@
 import { QueryClient } from "@tanstack/react-query";
 import { Outlet, rootRouteWithContext } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import React from "react";
 
 import TitleInfo from "../Components/TitleInfo";
 import { type Authenticated, useAuth } from "../Providers/AuthProvider";
+
+const TanStackRouterDevtools =
+  process.env.NODE_ENV === 'production'
+    ? () => null // Render nothing in production
+    : React.lazy(() =>
+        // Lazy load in development
+        import('@tanstack/router-devtools').then((res) => ({
+          default: res.TanStackRouterDevtools,
+          // For Embedded Mode
+          // default: res.TanStackRouterDevtoolsPanel
+        })),
+      )
 
 const MediaPlayer = React.lazy(() => import("../Components/MediaPlayer"));
 const Nav = React.lazy(() => import("../Components/Nav"));
