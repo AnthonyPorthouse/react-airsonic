@@ -1,3 +1,4 @@
+import { redirect } from "@tanstack/react-router";
 import {
   ReactNode,
   createContext,
@@ -8,7 +9,6 @@ import {
 } from "react";
 
 import { Credentials } from "../api/auth.js";
-import { redirect } from "@tanstack/react-router";
 
 export interface Authentication {
   isAuthenticated: boolean;
@@ -53,7 +53,7 @@ export function AuthProvider({ children }: Readonly<{ children: ReactNode }>) {
 
   const logout = useCallback(() => {
     redirect({
-      'to': '/'
+      to: "/",
     });
 
     localStorage.setItem("ra.password", "");

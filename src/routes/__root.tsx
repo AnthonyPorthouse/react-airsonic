@@ -6,16 +6,16 @@ import TitleInfo from "../Components/TitleInfo";
 import { type Authenticated, useAuth } from "../Providers/AuthProvider";
 
 const TanStackRouterDevtools =
-  process.env.NODE_ENV === 'production'
+  process.env.NODE_ENV === "production"
     ? () => null // Render nothing in production
     : React.lazy(() =>
         // Lazy load in development
-        import('@tanstack/router-devtools').then((res) => ({
+        import("@tanstack/router-devtools").then((res) => ({
           default: res.TanStackRouterDevtools,
           // For Embedded Mode
           // default: res.TanStackRouterDevtoolsPanel
         })),
-      )
+      );
 
 const MediaPlayer = React.lazy(() => import("../Components/MediaPlayer"));
 const Nav = React.lazy(() => import("../Components/Nav"));
