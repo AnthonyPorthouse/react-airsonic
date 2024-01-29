@@ -1,6 +1,4 @@
-import {
-  queryOptions
-} from "@tanstack/react-query";
+import { queryOptions } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { Authenticated } from "../../../Providers/AuthProvider";

@@ -1,16 +1,17 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
-import { createLazyFileRoute } from '@tanstack/react-router';
-import { useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
-import { AlbumsQueryOptions } from '.';
-import AlbumList from '../../../Components/AlbumList';
-import Spinner from '../../../Components/Spinner';
-import { useAuth } from '../../../Providers/AuthProvider';
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { createLazyFileRoute } from "@tanstack/react-router";
+import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
-export const Route = createLazyFileRoute('/_authenticated/albums/')({
+import { AlbumsQueryOptions } from ".";
+import AlbumList from "../../../Components/AlbumList";
+import Spinner from "../../../Components/Spinner";
+import { useAuth } from "../../../Providers/AuthProvider";
+
+export const Route = createLazyFileRoute("/_authenticated/albums/")({
   component: Albums,
-  pendingComponent: Spinner
-})
+  pendingComponent: Spinner,
+});
 
 function Albums() {
   const auth = useAuth();

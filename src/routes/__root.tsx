@@ -9,13 +9,13 @@ const TanStackRouterDevtools =
   process.env.NODE_ENV === "production"
     ? () => null // Render nothing in production
     : React.lazy(() =>
-      // Lazy load in development
-      import("@tanstack/router-devtools").then((res) => ({
-        default: res.TanStackRouterDevtools,
-        // For Embedded Mode
-        // default: res.TanStackRouterDevtoolsPanel
-      })),
-    );
+        // Lazy load in development
+        import("@tanstack/router-devtools").then((res) => ({
+          default: res.TanStackRouterDevtools,
+          // For Embedded Mode
+          // default: res.TanStackRouterDevtoolsPanel
+        })),
+      );
 
 interface RouterContext {
   auth: Authenticated;
@@ -32,16 +32,12 @@ function RootComponent() {
       <main
         className={`w-screen h-screen flex flex-col bg-gray-50 font-work-sans`}
       >
-
         <TitleInfo />
 
         <Outlet />
 
         <TanStackRouterDevtools />
-
-
       </main>
     </Suspense>
-
   );
 }

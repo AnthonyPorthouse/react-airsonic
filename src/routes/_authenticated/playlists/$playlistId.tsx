@@ -14,5 +14,3 @@ export const Route = createFileRoute("/_authenticated/playlists/$playlistId")({
   loader: ({ context: { auth, queryClient }, params: { playlistId } }) =>
     queryClient.ensureQueryData(PlaylistQueryOptions(playlistId, auth)),
 });
-
-

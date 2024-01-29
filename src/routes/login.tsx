@@ -1,5 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
-import { createFileRoute, getRouteApi, useNavigate } from "@tanstack/react-router";
+import {
+  createFileRoute,
+  getRouteApi,
+  useNavigate,
+} from "@tanstack/react-router";
 import { t } from "i18next";
 import { Suspense, SyntheticEvent, useEffect, useState } from "react";
 import { z } from "zod";
@@ -24,7 +28,7 @@ function LogIn() {
   const [server, setServer] = useState(auth.credentials.server);
   const [username, setUsername] = useState(auth.credentials.username);
   const [password, setPassword] = useState(auth.credentials.password);
-  const [initialLoad, setInitialLoad] = useState(true)
+  const [initialLoad, setInitialLoad] = useState(true);
 
   const navigate = useNavigate();
   const routeApi = getRouteApi("/login");
@@ -54,16 +58,16 @@ function LogIn() {
       await navigate({
         to: search.redirect,
       });
-    }
+    },
   });
 
   useEffect(() => {
-    setInitialLoad(false)
+    setInitialLoad(false);
 
     if (server && username && password && initialLoad && isIdle) {
-      mutate()
+      mutate();
     }
-  }, [mutate, server, username, password, isIdle])
+  }, [mutate, server, username, password, isIdle]);
 
   const submit = (e: SyntheticEvent) => {
     e.preventDefault();
