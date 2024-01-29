@@ -1,8 +1,8 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { queryOptions } from "@tanstack/react-query";
+import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/_authenticated/albums/$albumId')({
-  component: () => <div>Hello /_authenticated/albums/$albumId!</div>
-})"../../../api/albums";
+import { Authenticated } from "../../../Providers/AuthProvider";
+import { getAlbum } from "../../../api/albums";
 
 export const AlbumQueryOptions = (albumId: string, auth: Authenticated) => {
   return queryOptions({
