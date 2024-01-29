@@ -7,7 +7,7 @@ interface Fullscreen {
 
 export const FullscreenContext = createContext<Fullscreen>({
   isFullscreen: false,
-  setIsFullscreen: (isFullscreen) => {},
+  setIsFullscreen: () => {},
 });
 
 export function useFullscreen() {

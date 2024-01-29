@@ -1,9 +1,9 @@
 import { QueryClient } from "@tanstack/react-query";
-import { Outlet, rootRouteWithContext } from "@tanstack/react-router";
-import React from "react";
+import { Outlet, createRootRouteWithContext } from "@tanstack/react-router";
+import React, { Suspense } from "react";
 
 import TitleInfo from "../Components/TitleInfo";
-import { type Authenticated, useAuth } from "../Providers/AuthProvider";
+import { type Authenticated } from "../Providers/AuthProvider";
 
 const TanStackRouterDevtools =
   process.env.NODE_ENV === "production"
@@ -17,38 +17,27 @@ const TanStackRouterDevtools =
         })),
       );
 
-const MediaPlayer = React.lazy(() => import("../Components/MediaPlayer"));
-const Nav = React.lazy(() => import("../Components/Nav"));
-
 interface RouterContext {
   auth: Authenticated;
   queryClient: QueryClient;
 }
 
-export const Route = rootRouteWithContext<RouterContext>()({
+export const Route = createRootRouteWithContext<RouterContext>()({
   component: RootComponent,
 });
 
 function RootComponent() {
-  const { isAuthenticated } = useAuth();
-
   return (
-    <main
-      className={`w-screen h-screen flex flex-col bg-gray-50 font-work-sans`}
-    >
-      {isAuthenticated && <Nav />}
+    <Suspense>
+      <main
+        className={`w-screen h-screen flex flex-col bg-gray-50 font-work-sans`}
+      >
+        <TitleInfo />
 
-      <TitleInfo />
+        <Outlet />
 
-      <div className={`overflow-y-auto flex-grow`}>
-        <div className="mx-6 my-6">
-          <Outlet />
-        </div>
-      </div>
-
-      <TanStackRouterDevtools />
-
-      {isAuthenticated && <MediaPlayer />}
-    </main>
+        <TanStackRouterDevtools />
+      </main>
+    </Suspense>
   );
 }

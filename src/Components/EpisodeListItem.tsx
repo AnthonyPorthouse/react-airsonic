@@ -29,7 +29,7 @@ function EpisodeListItem({ episode }: Readonly<EpisodeListItemProps>) {
   const { getCurrentTrack, setTrackList } = useTrackList();
 
   const { refetch } = useQuery({
-    queryKey: ["downloadPodcast", episode.id],
+    queryKey: ["downloadPodcast", episode.id, auth.credentials],
     queryFn: () => downloadEpisode(episode.id, auth.credentials),
     enabled: false,
   });

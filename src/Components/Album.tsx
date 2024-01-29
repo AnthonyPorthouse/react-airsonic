@@ -17,7 +17,11 @@ function Album({ album, lazyLoad }: Readonly<AlbumProps>) {
       params={{ albumId: id }}
       className={`group block w-full relative focus:ring-0`}
     >
-      <HoverableAlbumArt coverArt={coverArt} artDescription={name} lazyLoad>
+      <HoverableAlbumArt
+        coverArt={coverArt}
+        artDescription={name}
+        lazyLoad={lazyLoad}
+      >
         <h1 className={`text-xl`}>{name}</h1>
         <h2>{artist}</h2>
       </HoverableAlbumArt>

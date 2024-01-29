@@ -90,6 +90,9 @@ export default defineConfig({
     }),
     TanStackRouterVite({}),
   ],
+  css: {
+    devSourcemap: true,
+  },
   build: {
     outDir: "build",
   },

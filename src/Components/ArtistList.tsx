@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Artists } from "../api/artists.js";
 import ArtistItem from "./ArtistItem.js";
 import Grid from "./Grid.js";

@@ -14,7 +14,7 @@ import Update from "./Updater/Update.js";
 function Nav() {
   const { t } = useTranslation(["nav", "common"]);
 
-  let [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
 
   const toggleMenu = useCallback(() => {
     setShow(!show);

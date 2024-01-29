@@ -6,7 +6,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as LoginImport } from './routes/login'
-import { Route as AuthenticatedImport } from './routes/_authenticated'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated/route'
 import { Route as IndexImport } from './routes/index'
 import { Route as AuthenticatedSearchImport } from './routes/_authenticated/search'
 import { Route as AuthenticatedPodcastsIndexImport } from './routes/_authenticated/podcasts/index'
@@ -31,10 +31,12 @@ const LoginRoute = LoginImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const AuthenticatedRoute = AuthenticatedImport.update({
+const AuthenticatedRouteRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRoute,
-} as any)
+} as any).lazy(() =>
+  import('./routes/_authenticated/route.lazy').then((d) => d.Route),
+)
 
 const IndexRoute = IndexImport.update({
   path: '/',
@@ -44,62 +46,78 @@ const IndexRoute = IndexImport.update({
 const AuthenticatedNowPlayingLazyRoute =
   AuthenticatedNowPlayingLazyImport.update({
     path: '/now-playing',
-    getParentRoute: () => AuthenticatedRoute,
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any).lazy(() =>
     import('./routes/_authenticated/now-playing.lazy').then((d) => d.Route),
   )
 
 const AuthenticatedSearchRoute = AuthenticatedSearchImport.update({
   path: '/search',
-  getParentRoute: () => AuthenticatedRoute,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 
 const AuthenticatedPodcastsIndexRoute = AuthenticatedPodcastsIndexImport.update(
   {
     path: '/podcasts/',
-    getParentRoute: () => AuthenticatedRoute,
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any,
 )
 
 const AuthenticatedPlaylistsIndexRoute =
   AuthenticatedPlaylistsIndexImport.update({
     path: '/playlists/',
-    getParentRoute: () => AuthenticatedRoute,
-  } as any)
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/playlists/index.lazy').then((d) => d.Route),
+  )
 
 const AuthenticatedArtistsIndexRoute = AuthenticatedArtistsIndexImport.update({
   path: '/artists/',
-  getParentRoute: () => AuthenticatedRoute,
-} as any)
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any).lazy(() =>
+  import('./routes/_authenticated/artists/index.lazy').then((d) => d.Route),
+)
 
 const AuthenticatedAlbumsIndexRoute = AuthenticatedAlbumsIndexImport.update({
   path: '/albums/',
-  getParentRoute: () => AuthenticatedRoute,
-} as any)
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any).lazy(() =>
+  import('./routes/_authenticated/albums/index.lazy').then((d) => d.Route),
+)
 
 const AuthenticatedPodcastsPodcastIdRoute =
   AuthenticatedPodcastsPodcastIdImport.update({
     path: '/podcasts/$podcastId',
-    getParentRoute: () => AuthenticatedRoute,
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 
 const AuthenticatedPlaylistsPlaylistIdRoute =
   AuthenticatedPlaylistsPlaylistIdImport.update({
     path: '/playlists/$playlistId',
-    getParentRoute: () => AuthenticatedRoute,
-  } as any)
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/playlists/$playlistId.lazy').then(
+      (d) => d.Route,
+    ),
+  )
 
 const AuthenticatedArtistsArtistIdRoute =
   AuthenticatedArtistsArtistIdImport.update({
     path: '/artists/$artistId',
-    getParentRoute: () => AuthenticatedRoute,
-  } as any)
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/artists/$artistId.lazy').then(
+      (d) => d.Route,
+    ),
+  )
 
 const AuthenticatedAlbumsAlbumIdRoute = AuthenticatedAlbumsAlbumIdImport.update(
   {
     path: '/albums/$albumId',
-    getParentRoute: () => AuthenticatedRoute,
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any,
+).lazy(() =>
+  import('./routes/_authenticated/albums/$albumId.lazy').then((d) => d.Route),
 )
 
 // Populate the FileRoutesByPath interface
@@ -111,7 +129,7 @@ declare module '@tanstack/react-router' {
       parentRoute: typeof rootRoute
     }
     '/_authenticated': {
-      preLoaderRoute: typeof AuthenticatedImport
+      preLoaderRoute: typeof AuthenticatedRouteImport
       parentRoute: typeof rootRoute
     }
     '/login': {
@@ -120,43 +138,43 @@ declare module '@tanstack/react-router' {
     }
     '/_authenticated/search': {
       preLoaderRoute: typeof AuthenticatedSearchImport
-      parentRoute: typeof AuthenticatedImport
+      parentRoute: typeof AuthenticatedRouteImport
     }
     '/_authenticated/now-playing': {
       preLoaderRoute: typeof AuthenticatedNowPlayingLazyImport
-      parentRoute: typeof AuthenticatedImport
+      parentRoute: typeof AuthenticatedRouteImport
     }
     '/_authenticated/albums/$albumId': {
       preLoaderRoute: typeof AuthenticatedAlbumsAlbumIdImport
-      parentRoute: typeof AuthenticatedImport
+      parentRoute: typeof AuthenticatedRouteImport
     }
     '/_authenticated/artists/$artistId': {
       preLoaderRoute: typeof AuthenticatedArtistsArtistIdImport
-      parentRoute: typeof AuthenticatedImport
+      parentRoute: typeof AuthenticatedRouteImport
     }
     '/_authenticated/playlists/$playlistId': {
       preLoaderRoute: typeof AuthenticatedPlaylistsPlaylistIdImport
-      parentRoute: typeof AuthenticatedImport
+      parentRoute: typeof AuthenticatedRouteImport
     }
     '/_authenticated/podcasts/$podcastId': {
       preLoaderRoute: typeof AuthenticatedPodcastsPodcastIdImport
-      parentRoute: typeof AuthenticatedImport
+      parentRoute: typeof AuthenticatedRouteImport
     }
     '/_authenticated/albums/': {
       preLoaderRoute: typeof AuthenticatedAlbumsIndexImport
-      parentRoute: typeof AuthenticatedImport
+      parentRoute: typeof AuthenticatedRouteImport
     }
     '/_authenticated/artists/': {
       preLoaderRoute: typeof AuthenticatedArtistsIndexImport
-      parentRoute: typeof AuthenticatedImport
+      parentRoute: typeof AuthenticatedRouteImport
     }
     '/_authenticated/playlists/': {
       preLoaderRoute: typeof AuthenticatedPlaylistsIndexImport
-      parentRoute: typeof AuthenticatedImport
+      parentRoute: typeof AuthenticatedRouteImport
     }
     '/_authenticated/podcasts/': {
       preLoaderRoute: typeof AuthenticatedPodcastsIndexImport
-      parentRoute: typeof AuthenticatedImport
+      parentRoute: typeof AuthenticatedRouteImport
     }
   }
 }
@@ -165,7 +183,7 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
-  AuthenticatedRoute.addChildren([
+  AuthenticatedRouteRoute.addChildren([
     AuthenticatedSearchRoute,
     AuthenticatedNowPlayingLazyRoute,
     AuthenticatedAlbumsAlbumIdRoute,
