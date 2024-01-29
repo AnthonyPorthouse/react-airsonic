@@ -38,17 +38,17 @@ function AudioProvider({
   };
 
   useEffect(() => {
-    audio.current.addEventListener("loadeddata", (e) => {
+    audio.current.addEventListener("loadeddata", () => {
       audio.current.play().catch(() => {});
     });
 
-    audio.current.addEventListener("ended", (e) => {
+    audio.current.addEventListener("ended", () => {
       nextTrack();
       setCurrentDuration(0);
       setCurrentTime(0);
     });
 
-    audio.current.addEventListener("timeupdate", (e) => {
+    audio.current.addEventListener("timeupdate", () => {
       if (nowPlaying?.isPodcast) {
         localStorage.setItem(
           `podcast_${nowPlaying?.id}`,
@@ -62,17 +62,17 @@ function AudioProvider({
   }, [nextTrack, setCurrentTime]);
 
   useEffect(() => {
-    audio.current.addEventListener("loadeddata", (e) => {
+    audio.current.addEventListener("loadeddata", () => {
       audio.current.play().catch(() => {});
     });
 
-    audio.current.addEventListener("ended", (e) => {
+    audio.current.addEventListener("ended", () => {
       nextTrack();
       setCurrentDuration(0);
       setCurrentTime(0);
     });
 
-    audio.current.addEventListener("timeupdate", (e) => {
+    audio.current.addEventListener("timeupdate", () => {
       if (nowPlaying?.isPodcast) {
         localStorage.setItem(
           `podcast_${nowPlaying?.id}`,

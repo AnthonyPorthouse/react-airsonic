@@ -8,7 +8,7 @@ import { getPlaylists } from "../../../api/playlists";
 
 const AlbumsQueryOptions = (auth: Authenticated) => {
   return queryOptions({
-    queryKey: ["playlists"],
+    queryKey: ["playlists", auth.credentials],
     queryFn: () => getPlaylists(auth.credentials),
   });
 };

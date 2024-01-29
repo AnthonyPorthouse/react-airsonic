@@ -69,10 +69,10 @@ export async function getPodcast(
 
   const json = await result.json();
 
-  let { episode: episodes, ...podcast } =
+  const { episode: episodes, ...podcast } =
     json["subsonic-response"].podcasts.channel[0];
 
-  episodes = episodes.map((episode: Episode) => {
+  const mappedEpisodes = episodes.map((episode: Episode) => {
     if (isDownloadedEpisode(episode)) {
       episode.id = episode.streamId;
       episode.isPodcast = true;
@@ -81,7 +81,7 @@ export async function getPodcast(
     return episode;
   });
 
-  return [podcast, episodes];
+  return [podcast, mappedEpisodes];
 }
 
 export async function downloadEpisode(

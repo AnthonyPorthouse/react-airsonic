@@ -9,7 +9,7 @@ import { type Albums, getAlbums } from "../../../api/albums";
 
 const AlbumsQueryOptions = (auth: Authenticated) => {
   return queryOptions({
-    queryKey: ["albums"],
+    queryKey: ["albums", auth.credentials],
     queryFn: () => getAlbums(auth.credentials),
   });
 };

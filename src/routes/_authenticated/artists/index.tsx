@@ -1,7 +1,6 @@
 import {
   queryOptions,
-  useQuery,
-  useSuspenseQuery,
+  useSuspenseQuery
 } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 
@@ -11,7 +10,7 @@ import { getArtists } from "../../../api/artists";
 
 const ArtistsQueryOptions = (auth: Authenticated) => {
   return queryOptions({
-    queryKey: ["artists"],
+    queryKey: ["artists", auth.credentials],
     queryFn: () => getArtists(auth.credentials),
   });
 };

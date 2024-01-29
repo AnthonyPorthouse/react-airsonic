@@ -8,7 +8,7 @@ import { getPlaylist } from "../../../api/playlists";
 
 const PlaylistQueryOptions = (playlistId: string, auth: Authenticated) =>
   queryOptions({
-    queryKey: ["playlist", playlistId],
+    queryKey: ["playlist", playlistId, auth.credentials],
     queryFn: () => getPlaylist(playlistId, auth.credentials),
   });
 
@@ -22,7 +22,7 @@ function Playlist() {
   const { playlistId } = Route.useParams();
   const auth = useAuth();
 
-  const { isSuccess, data } = useSuspenseQuery({
+  const { data } = useSuspenseQuery({
     ...PlaylistQueryOptions(playlistId, auth),
     initialData: Route.useLoaderData(),
   });

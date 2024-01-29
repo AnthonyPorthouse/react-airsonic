@@ -7,7 +7,7 @@ import { getArtist } from "../../../api/artists";
 
 const ArtistQueryOptions = (artistId: string, auth: Authenticated) => {
   return queryOptions({
-    queryKey: ["artist", artistId],
+    queryKey: ["artist", artistId, auth.credentials],
     queryFn: () => getArtist(artistId, auth.credentials),
   });
 };

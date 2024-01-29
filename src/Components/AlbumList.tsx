@@ -1,4 +1,3 @@
-import { Suspense, lazy } from "react";
 
 import { Albums } from "../api/albums.js";
 import Album from "./Album.js";

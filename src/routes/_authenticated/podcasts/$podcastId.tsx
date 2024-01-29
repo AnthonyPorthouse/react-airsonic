@@ -8,7 +8,7 @@ import { getPodcast } from "../../../api/podcasts";
 
 const PodcastQueryOptions = (podcastId: string, auth: Authenticated) =>
   queryOptions({
-    queryKey: ["podcasts", podcastId],
+    queryKey: ["podcasts", podcastId, auth.credentials],
     queryFn: () => getPodcast(podcastId, auth.credentials),
   });
 

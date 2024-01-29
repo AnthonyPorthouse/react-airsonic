@@ -10,7 +10,7 @@ import { getSearchResults } from "../../api/search";
 
 const SearchQueryOptions = (query: string, auth: Authenticated) =>
   queryOptions({
-    queryKey: ["search", query],
+    queryKey: ["search", query, auth.credentials],
     queryFn: () => getSearchResults(query, auth.credentials),
   });
 

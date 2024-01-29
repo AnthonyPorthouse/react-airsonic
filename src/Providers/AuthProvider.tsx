@@ -31,8 +31,8 @@ export const AuthContext = createContext<Authenticated>({
     username: "",
     password: "",
   },
-  setCredentials: (credentials: Credentials) => {},
-  setAuth: (auth) => {},
+  setCredentials: () => {},
+  setAuth: () => {},
 });
 
 export function AuthProvider({ children }: Readonly<{ children: ReactNode }>) {

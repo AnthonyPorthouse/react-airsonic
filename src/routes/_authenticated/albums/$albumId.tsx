@@ -8,7 +8,7 @@ import { getAlbum } from "../../../api/albums";
 
 const AlbumQueryOptions = (albumId: string, auth: Authenticated) => {
   return queryOptions({
-    queryKey: ["albums", albumId],
+    queryKey: ["albums", albumId, auth.credentials],
     queryFn: () => getAlbum(albumId, auth.credentials),
   });
 };
