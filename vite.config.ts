@@ -88,8 +88,13 @@ export default defineConfig({
         ],
       },
     }),
-    TanStackRouterVite({}),
+    TanStackRouterVite({
+      
+    }),
   ],
+  css: {
+    devSourcemap: true,
+  },
   build: {
     outDir: "build",
   },
