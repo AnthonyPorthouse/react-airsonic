@@ -61,6 +61,8 @@ const AuthenticatedPodcastsIndexRoute = AuthenticatedPodcastsIndexImport.update(
     path: '/podcasts/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any,
+).lazy(() =>
+  import('./routes/_authenticated/podcasts/index.lazy').then((d) => d.Route),
 )
 
 const AuthenticatedPlaylistsIndexRoute =
@@ -89,7 +91,11 @@ const AuthenticatedPodcastsPodcastIdRoute =
   AuthenticatedPodcastsPodcastIdImport.update({
     path: '/podcasts/$podcastId',
     getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
+  } as any).lazy(() =>
+    import('./routes/_authenticated/podcasts/$podcastId.lazy').then(
+      (d) => d.Route,
+    ),
+  )
 
 const AuthenticatedPlaylistsPlaylistIdRoute =
   AuthenticatedPlaylistsPlaylistIdImport.update({

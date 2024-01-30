@@ -3,10 +3,12 @@ import { createLazyFileRoute } from "@tanstack/react-router";
 
 import { ArtistsQueryOptions } from ".";
 import ArtistList from "../../../Components/ArtistList";
+import Spinner from "../../../Components/Spinner";
 import { useAuth } from "../../../Providers/AuthProvider";
 
 export const Route = createLazyFileRoute("/_authenticated/artists/")({
   component: Artists,
+  pendingComponent: Spinner,
 });
 
 function Artists() {

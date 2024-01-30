@@ -5,11 +5,13 @@ import AlbumHeader from "../../../Components/AlbumHeader";
 import TrackList from "../../../Components/TrackList";
 import { useAuth } from "../../../Providers/AuthProvider";
 import { PlaylistQueryOptions } from "./$playlistId";
+import Spinner from "../../../Components/Spinner";
 
 export const Route = createLazyFileRoute(
   "/_authenticated/playlists/$playlistId",
 )({
   component: Playlist,
+  pendingComponent: Spinner,
 });
 
 function Playlist() {

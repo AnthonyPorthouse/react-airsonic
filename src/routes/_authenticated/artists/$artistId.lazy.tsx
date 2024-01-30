@@ -2,11 +2,13 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { createLazyFileRoute } from "@tanstack/react-router";
 
 import AlbumList from "../../../Components/AlbumList";
+import Spinner from "../../../Components/Spinner";
 import { useAuth } from "../../../Providers/AuthProvider";
 import { ArtistQueryOptions } from "./$artistId";
 
 export const Route = createLazyFileRoute("/_authenticated/artists/$artistId")({
   component: Artist,
+  pendingComponent: Spinner,
 });
 
 function Artist() {

@@ -4,10 +4,12 @@ import { createLazyFileRoute } from "@tanstack/react-router";
 import { PlaylistsQueryOptions } from ".";
 import Grid from "../../../Components/Grid";
 import Playlist from "../../../Components/Playlist";
+import Spinner from "../../../Components/Spinner";
 import { useAuth } from "../../../Providers/AuthProvider";
 
 export const Route = createLazyFileRoute("/_authenticated/playlists/")({
   component: Playlists,
+  pendingComponent: Spinner,
 });
 
 function Playlists() {
