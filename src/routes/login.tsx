@@ -61,9 +61,9 @@ function LogIn() {
 
   useEffect(() => {
     if (server && username && password && !hasAutoChecked) {
-      setHasAutoChecked(true);
       mutate();
     }
+    setHasAutoChecked(true);
   }, [mutate, server, username, password]);
 
   useEffect(() => {
