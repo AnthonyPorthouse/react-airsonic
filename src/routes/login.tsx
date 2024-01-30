@@ -29,6 +29,8 @@ function LogIn() {
   const [username, setUsername] = useState(auth.credentials.username);
   const [password, setPassword] = useState(auth.credentials.password);
 
+  const [hasAutoChecked, setHasAutoChecked] = useState(false);
+
   const navigate = useNavigate();
   const routeApi = getRouteApi("/login");
   const search = routeApi.useSearch();
@@ -54,18 +56,15 @@ function LogIn() {
         isAuthenticated: true,
       });
       auth.setCredentials({ server, username, password });
-
-      // return navigate({
-      //   to: search.redirect,
-      // });
     },
   });
 
-  // useEffect(() => {
-  //   if (server && username && password) {
-  //     mutate();
-  //   }
-  // }, [mutate, server, username, password]);
+  useEffect(() => {
+    if (server && username && password && !hasAutoChecked) {
+      setHasAutoChecked(true);
+      mutate();
+    }
+  }, [mutate, server, username, password]);
 
   useEffect(() => {
     if(auth.isAuthenticated) {
@@ -92,7 +91,7 @@ function LogIn() {
     <Suspense>
       <div className={`flex flex-auto items-center h-auto`}>
         <div className={`mx-auto w-64`}>
-          {isError ? <div> Something Went Wrong</div> : null}
+          {isError && <div>Something Went Wrong</div>}
 
           <form className={`grid grid-cols-1 gap-6`} onSubmit={submit}>
             <picture className="mx-auto">
