@@ -11,9 +11,10 @@ import TrackListItem from "./TrackListItem.js";
 
 interface TrackListProps {
   tracks: Songs;
+  includeAdd?: boolean;
 }
 
-function TrackList({ tracks }: Readonly<TrackListProps>) {
+function TrackList({ tracks, includeAdd = false }: Readonly<TrackListProps>) {
   const { t } = useTranslation("albums");
   const windowHeight = useWindowHeight();
 
@@ -57,7 +58,7 @@ function TrackList({ tracks }: Readonly<TrackListProps>) {
         index % 2 === 0 ? "bg-white" : "bg-gray-100",
       )}
     >
-      <TrackListItem track={tracks[index]} />
+      <TrackListItem track={tracks[index]} includeAdd={includeAdd} />
     </div>
   );
 

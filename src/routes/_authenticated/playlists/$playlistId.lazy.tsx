@@ -2,10 +2,10 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { createLazyFileRoute } from "@tanstack/react-router";
 
 import AlbumHeader from "../../../Components/AlbumHeader";
+import Spinner from "../../../Components/Spinner";
 import TrackList from "../../../Components/TrackList";
 import { useAuth } from "../../../Providers/AuthProvider";
 import { PlaylistQueryOptions } from "./$playlistId";
-import Spinner from "../../../Components/Spinner";
 
 export const Route = createLazyFileRoute(
   "/_authenticated/playlists/$playlistId",
@@ -27,7 +27,7 @@ function Playlist() {
   return (
     <div className={`flex flex-auto flex-col lg:flex-row gap-6`}>
       <AlbumHeader album={playlist} tracks={songs} />
-      {<TrackList tracks={songs} />}
+      <TrackList tracks={songs} includeAdd />
     </div>
   );
 }

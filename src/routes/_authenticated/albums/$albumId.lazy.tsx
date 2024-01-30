@@ -25,7 +25,7 @@ function Album() {
   return (
     <div className={`flex flex-auto flex-col lg:flex-row gap-6`}>
       <AlbumHeader album={album} tracks={songs} />
-      <TrackList tracks={songs} />
+      <TrackList tracks={songs} includeAdd />
     </div>
   );
 }

@@ -54,7 +54,9 @@ const AuthenticatedNowPlayingLazyRoute =
 const AuthenticatedSearchRoute = AuthenticatedSearchImport.update({
   path: '/search',
   getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
+} as any).lazy(() =>
+  import('./routes/_authenticated/search.lazy').then((d) => d.Route),
+)
 
 const AuthenticatedPodcastsIndexRoute = AuthenticatedPodcastsIndexImport.update(
   {

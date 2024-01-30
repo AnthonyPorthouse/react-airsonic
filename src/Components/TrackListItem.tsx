@@ -1,4 +1,4 @@
-import { PlayIcon } from "@heroicons/react/24/solid";
+import { PlayIcon, PlusIcon } from "@heroicons/react/24/solid";
 import { SyntheticEvent, useContext } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -9,14 +9,18 @@ import Duration from "./Duration.js";
 
 interface TrackListItemProps {
   track: Song;
+  includeAdd?: boolean;
 }
 
-function TrackListItem({ track }: Readonly<TrackListItemProps>) {
+function TrackListItem({
+  track,
+  includeAdd = false,
+}: Readonly<TrackListItemProps>) {
   const { t } = useTranslation("media");
 
   const tracks = useContext(AlbumContext);
 
-  const { getCurrentTrack, setTrackList } = useTrackList();
+  const { getCurrentTrack, setTrackList, addTrack } = useTrackList();
 
   const play = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -25,30 +29,50 @@ function TrackListItem({ track }: Readonly<TrackListItemProps>) {
     setTrackList(tracks.slice(startingIndex));
   };
 
+  const add = (e: SyntheticEvent) => {
+    e.preventDefault();
+
+    addTrack(track);
+  };
+
   const playButton = (
-    <button
-      onClick={play}
-      className={`flex gap-6 md:block w-full md:w-6 flex-shrink-0`}
-      title={t("playTrack")}
-    >
-      <PlayIcon className={`flex-shrink-0 w-6 md:w-full`} />
-      <span className={`truncate md:hidden`}>{track.title}</span>
+    <button onClick={play} className={`w-6 flex-shrink-0`}>
+      <a data-tooltip-id="tooltip" data-tooltip-content={t("playTrack")}>
+        <PlayIcon className={`w-6 md:w-full`} />
+      </a>
     </button>
   );
 
-  const nowPlaying = (
+  const addButton = (
+    <button onClick={add} className={`w-6 flex-shrink-0`}>
+      <a data-tooltip-id="tooltip" data-tooltip-content={t("addTrack")}>
+        <PlusIcon className={`w-6 md:w-full`} />
+      </a>
+    </button>
+  );
+
+  const nowPlayingIcon = (
     <div
       className={`flex gap-6 md:block w-full md:w-6 flex-shrink-0`}
-      title={`Currently Playing`}
+      title={t("currentlyPlaying")}
     >
-      <PlayIcon className={`flex-shrink-0 w-6 md:w-full text-green-400`} />
+      <a data-tooltip-id="tooltip" data-tooltip-content={t("currentlyPlaying")}>
+        <PlayIcon className={`flex-shrink-0 w-6 md:w-full text-green-400`} />
+      </a>
       <span className={`truncate md:hidden`}>{track.title}</span>
     </div>
   );
 
   return (
     <div className={`flex gap-6 overflow-hidden`}>
-      {getCurrentTrack()?.id === track.id ? nowPlaying : playButton}
+      <div className="flex flex-row gap-6 md:block w-full md:w-6 flex-shrink-0">
+        <div className="flex flex-row">
+          {getCurrentTrack()?.id === track.id ? nowPlayingIcon : playButton}
+          {includeAdd && addButton}
+        </div>
+        <span className={`truncate md:hidden`}>{track.title}</span>
+      </div>
+
       <span className={`hidden md:block w-1/12 text-right`}>
         {track.discNumber ? `${track.discNumber} / ` : null}
         {track.track ? track.track : null}

@@ -11,6 +11,7 @@ import { Song, Songs } from "../api/songs.js";
 
 export interface TrackList {
   trackList: Songs;
+  addTrack(track: Song): void;
   setTrackList(tracks: Songs): void;
   getCurrentTrack(): Song | null;
   nextTrack(): void;
@@ -20,6 +21,7 @@ let trackList: Songs = [];
 
 export const TrackListContext = createContext<TrackList>({
   trackList: [],
+  addTrack: () => {},
   setTrackList: (tracks: Songs) => {
     trackList = tracks;
   },
@@ -49,6 +51,9 @@ export function TrackListProvider({
   const trackListValue = useMemo(() => {
     return {
       trackList,
+      addTrack: (song: Song) => {
+        setTrackList([...trackList, song])
+      },
       setTrackList: (songs: Songs) => {
         setTrackListPosition(0);
         setTrackList(songs);

@@ -1,8 +1,10 @@
 {
+  "addTrack": "Add to Queue",
   "playTrack": "Play Track",
   "pauseTrack": "Pause Track",
   "nextTrack": "Skip Track",
   "stopTrack": "Stop Track",
   "enterFullscreen": "Enter Fullscreen",
-  "exitFullscreen": "Exit Fullscreen"
+  "exitFullscreen": "Exit Fullscreen",
+  "currentlyPlaying": "Currently Playing"
 }
