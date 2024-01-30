@@ -37,7 +37,7 @@ function TrackListItem({
 
   const playButton = (
     <button onClick={play} className={`w-6 flex-shrink-0`}>
-      <a data-tooltip-id="tooltip" data-tooltip-content={t("playTrack")}>
+      <a data-tooltip-id="tooltip" data-tooltip-content={t("playTrack")} data-tooltip-delay-show={1000}>
         <PlayIcon className={`w-6 md:w-full`} />
       </a>
     </button>
@@ -45,7 +45,7 @@ function TrackListItem({
 
   const addButton = (
     <button onClick={add} className={`w-6 flex-shrink-0`}>
-      <a data-tooltip-id="tooltip" data-tooltip-content={t("addTrack")}>
+      <a data-tooltip-id="tooltip" data-tooltip-content={t("addTrack")} data-tooltip-delay-show={1000}>
         <PlusIcon className={`w-6 md:w-full`} />
       </a>
     </button>
@@ -56,7 +56,7 @@ function TrackListItem({
       className={`flex gap-6 md:block w-full md:w-6 flex-shrink-0`}
       title={t("currentlyPlaying")}
     >
-      <a data-tooltip-id="tooltip" data-tooltip-content={t("currentlyPlaying")}>
+      <a data-tooltip-id="tooltip" data-tooltip-content={t("currentlyPlaying")} data-tooltip-delay-show={1000}>
         <PlayIcon className={`flex-shrink-0 w-6 md:w-full text-green-400`} />
       </a>
       <span className={`truncate md:hidden`}>{track.title}</span>

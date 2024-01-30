@@ -19,7 +19,7 @@ function Update() {
       <button
         onClick={refreshApplication}
       >
-        <a data-tooltip-id="tooltip" data-tooltip-content={t('update-available')}>
+        <a data-tooltip-id="tooltip" data-tooltip-content={t('update-available')} data-tooltip-delay-show={1000}>
           <CloudArrowUpIcon className={`h-6`} />
         </a>
       </button>
