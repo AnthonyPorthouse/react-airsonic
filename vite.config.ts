@@ -22,7 +22,15 @@ export default defineConfig({
             sizes: "192x192",
           },
           {
+            src: "logo192.png",
+            sizes: "192x192",
+          },
+          {
             src: "logo256.webp",
+            sizes: "256x256",
+          },
+          {
+            src: "logo256.png",
             sizes: "256x256",
           },
           {
@@ -30,11 +38,24 @@ export default defineConfig({
             sizes: "512x512",
           },
           {
+            src: "logo512.png",
+            sizes: "512x512",
+          },
+          {
             src: "logo1024.webp",
             sizes: "1024x1024",
           },
           {
+            src: "logo1024.png",
+            sizes: "1024x1024",
+          },
+          {
             src: "logo192maskable.webp",
+            sizes: "192x192",
+            purpose: "maskable",
+          },
+          {
+            src: "logo192maskable.png",
             sizes: "192x192",
             purpose: "maskable",
           },
@@ -44,7 +65,17 @@ export default defineConfig({
             purpose: "maskable",
           },
           {
+            src: "logo512maskable.png",
+            sizes: "512x512",
+            purpose: "maskable",
+          },
+          {
             src: "logo1024maskable.webp",
+            sizes: "1024x1024",
+            purpose: "maskable",
+          },
+          {
+            src: "logo1024maskable.png",
             sizes: "1024x1024",
             purpose: "maskable",
           },
