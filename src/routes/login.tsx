@@ -28,46 +28,50 @@ function LogIn() {
   const [server, setServer] = useState(auth.credentials.server);
   const [username, setUsername] = useState(auth.credentials.username);
   const [password, setPassword] = useState(auth.credentials.password);
-  const [initialLoad, setInitialLoad] = useState(true);
 
   const navigate = useNavigate();
   const routeApi = getRouteApi("/login");
   const search = routeApi.useSearch();
 
-  const { isError, isIdle, mutate } = useMutation({
+  const { isError, mutate } = useMutation({
     mutationKey: ["auth", auth.credentials],
-    mutationFn: () => ping(auth.credentials),
+    mutationFn: async () => await ping(auth.credentials),
 
     onMutate: () => {
       auth.setAuth({
         credentials: { ...auth.credentials },
         isAuthenticated: false,
       });
-    },
 
-    onSuccess: async () => {
       localStorage.setItem("ra.server", server);
       localStorage.setItem("ra.username", username);
       localStorage.setItem("ra.password", password);
+    },
+
+    onSuccess: () => {
       auth.setAuth({
         credentials: { ...auth.credentials },
         isAuthenticated: true,
       });
       auth.setCredentials({ server, username, password });
 
-      await navigate({
-        to: search.redirect,
-      });
+      // return navigate({
+      //   to: search.redirect,
+      // });
     },
   });
 
-  useEffect(() => {
-    setInitialLoad(false);
+  // useEffect(() => {
+  //   if (server && username && password) {
+  //     mutate();
+  //   }
+  // }, [mutate, server, username, password]);
 
-    if (server && username && password && initialLoad && isIdle) {
-      mutate();
+  useEffect(() => {
+    if(auth.isAuthenticated) {
+      navigate({ to: search.redirect})
     }
-  }, [mutate, server, username, password, isIdle]);
+  }, [auth.isAuthenticated, navigate, search.redirect])
 
   const submit = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -81,7 +85,7 @@ function LogIn() {
       },
     });
 
-    mutate();
+    mutate()
   };
 
   return (
