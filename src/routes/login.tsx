@@ -64,13 +64,13 @@ function LogIn() {
       mutate();
     }
     setHasAutoChecked(true);
-  }, [mutate, server, username, password]);
+  }, [mutate, server, username, password, hasAutoChecked]);
 
   useEffect(() => {
-    if(auth.isAuthenticated) {
-      navigate({ to: search.redirect})
+    if (auth.isAuthenticated) {
+      navigate({ to: search.redirect });
     }
-  }, [auth.isAuthenticated, navigate, search.redirect])
+  }, [auth.isAuthenticated, navigate, search.redirect]);
 
   const submit = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -84,7 +84,7 @@ function LogIn() {
       },
     });
 
-    mutate()
+    mutate();
   };
 
   return (

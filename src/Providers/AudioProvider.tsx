@@ -59,31 +59,7 @@ function AudioProvider({
       setCurrentTime(audio.current.currentTime || 0);
       setCurrentDuration(audio.current.duration || 0);
     });
-  }, [nextTrack, setCurrentTime]);
-
-  useEffect(() => {
-    audio.current.addEventListener("loadeddata", () => {
-      audio.current.play().catch(() => {});
-    });
-
-    audio.current.addEventListener("ended", () => {
-      nextTrack();
-      setCurrentDuration(0);
-      setCurrentTime(0);
-    });
-
-    audio.current.addEventListener("timeupdate", () => {
-      if (nowPlaying?.isPodcast) {
-        localStorage.setItem(
-          `podcast_${nowPlaying?.id}`,
-          String(audio.current.currentTime || 0),
-        );
-      }
-
-      setCurrentTime(audio.current.currentTime || 0);
-      setCurrentDuration(audio.current.duration || 0);
-    });
-  }, [nextTrack, setCurrentTime]);
+  }, [nextTrack, setCurrentTime, setCurrentDuration, nowPlaying]);
 
   useEffect(() => {
     if (!nowPlaying || !currentTrackUrl) {

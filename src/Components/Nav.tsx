@@ -78,7 +78,7 @@ function Nav() {
               <Link
                 className={`inline-block w-full md:w-auto`}
                 activeProps={{
-                  className: `font-bold`
+                  className: `font-bold`,
                 }}
                 to="/now-playing"
                 onClick={toggleMenu}
@@ -90,7 +90,7 @@ function Nav() {
               <Link
                 className={`inline-block w-full md:w-auto`}
                 activeProps={{
-                  className: `font-bold`
+                  className: `font-bold`,
                 }}
                 to="/albums"
                 onClick={toggleMenu}
@@ -103,7 +103,7 @@ function Nav() {
               <Link
                 className={`inline-block w-full md:w-auto`}
                 activeProps={{
-                  className: `font-bold`
+                  className: `font-bold`,
                 }}
                 to="/artists"
                 onClick={toggleMenu}
@@ -115,7 +115,7 @@ function Nav() {
               <Link
                 className={`inline-block w-full md:w-auto`}
                 activeProps={{
-                  className: `font-bold`
+                  className: `font-bold`,
                 }}
                 to={`/playlists`}
                 onClick={toggleMenu}
@@ -127,7 +127,7 @@ function Nav() {
               <Link
                 className={`inline-block w-full md:w-auto`}
                 activeProps={{
-                  className: `font-bold`
+                  className: `font-bold`,
                 }}
                 to={`/podcasts`}
                 onClick={toggleMenu}

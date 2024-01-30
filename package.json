@@ -38,9 +38,10 @@
     "zod": "^3.22.4"
   },
   "scripts": {
-    "start": "cross-env VITE_COMMIT_SHA=dev vite",
+    "dev": "cross-env VITE_COMMIT_SHA=dev vite",
     "build": "tsc && VITE_COMMIT_SHA=`git rev-parse --short HEAD` vite build",
     "preview": "vite preview",
+    "lint": "eslint .",
     "format": "prettier --write ."
   },
   "eslintConfig": {
@@ -81,7 +82,8 @@
     "cross-env": "^7.0.3",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
     "jest-localstorage-mock": "^2.4.26",
     "msw": "^2.1.5",
     "postcss": "^8.4.33",

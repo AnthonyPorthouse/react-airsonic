@@ -1,7 +1,7 @@
 import { Outlet, createLazyFileRoute } from "@tanstack/react-router";
-
 import { createPortal } from "react-dom";
-import { Tooltip } from 'react-tooltip';
+import { Tooltip } from "react-tooltip";
+
 import MediaPlayer from "../../Components/MediaPlayer";
 import Nav from "../../Components/Nav";
 import Spinner from "../../Components/Spinner";
@@ -12,7 +12,6 @@ export const Route = createLazyFileRoute("/_authenticated")({
 });
 
 function Authenticated() {
-
   return (
     <>
       <Nav />
@@ -25,7 +24,10 @@ function Authenticated() {
 
       <MediaPlayer />
 
-      { createPortal(<Tooltip id="tooltip" style={{zIndex: 100}} />, document.body) }
+      {createPortal(
+        <Tooltip id="tooltip" style={{ zIndex: 100 }} />,
+        document.body,
+      )}
     </>
   );
 }

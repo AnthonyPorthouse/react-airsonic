@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export function useUpdateAvailable() {
   const [updateAvailable, setUpdateAvailable] = useState<boolean>(false);
 
-  const callback = () => {
+  const callback = useCallback(() => {
     setUpdateAvailable(true);
-  };
+  }, [setUpdateAvailable]);
 
   useEffect(() => {
     document.addEventListener("update_available", callback);

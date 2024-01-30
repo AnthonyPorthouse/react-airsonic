@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useMemo, useState } from "react";
+import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 
 import { FullscreenContext } from "../Components/MediaPlayer/FullscreenContext.js";
 
@@ -9,7 +9,7 @@ export default function FullscreenProvider({
 }>) {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
-  const setFullscreen = async (enableFullscreen: boolean) => {
+  const setFullscreen = useCallback(async (enableFullscreen: boolean) => {
     if (enableFullscreen) {
       try {
         await document.body.requestFullscreen();
@@ -23,7 +23,7 @@ export default function FullscreenProvider({
         console.error(e);
       }
     }
-  };
+  }, []);
 
   useEffect(() => {
     function onFullscreenChange() {

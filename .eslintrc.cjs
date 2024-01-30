@@ -6,8 +6,7 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended",
-    "plugin:react/jsx-runtime",
+    "plugin:react-hooks/recommended",
     "plugin:@tanstack/eslint-plugin-query/recommended",
     "prettier",
   ],
@@ -27,12 +26,7 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  plugins: ["@typescript-eslint", "react"],
+  plugins: ["react-refresh"],
   rules: {},
-  settings: {
-    react: {
-      version: "detect",
-    },
-  },
-  ignorePatterns: ["**/*.gen.ts"],
+  ignorePatterns: ["**/*.gen.ts", "build", ".eslintrc.cjs", "*.config.js"],
 };

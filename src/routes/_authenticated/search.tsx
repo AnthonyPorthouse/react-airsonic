@@ -19,4 +19,4 @@ export const Route = createFileRoute("/_authenticated/search")({
   loaderDeps: ({ search: { query } }) => ({ query }),
   loader: ({ context: { queryClient, auth }, deps: { query } }) =>
     queryClient.ensureQueryData(SearchQueryOptions(query, auth)),
-  });
+});

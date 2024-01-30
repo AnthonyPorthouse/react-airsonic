@@ -13,4 +13,4 @@ export const PodcastsQueryOptions = (auth: Authenticated) =>
 export const Route = createFileRoute("/_authenticated/podcasts/")({
   loader: ({ context: { auth, queryClient } }) =>
     queryClient.ensureQueryData(PodcastsQueryOptions(auth)),
-  });
+});

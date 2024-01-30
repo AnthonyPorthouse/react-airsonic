@@ -52,7 +52,7 @@ export function TrackListProvider({
     return {
       trackList,
       addTrack: (song: Song) => {
-        setTrackList([...trackList, song])
+        setTrackList([...trackList, song]);
       },
       setTrackList: (songs: Songs) => {
         setTrackListPosition(0);
