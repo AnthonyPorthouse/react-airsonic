@@ -115,6 +115,7 @@ function LogIn() {
                 className={`block w-full`}
                 type="url"
                 value={server}
+                autoComplete="url"
                 onChange={(e) => setServer(e.target.value)}
               />
             </label>
@@ -126,6 +127,7 @@ function LogIn() {
                 className={`block w-full`}
                 type="text"
                 value={username}
+                autoComplete="username"
                 onChange={(e) => setUsername(e.target.value)}
               />
             </label>
@@ -137,6 +139,7 @@ function LogIn() {
                 className={`block w-full`}
                 type="password"
                 value={password}
+                autoComplete="current-password"
                 onChange={(e) => setPassword(e.target.value)}
               />
             </label>
