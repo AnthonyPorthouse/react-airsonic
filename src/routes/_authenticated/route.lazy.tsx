@@ -17,7 +17,7 @@ function Authenticated() {
       <Nav />
 
       <div className={`overflow-y-auto flex-grow`}>
-        <div className="mx-6 my-6">
+        <div className="p-6 h-full">
           <Outlet />
         </div>
       </div>
