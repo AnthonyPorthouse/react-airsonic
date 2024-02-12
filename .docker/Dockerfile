@@ -10,6 +10,8 @@ RUN npm run build
 
 FROM caddy:alpine
 
-COPY --from=builder /app/build/. /usr/share/caddy/.
+WORKDIR /app
+
+COPY --from=builder /app/build/. /app/.
 
 COPY ./.docker/Caddyfile /etc/caddy/Caddyfile

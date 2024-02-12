@@ -30,7 +30,7 @@ function EpisodeList({ episodes }: Readonly<EpisodeListProps>) {
         `py-2`,
         `px-4`,
         `h-[${rowHeight}px]`,
-        item.index % 2 === 0 ? "bg-white" : "bg-gray-100",
+        item.index % 2 === 0 ? "bg-white dark:bg-black" : "bg-gray-100 dark:bg-midnight",
       )}
     >
       <EpisodeListItem episode={episodes[item.index]} />

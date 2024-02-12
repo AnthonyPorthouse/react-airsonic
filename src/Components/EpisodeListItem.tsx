@@ -64,7 +64,7 @@ function EpisodeListItem({ episode }: Readonly<EpisodeListItemProps>) {
       className={`flex gap-6 md:block w-full md:w-6 flex-shrink-0`}
       title={`Currently Playing`}
     >
-      <PlayIcon className={`flex-shrink-0 w-6 md:w-full text-green-400`} />
+      <PlayIcon className={`flex-shrink-0 w-6 md:w-full text-sunrise`} />
       <span className={`truncate md:hidden`}>{episode.title}</span>
     </div>
   );

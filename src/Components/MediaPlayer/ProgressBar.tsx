@@ -84,11 +84,11 @@ function ProgressBar({ length, position }: Readonly<ProgressBarProps>) {
 
     return (
       <div
-        className={`absolute h-full bg-green-200`}
+        className={`absolute h-full bg-green-200 dark:bg-sunrise`}
         style={{ width: `${mousePercent}%` }}
       >
         <div
-          className={`w-6 h-6 absolute -right-3 -top-1 leading-none rounded-full border-4 border-green-400 bg-white`}
+          className={`w-6 h-6 absolute -right-3 -top-1 leading-none rounded-full border-4 border-green-400  dark:border-skyline dark:bg-sunrise bg-white`}
         />
         <div
           ref={trackPosition}
@@ -108,7 +108,7 @@ function ProgressBar({ length, position }: Readonly<ProgressBarProps>) {
   const renderBasicProgressBar = () => {
     return (
       <div
-        className={`absolute h-full bg-green-200`}
+        className={`absolute h-full bg-green-200 dark:bg-sunrise`}
         style={{ width: `${progress}%` }}
       />
     );

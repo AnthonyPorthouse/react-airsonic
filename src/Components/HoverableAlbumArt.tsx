@@ -22,7 +22,7 @@ function HoverableAlbumArt({
           lazyLoad={lazyLoad}
         />
         <div
-          className={`absolute top-0 left-0 w-full h-full transition-all duration-200 ease-in-out bg-white/75 opacity-0 group-hover:opacity-100 group-focus:opacity-100 p-1 flex flex-col justify-center text-center`}
+          className={`absolute top-0 left-0 w-full h-full transition-all duration-200 ease-in-out bg-white/75 dark:bg-black/75 opacity-0 group-hover:opacity-100 group-focus:opacity-100 p-1 flex flex-col justify-center text-center`}
         >
           {children}
         </div>

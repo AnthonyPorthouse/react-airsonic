@@ -1,0 +1,29 @@
+services:
+  ra:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+
+    ports:
+      - 80:80
+      - 443:443
+
+    develop:
+      
+      watch:
+        - action: sync+restart
+          path: .docker/Caddyfile
+          target: /etc/caddy/Caddyfile
+
+        - action: sync
+          path: ./public
+          target: /app
+
+        - action: rebuild
+          path: ./src
+
+        - action: rebuild
+          path: postcss.config.cjs
+
+        - action: rebuild
+          path: package.json

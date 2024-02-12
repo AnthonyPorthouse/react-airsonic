@@ -30,7 +30,7 @@ function RootComponent() {
   return (
     <Suspense>
       <main
-        className={`w-screen h-screen flex flex-col bg-gray-50 font-work-sans`}
+        className={`w-screen h-screen flex flex-col bg-gray-50 font-work-sans dark:text-white dark:bg-gradient-to-b dark:from-skyline dark:to-midnight`}
       >
         <TitleInfo />
 

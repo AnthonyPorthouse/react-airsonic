@@ -22,7 +22,7 @@ function Nav() {
 
   return (
     <nav
-      className={`text-2xl px-6 py-3 bg-white w-full shadow z-10 flex justify-between md:static items-center`}
+      className={`text-2xl px-6 py-3 dark:bg-gradient-to-r dark:from-midnight dark:to-black bg-white w-full shadow z-10 flex justify-between md:static items-center`}
     >
       <picture className="absolute">
         <source srcSet={logoAvif} type="image/avif" />
@@ -47,7 +47,7 @@ function Nav() {
       </div>
 
       <div
-        className={`transition-all bg-white absolute md:static top-0 md:top-auto h-full md:h-auto w-screen md:w-full ${
+        className={`transition-all absolute md:static top-0 md:top-auto h-full md:h-auto w-screen md:w-full ${
           show ? "left-0" : "-left-full"
         }`}
       >
@@ -72,7 +72,7 @@ function Nav() {
           <hr className={`md:hidden my-3`} />
 
           <menu
-            className={`flex flex-col md:pl-20 md:flex-row gap-6 md:items-center flex-wrap `}
+            className={`flex flex-col md:pl-20 md:flex-row gap-6 md:items-center flex-wrap`}
           >
             <li>
               <Link
