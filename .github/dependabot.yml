@@ -1,4 +1,5 @@
 version: 2
+
 updates:
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -9,3 +10,26 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+
+    groups:
+      tanstack-router:
+        patterns:
+          - "@tanstack/react-router"
+          - "@tanstack/router-*"
+      tanstack-query:
+        patterns:
+          - "@tanstacl/react-query*"
+      types:
+        patterns:
+          - "@types/*"
+      eslint:
+        patterns:
+          - "eslint"
+          - "eslint-*"
+          - "@tanstack/eslint-plugin-query"
+      vite:
+        patterns:
+          - "vite"
+          - "vite-*"
+          - "@vitejs/*"
+          - "*-vite-plugin"
