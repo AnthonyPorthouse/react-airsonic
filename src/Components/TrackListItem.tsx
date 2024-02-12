@@ -60,10 +60,7 @@ function TrackListItem({
   );
 
   const nowPlayingIcon = (
-    <div
-      className={`w-6 flex-shrink-0`}
-      title={t("currentlyPlaying")}
-    >
+    <div className={`w-6 flex-shrink-0`} title={t("currentlyPlaying")}>
       <a
         data-tooltip-id="tooltip"
         data-tooltip-content={t("currentlyPlaying")}
