@@ -61,7 +61,7 @@ function TrackListItem({
 
   const nowPlayingIcon = (
     <div
-      className={`flex gap-6 md:block w-full md:w-6 flex-shrink-0`}
+      className={`w-6 flex-shrink-0`}
       title={t("currentlyPlaying")}
     >
       <a
@@ -69,9 +69,8 @@ function TrackListItem({
         data-tooltip-content={t("currentlyPlaying")}
         data-tooltip-delay-show={1000}
       >
-        <PlayIcon className={`flex-shrink-0 w-6 md:w-full text-green-400`} />
+        <PlayIcon className={`w-6 md:w-full text-green-400`} />
       </a>
-      <span className={`truncate md:hidden`}>{track.title}</span>
     </div>
   );
 
