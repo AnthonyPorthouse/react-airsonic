@@ -53,7 +53,7 @@ function TrackList({ tracks, includeAdd = false }: Readonly<TrackListProps>) {
         <h1 className={`text-xl`}>{t("tracks")}</h1>
         <div
           ref={trackListRef}
-          className="overflow-auto w-full h-full border rounded border-grey-200"
+          className="overflow-auto w-full max-h-full border rounded border-grey-200"
         >
           <div
             style={{

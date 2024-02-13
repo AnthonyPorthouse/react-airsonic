@@ -52,7 +52,7 @@ function EpisodeList({ episodes }: Readonly<EpisodeListProps>) {
         <h1 className={`text-xl`}>{t("episodes")}</h1>
         <div
           ref={episodeListRef}
-          className={`overflow-auto w-full h-full border rounded border-grey-200`}
+          className={`overflow-auto w-full max-h-full border rounded border-grey-200`}
         >
           <div
             style={{
