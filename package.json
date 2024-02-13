@@ -105,6 +105,7 @@
     "vite-plugin-svgr": "^4.2.0"
   },
   "optionalDependencies": {
+    "@esbuild/linux-x64": "^0.20.0",
     "@rollup/rollup-linux-x64-gnu": "^4.10.0"
   },
   "overrides": {
