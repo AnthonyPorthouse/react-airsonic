@@ -104,6 +104,9 @@
     "vite-plugin-pwa": "^0.18.1",
     "vite-plugin-svgr": "^4.2.0"
   },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.10.0"
+  },
   "overrides": {
     "msw": {
       "typescript": "$typescript"
