@@ -52,7 +52,7 @@
     "md5": "^2.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-focus-lock": "^2.9.8",
+    "react-focus-lock": "^2.10.1",
     "react-helmet-async": "^2.0.4",
     "react-i18next": "^14.0.5",
     "react-modal": "^3.16.1",
@@ -69,12 +69,12 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@commitlint/cli": "18.6.0",
-    "@commitlint/config-conventional": "18.6.0",
-    "@commitlint/types": "18.6.0",
+    "@commitlint/cli": "18.6.1",
+    "@commitlint/config-conventional": "18.6.2",
+    "@commitlint/types": "18.6.1",
     "@tailwindcss/forms": "^0.5.7",
     "@tanstack/eslint-plugin-query": "^5.20.1",
-    "@tanstack/router-vite-plugin": "^1.16.2",
+    "@tanstack/router-vite-plugin": "^1.16.3",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/jest": "^29.5.12",
     "@types/md5": "^2.3.5",
@@ -93,7 +93,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
-    "husky": "^9.0.10",
+    "husky": "^9.0.11",
     "jest-localstorage-mock": "^2.4.26",
     "lint-staged": "^15.2.2",
     "msw": "^2.2.0",
@@ -106,7 +106,7 @@
   },
   "optionalDependencies": {
     "@esbuild/linux-x64": "^0.20.0",
-    "@rollup/rollup-linux-x64-gnu": "^4.10.0"
+    "@rollup/rollup-linux-x64-gnu": "^4.11.0"
   },
   "overrides": {
     "msw": {
