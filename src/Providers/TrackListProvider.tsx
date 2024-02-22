@@ -14,6 +14,7 @@ export interface TrackList {
   addTrack(track: Song): void;
   setTrackList(tracks: Songs): void;
   getCurrentTrack(): Song | null;
+  getNextTrack(): Song | undefined;
   nextTrack(): void;
 }
 
@@ -26,6 +27,7 @@ export const TrackListContext = createContext<TrackList>({
     trackList = tracks;
   },
   getCurrentTrack: () => trackList[0],
+  getNextTrack: () => trackList.at(1),
   nextTrack: () => (trackList = trackList.slice(1)),
 });
 
@@ -37,6 +39,11 @@ export function TrackListProvider({
 
   const getCurrentTrack = useCallback(
     () => trackList[trackListPosition],
+    [trackList, trackListPosition],
+  );
+
+  const getNextTrack = useCallback(
+    () => trackList.at(trackListPosition + 1),
     [trackList, trackListPosition],
   );
 
@@ -59,6 +66,7 @@ export function TrackListProvider({
         setTrackList(songs);
       },
       getCurrentTrack,
+      getNextTrack,
       nextTrack,
     };
   }, [
@@ -66,6 +74,7 @@ export function TrackListProvider({
     setTrackListPosition,
     setTrackList,
     getCurrentTrack,
+    getNextTrack,
     nextTrack,
   ]);
 
