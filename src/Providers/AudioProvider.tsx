@@ -62,8 +62,30 @@ function AudioProvider({
 
       setCurrentTime(audio.currentTime || 0);
       setCurrentDuration(audio.duration || 0);
+
+      // If we are in the last 10 seconds, start preloading the next media item
+      if (
+        audio.currentTime &&
+        audio.duration &&
+        audio.currentTime >= audio.duration - 10
+      ) {
+        const nextTrack = getNextTrack();
+        if (nextTrack) {
+          nextAudio.current = new Audio(
+            getStreamUrl(nextTrack.id, auth.credentials),
+          );
+          nextAudio.current.preload = "auto";
+        }
+      }
     },
-    [nowPlaying?.id, nowPlaying?.isPodcast, setCurrentDuration, setCurrentTime],
+    [
+      auth.credentials,
+      getNextTrack,
+      nowPlaying?.id,
+      nowPlaying?.isPodcast,
+      setCurrentDuration,
+      setCurrentTime,
+    ],
   );
 
   useEffect(() => {
@@ -104,14 +126,6 @@ function AudioProvider({
       );
       audio.current.currentTime = getInitialProgress(nowPlaying);
       audio.current.play();
-    }
-
-    const nextTrack = getNextTrack();
-    if (nextTrack) {
-      nextAudio.current = new Audio(
-        getStreamUrl(nextTrack.id, auth.credentials),
-      );
-      nextAudio.current.preload = "auto";
     }
   }, [
     audio,
