@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef } from "react";
+import { ReactNode, useCallback, useEffect, useRef } from "react";
 
 import AudioContext from "../Components/Audio/AudioContext.js";
 import { Song } from "../api/songs.js";
@@ -20,8 +20,9 @@ function AudioProvider({
   const auth = useAuth();
 
   const audio = useRef(new Audio());
+  const nextAudio = useRef(new Audio());
 
-  const { getCurrentTrack, nextTrack } = useTrackList();
+  const { getCurrentTrack, getNextTrack, nextTrack } = useTrackList();
 
   const nowPlaying = getCurrentTrack();
 
@@ -37,29 +38,33 @@ function AudioProvider({
     return 0;
   };
 
-  useEffect(() => {
-    audio.current.addEventListener("loadeddata", () => {
-      audio.current.play().catch(() => {});
-    });
+  const loadedDataEventListener = (audio: HTMLAudioElement) => () => {
+    audio.play().catch(() => {});
+  };
 
-    audio.current.addEventListener("ended", () => {
+  const endedEventListener = useCallback(
+    () => () => {
       nextTrack();
       setCurrentDuration(0);
       setCurrentTime(0);
-    });
+    },
+    [nextTrack, setCurrentDuration, setCurrentTime],
+  );
 
-    audio.current.addEventListener("timeupdate", () => {
+  const timeUpdateEventListener = useCallback(
+    (audio: HTMLAudioElement) => () => {
       if (nowPlaying?.isPodcast) {
         localStorage.setItem(
           `podcast_${nowPlaying?.id}`,
-          String(audio.current.currentTime || 0),
+          String(audio.currentTime || 0),
         );
       }
 
-      setCurrentTime(audio.current.currentTime || 0);
-      setCurrentDuration(audio.current.duration || 0);
-    });
-  }, [nextTrack, setCurrentTime, setCurrentDuration, nowPlaying]);
+      setCurrentTime(audio.currentTime || 0);
+      setCurrentDuration(audio.duration || 0);
+    },
+    [nowPlaying?.id, nowPlaying?.isPodcast, setCurrentDuration, setCurrentTime],
+  );
 
   useEffect(() => {
     if (!nowPlaying || !currentTrackUrl) {
@@ -68,10 +73,55 @@ function AudioProvider({
 
     if (audio.current.src !== currentTrackUrl) {
       audio.current.pause();
-      audio.current.src = currentTrackUrl;
-      audio.current.currentTime = getInitialProgress(nowPlaying);
     }
-  }, [audio, auth, nowPlaying, currentTrackUrl]);
+
+    // If the next track is preloaded
+    if (nextAudio.current && nextAudio.current.src === currentTrackUrl) {
+      audio.current = nextAudio.current;
+      audio.current.addEventListener(
+        "loadeddata",
+        loadedDataEventListener(audio.current),
+      );
+      audio.current.addEventListener("ended", endedEventListener());
+      audio.current.addEventListener(
+        "timeupdate",
+        timeUpdateEventListener(audio.current),
+      );
+      audio.current.currentTime = getInitialProgress(nowPlaying);
+      audio.current.play();
+    }
+
+    if (audio.current.src !== currentTrackUrl) {
+      audio.current = new Audio(currentTrackUrl);
+      audio.current.addEventListener(
+        "loadeddata",
+        loadedDataEventListener(audio.current),
+      );
+      audio.current.addEventListener("ended", endedEventListener());
+      audio.current.addEventListener(
+        "timeupdate",
+        timeUpdateEventListener(audio.current),
+      );
+      audio.current.currentTime = getInitialProgress(nowPlaying);
+      audio.current.play();
+    }
+
+    const nextTrack = getNextTrack();
+    if (nextTrack) {
+      nextAudio.current = new Audio(
+        getStreamUrl(nextTrack.id, auth.credentials),
+      );
+      nextAudio.current.preload = "auto";
+    }
+  }, [
+    audio,
+    auth,
+    nowPlaying,
+    currentTrackUrl,
+    getNextTrack,
+    endedEventListener,
+    timeUpdateEventListener,
+  ]);
 
   return (
     <AudioContext.Provider value={audio.current}>
