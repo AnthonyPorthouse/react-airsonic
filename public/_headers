@@ -4,17 +4,17 @@
     X-XSS-Protection: 1; mode=block
     X-Content-Type-Options: nosniff
     Referrer-Policy: no-referrer-when-downgrade
-    Permissions-Policy:
+    Permissions-Policy: ''
     Access-Control-Allow-Origin: *
 
-*.webmanifest
+/*.webmanifest
     Content-Type: application/manifest+json
 
-*.png
+/*.png
     Cache-Control: public, max-age=15780000
 
-*.webp
+/*.webp
     Cache-Control: public, max-age=15780000
 
-*.avif
+/*.avif
     Cache-Control: public, max-age=15780000
