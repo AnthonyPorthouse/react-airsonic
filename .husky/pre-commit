@@ -1,1 +1,2 @@
 npx --yes lint-staged
+npx --yes vitest --run
