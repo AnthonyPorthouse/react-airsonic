@@ -91,7 +91,7 @@ function TrackListItem({
 
       <span className={`hidden md:block w-1/12 text-right`}>
         {track.discNumber ? `${track.discNumber} / ` : null}
-        {track.track ? track.track : null}
+        {track.track}
       </span>
       <span className={`hidden md:block w-1/6 truncate`}>{track.artist}</span>
       <span className={`hidden md:block flex-grow w-0 truncate`}>
