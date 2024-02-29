@@ -50,6 +50,9 @@ jobs:
         with:
           name: coverage
 
+      - name: show files
+        run: ls -1
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
