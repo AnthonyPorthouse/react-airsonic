@@ -15,7 +15,7 @@ function Duration({ time }: Readonly<DurationProps>) {
 
   const output =
     `${to2Digits(duration.hours)}:${to2Digits(duration.minutes)}:${to2Digits(duration.seconds)}`.replace(
-      "00:",
+      /^00:/,
       "",
     );
 
