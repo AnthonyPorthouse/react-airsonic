@@ -26,10 +26,17 @@ function ProgressBar({ length, position }: Readonly<ProgressBarProps>) {
 
   useEffect(() => {
     const progressHandler = () => {
-      if (!audio?.buffered.length) {
+      if (!audio || !audio.buffered.length) {
         return;
       }
-      const buffered = audio.buffered.end(audio.buffered.length - 1);
+
+      let max = 0;
+
+      for (let i = 0; i < audio.buffered.length; i++) {
+        max = Math.max(max, audio.buffered.end(i));
+      }
+
+      const buffered = max;
       const duration = audio.duration;
 
       setBufferPercent((buffered / duration) * 100);
@@ -40,7 +47,7 @@ function ProgressBar({ length, position }: Readonly<ProgressBarProps>) {
     return () => {
       audio?.removeEventListener("progress", progressHandler);
     };
-  });
+  }, [audio, setBufferPercent]);
 
   const seekPosition = (e: { pageX: number }) => {
     const bar = progressBar.current;
@@ -107,9 +114,11 @@ function ProgressBar({ length, position }: Readonly<ProgressBarProps>) {
 
   const renderBasicProgressBar = () => {
     return (
-      <div
-        className={`absolute h-full bg-green-200`}
-        style={{ width: `${progress}%` }}
+      <progress
+        max={100}
+        value={progress}
+        aria-description="Current Track Progress"
+        className={`absolute h-full w-full [&::-webkit-progress-bar]:bg-transparent [&::-webkit-progress-value]:bg-green-200`}
       />
     );
   };
@@ -117,8 +126,6 @@ function ProgressBar({ length, position }: Readonly<ProgressBarProps>) {
   return (
     <div
       ref={progressBar}
-      role="progressbar"
-      aria-valuenow={progress}
       className={`bg-gray-200 h-4 w-full inline-block relative`}
       onMouseEnter={() => setShowPosition(true)}
       onMouseLeave={() => setShowPosition(false)}
@@ -139,9 +146,11 @@ function ProgressBar({ length, position }: Readonly<ProgressBarProps>) {
       }}
       tabIndex={0}
     >
-      <div
-        className={`h-full bg-gray-100 absolute`}
-        style={{ width: `${bufferPercent}%` }}
+      <progress
+        aria-description="Current Track Buffered Amount"
+        className="h-full w-full [&::-webkit-progress-bar]:bg-transparent absolute [&::-webkit-progress-value]:bg-gray-100"
+        max={100}
+        value={bufferPercent}
       />
 
       {showPosition ? renderMousePosition() : renderBasicProgressBar()}
