@@ -43,7 +43,7 @@
     "@tanstack/react-query-devtools": "^5.29.2",
     "@tanstack/react-router": "^1.26.20",
     "@tanstack/react-virtual": "^3.2.1",
-    "@tanstack/router-devtools": "^1.26.20",
+    "@tanstack/router-devtools": "^1.27.0",
     "classnames": "^2.5.1",
     "date-fns": "^3.6.0",
     "i18next": "^23.11.1",
