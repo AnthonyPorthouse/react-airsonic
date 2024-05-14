@@ -36,12 +36,20 @@ function LogIn() {
   const search = routeApi.useSearch();
 
   const { isError, mutate } = useMutation({
-    mutationKey: ["auth", auth.credentials],
+    mutationKey: ["auth"],
     mutationFn: async () => await ping(auth.credentials),
 
-    onMutate: () => {
+    onMutate: ({
+      server,
+      username,
+      password,
+    }: {
+      server: string;
+      username: string;
+      password: string;
+    }) => {
       auth.setAuth({
-        credentials: { ...auth.credentials },
+        credentials: { server, username, password },
         isAuthenticated: false,
       });
 
@@ -50,18 +58,17 @@ function LogIn() {
       localStorage.setItem("ra.password", password);
     },
 
-    onSuccess: () => {
+    onSuccess: (_, { server, username, password }) => {
       auth.setAuth({
-        credentials: { ...auth.credentials },
+        credentials: { server, username, password },
         isAuthenticated: true,
       });
-      auth.setCredentials({ server, username, password });
     },
   });
 
   useEffect(() => {
     if (server && username && password && !hasAutoChecked) {
-      mutate();
+      mutate({ server, username, password });
     }
     setHasAutoChecked(true);
   }, [mutate, server, username, password, hasAutoChecked]);
@@ -75,16 +82,7 @@ function LogIn() {
   const submit = (e: SyntheticEvent) => {
     e.preventDefault();
 
-    auth.setAuth({
-      isAuthenticated: false,
-      credentials: {
-        server,
-        username,
-        password,
-      },
-    });
-
-    mutate();
+    mutate({ server, username, password });
   };
 
   return (

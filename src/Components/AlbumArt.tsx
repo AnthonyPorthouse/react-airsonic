@@ -70,6 +70,7 @@ function AlbumArt({
       width={width}
       height={width}
       alt={description}
+      role="presentation"
       className={classNames(`rounded overflow-hidden w-full`, className)}
       srcSet={dimensions}
       sizes={

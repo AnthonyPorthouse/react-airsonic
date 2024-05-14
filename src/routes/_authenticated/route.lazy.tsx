@@ -18,6 +18,7 @@ function Authenticated() {
 
       <div className={`overflow-y-auto flex-grow`}>
         <div className="p-6 h-full">
+          <a id="main" />
           <Outlet />
         </div>
       </div>

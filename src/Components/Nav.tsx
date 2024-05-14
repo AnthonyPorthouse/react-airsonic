@@ -21,134 +21,145 @@ function Nav() {
   }, [show]);
 
   return (
-    <nav
-      className={`text-2xl px-6 py-3 bg-white w-full shadow z-10 flex justify-between md:static items-center`}
-    >
-      <picture className="absolute">
-        <source srcSet={logoAvif} type="image/avif" />
-        <source srcSet={logoWebp} type="image/webp" />
-        <source srcSet={logoPng} type="image/png" />
-
-        <img
-          src={logoAvif}
-          alt={t("common:title")}
-          className={`w-12 h-12 md:w-16 md:h-16`}
-        />
-      </picture>
-
-      <div className={`md:hidden flex w-full items-center justify-end`}>
-        <button
-          onClick={toggleMenu}
-          className={`w-6 h-6 my-auto`}
-          aria-label={t("nav:show-menu")}
+    <>
+      <div className="absolute z-20 top-4 w-full flex justify-center">
+        <a
+          href="#main"
+          className="border shadow bg-white text-xl rounded px-4 py-2 sr-only focus:not-sr-only"
         >
-          <Bars3Icon />
-        </button>
+          Jump to Content
+        </a>
       </div>
 
-      <div
-        className={`transition-all bg-white absolute md:static top-0 md:top-auto h-full md:h-auto w-screen md:w-full ${
-          show ? "left-0" : "-left-full"
-        }`}
+      <nav
+        className={`text-2xl px-6 py-3 bg-white w-full shadow z-10 flex justify-between md:static items-center`}
       >
-        <div className={`px-6 py-3 md:p-0`}>
-          <div className={`md:hidden flex items-center justify-between`}>
-            <span className={`inline-block w-6`} />
-            <picture className={`w-16 h-16`}>
-              <source srcSet={logoAvif} type="image/avif" />
-              <source srcSet={logoWebp} type="image/webp" />
-              <source srcSet={logoPng} type="image/png" />
-              <img src={logoAvif} alt={t("common:title")} />
-            </picture>
-            <button
-              onClick={toggleMenu}
-              className={`w-6 h-6`}
-              aria-label={t("nav:close-menu")}
-            >
-              <XMarkIcon />
-            </button>
-          </div>
+        <picture className="absolute">
+          <source srcSet={logoAvif} type="image/avif" />
+          <source srcSet={logoWebp} type="image/webp" />
+          <source srcSet={logoPng} type="image/png" />
 
-          <hr className={`md:hidden my-3`} />
+          <img
+            src={logoAvif}
+            alt={t("common:title")}
+            className={`w-12 h-12 md:w-16 md:h-16`}
+          />
+        </picture>
 
-          <menu
-            className={`flex flex-col md:pl-20 md:flex-row gap-6 md:items-center flex-wrap `}
+        <div className={`md:hidden flex w-full items-center justify-end`}>
+          <button
+            onClick={toggleMenu}
+            className={`w-6 h-6 my-auto`}
+            aria-label={t("nav:show-menu")}
           >
-            <li>
-              <Link
-                className={`inline-block w-full md:w-auto`}
-                activeProps={{
-                  className: `font-bold`,
-                }}
-                to="/now-playing"
-                onClick={toggleMenu}
-              >
-                {t("nav:now-playing")}
-              </Link>
-            </li>
-            <li>
-              <Link
-                className={`inline-block w-full md:w-auto`}
-                activeProps={{
-                  className: `font-bold`,
-                }}
-                to="/albums/"
-                onClick={toggleMenu}
-              >
-                {t("nav:albums")}
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                className={`inline-block w-full md:w-auto`}
-                activeProps={{
-                  className: `font-bold`,
-                }}
-                to="/artists/"
-                onClick={toggleMenu}
-              >
-                {t("nav:artists")}
-              </Link>
-            </li>
-            <li>
-              <Link
-                className={`inline-block w-full md:w-auto`}
-                activeProps={{
-                  className: `font-bold`,
-                }}
-                to={`/playlists/`}
-                onClick={toggleMenu}
-              >
-                {t("nav:playlists")}
-              </Link>
-            </li>
-            <li>
-              <Link
-                className={`inline-block w-full md:w-auto`}
-                activeProps={{
-                  className: `font-bold`,
-                }}
-                to={`/podcasts/`}
-                onClick={toggleMenu}
-              >
-                {t("nav:podcasts")}
-              </Link>
-            </li>
-            <li
-              className={
-                "w-full md:w-auto lg:ml-auto flex flex-col md:flex-row gap-6 md:gap-3"
-              }
-            >
-              <LoggedInAs />
-              <SearchBar onSubmit={toggleMenu} />
-              <Update />
-              <ShowSettings onClick={toggleMenu} />
-            </li>
-          </menu>
+            <Bars3Icon />
+          </button>
         </div>
-      </div>
-    </nav>
+
+        <div
+          className={`transition-all bg-white absolute md:static top-0 md:top-auto h-full md:h-auto w-screen md:w-full ${
+            show ? "left-0" : "-left-full"
+          }`}
+        >
+          <div className={`px-6 py-3 md:p-0`}>
+            <div className={`md:hidden flex items-center justify-between`}>
+              <span className={`inline-block w-6`} />
+              <picture className={`w-16 h-16`}>
+                <source srcSet={logoAvif} type="image/avif" />
+                <source srcSet={logoWebp} type="image/webp" />
+                <source srcSet={logoPng} type="image/png" />
+                <img src={logoAvif} alt={t("common:title")} />
+              </picture>
+              <button
+                onClick={toggleMenu}
+                className={`w-6 h-6`}
+                aria-label={t("nav:close-menu")}
+              >
+                <XMarkIcon />
+              </button>
+            </div>
+
+            <hr className={`md:hidden my-3`} />
+
+            <menu
+              className={`flex flex-col md:pl-20 md:flex-row gap-6 md:items-center flex-wrap `}
+            >
+              <li>
+                <Link
+                  className={`inline-block w-full md:w-auto`}
+                  activeProps={{
+                    className: `font-bold`,
+                  }}
+                  to="/now-playing"
+                  onClick={toggleMenu}
+                >
+                  {t("nav:now-playing")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className={`inline-block w-full md:w-auto`}
+                  activeProps={{
+                    className: `font-bold`,
+                  }}
+                  to="/albums/"
+                  onClick={toggleMenu}
+                >
+                  {t("nav:albums")}
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  className={`inline-block w-full md:w-auto`}
+                  activeProps={{
+                    className: `font-bold`,
+                  }}
+                  to="/artists/"
+                  onClick={toggleMenu}
+                >
+                  {t("nav:artists")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className={`inline-block w-full md:w-auto`}
+                  activeProps={{
+                    className: `font-bold`,
+                  }}
+                  to={`/playlists/`}
+                  onClick={toggleMenu}
+                >
+                  {t("nav:playlists")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className={`inline-block w-full md:w-auto`}
+                  activeProps={{
+                    className: `font-bold`,
+                  }}
+                  to={`/podcasts/`}
+                  onClick={toggleMenu}
+                >
+                  {t("nav:podcasts")}
+                </Link>
+              </li>
+              <li
+                className={
+                  "w-full md:w-auto lg:ml-auto flex flex-col md:flex-row gap-6 md:gap-3"
+                }
+              >
+                <LoggedInAs />
+                <SearchBar onSubmit={toggleMenu} />
+                <Update />
+                <ShowSettings onClick={toggleMenu} />
+              </li>
+            </menu>
+          </div>
+        </div>
+      </nav>
+    </>
   );
 }
 
