@@ -11,7 +11,6 @@ import { AuthProvider } from "./Providers/AuthProvider.js";
 import { TrackListProvider } from "./Providers/TrackListProvider.js";
 import "./i18n";
 import "./index.css";
-import reportWebVitals from "./reportWebVitals.js";
 
 const container = document.getElementById("root") as HTMLElement;
 
@@ -45,10 +44,3 @@ registerSW({
     document.dispatchEvent(new Event("update_available"));
   },
 });
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-if (import.meta.env.DEV) {
-  reportWebVitals(console.log);
-}

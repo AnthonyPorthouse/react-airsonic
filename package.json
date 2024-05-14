@@ -59,7 +59,6 @@
     "temporal-polyfill": "^0.2.4",
     "typescript": "^5.4.5",
     "uuid": "^9.0.1",
-    "web-vitals": "^4.0.0",
     "workbox-core": "^7.0.0",
     "workbox-expiration": "^7.0.0",
     "workbox-precaching": "^7.0.0",
