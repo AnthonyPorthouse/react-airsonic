@@ -141,54 +141,93 @@ const AuthenticatedAlbumsAlbumIdRoute = AuthenticatedAlbumsAlbumIdImport.update(
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
     '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: ''
       preLoaderRoute: typeof AuthenticatedRouteImport
       parentRoute: typeof rootRoute
     }
     '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
       preLoaderRoute: typeof LoginImport
       parentRoute: typeof rootRoute
     }
     '/_authenticated/search': {
+      id: '/_authenticated/search'
+      path: '/search'
+      fullPath: '/search'
       preLoaderRoute: typeof AuthenticatedSearchImport
       parentRoute: typeof AuthenticatedRouteImport
     }
     '/_authenticated/now-playing': {
+      id: '/_authenticated/now-playing'
+      path: '/now-playing'
+      fullPath: '/now-playing'
       preLoaderRoute: typeof AuthenticatedNowPlayingLazyImport
       parentRoute: typeof AuthenticatedRouteImport
     }
     '/_authenticated/albums/$albumId': {
+      id: '/_authenticated/albums/$albumId'
+      path: '/albums/$albumId'
+      fullPath: '/albums/$albumId'
       preLoaderRoute: typeof AuthenticatedAlbumsAlbumIdImport
       parentRoute: typeof AuthenticatedRouteImport
     }
     '/_authenticated/artists/$artistId': {
+      id: '/_authenticated/artists/$artistId'
+      path: '/artists/$artistId'
+      fullPath: '/artists/$artistId'
       preLoaderRoute: typeof AuthenticatedArtistsArtistIdImport
       parentRoute: typeof AuthenticatedRouteImport
     }
     '/_authenticated/playlists/$playlistId': {
+      id: '/_authenticated/playlists/$playlistId'
+      path: '/playlists/$playlistId'
+      fullPath: '/playlists/$playlistId'
       preLoaderRoute: typeof AuthenticatedPlaylistsPlaylistIdImport
       parentRoute: typeof AuthenticatedRouteImport
     }
     '/_authenticated/podcasts/$podcastId': {
+      id: '/_authenticated/podcasts/$podcastId'
+      path: '/podcasts/$podcastId'
+      fullPath: '/podcasts/$podcastId'
       preLoaderRoute: typeof AuthenticatedPodcastsPodcastIdImport
       parentRoute: typeof AuthenticatedRouteImport
     }
     '/_authenticated/albums/': {
+      id: '/_authenticated/albums/'
+      path: '/albums/'
+      fullPath: '/albums/'
       preLoaderRoute: typeof AuthenticatedAlbumsIndexImport
       parentRoute: typeof AuthenticatedRouteImport
     }
     '/_authenticated/artists/': {
+      id: '/_authenticated/artists/'
+      path: '/artists/'
+      fullPath: '/artists/'
       preLoaderRoute: typeof AuthenticatedArtistsIndexImport
       parentRoute: typeof AuthenticatedRouteImport
     }
     '/_authenticated/playlists/': {
+      id: '/_authenticated/playlists/'
+      path: '/playlists/'
+      fullPath: '/playlists/'
       preLoaderRoute: typeof AuthenticatedPlaylistsIndexImport
       parentRoute: typeof AuthenticatedRouteImport
     }
     '/_authenticated/podcasts/': {
+      id: '/_authenticated/podcasts/'
+      path: '/podcasts/'
+      fullPath: '/podcasts/'
       preLoaderRoute: typeof AuthenticatedPodcastsIndexImport
       parentRoute: typeof AuthenticatedRouteImport
     }
@@ -197,9 +236,9 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren([
+export const routeTree = rootRoute.addChildren({
   IndexRoute,
-  AuthenticatedRouteRoute.addChildren([
+  AuthenticatedRouteRoute: AuthenticatedRouteRoute.addChildren({
     AuthenticatedSearchRoute,
     AuthenticatedNowPlayingLazyRoute,
     AuthenticatedAlbumsAlbumIdRoute,
@@ -210,8 +249,8 @@ export const routeTree = rootRoute.addChildren([
     AuthenticatedArtistsIndexRoute,
     AuthenticatedPlaylistsIndexRoute,
     AuthenticatedPodcastsIndexRoute,
-  ]),
+  }),
   LoginRoute,
-])
+})
 
 /* prettier-ignore-end */

@@ -11,7 +11,7 @@ export async function getSearchResults(
   const result = await fetch(
     `${sanitizeServer(
       server,
-    )}/rest/search3.view?query=${query}&artistCount=4&albumCount=4&songCount=100&${authParams}`,
+    )}/rest/search3.view?query=${encodeURIComponent(query)}&artistCount=4&albumCount=4&songCount=100&${authParams}`,
   );
 
   if (!result.ok) {
