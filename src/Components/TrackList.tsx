@@ -17,7 +17,7 @@ function TrackList({ tracks, includeAdd = false }: Readonly<TrackListProps>) {
 
   const trackListRef = useRef<HTMLDivElement>(null);
 
-  const rowHeight = 40;
+  const rowHeight = 41;
 
   const rowRenderer = (item: VirtualItem) => (
     <div
