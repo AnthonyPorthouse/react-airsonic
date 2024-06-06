@@ -12,7 +12,7 @@ export const Route = createFileRoute("/")({
     }
 
     throw redirect({
-      to: "/albums/",
+      to: "/albums",
     });
   },
 });

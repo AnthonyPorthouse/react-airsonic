@@ -102,7 +102,7 @@ function Nav() {
                   activeProps={{
                     className: `font-bold`,
                   }}
-                  to="/albums/"
+                  to="/albums"
                   onClick={toggleMenu}
                 >
                   {t("nav:albums")}
@@ -115,7 +115,7 @@ function Nav() {
                   activeProps={{
                     className: `font-bold`,
                   }}
-                  to="/artists/"
+                  to="/artists"
                   onClick={toggleMenu}
                 >
                   {t("nav:artists")}
@@ -127,7 +127,7 @@ function Nav() {
                   activeProps={{
                     className: `font-bold`,
                   }}
-                  to={`/playlists/`}
+                  to={`/playlists`}
                   onClick={toggleMenu}
                 >
                   {t("nav:playlists")}
@@ -139,7 +139,7 @@ function Nav() {
                   activeProps={{
                     className: `font-bold`,
                   }}
-                  to={`/podcasts/`}
+                  to={`/podcasts`}
                   onClick={toggleMenu}
                 >
                   {t("nav:podcasts")}
