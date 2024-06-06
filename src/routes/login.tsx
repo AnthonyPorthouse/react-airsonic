@@ -87,7 +87,7 @@ function LogIn() {
 
   return (
     <Suspense>
-      <div className={`flex flex-auto items-center h-auto`}>
+      <div className={`flex h-auto flex-auto items-center`}>
         <div className={`mx-auto w-64`}>
           {isError && <div>Something Went Wrong</div>}
 
@@ -101,7 +101,7 @@ function LogIn() {
                 src={logoAvif}
                 alt={t("common:title")}
                 role="presentation"
-                className={`w-12 h-12 md:w-16 md:h-16`}
+                className={`h-12 w-12 md:h-16 md:w-16`}
               />
             </picture>
 

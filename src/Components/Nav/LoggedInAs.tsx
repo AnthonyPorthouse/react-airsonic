@@ -21,8 +21,8 @@ function LoggedInAs() {
   };
 
   return (
-    <div className={`text-base flex flex-row items-center gap-2`}>
-      <UserIcon className={`w-6 h-6`} />
+    <div className={`flex flex-row items-center gap-2 text-base`}>
+      <UserIcon className={`h-6 w-6`} />
       <div className={`flex flex-col text-center`}>
         <span title={server}>{username}</span>
       </div>

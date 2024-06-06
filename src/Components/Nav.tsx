@@ -22,17 +22,17 @@ function Nav() {
 
   return (
     <>
-      <div className="absolute z-20 top-4 w-full flex justify-center">
+      <div className="absolute top-4 z-20 flex w-full justify-center">
         <a
           href="#main"
-          className="border shadow bg-white text-xl rounded px-4 py-2 sr-only focus:not-sr-only"
+          className="sr-only rounded border bg-white px-4 py-2 text-xl shadow focus:not-sr-only"
         >
           Jump to Content
         </a>
       </div>
 
       <nav
-        className={`text-2xl px-6 py-3 bg-white w-full shadow z-10 flex justify-between md:static items-center`}
+        className={`z-10 flex w-full items-center justify-between bg-white px-6 py-3 text-2xl shadow md:static`}
       >
         <picture className="absolute">
           <source srcSet={logoAvif} type="image/avif" />
@@ -42,14 +42,14 @@ function Nav() {
           <img
             src={logoAvif}
             alt={t("common:title")}
-            className={`w-12 h-12 md:w-16 md:h-16`}
+            className={`h-12 w-12 md:h-16 md:w-16`}
           />
         </picture>
 
-        <div className={`md:hidden flex w-full items-center justify-end`}>
+        <div className={`flex w-full items-center justify-end md:hidden`}>
           <button
             onClick={toggleMenu}
-            className={`w-6 h-6 my-auto`}
+            className={`my-auto h-6 w-6`}
             aria-label={t("nav:show-menu")}
           >
             <Bars3Icon />
@@ -57,14 +57,14 @@ function Nav() {
         </div>
 
         <div
-          className={`transition-all bg-white absolute md:static top-0 md:top-auto h-full md:h-auto w-screen md:w-full ${
+          className={`absolute top-0 h-full w-screen bg-white transition-all md:static md:top-auto md:h-auto md:w-full ${
             show ? "left-0" : "-left-full"
           }`}
         >
           <div className={`px-6 py-3 md:p-0`}>
-            <div className={`md:hidden flex items-center justify-between`}>
+            <div className={`flex items-center justify-between md:hidden`}>
               <span className={`inline-block w-6`} />
-              <picture className={`w-16 h-16`}>
+              <picture className={`h-16 w-16`}>
                 <source srcSet={logoAvif} type="image/avif" />
                 <source srcSet={logoWebp} type="image/webp" />
                 <source srcSet={logoPng} type="image/png" />
@@ -72,17 +72,17 @@ function Nav() {
               </picture>
               <button
                 onClick={toggleMenu}
-                className={`w-6 h-6`}
+                className={`h-6 w-6`}
                 aria-label={t("nav:close-menu")}
               >
                 <XMarkIcon />
               </button>
             </div>
 
-            <hr className={`md:hidden my-3`} />
+            <hr className={`my-3 md:hidden`} />
 
             <menu
-              className={`flex flex-col md:pl-20 md:flex-row gap-6 md:items-center flex-wrap `}
+              className={`flex flex-col flex-wrap gap-6 md:flex-row md:items-center md:pl-20`}
             >
               <li>
                 <Link
@@ -147,7 +147,7 @@ function Nav() {
               </li>
               <li
                 className={
-                  "w-full md:w-auto lg:ml-auto flex flex-col md:flex-row gap-6 md:gap-3"
+                  "flex w-full flex-col gap-6 md:w-auto md:flex-row md:gap-3 lg:ml-auto"
                 }
               >
                 <LoggedInAs />

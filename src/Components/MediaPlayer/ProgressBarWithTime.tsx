@@ -13,7 +13,7 @@ export function ProgressBarWithTime({
   className?: string;
 }>) {
   return (
-    <div className={classNames(`w-full flex flex-col`, className)}>
+    <div className={classNames(`flex w-full flex-col`, className)}>
       <ProgressBar length={length} position={position} />
       <div className={`flex justify-between`}>
         <Duration time={position} />

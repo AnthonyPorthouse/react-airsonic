@@ -88,15 +88,15 @@ function ProgressBar({ length, position }: Readonly<ProgressBarProps>) {
         style={{ width: `${mousePercent}%` }}
       >
         <div
-          className={`w-6 h-6 absolute -right-3 -top-1 leading-none rounded-full border-4 border-green-400 bg-white`}
+          className={`absolute -right-3 -top-1 h-6 w-6 rounded-full border-4 border-green-400 bg-white leading-none`}
         />
         <div
           ref={trackPosition}
           style={{ left: `${pos}px` }}
-          className={`absolute left-0 w-12 -mt-[2em] -ml-6 flex justify-center items-center`}
+          className={`absolute left-0 -ml-6 -mt-[2em] flex w-12 items-center justify-center`}
         >
           <div
-            className={`px-2 py-1 leading-none shadow rounded bg-white text-black`}
+            className={`rounded bg-white px-2 py-1 leading-none text-black shadow`}
           >
             <Duration time={mouseSongPos} />
           </div>
@@ -119,7 +119,7 @@ function ProgressBar({ length, position }: Readonly<ProgressBarProps>) {
       ref={progressBar}
       role="progressbar"
       aria-valuenow={progress}
-      className={`bg-gray-200 h-4 w-full inline-block relative`}
+      className={`relative inline-block h-4 w-full bg-gray-200`}
       onMouseEnter={() => setShowPosition(true)}
       onMouseLeave={() => setShowPosition(false)}
       onMouseMove={seekPosition}
@@ -140,7 +140,7 @@ function ProgressBar({ length, position }: Readonly<ProgressBarProps>) {
       tabIndex={0}
     >
       <div
-        className={`h-full bg-gray-100 absolute`}
+        className={`absolute h-full bg-gray-100`}
         style={{ width: `${bufferPercent}%` }}
       />
 

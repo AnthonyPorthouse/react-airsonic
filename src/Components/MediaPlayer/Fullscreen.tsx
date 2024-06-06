@@ -32,7 +32,7 @@ function Fullscreen({ track, currentTime, duration }: FullscreenProps) {
         "top-0",
       )}
     >
-      <div className="absolute top-0 w-dvw h-dvh flex items-center justify-center">
+      <div className="absolute top-0 flex h-dvh w-dvw items-center justify-center">
         <AlbumArt
           id={track.coverArt}
           className={classNames("h-dvh w-dvw object-cover")}

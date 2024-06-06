@@ -74,14 +74,14 @@ function TrackListItem({
         data-tooltip-content={t("currentlyPlaying")}
         data-tooltip-delay-show={1000}
       >
-        <PlayIcon className={`w-6 md:w-full text-green-400`} />
+        <PlayIcon className={`w-6 text-green-400 md:w-full`} />
       </a>
     </div>
   );
 
   return (
     <div className={`flex gap-6 overflow-hidden`}>
-      <div className="flex flex-row gap-6 md:block w-full md:w-6 flex-shrink-0">
+      <div className="flex w-full flex-shrink-0 flex-row gap-6 md:block md:w-6">
         <div className="flex flex-row">
           {getCurrentTrack()?.id === track.id ? nowPlayingIcon : playButton}
           {includeAdd && addButton}
@@ -89,15 +89,15 @@ function TrackListItem({
         <span className={`truncate md:hidden`}>{track.title}</span>
       </div>
 
-      <span className={`hidden md:block w-1/12 text-right`}>
+      <span className={`hidden w-1/12 text-right md:block`}>
         {track.discNumber ? `${track.discNumber} / ` : null}
         {track.track}
       </span>
-      <span className={`hidden md:block w-1/6 truncate`}>{track.artist}</span>
-      <span className={`hidden md:block flex-grow w-0 truncate`}>
+      <span className={`hidden w-1/6 truncate md:block`}>{track.artist}</span>
+      <span className={`hidden w-0 flex-grow truncate md:block`}>
         {track.title}
       </span>
-      <span className={`hidden md:block text-right`}>
+      <span className={`hidden text-right md:block`}>
         <Duration time={track.duration} />
       </span>
     </div>

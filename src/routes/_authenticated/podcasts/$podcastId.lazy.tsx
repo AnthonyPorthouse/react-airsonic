@@ -26,7 +26,7 @@ function Podcast() {
   });
 
   return (
-    <div className={`flex flex-auto flex-col lg:flex-row gap-6`}>
+    <div className={`flex flex-auto flex-col gap-6 lg:flex-row`}>
       <PodcastHeader podcast={podcast} />
       <EpisodeList episodes={episodes} />
     </div>

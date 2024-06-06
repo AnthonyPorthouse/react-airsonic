@@ -47,19 +47,19 @@ function EpisodeList({ episodes }: Readonly<EpisodeListProps>) {
   return (
     <PodcastContext.Provider value={episodes}>
       <section
-        className={`flex-auto justify-self-stretch w-full h-full flex flex-col`}
+        className={`flex h-full w-full flex-auto flex-col justify-self-stretch`}
       >
         <h1 className={`text-xl`}>{t("episodes")}</h1>
         <div
           ref={episodeListRef}
-          className={`overflow-auto w-full max-h-full border rounded border-grey-200`}
+          className={`border-grey-200 max-h-full w-full overflow-auto rounded border`}
         >
           <div
             style={{
               height: `${virtualizer.getTotalSize()}px`,
               position: "relative",
             }}
-            className={`divide-y divide-gray-200 w-full relative`}
+            className={`relative w-full divide-y divide-gray-200`}
           >
             {virtualizer.getVirtualItems().map(rowRenderer)}
           </div>

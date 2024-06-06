@@ -12,7 +12,7 @@ function Search() {
   const [artists, albums, songs] = Route.useLoaderData();
 
   return (
-    <div className={`grid grid-cols-1 md:grid-cols-2 gap-6`}>
+    <div className={`grid grid-cols-1 gap-6 md:grid-cols-2`}>
       {artists.length ? (
         <div className={``}>
           <h1 className={`text-xl`}>Artists</h1>

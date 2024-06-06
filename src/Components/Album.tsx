@@ -15,7 +15,7 @@ function Album({ album, lazyLoad }: Readonly<AlbumProps>) {
     <Link
       to={`/albums/$albumId`}
       params={{ albumId: id }}
-      className={`group block w-full relative focus:ring-0`}
+      className={`group relative block w-full focus:ring-0`}
     >
       <HoverableAlbumArt
         coverArt={coverArt}

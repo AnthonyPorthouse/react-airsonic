@@ -11,7 +11,7 @@ interface MediaInfoProps {
 
 function MediaInfo({ track, duration, currentTime }: Readonly<MediaInfoProps>) {
   return (
-    <div className={`flex-grow flex flex-col gap-y-3`}>
+    <div className={`flex flex-grow flex-col gap-y-3`}>
       <div className={`flex items-center justify-items-stretch`}>
         <div className={`flex-grow`}>
           <TrackInfo track={track} />

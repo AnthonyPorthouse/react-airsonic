@@ -42,7 +42,7 @@ function AlbumArt({
           backgroundColor: `#${hash}`,
         }}
         className={classNames(
-          `rounded overflow-hidden max-w-full aspect-square`,
+          `aspect-square max-w-full overflow-hidden rounded`,
           className,
         )}
       />
@@ -71,7 +71,7 @@ function AlbumArt({
       height={width}
       alt={description}
       role="presentation"
-      className={classNames(`rounded overflow-hidden w-full`, className)}
+      className={classNames(`w-full overflow-hidden rounded`, className)}
       srcSet={dimensions}
       sizes={
         sizes ??

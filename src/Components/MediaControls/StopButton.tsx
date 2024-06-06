@@ -24,7 +24,7 @@ function StopButton() {
 
   return (
     <button
-      className={`inline-block w-12 hidden md:block`}
+      className={`inline-block hidden w-12 md:block`}
       title={t("stopTrack")}
       onClick={stop}
     >

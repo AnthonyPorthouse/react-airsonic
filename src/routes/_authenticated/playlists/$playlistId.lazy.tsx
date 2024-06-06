@@ -25,7 +25,7 @@ function Playlist() {
 
   const [playlist, songs] = data;
   return (
-    <div className={`flex flex-auto flex-col lg:flex-row gap-6`}>
+    <div className={`flex flex-auto flex-col gap-6 lg:flex-row`}>
       <AlbumHeader album={playlist} tracks={songs} />
       <TrackList tracks={songs} includeAdd />
     </div>

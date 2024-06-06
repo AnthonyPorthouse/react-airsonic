@@ -24,7 +24,7 @@ function Album() {
 
   return (
     <div
-      className={`h-full flex flex-auto flex-col justify-items-stretch lg:flex-row gap-6`}
+      className={`flex h-full flex-auto flex-col justify-items-stretch gap-6 lg:flex-row`}
     >
       <AlbumHeader album={album} tracks={songs} />
       <TrackList tracks={songs} includeAdd />

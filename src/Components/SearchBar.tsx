@@ -38,12 +38,12 @@ function SearchBar({ onSubmit }: Readonly<SearchBarProps>) {
     >
       <div
         className={
-          "flex items-center rounded-full border shadow-inner p-0 overflow-hidden"
+          "flex items-center overflow-hidden rounded-full border p-0 shadow-inner"
         }
       >
         <input
           className={
-            "flex-grow bg-transparent border-none focus:ring-0 px-3 py-2 pr-0"
+            "flex-grow border-none bg-transparent px-3 py-2 pr-0 focus:ring-0"
           }
           autoComplete="off"
           type="search"

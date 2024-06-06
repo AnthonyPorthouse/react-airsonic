@@ -205,29 +205,29 @@ declare module '@tanstack/react-router' {
     }
     '/_authenticated/albums/': {
       id: '/_authenticated/albums/'
-      path: '/albums/'
-      fullPath: '/albums/'
+      path: '/albums'
+      fullPath: '/albums'
       preLoaderRoute: typeof AuthenticatedAlbumsIndexImport
       parentRoute: typeof AuthenticatedRouteImport
     }
     '/_authenticated/artists/': {
       id: '/_authenticated/artists/'
-      path: '/artists/'
-      fullPath: '/artists/'
+      path: '/artists'
+      fullPath: '/artists'
       preLoaderRoute: typeof AuthenticatedArtistsIndexImport
       parentRoute: typeof AuthenticatedRouteImport
     }
     '/_authenticated/playlists/': {
       id: '/_authenticated/playlists/'
-      path: '/playlists/'
-      fullPath: '/playlists/'
+      path: '/playlists'
+      fullPath: '/playlists'
       preLoaderRoute: typeof AuthenticatedPlaylistsIndexImport
       parentRoute: typeof AuthenticatedRouteImport
     }
     '/_authenticated/podcasts/': {
       id: '/_authenticated/podcasts/'
-      path: '/podcasts/'
-      fullPath: '/podcasts/'
+      path: '/podcasts'
+      fullPath: '/podcasts'
       preLoaderRoute: typeof AuthenticatedPodcastsIndexImport
       parentRoute: typeof AuthenticatedRouteImport
     }

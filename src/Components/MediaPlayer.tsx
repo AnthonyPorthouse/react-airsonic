@@ -41,9 +41,9 @@ function MediaPlayer() {
         <MediaSession track={nowPlaying}>
           <TitleInfo nowPlaying={nowPlaying} />
 
-          <div className={`w-full px-6 py-3 gap-x-3 bg-white shadow flex z-50`}>
+          <div className={`z-50 flex w-full gap-x-3 bg-white px-6 py-3 shadow`}>
             <div
-              className={`flex-shrink hidden md:block`}
+              className={`hidden flex-shrink md:block`}
               style={{ width: "100px" }}
             >
               <AlbumArt id={nowPlaying.coverArt} sizes={`100px`} />

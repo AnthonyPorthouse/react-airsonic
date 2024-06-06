@@ -10,8 +10,8 @@ function TrackInfo({ track }: Readonly<TrackInfoProps>) {
   }
 
   return (
-    <div className={`grid text-left w-full`}>
-      <span className={`font-bold truncate`}>{track.title}</span>
+    <div className={`grid w-full text-left`}>
+      <span className={`truncate font-bold`}>{track.title}</span>
       <span className={`truncate`}>{track.artist}</span>
     </div>
   );
