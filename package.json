@@ -49,8 +49,8 @@
     "i18next": "^23.11.1",
     "i18next-resources-to-backend": "^1.2.1",
     "md5": "^2.3.0",
-    "react": "rc",
-    "react-dom": "rc",
+    "react": "^19.0.0-rc-eb259b5d3b-20240605",
+    "react-dom": "^19.0.0-rc-eb259b5d3b-20240605",
     "react-focus-lock": "^2.11.2",
     "react-helmet-async": "^2.0.4",
     "react-i18next": "^14.1.0",
@@ -120,6 +120,54 @@
   "overrides": {
     "msw": {
       "typescript": "$typescript"
+    },
+    "@heroicons/react": {
+      "react": "$react"
+    },
+    "@react-hook/window-size": {
+      "react": "$react"
+    },
+    "@tanstack/react-query": {
+      "react": "$react"
+    },
+    "@tanstack/react-query-devtools": {
+      "react": "$react"
+    },
+    "@tanstack/react-router": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    },
+    "@tanstack/router-devtools": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    },
+    "@tanstack/react-virtual": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    },
+    "@testing-library/react": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    },
+    "react-focus-lock": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    },
+    "react-helmet-async": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    },
+    "react-i18next": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    },
+    "react-modal": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    },
+    "react-tooltip": {
+      "react": "$react",
+      "react-dom": "$react-dom"
     }
   }
 }
