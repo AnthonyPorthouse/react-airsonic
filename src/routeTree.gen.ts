@@ -254,3 +254,79 @@ export const routeTree = rootRoute.addChildren({
 })
 
 /* prettier-ignore-end */
+
+/* ROUTE_MANIFEST_START
+{
+  "routes": {
+    "__root__": {
+      "filePath": "__root.tsx",
+      "children": [
+        "/",
+        "/_authenticated",
+        "/login"
+      ]
+    },
+    "/": {
+      "filePath": "index.tsx"
+    },
+    "/_authenticated": {
+      "filePath": "_authenticated/route.tsx",
+      "children": [
+        "/_authenticated/search",
+        "/_authenticated/now-playing",
+        "/_authenticated/albums/$albumId",
+        "/_authenticated/artists/$artistId",
+        "/_authenticated/playlists/$playlistId",
+        "/_authenticated/podcasts/$podcastId",
+        "/_authenticated/albums/",
+        "/_authenticated/artists/",
+        "/_authenticated/playlists/",
+        "/_authenticated/podcasts/"
+      ]
+    },
+    "/login": {
+      "filePath": "login.tsx"
+    },
+    "/_authenticated/search": {
+      "filePath": "_authenticated/search.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/now-playing": {
+      "filePath": "_authenticated/now-playing.lazy.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/albums/$albumId": {
+      "filePath": "_authenticated/albums/$albumId.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/artists/$artistId": {
+      "filePath": "_authenticated/artists/$artistId.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/playlists/$playlistId": {
+      "filePath": "_authenticated/playlists/$playlistId.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/podcasts/$podcastId": {
+      "filePath": "_authenticated/podcasts/$podcastId.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/albums/": {
+      "filePath": "_authenticated/albums/index.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/artists/": {
+      "filePath": "_authenticated/artists/index.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/playlists/": {
+      "filePath": "_authenticated/playlists/index.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/podcasts/": {
+      "filePath": "_authenticated/podcasts/index.tsx",
+      "parent": "/_authenticated"
+    }
+  }
+}
+ROUTE_MANIFEST_END */
