@@ -21,8 +21,6 @@ function Artists() {
 
   return (
     <div>
-      <h1 className={`text-2xl`}>All Artists</h1>
-
       <ArtistList artists={data} />
     </div>
   );

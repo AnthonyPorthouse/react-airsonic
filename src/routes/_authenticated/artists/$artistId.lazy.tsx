@@ -24,7 +24,7 @@ function Artist() {
 
   return (
     <div>
-      <h1 className={`text-2xl`}>{artist.name}</h1>
+      <h1 className={`my-4 mb-1 text-2xl`}>{artist.name}</h1>
 
       <AlbumList albums={albums} />
     </div>
