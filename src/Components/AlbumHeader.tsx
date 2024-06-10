@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useTrackList } from "../Providers/TrackListProvider.js";
 import { SongIds, Songs } from "../api/songs.js";
 import AlbumArt from "./AlbumArt.js";
+import Button from "./Button.js";
 
 interface Playable {
   id: string;
@@ -56,20 +57,19 @@ function AlbumHeader({ album, tracks }: Readonly<AlbumHeaderProps>) {
           <h2 className={`text-xl`}>{album.artist}</h2>
           <h3>{album.year}</h3>
           <div className="flex flex-col gap-2">
-            <button
-              className={`flex w-full flex-row items-center rounded-full border border-gray-200 px-2 py-1 text-lg shadow-sm active:shadow-inner`}
+            <Button
+              renderIcon={() => <PlayIcon className="w-6" />}
               onClick={playAll}
             >
-              <PlayIcon className={`w-6`} />
               <span className="flex-grow">{t("playAll")}</span>
-            </button>
-            <button
-              className={`flex w-full flex-row items-center rounded-full border border-gray-200 px-2 py-1 text-lg shadow-sm active:shadow-inner`}
+            </Button>
+
+            <Button
+              renderIcon={() => <ArrowsRightLeftIcon className="w-6" />}
               onClick={shuffleAll}
             >
-              <ArrowsRightLeftIcon className="w-6" />
               <span className="flex-grow">{t("shuffleAll")}</span>
-            </button>
+            </Button>
           </div>
         </div>
       </div>
