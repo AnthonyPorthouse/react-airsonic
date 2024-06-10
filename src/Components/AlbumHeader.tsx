@@ -1,3 +1,4 @@
+import { ArrowsRightLeftIcon, PlayIcon } from "@heroicons/react/24/solid";
 import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -54,12 +55,22 @@ function AlbumHeader({ album, tracks }: Readonly<AlbumHeaderProps>) {
           <h1 className={`text-2xl lg:text-3xl`}>{album.name}</h1>
           <h2 className={`text-xl`}>{album.artist}</h2>
           <h3>{album.year}</h3>
-          <button className={`w-full`} onClick={playAll}>
-            {t("playAll")}
-          </button>
-          <button className={`w-full`} onClick={shuffleAll}>
-            {t("shuffleAll")}
-          </button>
+          <div className="flex flex-col gap-2">
+            <button
+              className={`flex w-full flex-row items-center rounded-full border border-gray-200 px-2 py-1 text-lg shadow-sm active:shadow-inner`}
+              onClick={playAll}
+            >
+              <PlayIcon className={`w-6`} />
+              <span className="flex-grow">{t("playAll")}</span>
+            </button>
+            <button
+              className={`flex w-full flex-row items-center rounded-full border border-gray-200 px-2 py-1 text-lg shadow-sm active:shadow-inner`}
+              onClick={shuffleAll}
+            >
+              <ArrowsRightLeftIcon className="w-6" />
+              <span className="flex-grow">{t("shuffleAll")}</span>
+            </button>
+          </div>
         </div>
       </div>
     </section>
