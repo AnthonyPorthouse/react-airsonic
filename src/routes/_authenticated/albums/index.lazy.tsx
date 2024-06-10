@@ -29,7 +29,7 @@ function Albums() {
 
   return (
     <div>
-      <h1 className={`my-4 mb-1 text-2xl`}>{t("allAlbums")}</h1>
+      <h1 className={`my-4 mb-1 text-4xl`}>{t("allAlbums")}</h1>
 
       <AlbumList albums={albums} />
     </div>

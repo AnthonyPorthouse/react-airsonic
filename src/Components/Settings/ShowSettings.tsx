@@ -48,6 +48,7 @@ function ShowSettings({ onClick }: Readonly<ShowSettingsProps>) {
           `bg-white`,
           `p-2`,
           `px-4`,
+          "shadow-lg",
         )}
         isOpen={isModalOpen}
         onRequestClose={closeModal}

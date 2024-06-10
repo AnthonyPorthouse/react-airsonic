@@ -38,7 +38,7 @@ function ArtistList({ className, artists }: Readonly<ArtistListProps>) {
 
     return (
       <Fragment key={key}>
-        <h1 className={`my-4 mb-1 text-2xl`}>{key}</h1>
+        <h2 className={`my-4 mb-1 text-2xl`}>{key}</h2>
         <Grid className={className}>
           {artists.map((artist) => (
             <ArtistItem key={artist.id} artist={artist} />

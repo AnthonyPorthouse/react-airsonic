@@ -49,8 +49,12 @@ function TrackList({ tracks, includeAdd = false }: Readonly<TrackListProps>) {
     <AlbumContext.Provider value={tracks}>
       <section
         className={`flex h-full w-full flex-auto flex-col justify-self-stretch`}
+        aria-label={
+          tracks[0]
+            ? `${tracks[0].artist} - ${tracks[0].album} ${t("tracks")}`
+            : t("tracks")
+        }
       >
-        <h1 className={`text-xl`}>{t("tracks")}</h1>
         <div
           ref={trackListRef}
           className="border-grey-200 max-h-full w-full overflow-auto rounded border"

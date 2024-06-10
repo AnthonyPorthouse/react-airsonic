@@ -2,6 +2,7 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
 import albums from "./locales/en/albums.json";
+import artists from "./locales/en/artists.json";
 import common from "./locales/en/common.json";
 import media from "./locales/en/media.json";
 import nav from "./locales/en/nav.json";
@@ -14,6 +15,7 @@ export const defaultNS = "common";
 export const resources = {
   en: {
     common,
+    artists,
     albums,
     media,
     nav,
@@ -27,7 +29,16 @@ i18n.use(initReactI18next).init({
   lng: "en",
 
   returnNull: false,
-  ns: ["common", "albums", "media", "nav", "podcasts", "search", "settings"],
+  ns: [
+    "common",
+    "artists",
+    "albums",
+    "media",
+    "nav",
+    "podcasts",
+    "search",
+    "settings",
+  ],
   defaultNS,
   resources,
   interpolation: {

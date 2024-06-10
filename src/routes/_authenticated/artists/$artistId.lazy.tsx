@@ -1,8 +1,9 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createLazyFileRoute } from "@tanstack/react-router";
 
-import AlbumList from "../../../Components/AlbumList";
+import AlbumHeader from "../../../Components/AlbumHeader";
 import Spinner from "../../../Components/Spinner";
+import TrackList from "../../../Components/TrackList";
 import { useAuth } from "../../../Providers/AuthProvider";
 import { ArtistQueryOptions } from "./$artistId";
 
@@ -16,7 +17,7 @@ function Artist() {
   const auth = useAuth();
 
   const {
-    data: [artist, albums],
+    data: { artist, albums },
   } = useSuspenseQuery({
     ...ArtistQueryOptions(artistId, auth),
     initialData: Route.useLoaderData(),
@@ -24,9 +25,20 @@ function Artist() {
 
   return (
     <div>
-      <h1 className={`my-4 mb-1 text-2xl`}>{artist.name}</h1>
+      <h1 className={`my-4 mb-1 text-4xl`}>{artist.name}</h1>
 
-      <AlbumList albums={albums} />
+      <div className="flex flex-col gap-16">
+        {albums.map(([album, songs]) => (
+          <section
+            key={album.id}
+            aria-label={`${artist.name} - ${album.name} (${album.year})`}
+            className={`flex h-full flex-auto flex-col justify-items-stretch gap-6 lg:flex-row`}
+          >
+            <AlbumHeader album={album} tracks={songs} />
+            <TrackList tracks={songs} includeAdd />
+          </section>
+        ))}
+      </div>
     </div>
   );
 }

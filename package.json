@@ -58,7 +58,7 @@
     "react-tooltip": "^5.26.3",
     "temporal-polyfill": "^0.2.4",
     "typescript": "^5.4.5",
-    "uuid": "^9.0.1",
+    "uuid": "^10.0.0",
     "workbox-core": "^7.0.0",
     "workbox-expiration": "^7.0.0",
     "workbox-precaching": "^7.0.0",
@@ -166,6 +166,14 @@
       "react-dom": "$react-dom"
     },
     "react-tooltip": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    },
+    "@react-hook/latest": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    },
+    "react-clientside-effect": {
       "react": "$react",
       "react-dom": "$react-dom"
     }
