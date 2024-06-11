@@ -2,6 +2,7 @@
 /// <reference types="vite/client" />
 import { TanStackRouterVite } from "@tanstack/router-vite-plugin";
 import react from "@vitejs/plugin-react";
+import UnpluginInjectPreload from "unplugin-inject-preload/vite";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 import svgrPlugin from "vite-plugin-svgr";
@@ -122,12 +123,38 @@ export default defineConfig({
       },
     }),
     TanStackRouterVite({}),
+    UnpluginInjectPreload({
+      files: [
+        {
+          outputMatch: /\.css$/,
+          attributes: {
+            crossorigin: true,
+          },
+        },
+        {
+          outputMatch: /\.js$/,
+          attributes: {
+            crossorigin: true,
+            rel: "preload",
+          },
+        },
+        {
+          outputMatch: /\.lazy-[-_a-zA-Z0-9]*?\.js$/,
+          attributes: {
+            crossorigin: true,
+            rel: "modulepreload",
+            type: undefined,
+          },
+        },
+      ],
+    }),
   ],
   css: {
     devSourcemap: true,
   },
   build: {
     outDir: "build",
+    target: "esnext",
   },
   test: {
     globals: true,
