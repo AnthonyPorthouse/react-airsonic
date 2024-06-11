@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 
 import AudioProvider from "../Providers/AudioProvider.js";
@@ -46,7 +47,12 @@ function MediaPlayer() {
               className={`hidden flex-shrink md:block`}
               style={{ width: "100px" }}
             >
-              <AlbumArt id={nowPlaying.coverArt} sizes={`100px`} />
+              <Link
+                to="/albums/$albumId"
+                params={{ albumId: nowPlaying.albumId }}
+              >
+                <AlbumArt id={nowPlaying.coverArt} sizes={`100px`} />
+              </Link>
             </div>
             <MediaInfo
               track={nowPlaying}

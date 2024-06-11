@@ -1,3 +1,5 @@
+import { Link } from "@tanstack/react-router";
+
 import { Song } from "../api/songs.js";
 
 interface TrackInfoProps {
@@ -12,7 +14,9 @@ function TrackInfo({ track }: Readonly<TrackInfoProps>) {
   return (
     <div className={`grid w-full text-left`}>
       <span className={`truncate font-bold`}>{track.title}</span>
-      <span className={`truncate`}>{track.artist}</span>
+      <Link to="/artists/$artistId" params={{ artistId: track.artistId }}>
+        <span className={`truncate`}>{track.artist}</span>
+      </Link>
     </div>
   );
 }
