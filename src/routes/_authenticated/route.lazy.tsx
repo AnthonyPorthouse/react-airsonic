@@ -17,7 +17,7 @@ function Authenticated() {
       <Nav />
 
       <div className={`flex-grow overflow-y-auto`}>
-        <div className="min-h-full p-6">
+        <div className="max-h-full p-6">
           <a id="main" />
           <Outlet />
         </div>
