@@ -1,6 +1,7 @@
 import { SongIds, Songs } from "@api/songs.js";
 import { ArrowsRightLeftIcon, PlayIcon } from "@heroicons/react/24/solid";
 import { useTrackList } from "@providers/TrackListProvider.js";
+import { Link } from "@tanstack/react-router";
 import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -13,6 +14,7 @@ interface Playable {
   name: string;
   tracks: SongIds;
   artist?: string;
+  artistId?: string;
   year?: number;
 }
 
@@ -54,7 +56,14 @@ function AlbumHeader({ album, tracks }: Readonly<AlbumHeaderProps>) {
         <AlbumArt id={album.coverArt} description={album.name} />
         <div className={`col-span-2 lg:col-span-1`}>
           <h1 className={`text-2xl lg:text-3xl`}>{album.name}</h1>
-          <h2 className={`text-xl`}>{album.artist}</h2>
+          <h2 className={`text-xl`}>
+            <Link
+              to="/artists/$artistId"
+              params={{ artistId: album.artistId ?? "" }}
+            >
+              {album.artist}
+            </Link>
+          </h2>
           <h3>{album.year}</h3>
           <div className="flex flex-col gap-2">
             <Button

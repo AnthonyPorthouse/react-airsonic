@@ -21,7 +21,7 @@ function Button({
           className,
         )}
       >
-        {renderIcon && renderIcon()}
+        {renderIcon?.()}
         {children}
       </div>
     </button>
