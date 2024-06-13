@@ -9,6 +9,10 @@ function to2Digits(number: number) {
 }
 
 function Duration({ time }: Readonly<DurationProps>) {
+  if (isNaN(time)) {
+    time = 0;
+  }
+
   const duration = Temporal.Duration.from({
     milliseconds: Math.floor(time * 1000),
   }).round({ largestUnit: "hour" });

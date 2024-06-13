@@ -57,12 +57,16 @@ function AlbumHeader({ album, tracks }: Readonly<AlbumHeaderProps>) {
         <div className={`col-span-2 lg:col-span-1`}>
           <h1 className={`text-2xl lg:text-3xl`}>{album.name}</h1>
           <h2 className={`text-xl`}>
-            <Link
-              to="/artists/$artistId"
-              params={{ artistId: album.artistId ?? "" }}
-            >
-              {album.artist}
-            </Link>
+            {album.artistId ? (
+              <Link
+                to="/artists/$artistId"
+                params={{ artistId: album.artistId ?? "" }}
+              >
+                {album.artist}
+              </Link>
+            ) : (
+              album.artist
+            )}
           </h2>
           <h3>{album.year}</h3>
           <div className="flex flex-col gap-2">

@@ -13,9 +13,13 @@ function TrackInfo({ track }: Readonly<TrackInfoProps>) {
   return (
     <div className={`grid w-full text-left`}>
       <span className={`truncate font-bold`}>{track.title}</span>
-      <Link to="/artists/$artistId" params={{ artistId: track.artistId }}>
+      {track.artistId ? (
+        <Link to="/artists/$artistId" params={{ artistId: track.artistId }}>
+          <span className={`truncate`}>{track.artist}</span>
+        </Link>
+      ) : (
         <span className={`truncate`}>{track.artist}</span>
-      </Link>
+      )}
     </div>
   );
 }

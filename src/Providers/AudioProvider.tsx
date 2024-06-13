@@ -70,10 +70,16 @@ function AudioProvider({
         audio.currentTime >= audio.duration - 10
       ) {
         const nextTrack = getNextTrack();
-        if (nextTrack) {
-          nextAudio.current = new Audio(
-            getStreamUrl(nextTrack.id, auth.credentials),
-          );
+
+        // If there is no next track, we don't need to preload it
+        if (!nextTrack) {
+          return;
+        }
+
+        const nextTrackUrl = getStreamUrl(nextTrack.id, auth.credentials);
+
+        if (nextAudio.current?.src !== nextTrackUrl) {
+          nextAudio.current = new Audio(nextTrackUrl);
           nextAudio.current.preload = "auto";
         }
       }
