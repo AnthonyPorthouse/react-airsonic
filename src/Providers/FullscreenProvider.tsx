@@ -1,6 +1,5 @@
+import { FullscreenContext } from "@components/MediaPlayer/FullscreenContext.js";
 import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
-
-import { FullscreenContext } from "../Components/MediaPlayer/FullscreenContext.js";
 
 export default function FullscreenProvider({
   children,

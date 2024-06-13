@@ -1,10 +1,9 @@
 import { Cog6ToothIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { useSetting } from "@hooks/useSettings.js";
 import classNames from "classnames";
 import { SyntheticEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ReactModal from "react-modal";
-
-import { useSetting } from "../../hooks/useSettings.js";
 
 type ShowSettingsProps = { onClick(event?: SyntheticEvent): void };
 

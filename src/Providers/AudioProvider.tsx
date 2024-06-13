@@ -1,8 +1,8 @@
+import { Song } from "@api/songs.js";
+import { getStreamUrl } from "@api/stream.js";
+import AudioContext from "@components/Audio/AudioContext.js";
 import { ReactNode, useCallback, useEffect, useRef } from "react";
 
-import AudioContext from "../Components/Audio/AudioContext.js";
-import { Song } from "../api/songs.js";
-import { getStreamUrl } from "../api/stream.js";
 import { useAuth } from "./AuthProvider.js";
 import { useTrackList } from "./TrackListProvider.js";
 

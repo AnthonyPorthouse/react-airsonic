@@ -1,11 +1,11 @@
+import Grid from "@components/Grid";
+import Playlist from "@components/Playlist";
+import Spinner from "@components/Spinner";
+import { useAuth } from "@providers/AuthProvider";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createLazyFileRoute } from "@tanstack/react-router";
 
 import { PlaylistsQueryOptions } from ".";
-import Grid from "../../../Components/Grid";
-import Playlist from "../../../Components/Playlist";
-import Spinner from "../../../Components/Spinner";
-import { useAuth } from "../../../Providers/AuthProvider";
 
 export const Route = createLazyFileRoute("/_authenticated/playlists/")({
   component: Playlists,

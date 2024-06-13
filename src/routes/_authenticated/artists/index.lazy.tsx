@@ -1,15 +1,13 @@
+import ArtistList from "@components/ArtistList";
+import { useAuth } from "@providers/AuthProvider";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createLazyFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 
 import { ArtistsQueryOptions } from ".";
-import ArtistList from "../../../Components/ArtistList";
-import Spinner from "../../../Components/Spinner";
-import { useAuth } from "../../../Providers/AuthProvider";
 
 export const Route = createLazyFileRoute("/_authenticated/artists/")({
   component: Artists,
-  pendingComponent: Spinner,
 });
 
 function Artists() {

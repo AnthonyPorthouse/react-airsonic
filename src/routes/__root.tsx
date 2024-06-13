@@ -1,9 +1,8 @@
+import TitleInfo from "@components/TitleInfo";
+import { type Authenticated } from "@providers/AuthProvider";
 import { QueryClient } from "@tanstack/react-query";
 import { Outlet, createRootRouteWithContext } from "@tanstack/react-router";
 import React, { Suspense } from "react";
-
-import TitleInfo from "../Components/TitleInfo";
-import { type Authenticated } from "../Providers/AuthProvider";
 
 const TanStackRouterDevtools =
   process.env.NODE_ENV === "production"

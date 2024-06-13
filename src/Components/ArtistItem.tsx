@@ -1,6 +1,6 @@
+import { Artist } from "@api/artists.js";
 import { Link } from "@tanstack/react-router";
 
-import { Artist } from "../api/artists.js";
 import HoverableAlbumArt from "./HoverableAlbumArt.js";
 
 interface ArtistItemProps {

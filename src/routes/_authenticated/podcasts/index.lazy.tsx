@@ -1,10 +1,10 @@
+import PodcastList from "@components/PodcastList";
+import Spinner from "@components/Spinner";
+import { useAuth } from "@providers/AuthProvider";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createLazyFileRoute } from "@tanstack/react-router";
 
 import { PodcastsQueryOptions } from ".";
-import PodcastList from "../../../Components/PodcastList";
-import Spinner from "../../../Components/Spinner";
-import { useAuth } from "../../../Providers/AuthProvider";
 
 export const Route = createLazyFileRoute("/_authenticated/podcasts/")({
   component: Podcasts,

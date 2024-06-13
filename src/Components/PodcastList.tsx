@@ -1,6 +1,5 @@
+import type { Podcasts } from "@api/podcasts.js";
 import { Suspense, lazy } from "react";
-
-import type { Podcasts } from "../api/podcasts.js";
 
 const PodcastView = lazy(() => import("./Podcast.js"));
 const Grid = lazy(() => import("./Grid.js"));

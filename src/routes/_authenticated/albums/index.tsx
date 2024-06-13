@@ -1,8 +1,8 @@
+import { getAlbums } from "@api/albums";
+import Spinner from "@components/Spinner";
+import { Authenticated } from "@providers/AuthProvider";
 import { queryOptions } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
-
-import { Authenticated } from "../../../Providers/AuthProvider";
-import { getAlbums } from "../../../api/albums";
 
 export const AlbumsQueryOptions = (auth: Authenticated) => {
   return queryOptions({
@@ -12,6 +12,7 @@ export const AlbumsQueryOptions = (auth: Authenticated) => {
 };
 
 export const Route = createFileRoute("/_authenticated/albums/")({
+  pendingComponent: Spinner,
   loader: ({ context: { queryClient, auth } }) =>
     queryClient.ensureQueryData(AlbumsQueryOptions(auth)),
 });

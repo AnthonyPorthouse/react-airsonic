@@ -1,10 +1,10 @@
+import EpisodeList from "@components/EpisodeList";
+import PodcastHeader from "@components/PodcastHeader";
+import Spinner from "@components/Spinner";
+import { useAuth } from "@providers/AuthProvider";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createLazyFileRoute } from "@tanstack/react-router";
 
-import EpisodeList from "../../../Components/EpisodeList";
-import PodcastHeader from "../../../Components/PodcastHeader";
-import Spinner from "../../../Components/Spinner";
-import { useAuth } from "../../../Providers/AuthProvider";
 import { PodcastQueryOptions } from "./$podcastId";
 
 export const Route = createLazyFileRoute("/_authenticated/podcasts/$podcastId")(

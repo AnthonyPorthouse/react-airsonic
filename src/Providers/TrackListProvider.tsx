@@ -1,3 +1,4 @@
+import { Song, Songs } from "@api/songs.js";
 import {
   ReactNode,
   createContext,
@@ -6,8 +7,6 @@ import {
   useMemo,
   useState,
 } from "react";
-
-import { Song, Songs } from "../api/songs.js";
 
 export interface TrackList {
   trackList: Songs;

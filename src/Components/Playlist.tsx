@@ -1,6 +1,6 @@
+import { Playlist as ApiPlaylist } from "@api/playlists.js";
 import { Link } from "@tanstack/react-router";
 
-import { Playlist as ApiPlaylist } from "../api/playlists.js";
 import HoverableAlbumArt from "./HoverableAlbumArt.js";
 
 interface PlaylistProps {

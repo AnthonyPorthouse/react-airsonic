@@ -1,8 +1,7 @@
+import { getSearchResults } from "@api/search";
+import { Authenticated } from "@providers/AuthProvider";
 import { queryOptions } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
-
-import { Authenticated } from "../../Providers/AuthProvider";
-import { getSearchResults } from "../../api/search";
 
 export const SearchQueryOptions = (query: string, auth: Authenticated) =>
   queryOptions({

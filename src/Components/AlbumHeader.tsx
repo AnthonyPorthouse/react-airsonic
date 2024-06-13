@@ -1,9 +1,9 @@
+import { SongIds, Songs } from "@api/songs.js";
 import { ArrowsRightLeftIcon, PlayIcon } from "@heroicons/react/24/solid";
+import { useTrackList } from "@providers/TrackListProvider.js";
 import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
 
-import { useTrackList } from "../Providers/TrackListProvider.js";
-import { SongIds, Songs } from "../api/songs.js";
 import AlbumArt from "./AlbumArt.js";
 import Button from "./Button.js";
 

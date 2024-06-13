@@ -1,9 +1,9 @@
+import { Song } from "@api/songs.js";
 import { PlayIcon, PlusIcon } from "@heroicons/react/24/solid";
+import { useTrackList } from "@providers/TrackListProvider.js";
 import { SyntheticEvent, useContext } from "react";
 import { useTranslation } from "react-i18next";
 
-import { useTrackList } from "../Providers/TrackListProvider.js";
-import { Song } from "../api/songs.js";
 import AlbumContext from "./AlbumContext.js";
 import Duration from "./Duration.js";
 

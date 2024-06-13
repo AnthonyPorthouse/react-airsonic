@@ -1,3 +1,5 @@
+import { AuthProvider } from "@providers/AuthProvider.js";
+import { TrackListProvider } from "@providers/TrackListProvider.js";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import React from "react";
@@ -7,8 +9,6 @@ import ReactModal from "react-modal";
 import { registerSW } from "virtual:pwa-register";
 
 import App from "./App.js";
-import { AuthProvider } from "./Providers/AuthProvider.js";
-import { TrackListProvider } from "./Providers/TrackListProvider.js";
 import "./i18n";
 import "./index.css";
 

@@ -1,4 +1,5 @@
-import { Song } from "../../api/songs.js";
+import { Song } from "@api/songs.js";
+
 import TrackInfo from "../TrackInfo.js";
 import MediaControls from "./MediaControls.js";
 import { ProgressBarWithTime } from "./ProgressBarWithTime.js";

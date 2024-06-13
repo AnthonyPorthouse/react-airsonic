@@ -1,8 +1,8 @@
+import { Song } from "@api/songs.js";
 import classNames from "classnames";
 import { createPortal } from "react-dom";
 import { AutoFocusInside } from "react-focus-lock";
 
-import { Song } from "../../api/songs.js";
 import AlbumArt from "../AlbumArt.js";
 import FullscreenButton from "../MediaControls/FullscreenButton.js";
 import { useFullscreen } from "./FullscreenContext.js";

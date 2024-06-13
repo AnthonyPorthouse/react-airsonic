@@ -1,3 +1,4 @@
+import { Credentials } from "@api/auth.js";
 import { redirect } from "@tanstack/react-router";
 import {
   ReactNode,
@@ -7,8 +8,6 @@ import {
   useMemo,
   useState,
 } from "react";
-
-import { Credentials } from "../api/auth.js";
 
 export interface Authentication {
   isAuthenticated: boolean;

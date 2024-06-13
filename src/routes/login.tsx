@@ -1,3 +1,5 @@
+import { ping } from "@api/auth.js";
+import { useAuth } from "@providers/AuthProvider.js";
 import { useMutation } from "@tanstack/react-query";
 import {
   createFileRoute,
@@ -8,8 +10,6 @@ import { t } from "i18next";
 import { Suspense, SyntheticEvent, useEffect, useState } from "react";
 import { z } from "zod";
 
-import { useAuth } from "../Providers/AuthProvider.js";
-import { ping } from "../api/auth.js";
 import logoAvif from "../images/logo192.avif";
 import logoPng from "../images/logo192.png";
 import logoWebp from "../images/logo192.webp";

@@ -1,8 +1,7 @@
+import { getPodcasts } from "@api/podcasts";
+import { Authenticated } from "@providers/AuthProvider";
 import { queryOptions } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
-
-import { Authenticated } from "../../../Providers/AuthProvider";
-import { getPodcasts } from "../../../api/podcasts";
 
 export const PodcastsQueryOptions = (auth: Authenticated) =>
   queryOptions({

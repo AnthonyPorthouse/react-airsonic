@@ -1,7 +1,7 @@
+import { Song } from "@api/songs.js";
+import { useTrackList } from "@providers/TrackListProvider.js";
 import { cleanup, render, screen } from "@testing-library/react";
 
-import { useTrackList } from "../Providers/TrackListProvider.js";
-import { Song } from "../api/songs.js";
 import TrackListItem from "./TrackListItem";
 
 const trackData: Song = {
@@ -20,7 +20,7 @@ const trackData: Song = {
 };
 
 describe("TrackListItem", async () => {
-  vi.mock("../Providers/TrackListProvider.js");
+  vi.mock("@providers/TrackListProvider.js");
 
   beforeEach(() => {
     vi.resetAllMocks();

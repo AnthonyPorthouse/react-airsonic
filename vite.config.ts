@@ -6,10 +6,12 @@ import UnpluginInjectPreload from "unplugin-inject-preload/vite";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 import svgrPlugin from "vite-plugin-svgr";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
+    tsconfigPaths(),
     react(),
     svgrPlugin(),
     VitePWA({

@@ -1,15 +1,13 @@
+import AlbumHeader from "@components/AlbumHeader";
+import TrackList from "@components/TrackList";
+import { useAuth } from "@providers/AuthProvider";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createLazyFileRoute } from "@tanstack/react-router";
 
-import AlbumHeader from "../../../Components/AlbumHeader";
-import Spinner from "../../../Components/Spinner";
-import TrackList from "../../../Components/TrackList";
-import { useAuth } from "../../../Providers/AuthProvider";
 import { AlbumQueryOptions } from "./$albumId";
 
 export const Route = createLazyFileRoute("/_authenticated/albums/$albumId")({
   component: Album,
-  pendingComponent: Spinner,
 });
 
 function Album() {

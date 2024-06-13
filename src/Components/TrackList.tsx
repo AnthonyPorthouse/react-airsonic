@@ -1,9 +1,9 @@
+import { Songs } from "@api/songs.js";
 import { VirtualItem, useVirtualizer } from "@tanstack/react-virtual";
 import classNames from "classnames";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Songs } from "../api/songs.js";
 import AlbumContext from "./AlbumContext.js";
 import TrackListItem from "./TrackListItem.js";
 

@@ -1,8 +1,7 @@
+import { getPlaylist } from "@api/playlists";
+import { Authenticated } from "@providers/AuthProvider";
 import { queryOptions } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
-
-import { Authenticated } from "../../../Providers/AuthProvider";
-import { getPlaylist } from "../../../api/playlists";
 
 export const PlaylistQueryOptions = (playlistId: string, auth: Authenticated) =>
   queryOptions({

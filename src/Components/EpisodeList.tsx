@@ -1,9 +1,9 @@
+import { Episode } from "@api/podcasts.js";
 import { VirtualItem, useVirtualizer } from "@tanstack/react-virtual";
 import classNames from "classnames";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Episode } from "../api/podcasts.js";
 import EpisodeListItem from "./EpisodeListItem.js";
 import PodcastContext from "./PodcastContext.js";
 

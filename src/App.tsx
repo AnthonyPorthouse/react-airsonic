@@ -1,6 +1,6 @@
+import { useAuth } from "@providers/AuthProvider.js";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 
-import { useAuth } from "./Providers/AuthProvider.js";
 import { queryClient } from "./index.js";
 import { routeTree } from "./routeTree.gen.js";
 

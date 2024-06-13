@@ -1,8 +1,7 @@
+import AlbumList from "@components/AlbumList";
+import ArtistList from "@components/ArtistList";
+import TrackList from "@components/TrackList";
 import { createLazyFileRoute } from "@tanstack/react-router";
-
-import AlbumList from "../../Components/AlbumList";
-import ArtistList from "../../Components/ArtistList";
-import TrackList from "../../Components/TrackList";
 
 export const Route = createLazyFileRoute("/_authenticated/search")({
   component: Search,

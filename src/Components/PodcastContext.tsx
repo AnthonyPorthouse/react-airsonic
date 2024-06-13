@@ -1,6 +1,5 @@
+import { Episode } from "@api/podcasts.js";
 import { createContext } from "react";
-
-import { Episode } from "../api/podcasts.js";
 
 const PodcastContext = createContext<Episode[]>([]);
 

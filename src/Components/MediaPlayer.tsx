@@ -1,10 +1,10 @@
+import { Song } from "@api/songs.js";
+import AudioProvider from "@providers/AudioProvider.js";
+import FullscreenProvider from "@providers/FullscreenProvider.js";
+import { useTrackList } from "@providers/TrackListProvider.js";
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 
-import AudioProvider from "../Providers/AudioProvider.js";
-import FullscreenProvider from "../Providers/FullscreenProvider.js";
-import { useTrackList } from "../Providers/TrackListProvider.js";
-import { Song } from "../api/songs.js";
 import AlbumArt from "./AlbumArt.js";
 import Fullscreen from "./MediaPlayer/Fullscreen.js";
 import MediaInfo from "./MediaPlayer/MediaInfo.js";

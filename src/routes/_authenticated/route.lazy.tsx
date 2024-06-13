@@ -1,10 +1,9 @@
+import MediaPlayer from "@components/MediaPlayer";
+import Nav from "@components/Nav";
+import Spinner from "@components/Spinner";
 import { Outlet, createLazyFileRoute } from "@tanstack/react-router";
 import { createPortal } from "react-dom";
 import { Tooltip } from "react-tooltip";
-
-import MediaPlayer from "../../Components/MediaPlayer";
-import Nav from "../../Components/Nav";
-import Spinner from "../../Components/Spinner";
 
 export const Route = createLazyFileRoute("/_authenticated")({
   component: Authenticated,

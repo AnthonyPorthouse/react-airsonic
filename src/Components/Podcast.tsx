@@ -1,6 +1,6 @@
+import type { Podcast as ApiPodcast } from "@api/podcasts.js";
 import { Link } from "@tanstack/react-router";
 
-import type { Podcast as ApiPodcast } from "../api/podcasts.js";
 import HoverableAlbumArt from "./HoverableAlbumArt.js";
 
 interface PodcastProps {

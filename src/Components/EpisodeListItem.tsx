@@ -1,17 +1,17 @@
+import {
+  Episode,
+  downloadEpisode,
+  isDownloadedEpisode,
+} from "@api/podcasts.js";
 import { ArrowDownTrayIcon, PlayIcon } from "@heroicons/react/24/solid";
+import { useAuth } from "@providers/AuthProvider.js";
+import { useTrackList } from "@providers/TrackListProvider.js";
 import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns/format";
 import { parseISO } from "date-fns/parseISO";
 import { SyntheticEvent, useContext, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
-import { useAuth } from "../Providers/AuthProvider.js";
-import { useTrackList } from "../Providers/TrackListProvider.js";
-import {
-  Episode,
-  downloadEpisode,
-  isDownloadedEpisode,
-} from "../api/podcasts.js";
 import Duration from "./Duration.js";
 import PodcastContext from "./PodcastContext.js";
 
