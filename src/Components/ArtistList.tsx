@@ -1,5 +1,6 @@
 import { Artists } from "@api/artists.js";
 import { Fragment, useMemo } from "react";
+import slugify from "slugify";
 
 import ArtistItem from "./ArtistItem.js";
 import Grid from "./Grid.js";
@@ -12,7 +13,7 @@ interface ArtistListProps {
 function ArtistList({ className, artists }: Readonly<ArtistListProps>) {
   const artistsByLetter = useMemo(() => {
     return artists.reduce((prev: { [key: string]: Artists }, artist) => {
-      let key = artist.name.charAt(0).toUpperCase();
+      let key = slugify(artist.name).charAt(0).toUpperCase();
 
       if (Number.isInteger(key)) {
         key = "#";
@@ -29,7 +30,7 @@ function ArtistList({ className, artists }: Readonly<ArtistListProps>) {
   }, [artists]);
 
   const sortedKeys = useMemo(
-    () => Object.keys(artistsByLetter).sort(),
+    () => Object.keys(artistsByLetter).sort((a, b) => a.localeCompare(b)),
     [artistsByLetter],
   );
 
