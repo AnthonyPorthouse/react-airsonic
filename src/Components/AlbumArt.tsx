@@ -69,7 +69,7 @@ function AlbumArt({
       width={width}
       height={width}
       alt={description}
-      role="presentation"
+      aria-hidden="true"
       className={classNames(`w-full overflow-hidden rounded`, className)}
       srcSet={dimensions}
       sizes={

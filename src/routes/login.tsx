@@ -100,7 +100,7 @@ function LogIn() {
               <img
                 src={logoAvif}
                 alt={t("common:title")}
-                role="presentation"
+                aria-hidden="true"
                 className={`h-12 w-12 md:h-16 md:w-16`}
               />
             </picture>
