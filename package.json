@@ -44,6 +44,7 @@
     "@tanstack/react-router": "^1.45.7",
     "@tanstack/react-virtual": "^3.2.1",
     "@tanstack/router-devtools": "^1.45.7",
+    "axios": "^1.7.2",
     "classnames": "^2.5.1",
     "date-fns": "^3.6.0",
     "i18next": "^23.11.1",

@@ -1,16 +1,5 @@
 import { Credentials, generateAuthParams, sanitizeServer } from "./auth.js";
-import { SongIds, Songs } from "./songs.js";
-
-export type Playlist = {
-  id: string;
-  name: string;
-  comment: string;
-  songCount: number;
-  coverArt: string;
-  tracks: SongIds;
-};
-export type Playlists = Playlist[];
-export type PlaylistIds = string[];
+import { Playlist, Playlists, Songs } from "./types.js";
 
 export async function getPlaylists({
   server,

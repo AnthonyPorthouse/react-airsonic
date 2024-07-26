@@ -13,6 +13,20 @@ function getToken(password: string) {
   return md5(`${password}${salt}`);
 }
 
+export function generateAuthParamsObject({
+  username,
+  password,
+}: Readonly<{ username: string; password: string }>) {
+  return {
+    u: username,
+    t: getToken(password),
+    s: salt,
+    v: "1.15.0",
+    c: "react-airsonic",
+    f: "json",
+  };
+}
+
 export function generateAuthParams({
   username,
   password,

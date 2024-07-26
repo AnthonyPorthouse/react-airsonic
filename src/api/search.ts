@@ -1,7 +1,5 @@
-import { Albums } from "./albums.js";
-import { Artists } from "./artists.js";
 import { Credentials, generateAuthParams, sanitizeServer } from "./auth.js";
-import { Songs } from "./songs.js";
+import { Albums, Artists, Songs } from "./types.js";
 
 export async function getSearchResults(
   query: string,
