@@ -1,4 +1,4 @@
-import { Artist } from "@api/artists.js";
+import type { Artist } from "@api/types.js";
 import { Link } from "@tanstack/react-router";
 
 import HoverableAlbumArt from "./HoverableAlbumArt.js";

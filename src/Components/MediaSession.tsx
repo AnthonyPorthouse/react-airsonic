@@ -1,5 +1,5 @@
 import { getCoverArtUrl } from "@api/artwork.js";
-import { Song } from "@api/songs.js";
+import type { Song } from "@api/types.js";
 import { useAuth } from "@providers/AuthProvider.js";
 import { useTrackList } from "@providers/TrackListProvider.js";
 import { ReactNode, useEffect } from "react";

@@ -1,4 +1,4 @@
-import { Artists } from "@api/artists.js";
+import type { Artists } from "@api/types.js";
 import { Fragment, useMemo } from "react";
 import slugify from "slugify";
 

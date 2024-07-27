@@ -1,4 +1,4 @@
-import { Song } from "@api/songs.js";
+import type { Song } from "@api/types.js";
 import { useTrackList } from "@providers/TrackListProvider.js";
 import { cleanup, render, screen } from "@testing-library/react";
 

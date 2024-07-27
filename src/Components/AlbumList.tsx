@@ -1,4 +1,4 @@
-import { Albums } from "@api/albums.js";
+import type { Albums } from "@api/types.js";
 
 import Album from "./Album.js";
 import Grid from "./Grid.js";

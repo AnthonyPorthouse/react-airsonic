@@ -1,4 +1,4 @@
-import { Episode } from "@api/podcasts.js";
+import type { Episode } from "@api/types.js";
 import { VirtualItem, useVirtualizer } from "@tanstack/react-virtual";
 import classNames from "classnames";
 import { useRef } from "react";
@@ -18,7 +18,7 @@ function EpisodeList({ episodes }: Readonly<EpisodeListProps>) {
 
   const rowHeight = 41;
 
-  const rowRenderer = (item: VirtualItem) => (
+  const rowRenderer = (item: VirtualItem<Element>) => (
     <div
       key={item.key}
       style={{

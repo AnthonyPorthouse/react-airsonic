@@ -1,4 +1,4 @@
-import type { Podcast } from "@api/podcasts.js";
+import type { Podcast } from "@api/types.js";
 
 import AlbumArt from "./AlbumArt.js";
 
