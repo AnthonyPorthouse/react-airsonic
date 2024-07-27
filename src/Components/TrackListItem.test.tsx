@@ -49,14 +49,17 @@ describe("TrackListItem", async () => {
   it("Should have a play button", async () => {
     render(<TrackListItem track={trackData} />);
 
-    expect(screen.getByRole("button", { name: "playTrack" })).toBeInTheDocument;
+    expect(
+      screen.getByRole("button", { name: "playTrack" }),
+    ).toBeInTheDocument();
   });
 
   it("Should not have an add button by default", async () => {
     render(<TrackListItem track={trackData} />);
 
-    expect(screen.queryByRole("button", { name: "addTrack" })).not
-      .toBeInTheDocument;
+    expect(
+      screen.queryByRole("button", { name: "addTrack" }),
+    ).not.toBeInTheDocument();
   });
 
   it("Should have an add button if requested", async () => {
