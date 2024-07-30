@@ -19,9 +19,18 @@ describe(getCoverArtUrl, async () => {
     authParamsMock.mockReturnValueOnce("auth");
     sanitizeServerMock.mockReturnValueOnce("http://example.com");
 
-    expect(
-      getCoverArtUrl("ar-1", { server: "", username: "", password: "" }),
-    ).toBe("http://example.com/rest/getCoverArt.view?id=ar-1&auth");
+    const result = getCoverArtUrl("ar-1", {
+      server: "",
+      username: "",
+      password: "",
+    });
+
+    expect(authParamsMock).toHaveBeenCalledOnce();
+    expect(sanitizeServerMock).toHaveBeenCalledOnce();
+
+    expect(result).toBe(
+      "http://example.com/rest/getCoverArt.view?id=ar-1&auth",
+    );
   });
 });
 
@@ -41,12 +50,17 @@ describe(getScaledCoverArtUrl, async () => {
     authParamsMock.mockReturnValueOnce("auth");
     sanitizeServerMock.mockReturnValueOnce("http://example.com");
 
-    expect(
-      getScaledCoverArtUrl("ar-1", "256", {
-        server: "",
-        username: "",
-        password: "",
-      }),
-    ).toBe("http://example.com/rest/getCoverArt.view?id=ar-1&size=256&auth");
+    const result = getScaledCoverArtUrl("ar-1", "256", {
+      server: "",
+      username: "",
+      password: "",
+    });
+
+    expect(authParamsMock).toHaveBeenCalledOnce();
+    expect(sanitizeServerMock).toHaveBeenCalledOnce();
+
+    expect(result).toBe(
+      "http://example.com/rest/getCoverArt.view?id=ar-1&size=256&auth",
+    );
   });
 });

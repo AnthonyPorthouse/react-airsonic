@@ -55,6 +55,7 @@ describe(getPlaylists, async () => {
       password: "test",
     });
 
+    expect(axiosGetMock).toHaveBeenCalledOnce();
     expect(res).toEqual([testPlaylist]);
   });
 });
@@ -88,6 +89,7 @@ describe(getPlaylist, async () => {
       password: "test",
     });
 
+    expect(axiosGetMock).toHaveBeenCalledOnce();
     expect(res).toEqual([testPlaylist, [testSong]]);
   });
 
@@ -108,6 +110,7 @@ describe(getPlaylist, async () => {
       password: "test",
     });
 
+    expect(axiosGetMock).toHaveBeenCalledOnce();
     expect(res).toEqual([testPlaylist, []]);
   });
 });
