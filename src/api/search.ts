@@ -1,28 +1,47 @@
-import { Credentials, generateAuthParams, sanitizeServer } from "./auth.js";
+import axios from "axios";
+
+import {
+  Credentials,
+  generateAuthParamsObject,
+  sanitizeServer,
+} from "./auth.js";
 import { Albums, Artists, Songs } from "./types.js";
+
+export interface SearchResultsResponse {
+  "subsonic-response": {
+    searchResult3: {
+      song?: Songs;
+      album?: Albums;
+      artist?: Artists;
+    };
+  };
+}
 
 export async function getSearchResults(
   query: string,
   { server, username, password }: Credentials,
 ): Promise<[Artists, Albums, Songs]> {
-  const authParams = generateAuthParams({ username, password });
-  const result = await fetch(
-    `${sanitizeServer(
-      server,
-    )}/rest/search3.view?query=${encodeURIComponent(query)}&artistCount=4&albumCount=4&songCount=100&${authParams}`,
+  const authParams = generateAuthParamsObject({ username, password });
+  const serverUrl = sanitizeServer(server);
+
+  const result = await axios.get<SearchResultsResponse>(
+    `${serverUrl}/rest/search3.view`,
+    {
+      params: {
+        ...authParams,
+        query: encodeURIComponent(query),
+        artistCount: 4,
+        albumCount: 4,
+        songCount: 100,
+      },
+    },
   );
-
-  if (!result.ok) {
-    throw new Error("Network Request Failed");
-  }
-
-  const json = await result.json();
 
   const {
     song: songs,
     album: albums,
     artist: artists,
-  } = json["subsonic-response"].searchResult3;
+  } = result.data["subsonic-response"].searchResult3;
 
   return [artists || [], albums || [], songs || []];
 }
