@@ -22,6 +22,21 @@ const trackData: Song = {
 describe("TrackListItem", async () => {
   vi.mock("@providers/TrackListProvider.js");
 
+  vi.mock("react-i18next", () => ({
+    useTranslation: () => {
+      return {
+        t: (str: string) => str,
+        i18n: {
+          changeLanguage: async () => () => {},
+        },
+      };
+    },
+    initReactI18next: {
+      type: "3rdParty",
+      init: () => {},
+    },
+  }));
+
   beforeEach(() => {
     vi.resetAllMocks();
     vi.mocked(useTrackList).mockReturnValue({

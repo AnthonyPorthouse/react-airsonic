@@ -1,7 +1,7 @@
 import { Credentials } from "@api/auth.js";
 import { redirect } from "@tanstack/react-router";
 import {
-  ReactNode,
+  PropsWithChildren,
   createContext,
   useCallback,
   useContext,
@@ -34,7 +34,7 @@ export const AuthContext = createContext<Authenticated>({
   setAuth: () => {},
 });
 
-export function AuthProvider({ children }: Readonly<{ children: ReactNode }>) {
+export function AuthProvider({ children }: PropsWithChildren) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [credentials, setCredentials] = useState({
     server: localStorage.getItem("ra.server") ?? "",

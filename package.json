@@ -123,6 +123,9 @@
     "@rollup/rollup-linux-x64-gnu": "^4.17.2"
   },
   "overrides": {
+    "jsdom": {
+      "tough-cookie": "next"
+    },
     "msw": {
       "typescript": "$typescript"
     },
