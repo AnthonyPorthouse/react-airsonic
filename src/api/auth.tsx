@@ -1,3 +1,4 @@
+import axios from "axios";
 import md5 from "md5";
 import { v4 as uuid } from "uuid";
 
@@ -40,11 +41,7 @@ export function generateAuthParams({
 }
 
 export function sanitizeServer(url: string) {
-  if (
-    (url !== null || url !== "") &&
-    !url.startsWith("http://") &&
-    !url.startsWith("https://")
-  ) {
+  if (!url.startsWith("http://") && !url.startsWith("https://")) {
     throw new Error(`Invalid Server URL ${url}`);
   }
 
@@ -52,22 +49,15 @@ export function sanitizeServer(url: string) {
 }
 
 export async function ping({ server, username, password }: Credentials) {
-  const authParams = generateAuthParams({ username, password });
+  const authParams = generateAuthParamsObject({ username, password });
 
-  let result: Response | null = null;
-  try {
-    result = await fetch(
-      `${sanitizeServer(server)}/rest/ping.view?${authParams}`,
-    );
-  } catch (e) {
-    console.warn(e);
-  }
+  const result = await axios.get<{
+    "subsonic-response": {
+      status: "ok" | "failed";
+    };
+  }>(`${sanitizeServer(server)}/rest/ping.view`, {
+    params: authParams,
+  });
 
-  if (!result?.ok) {
-    throw new Error("Network Request Failed");
-  }
-
-  const json = await result.json();
-
-  return { authenticated: json["subsonic-response"].status === "ok" };
+  return { authenticated: result.data["subsonic-response"].status === "ok" };
 }
