@@ -7,7 +7,7 @@ import {
 } from "./auth.js";
 import { Albums, Artist, Artists } from "./types.js";
 
-interface ArtistsResponse {
+export interface ArtistsResponse {
   "subsonic-response": {
     artists: {
       ignoredArticles: string;
@@ -19,7 +19,7 @@ interface ArtistsResponse {
   };
 }
 
-interface ArtistResponse {
+export interface ArtistResponse {
   "subsonic-response": {
     artist: Artist & { album: Albums };
   };
