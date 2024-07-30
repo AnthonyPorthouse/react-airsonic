@@ -1,4 +1,4 @@
-import { Song, Songs } from "@api/songs.js";
+import type { Song, Songs } from "@api/types.js";
 import {
   ReactNode,
   createContext,

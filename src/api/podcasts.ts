@@ -1,39 +1,5 @@
 import { Credentials, generateAuthParams, sanitizeServer } from "./auth.js";
-import { Song } from "./songs.js";
-
-export type Podcast = {
-  id: string;
-  url: string;
-  title: string;
-  description: string;
-  coverArt: string;
-  originalImageUrl: string;
-  status: string;
-};
-
-export type Podcasts = Podcast[];
-
-export type SkippedEpisode = {
-  id: string;
-  status: "skipped";
-  title: string;
-  description: string;
-  publishDate: string;
-};
-
-export type DownloadedEpisode = Song & {
-  status: "completed";
-  publishDate: string;
-  streamId: string;
-};
-
-export type Episode = SkippedEpisode | DownloadedEpisode;
-
-export function isDownloadedEpisode(
-  episode: Episode,
-): episode is DownloadedEpisode {
-  return episode.status === "completed";
-}
+import { Episode, Podcast, Podcasts, isDownloadedEpisode } from "./types.js";
 
 export async function getPodcasts({
   server,

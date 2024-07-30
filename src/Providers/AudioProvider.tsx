@@ -1,5 +1,5 @@
-import { Song } from "@api/songs.js";
 import { getStreamUrl } from "@api/stream.js";
+import type { Song } from "@api/types.js";
 import AudioContext from "@components/Audio/AudioContext.js";
 import { ReactNode, useCallback, useEffect, useRef } from "react";
 

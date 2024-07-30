@@ -1,4 +1,4 @@
-import { Album as ApiAlbum } from "@api/albums.js";
+import type { Album as ApiAlbum } from "@api/types.js";
 import { Link } from "@tanstack/react-router";
 
 import HoverableAlbumArt from "./HoverableAlbumArt.js";

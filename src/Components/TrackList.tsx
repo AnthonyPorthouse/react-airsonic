@@ -1,4 +1,4 @@
-import { Songs } from "@api/songs.js";
+import type { Songs } from "@api/types.js";
 import { VirtualItem, useVirtualizer } from "@tanstack/react-virtual";
 import classNames from "classnames";
 import { useRef } from "react";
@@ -19,7 +19,7 @@ function TrackList({ tracks, includeAdd = false }: Readonly<TrackListProps>) {
 
   const rowHeight = 41;
 
-  const rowRenderer = (item: VirtualItem) => (
+  const rowRenderer = (item: VirtualItem<Element>) => (
     <div
       key={item.key}
       style={{

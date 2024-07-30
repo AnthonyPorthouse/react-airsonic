@@ -1,35 +1,50 @@
-import { AlbumIds, Albums } from "./albums.js";
-import { Credentials, generateAuthParams, sanitizeServer } from "./auth.js";
+import Axios from "axios";
 
-export type Artist = {
-  id: string;
-  name: string;
-  coverArt: string;
-  albumCount: string;
-  albums: AlbumIds;
-};
-export type Artists = Artist[];
-export type ArtistIds = string[];
+import {
+  Credentials,
+  generateAuthParamsObject,
+  sanitizeServer,
+} from "./auth.js";
+import { Albums, Artist, Artists } from "./types.js";
+
+export interface ArtistsResponse {
+  "subsonic-response": {
+    artists: {
+      ignoredArticles: string;
+      index: {
+        name: string;
+        artist: Artists;
+      }[];
+    };
+  };
+}
+
+export interface ArtistResponse {
+  "subsonic-response": {
+    artist: Artist & { album: Albums };
+  };
+}
 
 export async function getArtists({
   server,
   username,
   password,
 }: Credentials): Promise<Artists> {
-  const authParams = generateAuthParams({ username, password });
-  const result = await fetch(
-    `${sanitizeServer(server)}/rest/getArtists.view?${authParams}`,
+  const authParams = generateAuthParamsObject({ username, password });
+  const serverUrl = sanitizeServer(server);
+
+  const result = await Axios.get<ArtistsResponse>(
+    `${serverUrl}/rest/getArtists.view`,
+    {
+      params: {
+        ...authParams,
+      },
+    },
   );
-
-  if (!result.ok) {
-    throw new Error("Network Request Failed");
-  }
-
-  const json = await result.json();
 
   const artists: Artist[] = [];
 
-  json["subsonic-response"].artists.index.forEach(
+  result.data["subsonic-response"].artists.index.forEach(
     (index: { artist: Artist[] }) => {
       index.artist.forEach((artist) => artists.push(artist));
     },
@@ -42,18 +57,20 @@ export async function getArtist(
   id: string,
   { server, username, password }: Credentials,
 ): Promise<[Artist, Albums]> {
-  const authParams = generateAuthParams({ username, password });
-  const result = await fetch(
-    `${sanitizeServer(server)}/rest/getArtist.view?id=${id}&${authParams}`,
+  const authParams = generateAuthParamsObject({ username, password });
+  const serverUrl = sanitizeServer(server);
+
+  const result = await Axios.get<ArtistResponse>(
+    `${serverUrl}/rest/getArtist.view`,
+    {
+      params: {
+        id,
+        ...authParams,
+      },
+    },
   );
 
-  if (!result.ok) {
-    throw new Error("Network Request Failed");
-  }
-
-  const json = await result.json();
-
-  const { album: albums, ...artist } = json["subsonic-response"].artist;
+  const { album: albums, ...artist } = result.data["subsonic-response"].artist;
 
   return [artist, albums];
 }

@@ -1,4 +1,4 @@
-import type { Podcasts } from "@api/podcasts.js";
+import type { Podcasts } from "@api/types.js";
 import { Suspense, lazy } from "react";
 
 const PodcastView = lazy(() => import("./Podcast.js"));

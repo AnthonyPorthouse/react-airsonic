@@ -1,4 +1,4 @@
-import { Song } from "@api/songs.js";
+import type { Song } from "@api/types.js";
 import { PlayIcon, PlusIcon } from "@heroicons/react/24/solid";
 import { useTrackList } from "@providers/TrackListProvider.js";
 import { SyntheticEvent, useContext } from "react";

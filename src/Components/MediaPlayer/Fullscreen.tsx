@@ -1,4 +1,4 @@
-import { Song } from "@api/songs.js";
+import type { Song } from "@api/types.js";
 import classNames from "classnames";
 import { createPortal } from "react-dom";
 import { AutoFocusInside } from "react-focus-lock";

@@ -1,4 +1,4 @@
-import { Song } from "@api/songs.js";
+import type { Song } from "@api/types.js";
 import { useTrackList } from "@providers/TrackListProvider.js";
 import { cleanup, render, screen } from "@testing-library/react";
 
@@ -21,6 +21,21 @@ const trackData: Song = {
 
 describe("TrackListItem", async () => {
   vi.mock("@providers/TrackListProvider.js");
+
+  vi.mock("react-i18next", () => ({
+    useTranslation: () => {
+      return {
+        t: (str: string) => str,
+        i18n: {
+          changeLanguage: async () => () => {},
+        },
+      };
+    },
+    initReactI18next: {
+      type: "3rdParty",
+      init: () => {},
+    },
+  }));
 
   beforeEach(() => {
     vi.resetAllMocks();
@@ -49,14 +64,17 @@ describe("TrackListItem", async () => {
   it("Should have a play button", async () => {
     render(<TrackListItem track={trackData} />);
 
-    expect(screen.getByRole("button", { name: "playTrack" })).toBeInTheDocument;
+    expect(
+      screen.getByRole("button", { name: "playTrack" }),
+    ).toBeInTheDocument();
   });
 
   it("Should not have an add button by default", async () => {
     render(<TrackListItem track={trackData} />);
 
-    expect(screen.queryByRole("button", { name: "addTrack" })).not
-      .toBeInTheDocument;
+    expect(
+      screen.queryByRole("button", { name: "addTrack" }),
+    ).not.toBeInTheDocument();
   });
 
   it("Should have an add button if requested", async () => {

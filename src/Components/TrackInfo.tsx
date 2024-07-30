@@ -1,4 +1,4 @@
-import { Song } from "@api/songs.js";
+import type { Song } from "@api/types.js";
 import { Link } from "@tanstack/react-router";
 
 interface TrackInfoProps {

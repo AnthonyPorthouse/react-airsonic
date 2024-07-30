@@ -1,4 +1,4 @@
-import { Song } from "@api/songs.js";
+import type { Song } from "@api/types.js";
 import AudioProvider from "@providers/AudioProvider.js";
 import FullscreenProvider from "@providers/FullscreenProvider.js";
 import { useTrackList } from "@providers/TrackListProvider.js";

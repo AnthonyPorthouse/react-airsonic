@@ -1,8 +1,5 @@
-import {
-  Episode,
-  downloadEpisode,
-  isDownloadedEpisode,
-} from "@api/podcasts.js";
+import { downloadEpisode } from "@/api/podcasts.js";
+import { Episode, isDownloadedEpisode } from "@api/types.js";
 import { ArrowDownTrayIcon, PlayIcon } from "@heroicons/react/24/solid";
 import { useAuth } from "@providers/AuthProvider.js";
 import { useTrackList } from "@providers/TrackListProvider.js";

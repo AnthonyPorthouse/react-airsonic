@@ -1,52 +1,61 @@
-import { Credentials, generateAuthParams, sanitizeServer } from "./auth.js";
-import { SongIds, Songs } from "./songs.js";
+import axios from "axios";
 
-export type Playlist = {
-  id: string;
-  name: string;
-  comment: string;
-  songCount: number;
-  coverArt: string;
-  tracks: SongIds;
-};
-export type Playlists = Playlist[];
-export type PlaylistIds = string[];
+import {
+  Credentials,
+  generateAuthParamsObject,
+  sanitizeServer,
+} from "./auth.js";
+import { Playlist, Playlists, Songs } from "./types.js";
+
+export interface PlaylistsResponse {
+  "subsonic-response": {
+    playlists: {
+      playlist: Playlists;
+    };
+  };
+}
+
+export interface PlaylistResponse {
+  "subsonic-response": {
+    playlist: Playlist & { entry?: Songs };
+  };
+}
 
 export async function getPlaylists({
   server,
   username,
   password,
 }: Credentials): Promise<Playlists> {
-  const authParams = generateAuthParams({ username, password });
-  const result = await fetch(
-    `${sanitizeServer(server)}/rest/getPlaylists.view?${authParams}`,
+  const authParams = generateAuthParamsObject({ username, password });
+  const serverUrl = sanitizeServer(server);
+
+  const result = await axios.get<PlaylistsResponse>(
+    `${serverUrl}/rest/getPlaylists.view`,
+    { params: authParams },
   );
 
-  if (!result.ok) {
-    throw new Error("Network Request Failed");
-  }
-
-  const json = await result.json();
-
-  return json["subsonic-response"].playlists.playlist;
+  return result.data["subsonic-response"].playlists.playlist;
 }
 
 export async function getPlaylist(
   id: string,
   { server, username, password }: Credentials,
 ): Promise<[Playlist, Songs]> {
-  const authParams = generateAuthParams({ username, password });
-  const result = await fetch(
-    `${sanitizeServer(server)}/rest/getPlaylist.view?id=${id}&${authParams}`,
+  const authParams = generateAuthParamsObject({ username, password });
+  const serverUrl = sanitizeServer(server);
+
+  const result = await axios.get<PlaylistResponse>(
+    `${serverUrl}/rest/getPlaylist.view`,
+    {
+      params: {
+        id,
+        ...authParams,
+      },
+    },
   );
 
-  if (!result.ok) {
-    throw new Error("Network Request Failed");
-  }
+  const { entry: songs, ...playlist } =
+    result.data["subsonic-response"].playlist;
 
-  const json = await result.json();
-
-  const { entry: songs, ...playlist } = json["subsonic-response"].playlist;
-
-  return [playlist, songs];
+  return [playlist, songs ?? []];
 }

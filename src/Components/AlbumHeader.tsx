@@ -1,4 +1,4 @@
-import { SongIds, Songs } from "@api/songs.js";
+import type { SongIds, Songs } from "@api/types.js";
 import { ArrowsRightLeftIcon, PlayIcon } from "@heroicons/react/24/solid";
 import { useTrackList } from "@providers/TrackListProvider.js";
 import { Link } from "@tanstack/react-router";
