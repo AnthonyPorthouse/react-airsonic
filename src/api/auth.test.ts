@@ -27,7 +27,7 @@ describe(generateAuthParamsObject, async () => {
     });
 
     expect(result.u).toBe("username");
-    expect(result.t).toBe(md5(`passwordtest`));
+    expect(result.t).toBe(md5("passwordtest"));
     expect(result.s).toBe("test");
   });
 });
@@ -50,7 +50,7 @@ describe(generateAuthParams, async () => {
     });
 
     expect(result).toBe(
-      `u=username&t=${md5(`passwordtest`)}&s=test&v=1.15.0&c=react-airsonic&f=json`,
+      `u=username&t=${md5("passwordtest")}&s=test&v=1.15.0&c=react-airsonic&f=json`,
     );
   });
 });
