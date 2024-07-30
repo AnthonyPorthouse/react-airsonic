@@ -7,7 +7,7 @@ import {
 } from "./auth.js";
 import { Album, Albums, Songs } from "./types.js";
 
-interface AlbumsResponse {
+export interface AlbumsResponse {
   "subsonic-response": {
     albumList2: {
       album: Albums;
@@ -15,7 +15,7 @@ interface AlbumsResponse {
   };
 }
 
-interface AlbumResponse {
+export interface AlbumResponse {
   "subsonic-response": {
     album: Album & { song: Songs };
   };
