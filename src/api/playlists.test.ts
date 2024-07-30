@@ -90,4 +90,24 @@ describe(getPlaylist, async () => {
 
     expect(res).toEqual([testPlaylist, [testSong]]);
   });
+
+  it("returns a playlist and an empty list of songs for a playlist with no entries on success", async () => {
+    axiosGetMock.mockResolvedValueOnce({
+      data: {
+        "subsonic-response": {
+          playlist: {
+            ...testPlaylist,
+          },
+        },
+      },
+    });
+
+    const res = await getPlaylist("pl-1", {
+      server: "https://example.com",
+      username: "test",
+      password: "test",
+    });
+
+    expect(res).toEqual([testPlaylist, []]);
+  });
 });
