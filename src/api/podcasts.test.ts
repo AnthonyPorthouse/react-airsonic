@@ -5,6 +5,7 @@ import {
   PodcastsResponse,
   getPodcast,
   getPodcasts,
+  isDownloadedEpisode,
 } from "./podcasts";
 import { Episode, Podcast } from "./types";
 
@@ -94,5 +95,40 @@ describe(getPodcast, async () => {
 
     expect(axiosGetMock).toHaveBeenCalledOnce();
     expect(res).toEqual([testPodcast, [testEpisode]]);
+  });
+});
+
+describe(isDownloadedEpisode, async () => {
+  it("returns true if an episode is downloaded", async () => {
+    expect(
+      isDownloadedEpisode({
+        id: "",
+        status: "completed",
+        title: "",
+        publishDate: "",
+        isPodcast: true,
+        album: "",
+        albumId: "",
+        coverArt: "",
+        artist: "",
+        artistId: "",
+        duration: 0,
+        parent: "",
+        track: 0,
+        streamId: "",
+      }),
+    ).toBe(true);
+  });
+
+  it("returns false if an episode is not downloaded", async () => {
+    expect(
+      isDownloadedEpisode({
+        id: "",
+        status: "skipped",
+        title: "",
+        publishDate: "",
+        description: "",
+      }),
+    ).toBe(false);
   });
 });

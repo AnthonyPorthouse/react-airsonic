@@ -59,12 +59,6 @@ export type DownloadedEpisode = Song & {
 
 export type Episode = SkippedEpisode | DownloadedEpisode;
 
-export function isDownloadedEpisode(
-  episode: Episode,
-): episode is DownloadedEpisode {
-  return episode.status === "completed";
-}
-
 export type Artist = {
   id: string;
   name: string;

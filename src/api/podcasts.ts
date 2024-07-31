@@ -5,7 +5,7 @@ import {
   generateAuthParamsObject,
   sanitizeServer,
 } from "./auth.js";
-import { Episode, Podcast, Podcasts, isDownloadedEpisode } from "./types.js";
+import { DownloadedEpisode, Episode, Podcast, Podcasts } from "./types.js";
 
 export interface PodcastsResponse {
   "subsonic-response": {
@@ -90,4 +90,9 @@ export async function downloadEpisode(
   });
 
   return true;
+}
+export function isDownloadedEpisode(
+  episode: Episode,
+): episode is DownloadedEpisode {
+  return episode.status === "completed";
 }
