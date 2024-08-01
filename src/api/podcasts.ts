@@ -91,6 +91,7 @@ export async function downloadEpisode(
 
   return true;
 }
+
 export function isDownloadedEpisode(
   episode: Episode,
 ): episode is DownloadedEpisode {

@@ -1,6 +1,8 @@
+import { useAlbumTracks } from "@/Providers/AlbumProvider";
 import type { Song } from "@api/types.js";
 import { useTrackList } from "@providers/TrackListProvider.js";
 import { cleanup, render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import TrackListItem from "./TrackListItem";
 
@@ -19,8 +21,12 @@ const trackData: Song = {
   parent: "",
 };
 
-describe("TrackListItem", async () => {
-  vi.mock("@providers/TrackListProvider.js");
+describe(TrackListItem, async () => {
+  vi.mock("@providers/TrackListProvider");
+  vi.mock("@providers/AlbumProvider");
+
+  const addTrackMock = vi.fn();
+  const setTrackListMock = vi.fn();
 
   vi.mock("react-i18next", () => ({
     useTranslation: () => {
@@ -39,11 +45,12 @@ describe("TrackListItem", async () => {
 
   beforeEach(() => {
     vi.resetAllMocks();
+    vi.mocked(useAlbumTracks).mockReturnValue([trackData]);
     vi.mocked(useTrackList).mockReturnValue({
       getCurrentTrack: vi.fn().mockReturnValue(null),
       getNextTrack: vi.fn(),
-      addTrack: vi.fn(),
-      setTrackList: vi.fn(),
+      addTrack: addTrackMock,
+      setTrackList: setTrackListMock,
       nextTrack: vi.fn(),
       trackList: [],
     });
@@ -109,8 +116,30 @@ describe("TrackListItem", async () => {
 
     render(<TrackListItem track={trackData} />);
 
+    expect(vi.mocked(useTrackList)).toHaveBeenCalled();
+
     expect(
       screen.getByRole("generic", { name: "currentlyPlaying" }),
     ).toBeInTheDocument();
+  });
+
+  it("should update the tracklist when the play button is clicked", async () => {
+    render(<TrackListItem track={trackData} />);
+
+    const playButton = await screen.findByRole("button", { name: "playTrack" });
+
+    await userEvent.click(playButton);
+
+    expect(setTrackListMock).toHaveBeenCalledWith([trackData]);
+  });
+
+  it("should push a track to the tracklist when the add button is clicked", async () => {
+    render(<TrackListItem includeAdd track={trackData} />);
+
+    const addButton = await screen.findByRole("button", { name: "addTrack" });
+
+    await userEvent.click(addButton);
+
+    expect(addTrackMock).toHaveBeenCalledOnce();
   });
 });

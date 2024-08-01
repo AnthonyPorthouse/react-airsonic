@@ -17,17 +17,13 @@ export interface TrackList {
   nextTrack(): void;
 }
 
-let trackList: Songs = [];
-
 export const TrackListContext = createContext<TrackList>({
   trackList: [],
   addTrack: () => {},
-  setTrackList: (tracks: Songs) => {
-    trackList = tracks;
-  },
-  getCurrentTrack: () => trackList[0],
-  getNextTrack: () => trackList.at(1),
-  nextTrack: () => (trackList = trackList.slice(1)),
+  setTrackList: () => {},
+  getCurrentTrack: () => null,
+  getNextTrack: () => undefined,
+  nextTrack: () => {},
 });
 
 export function TrackListProvider({

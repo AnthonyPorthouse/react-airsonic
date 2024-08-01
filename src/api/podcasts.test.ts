@@ -3,6 +3,7 @@ import axios from "axios";
 import {
   PodcastResponse,
   PodcastsResponse,
+  downloadEpisode,
   getPodcast,
   getPodcasts,
   isDownloadedEpisode,
@@ -19,12 +20,29 @@ const testPodcast: Podcast = {
   status: "",
 };
 
-const testEpisode: Episode = {
+const testSkippedEpisode: Episode = {
   id: "s-1",
   status: "skipped",
   title: "",
   description: "",
   publishDate: "",
+};
+
+const testDownloadedEpisode: Episode = {
+  id: "s-1",
+  status: "completed",
+  title: "",
+  publishDate: "",
+  parent: "",
+  album: "",
+  albumId: "",
+  artist: "",
+  artistId: "",
+  coverArt: "",
+  duration: 0,
+  isPodcast: true,
+  streamId: "",
+  track: 0,
 };
 
 describe(getPodcasts, async () => {
@@ -71,6 +89,29 @@ describe(getPodcast, async () => {
     vi.restoreAllMocks();
   });
 
+  it("returns true on success", async () => {
+    const res = await downloadEpisode("p-1", {
+      server: "https://example.com",
+      username: "test",
+      password: "test",
+    });
+
+    expect(axiosGetMock).toHaveBeenCalledOnce();
+    expect(res).toBe(true);
+  });
+});
+
+describe(downloadEpisode, async () => {
+  const axiosGetMock = vi.mocked(axios.get);
+
+  beforeEach(() => {
+    vi.mock("axios");
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   it("returns a podcast and its episodes on success", async () => {
     axiosGetMock.mockResolvedValueOnce({
       data: {
@@ -79,7 +120,7 @@ describe(getPodcast, async () => {
             channel: [
               {
                 ...testPodcast,
-                episode: [testEpisode],
+                episode: [testSkippedEpisode, testDownloadedEpisode],
               },
             ],
           },
@@ -94,7 +135,10 @@ describe(getPodcast, async () => {
     });
 
     expect(axiosGetMock).toHaveBeenCalledOnce();
-    expect(res).toEqual([testPodcast, [testEpisode]]);
+    expect(res).toEqual([
+      testPodcast,
+      [testSkippedEpisode, testDownloadedEpisode],
+    ]);
   });
 });
 

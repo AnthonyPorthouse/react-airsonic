@@ -1,10 +1,10 @@
+import { useAlbumTracks } from "@/Providers/AlbumProvider.js";
 import type { Song } from "@api/types.js";
 import { PlayIcon, PlusIcon } from "@heroicons/react/24/solid";
 import { useTrackList } from "@providers/TrackListProvider.js";
-import { SyntheticEvent, useContext } from "react";
+import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
 
-import AlbumContext from "./AlbumContext.js";
 import Duration from "./Duration.js";
 
 interface TrackListItemProps {
@@ -18,7 +18,7 @@ function TrackListItem({
 }: Readonly<TrackListItemProps>) {
   const { t } = useTranslation("media");
 
-  const tracks = useContext(AlbumContext);
+  const tracks = useAlbumTracks();
 
   const { getCurrentTrack, setTrackList, addTrack } = useTrackList();
 
