@@ -69,6 +69,7 @@ describe(getSearchResults, async () => {
       password: "",
     });
 
+    expect(axiosGetMock).toHaveBeenCalledOnce();
     expect(res).toEqual([[testArtist], [testAlbum], [testSong]]);
   });
 
@@ -87,6 +88,7 @@ describe(getSearchResults, async () => {
       password: "",
     });
 
+    expect(axiosGetMock).toHaveBeenCalledOnce();
     expect(res).toEqual([[], [], []]);
   });
 });

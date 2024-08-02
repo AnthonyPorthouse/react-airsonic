@@ -1,73 +1,18 @@
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import { SyntheticEvent } from "react";
+import { act, renderHook } from "@testing-library/react";
 import { MockInstance, afterEach, beforeEach, describe, expect } from "vitest";
 
 import { AuthProvider, useAuth } from "./AuthProvider";
 
-function AuthProviderTest() {
-  const auth = useAuth();
-
-  return (
-    <div>
-      <dl>
-        <dt>Server</dt>
-        <dd data-testid="server-url">{auth.credentials.server}</dd>
-
-        <dt>Username</dt>
-        <dd data-testid="username">{auth.credentials.username}</dd>
-
-        <dt>Password</dt>
-        <dd data-testid="password">{auth.credentials.password}</dd>
-
-        <dt>Is Authenticated</dt>
-        <dd data-testid="is-authenticated">{auth.isAuthenticated}</dd>
-      </dl>
-
-      <button
-        onClick={(e: SyntheticEvent) => {
-          e.preventDefault();
-          auth.setAuth({
-            isAuthenticated: true,
-            credentials: {
-              server: "server",
-              username: "username",
-              password: "password",
-            },
-          });
-        }}
-      >
-        Set Auth
-      </button>
-
-      <button onClick={() => auth.logout()}>Log Out</button>
-    </div>
-  );
-}
-
 describe(AuthProvider, async () => {
   describe("initial state", async () => {
-    beforeEach(() => {
-      render(
-        <AuthProvider>
-          <AuthProviderTest />
-        </AuthProvider>,
-      );
-    });
-
-    it("should start with an empty server address", async () => {
-      const server = await screen.findByTestId("server-url");
-      expect(server).toHaveTextContent("");
-    });
-
-    it("should start with an empty username", async () => {
-      const username = await screen.findByTestId("username");
-      expect(username).toHaveTextContent("");
-    });
-
-    it("should start with an empty password", async () => {
-      const password = await screen.findByTestId("password");
-      expect(password).toHaveTextContent("");
+    it("should start with empty credentials", async () => {
+      const { result } = renderHook(() => useAuth(), { wrapper: AuthProvider });
+      expect(result.current.credentials).toEqual({
+        server: "",
+        username: "",
+        password: "",
+      });
+      expect(result.current.isAuthenticated).toBe(false);
     });
   });
 
@@ -80,80 +25,49 @@ describe(AuthProvider, async () => {
         .mockReturnValueOnce("server")
         .mockReturnValueOnce("username")
         .mockReturnValueOnce("password");
-
-      render(
-        <AuthProvider>
-          <AuthProviderTest />
-        </AuthProvider>,
-      );
     });
 
     afterEach(() => {
       vi.restoreAllMocks();
     });
 
-    it("should start with an empty server address", async () => {
-      const server = await screen.findByTestId("server-url");
+    it("should have pre-populated credentials", async () => {
+      const { result } = renderHook(() => useAuth(), { wrapper: AuthProvider });
+
       expect(getItemSpy).toHaveBeenCalledWith("ra.server");
-      expect(server).toHaveTextContent("server");
-    });
-
-    it("should start with an empty username", async () => {
-      const username = await screen.findByTestId("username");
       expect(getItemSpy).toHaveBeenCalledWith("ra.username");
-      expect(username).toHaveTextContent("username");
-    });
-
-    it("should start with an empty password", async () => {
-      const password = await screen.findByTestId("password");
       expect(getItemSpy).toHaveBeenCalledWith("ra.password");
-      expect(password).toHaveTextContent("password");
+
+      expect(result.current.credentials).toEqual({
+        server: "server",
+        username: "username",
+        password: "password",
+      });
     });
   });
 
   describe("populated with setAuth", async () => {
-    beforeEach(() => {
-      render(
-        <AuthProvider>
-          <AuthProviderTest />
-        </AuthProvider>,
+    it("should return the new credentials after they're set", async () => {
+      const { result } = renderHook(() => useAuth(), { wrapper: AuthProvider });
+
+      await act(async () =>
+        result.current.setAuth({
+          isAuthenticated: true,
+          credentials: {
+            server: "server",
+            username: "username",
+            password: "password",
+          },
+        }),
       );
-    });
 
-    it("should set the auth when clicked", async () => {
-      const button = await screen.findByRole("button", { name: "Set Auth" });
+      expect(result.current.isAuthenticated).toBe(true);
 
-      await userEvent.click(button);
-
-      const server = await screen.findByTestId("server-url");
-      expect(server).toHaveTextContent("server");
-      const username = await screen.findByTestId("username");
-      expect(username).toHaveTextContent("username");
-      const password = await screen.findByTestId("password");
-      expect(password).toHaveTextContent("password");
-    });
-  });
-
-  describe("populated with setAuth", async () => {
-    beforeEach(() => {
-      render(
-        <AuthProvider>
-          <AuthProviderTest />
-        </AuthProvider>,
-      );
-    });
-
-    it("should set the auth when clicked", async () => {
-      const button = await screen.findByRole("button", { name: "Set Auth" });
-
-      await userEvent.click(button);
-
-      const server = await screen.findByTestId("server-url");
-      expect(server).toHaveTextContent("server");
-      const username = await screen.findByTestId("username");
-      expect(username).toHaveTextContent("username");
-      const password = await screen.findByTestId("password");
-      expect(password).toHaveTextContent("password");
+      expect(result.current.credentials).toEqual({
+        server: "server",
+        username: "username",
+        password: "password",
+      });
     });
   });
 });

@@ -1,42 +1,67 @@
-import { Credentials, generateAuthParams, sanitizeServer } from "./auth.js";
-import { Episode, Podcast, Podcasts, isDownloadedEpisode } from "./types.js";
+import axios from "axios";
+
+import {
+  Credentials,
+  generateAuthParamsObject,
+  sanitizeServer,
+} from "./auth.js";
+import { DownloadedEpisode, Episode, Podcast, Podcasts } from "./types.js";
+
+export interface PodcastsResponse {
+  "subsonic-response": {
+    podcasts: {
+      channel: Podcasts;
+    };
+  };
+}
+export interface PodcastResponse {
+  "subsonic-response": {
+    podcasts: {
+      channel: [Podcast & { episode: Episode[] }];
+    };
+  };
+}
 
 export async function getPodcasts({
   server,
   username,
   password,
 }: Credentials): Promise<Podcasts> {
-  const authParams = generateAuthParams({ username, password });
-  const result = await fetch(
-    `${sanitizeServer(server)}/rest/getPodcasts.view?${authParams}`,
+  const authParams = generateAuthParamsObject({ username, password });
+  const serverUrl = sanitizeServer(server);
+
+  const result = await axios.get<PodcastsResponse>(
+    `${serverUrl}/rest/getPodcasts.view`,
+    {
+      params: {
+        ...authParams,
+        includeEpisodes: false,
+      },
+    },
   );
 
-  if (!result.ok) {
-    throw new Error("Network Request Failed");
-  }
-
-  const json = await result.json();
-
-  return json["subsonic-response"].podcasts.channel;
+  return result.data["subsonic-response"].podcasts.channel;
 }
 
 export async function getPodcast(
   id: string,
   { server, username, password }: Credentials,
 ): Promise<[Podcast, Episode[]]> {
-  const authParams = generateAuthParams({ username, password });
-  const result = await fetch(
-    `${sanitizeServer(server)}/rest/getPodcasts.view?id=${id}&${authParams}`,
+  const authParams = generateAuthParamsObject({ username, password });
+  const serverUrl = sanitizeServer(server);
+
+  const result = await axios.get<PodcastResponse>(
+    `${serverUrl}/rest/getPodcasts.view`,
+    {
+      params: {
+        ...authParams,
+        id,
+      },
+    },
   );
 
-  if (!result.ok) {
-    throw new Error("Network Request Failed");
-  }
-
-  const json = await result.json();
-
   const { episode: episodes, ...podcast } =
-    json["subsonic-response"].podcasts.channel[0];
+    result.data["subsonic-response"].podcasts.channel[0];
 
   const mappedEpisodes = episodes.map((episode: Episode) => {
     if (isDownloadedEpisode(episode)) {
@@ -54,16 +79,21 @@ export async function downloadEpisode(
   id: string,
   { server, username, password }: Credentials,
 ): Promise<true> {
-  const authParams = generateAuthParams({ username, password });
-  const result = await fetch(
-    `${sanitizeServer(
-      server,
-    )}/rest/downloadPodcastEpisode.view?id=${id}&${authParams}`,
-  );
+  const authParams = generateAuthParamsObject({ username, password });
+  const serverUrl = sanitizeServer(server);
 
-  if (!result.ok) {
-    throw new Error("Network Request Failed");
-  }
+  await axios.get(`${serverUrl}/rest/downloadPodcastEpisode.view`, {
+    params: {
+      ...authParams,
+      id,
+    },
+  });
 
   return true;
+}
+
+export function isDownloadedEpisode(
+  episode: Episode,
+): episode is DownloadedEpisode {
+  return episode.status === "completed";
 }

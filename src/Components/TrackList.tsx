@@ -1,10 +1,10 @@
+import { AlbumProvider } from "@/Providers/AlbumProvider.js";
 import type { Songs } from "@api/types.js";
 import { VirtualItem, useVirtualizer } from "@tanstack/react-virtual";
 import classNames from "classnames";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 
-import AlbumContext from "./AlbumContext.js";
 import TrackListItem from "./TrackListItem.js";
 
 interface TrackListProps {
@@ -46,7 +46,7 @@ function TrackList({ tracks, includeAdd = false }: Readonly<TrackListProps>) {
   });
 
   return (
-    <AlbumContext.Provider value={tracks}>
+    <AlbumProvider tracks={tracks}>
       <section
         className={`flex h-full w-full flex-auto flex-col justify-self-stretch`}
         aria-label={
@@ -70,7 +70,7 @@ function TrackList({ tracks, includeAdd = false }: Readonly<TrackListProps>) {
           </div>
         </div>
       </section>
-    </AlbumContext.Provider>
+    </AlbumProvider>
   );
 }
 

@@ -1,16 +1,16 @@
-import { downloadEpisode } from "@/api/podcasts.js";
-import { Episode, isDownloadedEpisode } from "@api/types.js";
+import { useEpisodes } from "@/Providers/PodcastProvider.js";
+import { downloadEpisode, isDownloadedEpisode } from "@/api/podcasts.js";
+import { Episode } from "@api/types.js";
 import { ArrowDownTrayIcon, PlayIcon } from "@heroicons/react/24/solid";
 import { useAuth } from "@providers/AuthProvider.js";
 import { useTrackList } from "@providers/TrackListProvider.js";
 import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns/format";
 import { parseISO } from "date-fns/parseISO";
-import { SyntheticEvent, useContext, useMemo } from "react";
+import { SyntheticEvent, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
 import Duration from "./Duration.js";
-import PodcastContext from "./PodcastContext.js";
 
 interface EpisodeListItemProps {
   episode: Episode;
@@ -19,7 +19,7 @@ interface EpisodeListItemProps {
 function EpisodeListItem({ episode }: Readonly<EpisodeListItemProps>) {
   const { t } = useTranslation(["media", "podcasts"]);
 
-  const tracks = useContext(PodcastContext);
+  const tracks = useEpisodes();
 
   const auth = useAuth();
 

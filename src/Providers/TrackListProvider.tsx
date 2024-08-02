@@ -13,21 +13,17 @@ export interface TrackList {
   addTrack(track: Song): void;
   setTrackList(tracks: Songs): void;
   getCurrentTrack(): Song | null;
-  getNextTrack(): Song | undefined;
+  getNextTrack(): Song | null;
   nextTrack(): void;
 }
 
-let trackList: Songs = [];
-
-export const TrackListContext = createContext<TrackList>({
+const TrackListContext = createContext<TrackList>({
   trackList: [],
   addTrack: () => {},
-  setTrackList: (tracks: Songs) => {
-    trackList = tracks;
-  },
-  getCurrentTrack: () => trackList[0],
-  getNextTrack: () => trackList.at(1),
-  nextTrack: () => (trackList = trackList.slice(1)),
+  setTrackList: () => {},
+  getCurrentTrack: () => null,
+  getNextTrack: () => null,
+  nextTrack: () => {},
 });
 
 export function TrackListProvider({
@@ -37,12 +33,12 @@ export function TrackListProvider({
   const [trackListPosition, setTrackListPosition] = useState(0);
 
   const getCurrentTrack = useCallback(
-    () => trackList[trackListPosition],
+    () => trackList[trackListPosition] ?? null,
     [trackList, trackListPosition],
   );
 
   const getNextTrack = useCallback(
-    () => trackList.at(trackListPosition + 1),
+    () => trackList.at(trackListPosition + 1) ?? null,
     [trackList, trackListPosition],
   );
 

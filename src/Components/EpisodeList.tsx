@@ -1,3 +1,4 @@
+import { PodcastProvider } from "@/Providers/PodcastProvider.js";
 import type { Episode } from "@api/types.js";
 import { VirtualItem, useVirtualizer } from "@tanstack/react-virtual";
 import classNames from "classnames";
@@ -5,7 +6,6 @@ import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 
 import EpisodeListItem from "./EpisodeListItem.js";
-import PodcastContext from "./PodcastContext.js";
 
 interface EpisodeListProps {
   episodes: Episode[];
@@ -45,7 +45,7 @@ function EpisodeList({ episodes }: Readonly<EpisodeListProps>) {
   });
 
   return (
-    <PodcastContext.Provider value={episodes}>
+    <PodcastProvider episodes={episodes}>
       <section
         className={`flex h-full w-full flex-auto flex-col justify-self-stretch`}
       >
@@ -65,7 +65,7 @@ function EpisodeList({ episodes }: Readonly<EpisodeListProps>) {
           </div>
         </div>
       </section>
-    </PodcastContext.Provider>
+    </PodcastProvider>
   );
 }
 
