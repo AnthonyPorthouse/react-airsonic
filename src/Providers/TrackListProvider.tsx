@@ -17,7 +17,7 @@ export interface TrackList {
   nextTrack(): void;
 }
 
-export const TrackListContext = createContext<TrackList>({
+const TrackListContext = createContext<TrackList>({
   trackList: [],
   addTrack: () => {},
   setTrackList: () => {},

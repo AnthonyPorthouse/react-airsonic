@@ -1,13 +1,12 @@
 import { getStreamUrl } from "@api/stream.js";
 import type { Song } from "@api/types.js";
 import AudioContext from "@components/Audio/AudioContext.js";
-import { ReactNode, useCallback, useEffect, useRef } from "react";
+import { PropsWithChildren, useCallback, useEffect, useRef } from "react";
 
 import { useAuth } from "./AuthProvider.js";
 import { useTrackList } from "./TrackListProvider.js";
 
 interface AudioProviderProps {
-  children: ReactNode;
   setCurrentDuration: (pos: number) => void;
   setCurrentTime: (pos: number) => void;
 }
@@ -16,7 +15,7 @@ function AudioProvider({
   children,
   setCurrentDuration,
   setCurrentTime,
-}: Readonly<AudioProviderProps>) {
+}: Readonly<PropsWithChildren<AudioProviderProps>>) {
   const auth = useAuth();
 
   const audio = useRef(new Audio());
