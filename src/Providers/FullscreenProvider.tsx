@@ -1,5 +1,22 @@
-import { FullscreenContext } from "@components/MediaPlayer/FullscreenContext.js";
-import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+
+interface Fullscreen {
+  isFullscreen: boolean;
+  setIsFullscreen: (isFullscreen: boolean) => void;
+}
+
+export const FullscreenContext = createContext<Fullscreen>({
+  isFullscreen: false,
+  setIsFullscreen: () => {},
+});
 
 export default function FullscreenProvider({
   children,
@@ -47,4 +64,8 @@ export default function FullscreenProvider({
       {children}
     </FullscreenContext.Provider>
   );
+}
+
+export function useFullscreen() {
+  return useContext<Fullscreen>(FullscreenContext);
 }

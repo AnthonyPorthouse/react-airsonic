@@ -1,6 +1,6 @@
-import { SyntheticEvent, useContext, useEffect, useRef, useState } from "react";
+import { useAudio } from "@/Providers/AudioProvider.js";
+import { SyntheticEvent, useEffect, useRef, useState } from "react";
 
-import AudioContext from "../Audio/AudioContext.js";
 import Duration from "../Duration.js";
 
 interface ProgressBarProps {
@@ -9,7 +9,7 @@ interface ProgressBarProps {
 }
 
 function ProgressBar({ length, position }: Readonly<ProgressBarProps>) {
-  const audio = useContext(AudioContext);
+  const audio = useAudio();
 
   const progress = (position / length) * 100;
 

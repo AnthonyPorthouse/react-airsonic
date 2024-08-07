@@ -1,15 +1,14 @@
+import { useAudio } from "@/Providers/AudioProvider.js";
 import { PauseIcon } from "@heroicons/react/24/solid";
-import { SyntheticEvent, useContext } from "react";
+import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
-
-import AudioContext from "../Audio/AudioContext.js";
 
 function PauseButton() {
   const { t } = useTranslation("media");
   /**
    * @type audio {Audio}
    */
-  const audio = useContext(AudioContext);
+  const audio = useAudio();
 
   const pause = (e: SyntheticEvent) => {
     e.preventDefault();

@@ -1,10 +1,20 @@
 import { getStreamUrl } from "@api/stream.js";
 import type { Song } from "@api/types.js";
-import AudioContext from "@components/Audio/AudioContext.js";
-import { PropsWithChildren, useCallback, useEffect, useRef } from "react";
+import {
+  PropsWithChildren,
+  createContext,
+  createRef,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+} from "react";
 
 import { useAuth } from "./AuthProvider.js";
 import { useTrackList } from "./TrackListProvider.js";
+
+const audioRef = createRef<HTMLAudioElement>();
+const AudioContext = createContext(audioRef.current);
 
 interface AudioProviderProps {
   setCurrentDuration: (pos: number) => void;
@@ -147,6 +157,10 @@ function AudioProvider({
       {children}
     </AudioContext.Provider>
   );
+}
+
+export function useAudio() {
+  return useContext(AudioContext);
 }
 
 export default AudioProvider;

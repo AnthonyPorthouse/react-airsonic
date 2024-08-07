@@ -1,11 +1,10 @@
+import { useFullscreen } from "@/Providers/FullscreenProvider";
 import {
   ArrowsPointingInIcon,
   ArrowsPointingOutIcon,
 } from "@heroicons/react/24/solid";
 import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
-
-import { useFullscreen } from "../MediaPlayer/FullscreenContext.js";
 
 function FullscreenButton() {
   const { t } = useTranslation("media");
