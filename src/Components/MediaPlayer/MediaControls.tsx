@@ -1,6 +1,5 @@
-import { useContext } from "react";
+import { useAudio } from "@/Providers/AudioProvider.js";
 
-import AudioContext from "../Audio/AudioContext.js";
 import FullscreenButton from "../MediaControls/FullscreenButton.js";
 import PauseButton from "../MediaControls/PauseButton.js";
 import PlayButton from "../MediaControls/PlayButton.js";
@@ -8,7 +7,7 @@ import SkipButton from "../MediaControls/SkipButton.js";
 import StopButton from "../MediaControls/StopButton.js";
 
 function MediaControls() {
-  const audio = useContext(AudioContext);
+  const audio = useAudio();
 
   const playPauseButton = () => {
     if (audio?.paused) {

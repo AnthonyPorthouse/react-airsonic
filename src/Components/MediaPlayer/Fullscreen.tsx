@@ -1,3 +1,4 @@
+import { useFullscreen } from "@/Providers/FullscreenProvider.js";
 import type { Song } from "@api/types.js";
 import classNames from "classnames";
 import { createPortal } from "react-dom";
@@ -5,7 +6,6 @@ import { AutoFocusInside } from "react-focus-lock";
 
 import AlbumArt from "../AlbumArt.js";
 import FullscreenButton from "../MediaControls/FullscreenButton.js";
-import { useFullscreen } from "./FullscreenContext.js";
 import { ProgressBarWithTime } from "./ProgressBarWithTime.js";
 
 interface FullscreenProps {

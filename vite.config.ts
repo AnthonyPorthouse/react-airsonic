@@ -4,6 +4,7 @@ import { TanStackRouterVite } from "@tanstack/router-vite-plugin";
 import react from "@vitejs/plugin-react";
 import UnpluginInjectPreload from "unplugin-inject-preload/vite";
 import { defineConfig } from "vite";
+import mkcert from "vite-plugin-mkcert";
 import { VitePWA } from "vite-plugin-pwa";
 import svgrPlugin from "vite-plugin-svgr";
 import tsconfigPaths from "vite-tsconfig-paths";
@@ -150,6 +151,7 @@ export default defineConfig({
         },
       ],
     }),
+    mkcert(),
   ],
   css: {
     devSourcemap: true,

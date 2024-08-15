@@ -1,8 +1,7 @@
 import classNames from "classnames";
-import { ButtonHTMLAttributes, ReactElement, ReactNode } from "react";
+import { ButtonHTMLAttributes, PropsWithChildren, ReactElement } from "react";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children: ReactNode;
   renderIcon?: () => ReactElement;
 }
 
@@ -11,7 +10,7 @@ function Button({
   className,
   renderIcon,
   ...props
-}: Readonly<Props>) {
+}: Readonly<PropsWithChildren<Props>>) {
   return (
     <button className={classNames(`group relative focus:ring-0`)} {...props}>
       <div

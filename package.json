@@ -109,6 +109,7 @@
     "typescript-eslint": "^8.0.1",
     "unplugin-inject-preload": "^2.0.4",
     "vite": "^5.4",
+    "vite-plugin-mkcert": "^1.17.5",
     "vite-plugin-pwa": "^0.20.0",
     "vite-plugin-svgr": "^4.2.0",
     "vite-tsconfig-paths": "^5.0.1",
