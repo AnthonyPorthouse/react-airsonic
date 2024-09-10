@@ -47,7 +47,7 @@
     "axios": "^1.7.3",
     "classnames": "^2.5.1",
     "date-fns": "^3.6.0",
-    "i18next": "^23.11.1",
+    "i18next": "^23.15.1",
     "i18next-resources-to-backend": "^1.2.1",
     "md5": "^2.3.0",
     "react": "^19.0.0-rc.0",
