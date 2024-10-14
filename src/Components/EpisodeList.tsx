@@ -18,7 +18,7 @@ function EpisodeList({ episodes }: Readonly<EpisodeListProps>) {
 
   const rowHeight = 41;
 
-  const rowRenderer = (item: VirtualItem<Element>) => (
+  const rowRenderer = (item: VirtualItem) => (
     <div
       key={item.key}
       style={{

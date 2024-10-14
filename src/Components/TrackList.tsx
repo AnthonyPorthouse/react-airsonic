@@ -19,7 +19,7 @@ function TrackList({ tracks, includeAdd = false }: Readonly<TrackListProps>) {
 
   const rowHeight = 41;
 
-  const rowRenderer = (item: VirtualItem<Element>) => (
+  const rowRenderer = (item: VirtualItem) => (
     <div
       key={item.key}
       style={{
