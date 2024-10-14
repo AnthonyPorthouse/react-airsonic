@@ -18,24 +18,6 @@
     "*.{ts,tsx}": "eslint --fix",
     "package.json": "npx sort-package-json"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "dependencies": {
     "@heroicons/react": "^2.1.3",
     "@react-hook/window-size": "^3.1.1",
@@ -46,12 +28,12 @@
     "@tanstack/router-devtools": "^1.47.1",
     "axios": "^1.7.3",
     "classnames": "^2.5.1",
-    "date-fns": "^3.6.0",
+    "date-fns": "^4.1.0",
     "i18next": "^23.11.1",
     "i18next-resources-to-backend": "^1.2.1",
     "md5": "^2.3.0",
-    "react": "^19.0.0-rc.0",
-    "react-dom": "^19.0.0-rc.0",
+    "react": "19.0.0-rc-6cf85185-20241014",
+    "react-dom": "19.0.0-rc-6cf85185-20241014",
     "react-focus-lock": "^2.11.2",
     "react-helmet-async": "^2.0.4",
     "react-i18next": "^15.0.0",
@@ -59,7 +41,6 @@
     "react-tooltip": "^5.26.3",
     "slugify": "^1.6.6",
     "temporal-polyfill": "^0.2.4",
-    "typescript": "^5.4.5",
     "uuid": "^10.0.0",
     "workbox-core": "^7.0.0",
     "workbox-expiration": "^7.0.0",
@@ -69,9 +50,9 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@commitlint/cli": "19.4.0",
-    "@commitlint/config-conventional": "19.2.2",
-    "@commitlint/types": "19.0.3",
+    "@commitlint/cli": "19.5.0",
+    "@commitlint/config-conventional": "19.5.0",
+    "@commitlint/types": "19.5.0",
     "@eslint/js": "^9.8.0",
     "@tailwindcss/forms": "^0.5.7",
     "@tanstack/eslint-plugin-query": "^5.28.11",
@@ -93,12 +74,13 @@
     "@vitest/ui": "^2.0.0",
     "autoprefixer": "^10.4.19",
     "cross-env": "^7.0.3",
-    "eslint": "^8.57.0",
+    "eslint": "^9.12.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "globals": "^15.11.0",
     "husky": "^9.0.11",
-    "jsdom": "^24.0.0",
+    "jsdom": "^25.0.1",
     "lint-staged": "^15.2.2",
     "msw": "^2.2.13",
     "postcss": "^8.4.38",
@@ -106,8 +88,9 @@
     "prettier-plugin-tailwindcss": "^0.6.5",
     "tailwindcss": "^3.4.6",
     "ts-node": "^10.9.2",
+    "typescript": "^5.4.5",
     "typescript-eslint": "^8.0.1",
-    "unplugin-inject-preload": "^2.0.4",
+    "unplugin-inject-preload": "^3.0.0",
     "vite": "^5.4",
     "vite-plugin-mkcert": "^1.17.5",
     "vite-plugin-pwa": "^0.20.0",
@@ -116,17 +99,14 @@
     "vitest": "^2.0.0"
   },
   "optionalDependencies": {
-    "@esbuild/darwin-arm64": "^0.23.0",
-    "@esbuild/linux-x64": "^0.23.0",
+    "@esbuild/darwin-arm64": "^0.24.0",
+    "@esbuild/linux-x64": "^0.24.0",
     "@rollup/rollup-darwin-arm64": "^4.20.0",
     "@rollup/rollup-linux-x64-gnu": "^4.17.2"
   },
   "overrides": {
     "jsdom": {
       "tough-cookie": "next"
-    },
-    "msw": {
-      "typescript": "$typescript"
     },
     "@heroicons/react": {
       "react": "$react"
