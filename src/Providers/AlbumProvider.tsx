@@ -1,7 +1,6 @@
+import { AlbumContext } from "@/Contexts/AlbumContext";
 import type { Songs } from "@api/types.js";
-import { PropsWithChildren, createContext, useContext } from "react";
-
-const AlbumContext = createContext<Songs>([]);
+import { PropsWithChildren } from "react";
 
 export function AlbumProvider({
   children,
@@ -10,8 +9,4 @@ export function AlbumProvider({
   return (
     <AlbumContext.Provider value={tracks}>{children}</AlbumContext.Provider>
   );
-}
-
-export function useAlbumTracks() {
-  return useContext(AlbumContext);
 }

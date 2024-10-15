@@ -1,4 +1,4 @@
-import { useAuth } from "@providers/AuthProvider.js";
+import { useAuth } from "@hooks/useAuth.js";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 
 import { queryClient } from "./index.js";

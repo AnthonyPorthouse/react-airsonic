@@ -1,5 +1,5 @@
-import { useFullscreen } from "@/Providers/FullscreenProvider.js";
 import type { Song } from "@api/types.js";
+import { useFullscreen } from "@hooks/useFullscreen.js";
 import classNames from "classnames";
 import { createPortal } from "react-dom";
 import { AutoFocusInside } from "react-focus-lock";

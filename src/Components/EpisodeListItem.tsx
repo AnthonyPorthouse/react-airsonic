@@ -1,9 +1,9 @@
-import { useEpisodes } from "@/Providers/PodcastProvider.js";
 import { downloadEpisode, isDownloadedEpisode } from "@/api/podcasts.js";
 import { Episode } from "@api/types.js";
 import { ArrowDownTrayIcon, PlayIcon } from "@heroicons/react/24/solid";
-import { useAuth } from "@providers/AuthProvider.js";
-import { useTrackList } from "@providers/TrackListProvider.js";
+import { useAuth } from "@hooks/useAuth.js";
+import { useEpisodes } from "@hooks/useEpisodes.js";
+import { useTrackList } from "@hooks/useTrackList.js";
 import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns/format";
 import { parseISO } from "date-fns/parseISO";

@@ -1,5 +1,5 @@
-import { PodcastProvider } from "@/Providers/PodcastProvider.js";
 import type { Episode } from "@api/types.js";
+import { PodcastProvider } from "@providers/PodcastProvider.js";
 import { VirtualItem, useVirtualizer } from "@tanstack/react-virtual";
 import classNames from "classnames";
 import { useRef } from "react";

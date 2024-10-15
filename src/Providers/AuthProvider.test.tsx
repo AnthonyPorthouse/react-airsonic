@@ -1,7 +1,8 @@
+import { useAuth } from "@hooks/useAuth";
 import { act, renderHook } from "@testing-library/react";
 import { MockInstance, afterEach, beforeEach, describe, expect } from "vitest";
 
-import { AuthProvider, useAuth } from "./AuthProvider";
+import { AuthProvider } from "./AuthProvider";
 
 describe(AuthProvider, async () => {
   describe("initial state", async () => {

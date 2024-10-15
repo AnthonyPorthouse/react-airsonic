@@ -1,5 +1,5 @@
-import { useAudio } from "@/Providers/AudioProvider.js";
 import { PlayIcon } from "@heroicons/react/24/solid";
+import { useAudio } from "@hooks/useAudio";
 import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
 

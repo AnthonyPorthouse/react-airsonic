@@ -1,4 +1,4 @@
-import { useAudio } from "@/Providers/AudioProvider.js";
+import { useAudio } from "@/hooks/useAudio.js";
 import { SyntheticEvent, useEffect, useRef, useState } from "react";
 
 import Duration from "../Duration.js";

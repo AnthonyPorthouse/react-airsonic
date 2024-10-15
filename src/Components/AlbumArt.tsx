@@ -1,5 +1,5 @@
 import { getScaledCoverArtUrl } from "@api/artwork.js";
-import { useAuth } from "@providers/AuthProvider.js";
+import { useAuth } from "@hooks/useAuth";
 import classNames from "classnames";
 import md5 from "md5";
 import { useEffect, useMemo, useRef, useState } from "react";

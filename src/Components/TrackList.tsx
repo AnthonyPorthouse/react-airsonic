@@ -1,5 +1,5 @@
-import { AlbumProvider } from "@/Providers/AlbumProvider.js";
 import type { Songs } from "@api/types.js";
+import { AlbumProvider } from "@providers/AlbumProvider.js";
 import { VirtualItem, useVirtualizer } from "@tanstack/react-virtual";
 import classNames from "classnames";
 import { useRef } from "react";

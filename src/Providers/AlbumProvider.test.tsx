@@ -1,7 +1,8 @@
 import { Song } from "@/api/types";
+import { useAlbumTracks } from "@hooks/useAlbumTracks";
 import { renderHook } from "@testing-library/react";
 
-import { AlbumProvider, useAlbumTracks } from "./AlbumProvider";
+import { AlbumProvider } from "./AlbumProvider";
 
 const testSong: Song = {
   id: "abc",

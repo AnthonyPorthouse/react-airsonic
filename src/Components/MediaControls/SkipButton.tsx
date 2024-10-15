@@ -1,5 +1,5 @@
 import { ForwardIcon } from "@heroicons/react/24/solid";
-import { useTrackList } from "@providers/TrackListProvider.js";
+import { useTrackList } from "@hooks/useTrackList";
 import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
 

@@ -1,5 +1,5 @@
+import { Authenticated } from "@/Contexts/AuthContext";
 import { getPodcasts } from "@api/podcasts";
-import { Authenticated } from "@providers/AuthProvider";
 import { queryOptions } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 

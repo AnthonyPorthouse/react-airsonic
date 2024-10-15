@@ -1,38 +1,13 @@
 import { Credentials } from "@api/auth.js";
 import { redirect } from "@tanstack/react-router";
-import {
-  PropsWithChildren,
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-} from "react";
+import { PropsWithChildren, useCallback, useMemo, useState } from "react";
+
+import { AuthContext } from "../Contexts/AuthContext";
 
 export interface Authentication {
   isAuthenticated: boolean;
   credentials: Credentials;
 }
-
-export type Authenticated = {
-  logout(): void;
-  isAuthenticated: boolean;
-  credentials: Credentials;
-  setCredentials(credentials: Credentials): void;
-  setAuth(auth: { isAuthenticated: boolean; credentials: Credentials }): void;
-};
-
-export const AuthContext = createContext<Authenticated>({
-  logout: () => {},
-  isAuthenticated: false,
-  credentials: {
-    server: "",
-    username: "",
-    password: "",
-  },
-  setCredentials: () => {},
-  setAuth: () => {},
-});
 
 export function AuthProvider({ children }: PropsWithChildren) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -75,8 +50,4 @@ export function AuthProvider({ children }: PropsWithChildren) {
   return (
     <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>
   );
-}
-
-export function useAuth() {
-  return useContext<Authenticated>(AuthContext);
 }

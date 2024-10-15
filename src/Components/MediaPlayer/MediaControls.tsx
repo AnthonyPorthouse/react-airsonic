@@ -1,4 +1,4 @@
-import { useAudio } from "@/Providers/AudioProvider.js";
+import { useAudio } from "@hooks/useAudio.js";
 
 import FullscreenButton from "../MediaControls/FullscreenButton.js";
 import PauseButton from "../MediaControls/PauseButton.js";

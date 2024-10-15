@@ -1,10 +1,10 @@
-import { useAlbumTracks } from "@/Providers/AlbumProvider";
 import type { Song } from "@api/types.js";
-import { useTrackList } from "@providers/TrackListProvider.js";
+import { useAlbumTracks } from "@hooks/useAlbumTracks.js";
+import { useTrackList } from "@hooks/useTrackList.js";
 import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import TrackListItem from "./TrackListItem";
+import TrackListItem from "./TrackListItem.js";
 
 const trackData: Song = {
   id: "abc",
@@ -22,8 +22,8 @@ const trackData: Song = {
 };
 
 describe(TrackListItem, async () => {
-  vi.mock("@providers/TrackListProvider");
-  vi.mock("@providers/AlbumProvider");
+  vi.mock("@hooks/useTrackList");
+  vi.mock("@hooks/useAlbumTracks");
 
   const addTrackMock = vi.fn();
   const setTrackListMock = vi.fn();

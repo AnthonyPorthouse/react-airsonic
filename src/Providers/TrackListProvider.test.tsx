@@ -1,7 +1,8 @@
 import { Song } from "@/api/types";
+import { useTrackList } from "@hooks/useTrackList";
 import { act, renderHook } from "@testing-library/react";
 
-import { TrackListProvider, useTrackList } from "./TrackListProvider";
+import { TrackListProvider } from "./TrackListProvider";
 
 const testSong: Song = {
   id: "s-1",

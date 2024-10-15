@@ -1,7 +1,7 @@
 import AlbumHeader from "@components/AlbumHeader";
 import Spinner from "@components/Spinner";
 import TrackList from "@components/TrackList";
-import { useAuth } from "@providers/AuthProvider";
+import { useAuth } from "@hooks/useAuth";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createLazyFileRoute } from "@tanstack/react-router";
 

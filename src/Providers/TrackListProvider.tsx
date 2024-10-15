@@ -1,30 +1,7 @@
 import type { Song, Songs } from "@api/types.js";
-import {
-  ReactNode,
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-} from "react";
+import { ReactNode, useCallback, useMemo, useState } from "react";
 
-export interface TrackList {
-  trackList: Songs;
-  addTrack(track: Song): void;
-  setTrackList(tracks: Songs): void;
-  getCurrentTrack(): Song | null;
-  getNextTrack(): Song | null;
-  nextTrack(): void;
-}
-
-const TrackListContext = createContext<TrackList>({
-  trackList: [],
-  addTrack: () => {},
-  setTrackList: () => {},
-  getCurrentTrack: () => null,
-  getNextTrack: () => null,
-  nextTrack: () => {},
-});
+import { TrackListContext } from "../Contexts/TrackListContext";
 
 export function TrackListProvider({
   children,
@@ -78,8 +55,4 @@ export function TrackListProvider({
       {children}
     </TrackListContext.Provider>
   );
-}
-
-export function useTrackList() {
-  return useContext(TrackListContext);
 }

@@ -1,7 +1,7 @@
 import type { Episode } from "@api/types.js";
-import { PropsWithChildren, createContext, useContext } from "react";
+import { PropsWithChildren } from "react";
 
-export const PodcastContext = createContext<Episode[]>([]);
+import { PodcastContext } from "../Contexts/PodcastContext";
 
 export function PodcastProvider({
   children,
@@ -12,8 +12,4 @@ export function PodcastProvider({
       {children}
     </PodcastContext.Provider>
   );
-}
-
-export function useEpisodes(): Episode[] {
-  return useContext(PodcastContext);
 }

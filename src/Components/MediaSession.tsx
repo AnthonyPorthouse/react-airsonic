@@ -1,7 +1,7 @@
 import { getCoverArtUrl } from "@api/artwork.js";
 import type { Song } from "@api/types.js";
-import { useAuth } from "@providers/AuthProvider.js";
-import { useTrackList } from "@providers/TrackListProvider.js";
+import { useAuth } from "@hooks/useAuth";
+import { useTrackList } from "@hooks/useTrackList";
 import { ReactNode, useEffect } from "react";
 
 interface MediaSessionProps {

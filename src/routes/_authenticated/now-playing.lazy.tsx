@@ -1,6 +1,6 @@
 import Spinner from "@components/Spinner.js";
 import TrackList from "@components/TrackList.js";
-import { useTrackList } from "@providers/TrackListProvider.js";
+import { useTrackList } from "@hooks/useTrackList";
 import { createLazyFileRoute } from "@tanstack/react-router";
 
 export const Route = createLazyFileRoute("/_authenticated/now-playing")({

@@ -1,8 +1,8 @@
-import { useFullscreen } from "@/Providers/FullscreenProvider";
 import {
   ArrowsPointingInIcon,
   ArrowsPointingOutIcon,
 } from "@heroicons/react/24/solid";
+import { useFullscreen } from "@hooks/useFullscreen";
 import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
 

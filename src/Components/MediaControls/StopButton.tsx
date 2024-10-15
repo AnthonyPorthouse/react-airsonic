@@ -1,6 +1,6 @@
-import { useAudio } from "@/Providers/AudioProvider.js";
 import { StopIcon } from "@heroicons/react/24/solid";
-import { useTrackList } from "@providers/TrackListProvider.js";
+import { useAudio } from "@hooks/useAudio";
+import { useTrackList } from "@hooks/useTrackList";
 import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
 

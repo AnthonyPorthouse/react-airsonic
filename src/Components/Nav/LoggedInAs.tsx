@@ -1,5 +1,5 @@
+import { useAuth } from "@/hooks/useAuth";
 import { UserIcon } from "@heroicons/react/24/solid";
-import { useAuth } from "@providers/AuthProvider.js";
 import { useNavigate } from "@tanstack/react-router";
 import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";

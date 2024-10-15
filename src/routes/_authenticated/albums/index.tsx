@@ -1,6 +1,6 @@
+import { Authenticated } from "@/Contexts/AuthContext";
 import { getAlbums } from "@api/albums";
 import Spinner from "@components/Spinner";
-import { Authenticated } from "@providers/AuthProvider";
 import { queryOptions } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 

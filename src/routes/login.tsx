@@ -1,5 +1,5 @@
 import { ping } from "@api/auth.js";
-import { useAuth } from "@providers/AuthProvider.js";
+import { useAuth } from "@hooks/useAuth";
 import { useMutation } from "@tanstack/react-query";
 import {
   createFileRoute,

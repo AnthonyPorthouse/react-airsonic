@@ -1,5 +1,5 @@
+import { Authenticated } from "@/Contexts/AuthContext";
 import { getPlaylist } from "@api/playlists";
-import { Authenticated } from "@providers/AuthProvider";
 import { queryOptions } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 

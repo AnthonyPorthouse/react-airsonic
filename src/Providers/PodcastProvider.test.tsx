@@ -1,7 +1,8 @@
 import { Episode } from "@/api/types";
+import { useEpisodes } from "@hooks/useEpisodes";
 import { renderHook } from "@testing-library/react";
 
-import { PodcastProvider, useEpisodes } from "./PodcastProvider";
+import { PodcastProvider } from "./PodcastProvider";
 
 const testEpisode: Episode = {
   id: "s-1",

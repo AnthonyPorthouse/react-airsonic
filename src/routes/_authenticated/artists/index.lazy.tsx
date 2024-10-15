@@ -1,5 +1,5 @@
 import ArtistList from "@components/ArtistList";
-import { useAuth } from "@providers/AuthProvider";
+import { useAuth } from "@hooks/useAuth";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createLazyFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";

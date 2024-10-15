@@ -1,5 +1,5 @@
+import { type Authenticated } from "@/Contexts/AuthContext";
 import TitleInfo from "@components/TitleInfo";
-import { type Authenticated } from "@providers/AuthProvider";
 import { QueryClient } from "@tanstack/react-query";
 import { Outlet, createRootRouteWithContext } from "@tanstack/react-router";
 import React, { Suspense } from "react";

@@ -1,27 +1,17 @@
 import { getStreamUrl } from "@api/stream.js";
 import type { Song } from "@api/types.js";
-import {
-  PropsWithChildren,
-  createContext,
-  createRef,
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-} from "react";
+import { useAuth } from "@hooks/useAuth.js";
+import { useTrackList } from "@hooks/useTrackList.js";
+import { PropsWithChildren, useCallback, useEffect, useRef } from "react";
 
-import { useAuth } from "./AuthProvider.js";
-import { useTrackList } from "./TrackListProvider.js";
-
-const audioRef = createRef<HTMLAudioElement>();
-const AudioContext = createContext(audioRef.current);
+import { AudioContext } from "../Contexts/AudioContext.js";
 
 interface AudioProviderProps {
   setCurrentDuration: (pos: number) => void;
   setCurrentTime: (pos: number) => void;
 }
 
-function AudioProvider({
+export function AudioProvider({
   children,
   setCurrentDuration,
   setCurrentTime,
@@ -158,9 +148,3 @@ function AudioProvider({
     </AudioContext.Provider>
   );
 }
-
-export function useAudio() {
-  return useContext(AudioContext);
-}
-
-export default AudioProvider;

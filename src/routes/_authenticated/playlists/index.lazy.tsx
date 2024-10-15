@@ -1,7 +1,7 @@
 import Grid from "@components/Grid";
 import Playlist from "@components/Playlist";
 import Spinner from "@components/Spinner";
-import { useAuth } from "@providers/AuthProvider";
+import { useAuth } from "@hooks/useAuth";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createLazyFileRoute } from "@tanstack/react-router";
 

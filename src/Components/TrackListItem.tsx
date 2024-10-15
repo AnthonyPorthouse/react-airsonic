@@ -1,7 +1,7 @@
-import { useAlbumTracks } from "@/Providers/AlbumProvider.js";
 import type { Song } from "@api/types.js";
 import { PlayIcon, PlusIcon } from "@heroicons/react/24/solid";
-import { useTrackList } from "@providers/TrackListProvider.js";
+import { useAlbumTracks } from "@hooks/useAlbumTracks.js";
+import { useTrackList } from "@hooks/useTrackList.js";
 import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
 
