@@ -236,22 +236,148 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren({
-  IndexRoute,
-  AuthenticatedRouteRoute: AuthenticatedRouteRoute.addChildren({
-    AuthenticatedSearchRoute,
-    AuthenticatedNowPlayingLazyRoute,
-    AuthenticatedAlbumsAlbumIdRoute,
-    AuthenticatedArtistsArtistIdRoute,
-    AuthenticatedPlaylistsPlaylistIdRoute,
-    AuthenticatedPodcastsPodcastIdRoute,
-    AuthenticatedAlbumsIndexRoute,
-    AuthenticatedArtistsIndexRoute,
-    AuthenticatedPlaylistsIndexRoute,
-    AuthenticatedPodcastsIndexRoute,
-  }),
-  LoginRoute,
-})
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedSearchRoute: typeof AuthenticatedSearchRoute
+  AuthenticatedNowPlayingLazyRoute: typeof AuthenticatedNowPlayingLazyRoute
+  AuthenticatedAlbumsAlbumIdRoute: typeof AuthenticatedAlbumsAlbumIdRoute
+  AuthenticatedArtistsArtistIdRoute: typeof AuthenticatedArtistsArtistIdRoute
+  AuthenticatedPlaylistsPlaylistIdRoute: typeof AuthenticatedPlaylistsPlaylistIdRoute
+  AuthenticatedPodcastsPodcastIdRoute: typeof AuthenticatedPodcastsPodcastIdRoute
+  AuthenticatedAlbumsIndexRoute: typeof AuthenticatedAlbumsIndexRoute
+  AuthenticatedArtistsIndexRoute: typeof AuthenticatedArtistsIndexRoute
+  AuthenticatedPlaylistsIndexRoute: typeof AuthenticatedPlaylistsIndexRoute
+  AuthenticatedPodcastsIndexRoute: typeof AuthenticatedPodcastsIndexRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedSearchRoute: AuthenticatedSearchRoute,
+  AuthenticatedNowPlayingLazyRoute: AuthenticatedNowPlayingLazyRoute,
+  AuthenticatedAlbumsAlbumIdRoute: AuthenticatedAlbumsAlbumIdRoute,
+  AuthenticatedArtistsArtistIdRoute: AuthenticatedArtistsArtistIdRoute,
+  AuthenticatedPlaylistsPlaylistIdRoute: AuthenticatedPlaylistsPlaylistIdRoute,
+  AuthenticatedPodcastsPodcastIdRoute: AuthenticatedPodcastsPodcastIdRoute,
+  AuthenticatedAlbumsIndexRoute: AuthenticatedAlbumsIndexRoute,
+  AuthenticatedArtistsIndexRoute: AuthenticatedArtistsIndexRoute,
+  AuthenticatedPlaylistsIndexRoute: AuthenticatedPlaylistsIndexRoute,
+  AuthenticatedPodcastsIndexRoute: AuthenticatedPodcastsIndexRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
+export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
+  '': typeof AuthenticatedRouteRouteWithChildren
+  '/login': typeof LoginRoute
+  '/search': typeof AuthenticatedSearchRoute
+  '/now-playing': typeof AuthenticatedNowPlayingLazyRoute
+  '/albums/$albumId': typeof AuthenticatedAlbumsAlbumIdRoute
+  '/artists/$artistId': typeof AuthenticatedArtistsArtistIdRoute
+  '/playlists/$playlistId': typeof AuthenticatedPlaylistsPlaylistIdRoute
+  '/podcasts/$podcastId': typeof AuthenticatedPodcastsPodcastIdRoute
+  '/albums': typeof AuthenticatedAlbumsIndexRoute
+  '/artists': typeof AuthenticatedArtistsIndexRoute
+  '/playlists': typeof AuthenticatedPlaylistsIndexRoute
+  '/podcasts': typeof AuthenticatedPodcastsIndexRoute
+}
+
+export interface FileRoutesByTo {
+  '/': typeof IndexRoute
+  '': typeof AuthenticatedRouteRouteWithChildren
+  '/login': typeof LoginRoute
+  '/search': typeof AuthenticatedSearchRoute
+  '/now-playing': typeof AuthenticatedNowPlayingLazyRoute
+  '/albums/$albumId': typeof AuthenticatedAlbumsAlbumIdRoute
+  '/artists/$artistId': typeof AuthenticatedArtistsArtistIdRoute
+  '/playlists/$playlistId': typeof AuthenticatedPlaylistsPlaylistIdRoute
+  '/podcasts/$podcastId': typeof AuthenticatedPodcastsPodcastIdRoute
+  '/albums': typeof AuthenticatedAlbumsIndexRoute
+  '/artists': typeof AuthenticatedArtistsIndexRoute
+  '/playlists': typeof AuthenticatedPlaylistsIndexRoute
+  '/podcasts': typeof AuthenticatedPodcastsIndexRoute
+}
+
+export interface FileRoutesById {
+  __root__: typeof rootRoute
+  '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/login': typeof LoginRoute
+  '/_authenticated/search': typeof AuthenticatedSearchRoute
+  '/_authenticated/now-playing': typeof AuthenticatedNowPlayingLazyRoute
+  '/_authenticated/albums/$albumId': typeof AuthenticatedAlbumsAlbumIdRoute
+  '/_authenticated/artists/$artistId': typeof AuthenticatedArtistsArtistIdRoute
+  '/_authenticated/playlists/$playlistId': typeof AuthenticatedPlaylistsPlaylistIdRoute
+  '/_authenticated/podcasts/$podcastId': typeof AuthenticatedPodcastsPodcastIdRoute
+  '/_authenticated/albums/': typeof AuthenticatedAlbumsIndexRoute
+  '/_authenticated/artists/': typeof AuthenticatedArtistsIndexRoute
+  '/_authenticated/playlists/': typeof AuthenticatedPlaylistsIndexRoute
+  '/_authenticated/podcasts/': typeof AuthenticatedPodcastsIndexRoute
+}
+
+export interface FileRouteTypes {
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths:
+    | '/'
+    | ''
+    | '/login'
+    | '/search'
+    | '/now-playing'
+    | '/albums/$albumId'
+    | '/artists/$artistId'
+    | '/playlists/$playlistId'
+    | '/podcasts/$podcastId'
+    | '/albums'
+    | '/artists'
+    | '/playlists'
+    | '/podcasts'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | ''
+    | '/login'
+    | '/search'
+    | '/now-playing'
+    | '/albums/$albumId'
+    | '/artists/$artistId'
+    | '/playlists/$playlistId'
+    | '/podcasts/$podcastId'
+    | '/albums'
+    | '/artists'
+    | '/playlists'
+    | '/podcasts'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/login'
+    | '/_authenticated/search'
+    | '/_authenticated/now-playing'
+    | '/_authenticated/albums/$albumId'
+    | '/_authenticated/artists/$artistId'
+    | '/_authenticated/playlists/$playlistId'
+    | '/_authenticated/podcasts/$podcastId'
+    | '/_authenticated/albums/'
+    | '/_authenticated/artists/'
+    | '/_authenticated/playlists/'
+    | '/_authenticated/podcasts/'
+  fileRoutesById: FileRoutesById
+}
+
+export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  LoginRoute: typeof LoginRoute
+}
+
+const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  LoginRoute: LoginRoute,
+}
+
+export const routeTree = rootRoute
+  ._addFileChildren(rootRouteChildren)
+  ._addFileTypes<FileRouteTypes>()
 
 /* prettier-ignore-end */
 
