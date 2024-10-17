@@ -1,12 +1,14 @@
-import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
+import {
+  PropsWithChildren,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 import { FullscreenContext } from "../Contexts/FullscreenContext";
 
-export function FullscreenProvider({
-  children,
-}: Readonly<{
-  children: ReactNode;
-}>) {
+export function FullscreenProvider({ children }: Readonly<PropsWithChildren>) {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   const setFullscreen = useCallback(async (enableFullscreen: boolean) => {

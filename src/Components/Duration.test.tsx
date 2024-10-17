@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { it } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import Duration from "./Duration";
 
