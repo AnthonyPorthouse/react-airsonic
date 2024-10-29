@@ -4,21 +4,35 @@ import classNames from "classnames";
 import md5 from "md5";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-interface AlbumArtProps {
-  id?: string;
-  description?: string;
-  sizes?: string;
-  lazyLoad?: boolean;
-  className?: string;
+export interface AlbumArtProps {
+  /**
+   * The ID of the Album Artwork to fetch the information for
+   */
+  readonly id?: string;
+
+  /**
+   * The description of the Album Artwork
+   */
+  readonly description?: string;
+
+  /**
+   * A custom sizes parameter for our image
+   */
+  readonly sizes?: string;
+  readonly lazyLoad?: boolean;
+  readonly className?: string;
 }
 
+/**
+ * Displays the album art of an album, or displays a random colour if no artwork ID is found
+ */
 function AlbumArt({
   id,
   description,
   sizes,
   lazyLoad,
   className,
-}: Readonly<AlbumArtProps>) {
+}: AlbumArtProps) {
   const auth = useAuth();
   const el = useRef<HTMLImageElement>(null);
 

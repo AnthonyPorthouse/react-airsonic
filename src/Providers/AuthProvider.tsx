@@ -9,12 +9,21 @@ export interface Authentication {
   credentials: Credentials;
 }
 
-export function AuthProvider({ children }: PropsWithChildren) {
+export function AuthProvider({
+  defaultServer,
+  defaultUsername,
+  defaultPassword,
+  children,
+}: PropsWithChildren<{
+  defaultServer?: string;
+  defaultUsername?: string;
+  defaultPassword?: string;
+}>) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [credentials, setCredentials] = useState({
-    server: localStorage.getItem("ra.server") ?? "",
-    username: localStorage.getItem("ra.username") ?? "",
-    password: localStorage.getItem("ra.password") ?? "",
+    server: localStorage.getItem("ra.server") ?? defaultServer ?? "",
+    username: localStorage.getItem("ra.username") ?? defaultUsername ?? "",
+    password: localStorage.getItem("ra.password") ?? defaultPassword ?? "",
   });
 
   const setAuth = useCallback(

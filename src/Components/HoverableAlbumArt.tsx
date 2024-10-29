@@ -2,17 +2,20 @@ import { ReactNode } from "react";
 
 import AlbumArt from "./AlbumArt.js";
 
+/**
+ * Artwork that visually rises when you hover over it
+ */
 function HoverableAlbumArt({
   children,
   coverArt,
   artDescription,
   lazyLoad = false,
-}: Readonly<{
-  children: ReactNode;
-  coverArt?: string;
-  artDescription: string;
-  lazyLoad?: boolean;
-}>) {
+}: {
+  readonly children: ReactNode;
+  readonly coverArt?: string;
+  readonly artDescription: string;
+  readonly lazyLoad?: boolean;
+}) {
   return (
     <div className={`group relative block w-full focus:ring-0`}>
       <div className="overflow-hidden rounded transition group-hover:-translate-y-2 group-hover:shadow-lg group-focus:-translate-y-2 group-focus:shadow-lg group-focus:ring-inset">
