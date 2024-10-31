@@ -48,7 +48,7 @@
     "react-tooltip": "^5.28.0",
     "slugify": "^1.6.6",
     "temporal-polyfill": "^0.2.5",
-    "uuid": "^11.0.1",
+    "uuid": "^11.0.2",
     "workbox-core": "^7.1.0",
     "workbox-expiration": "^7.1.0",
     "workbox-precaching": "^7.1.0",
