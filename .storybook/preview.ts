@@ -8,6 +8,8 @@ initialize();
 const preview: Preview = {
   loaders: [mswLoader],
 
+  tags: ["autodocs"],
+
   parameters: {
     controls: {
       matchers: {

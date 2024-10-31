@@ -1,14 +1,14 @@
 import { Temporal } from "temporal-polyfill";
 
 interface DurationProps {
-  time: number;
+  readonly time: number;
 }
 
 function to2Digits(number: number) {
   return String(number).padStart(2, "0");
 }
 
-function Duration({ time }: Readonly<DurationProps>) {
+function Duration({ time }: DurationProps) {
   if (isNaN(time)) {
     time = 0;
   }
