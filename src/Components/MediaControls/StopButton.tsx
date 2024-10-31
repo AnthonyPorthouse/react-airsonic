@@ -1,7 +1,7 @@
 import { StopIcon } from "@heroicons/react/24/solid";
 import { useAudio } from "@hooks/useAudio";
 import { useTrackList } from "@hooks/useTrackList";
-import { SyntheticEvent } from "react";
+import { SyntheticEvent, memo } from "react";
 import { useTranslation } from "react-i18next";
 
 function StopButton() {
@@ -29,4 +29,4 @@ function StopButton() {
   );
 }
 
-export default StopButton;
+export default memo(StopButton);

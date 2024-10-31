@@ -1,4 +1,5 @@
 import type { Song } from "@api/types.js";
+import { memo } from "react";
 import { Helmet } from "react-helmet-async";
 
 interface TitleInfoProps {
@@ -21,4 +22,4 @@ function TitleInfo({ nowPlaying }: Readonly<TitleInfoProps>) {
   );
 }
 
-export default TitleInfo;
+export default memo(TitleInfo);

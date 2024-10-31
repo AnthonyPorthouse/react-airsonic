@@ -1,4 +1,5 @@
 import { useAudio } from "@hooks/useAudio.js";
+import { memo } from "react";
 
 import FullscreenButton from "../MediaControls/FullscreenButton.js";
 import PauseButton from "../MediaControls/PauseButton.js";
@@ -27,4 +28,4 @@ function MediaControls() {
   );
 }
 
-export default MediaControls;
+export default memo(MediaControls);

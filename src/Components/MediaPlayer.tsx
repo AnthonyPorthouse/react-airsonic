@@ -3,7 +3,7 @@ import { useTrackList } from "@hooks/useTrackList.js";
 import { AudioProvider } from "@providers/AudioProvider.js";
 import { FullscreenProvider } from "@providers/FullscreenProvider.js";
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { memo, useMemo, useState } from "react";
 
 import AlbumArt from "./AlbumArt.js";
 import Fullscreen from "./MediaPlayer/Fullscreen.js";
@@ -14,7 +14,7 @@ import TitleInfo from "./TitleInfo.js";
 function MediaPlayer() {
   const { getCurrentTrack } = useTrackList();
 
-  const nowPlaying = getCurrentTrack();
+  const nowPlaying = useMemo(() => getCurrentTrack(), [getCurrentTrack]);
 
   const getInitialProgress = (song: Song | null) => {
     if (song?.isPodcast) {
@@ -27,6 +27,11 @@ function MediaPlayer() {
   const [duration, setDuration] = useState(100);
   const [currentTime, setCurrentTime] = useState(
     getInitialProgress(nowPlaying),
+  );
+
+  const artwork = useMemo(
+    () => nowPlaying && <AlbumArt id={nowPlaying.coverArt} sizes={`100px`} />,
+    [nowPlaying],
   );
 
   if (!nowPlaying) {
@@ -51,7 +56,7 @@ function MediaPlayer() {
                 to="/albums/$albumId"
                 params={{ albumId: nowPlaying.albumId }}
               >
-                <AlbumArt id={nowPlaying.coverArt} sizes={`100px`} />
+                {artwork}
               </Link>
             </div>
             <MediaInfo
@@ -71,4 +76,4 @@ function MediaPlayer() {
   );
 }
 
-export default MediaPlayer;
+export default memo(MediaPlayer);

@@ -2,7 +2,7 @@ import { getCoverArtUrl } from "@api/artwork.js";
 import type { Song } from "@api/types.js";
 import { useAuth } from "@hooks/useAuth";
 import { useTrackList } from "@hooks/useTrackList";
-import { ReactNode, useEffect } from "react";
+import { ReactNode, memo, useEffect } from "react";
 
 interface MediaSessionProps {
   track: Song;
@@ -47,4 +47,4 @@ function MediaSession({ track, children }: MediaSessionProps) {
   return children;
 }
 
-export default MediaSession;
+export default memo(MediaSession);

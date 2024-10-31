@@ -1,5 +1,10 @@
 import classNames from "classnames";
-import { ButtonHTMLAttributes, PropsWithChildren, ReactElement } from "react";
+import {
+  ButtonHTMLAttributes,
+  PropsWithChildren,
+  ReactElement,
+  memo,
+} from "react";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** A function that returns a React component to use as an icon */
@@ -28,4 +33,4 @@ function Button({
   );
 }
 
-export default Button;
+export default memo(Button);

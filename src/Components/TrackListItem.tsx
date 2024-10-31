@@ -2,7 +2,7 @@ import type { Song } from "@api/types.js";
 import { PlayIcon, PlusIcon } from "@heroicons/react/24/solid";
 import { useAlbumTracks } from "@hooks/useAlbumTracks.js";
 import { useTrackList } from "@hooks/useTrackList.js";
-import { SyntheticEvent } from "react";
+import { SyntheticEvent, memo, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
 import Duration from "./Duration.js";
@@ -29,11 +29,14 @@ function TrackListItem({
     setTrackList(tracks.slice(startingIndex));
   };
 
-  const add = (e: SyntheticEvent) => {
-    e.preventDefault();
+  const add = useCallback(
+    (e: SyntheticEvent) => {
+      e.preventDefault();
 
-    addTrack(track);
-  };
+      addTrack(track);
+    },
+    [addTrack, track],
+  );
 
   const playButton = (
     <button
@@ -51,20 +54,23 @@ function TrackListItem({
     </button>
   );
 
-  const addButton = (
-    <button
-      onClick={add}
-      className={`w-6 flex-shrink-0`}
-      aria-label={t("addTrack")}
-    >
-      <a
-        data-tooltip-id="tooltip"
-        data-tooltip-content={t("addTrack")}
-        data-tooltip-delay-show={1000}
+  const addButton = useMemo(
+    () => (
+      <button
+        onClick={add}
+        className={`w-6 flex-shrink-0`}
+        aria-label={t("addTrack")}
       >
-        <PlusIcon className={`w-6 md:w-full`} />
-      </a>
-    </button>
+        <a
+          data-tooltip-id="tooltip"
+          data-tooltip-content={t("addTrack")}
+          data-tooltip-delay-show={1000}
+        >
+          <PlusIcon className={`w-6 md:w-full`} />
+        </a>
+      </button>
+    ),
+    [add, t],
   );
 
   const nowPlayingIcon = (
@@ -104,4 +110,4 @@ function TrackListItem({
   );
 }
 
-export default TrackListItem;
+export default memo(TrackListItem);

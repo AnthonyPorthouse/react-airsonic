@@ -2,7 +2,7 @@ import type { SongIds, Songs } from "@api/types.js";
 import { ArrowsRightLeftIcon, PlayIcon } from "@heroicons/react/24/solid";
 import { useTrackList } from "@hooks/useTrackList.js";
 import { Link } from "@tanstack/react-router";
-import { SyntheticEvent } from "react";
+import { SyntheticEvent, memo, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
 import AlbumArt from "./AlbumArt.js";
@@ -53,7 +53,12 @@ function AlbumHeader({ album, tracks }: Readonly<AlbumHeaderProps>) {
   return (
     <section className={`flex flex-col gap-6`}>
       <div className={`grid w-full grid-cols-3 gap-6 lg:w-64 lg:grid-cols-1`}>
-        <AlbumArt id={album.coverArt} description={album.name} />
+        {useMemo(
+          () => (
+            <AlbumArt id={album.coverArt} description={album.name} />
+          ),
+          [album],
+        )}
         <div className={`col-span-2 lg:col-span-1`}>
           <h1 className={`text-2xl lg:text-3xl`}>{album.name}</h1>
           <h2 className={`text-xl`}>
@@ -90,4 +95,4 @@ function AlbumHeader({ album, tracks }: Readonly<AlbumHeaderProps>) {
   );
 }
 
-export default AlbumHeader;
+export default memo(AlbumHeader);

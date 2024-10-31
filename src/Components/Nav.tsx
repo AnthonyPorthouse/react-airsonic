@@ -1,6 +1,6 @@
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import { Link } from "@tanstack/react-router";
-import { useCallback, useState } from "react";
+import { memo, useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import logoAvif from "../images/logo192.avif";
@@ -163,4 +163,4 @@ function Nav() {
   );
 }
 
-export default Nav;
+export default memo(Nav);

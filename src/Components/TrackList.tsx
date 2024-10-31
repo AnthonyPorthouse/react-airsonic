@@ -2,7 +2,7 @@ import type { Songs } from "@api/types.js";
 import { AlbumProvider } from "@providers/AlbumProvider.js";
 import { VirtualItem, useVirtualizer } from "@tanstack/react-virtual";
 import classNames from "classnames";
-import { useRef } from "react";
+import { memo, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
 import TrackListItem from "./TrackListItem.js";
@@ -74,4 +74,4 @@ function TrackList({ tracks, includeAdd = false }: Readonly<TrackListProps>) {
   );
 }
 
-export default TrackList;
+export default memo(TrackList);

@@ -2,7 +2,7 @@ import { getScaledCoverArtUrl } from "@api/artwork.js";
 import { useAuth } from "@hooks/useAuth";
 import classNames from "classnames";
 import md5 from "md5";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { memo, useEffect, useMemo, useRef, useState } from "react";
 
 export interface AlbumArtProps {
   /**
@@ -97,4 +97,4 @@ function AlbumArt({
   );
 }
 
-export default AlbumArt;
+export default memo(AlbumArt);

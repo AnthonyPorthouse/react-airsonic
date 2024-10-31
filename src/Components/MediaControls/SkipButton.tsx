@@ -1,6 +1,6 @@
 import { ForwardIcon } from "@heroicons/react/24/solid";
 import { useTrackList } from "@hooks/useTrackList";
-import { SyntheticEvent } from "react";
+import { SyntheticEvent, memo } from "react";
 import { useTranslation } from "react-i18next";
 
 function SkipButton() {
@@ -23,4 +23,4 @@ function SkipButton() {
   );
 }
 
-export default SkipButton;
+export default memo(SkipButton);

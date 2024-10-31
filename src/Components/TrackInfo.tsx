@@ -1,5 +1,6 @@
 import type { Song } from "@api/types.js";
 import { Link } from "@tanstack/react-router";
+import { memo } from "react";
 
 interface TrackInfoProps {
   track: Song;
@@ -24,4 +25,4 @@ function TrackInfo({ track }: Readonly<TrackInfoProps>) {
   );
 }
 
-export default TrackInfo;
+export default memo(TrackInfo);

@@ -1,5 +1,6 @@
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
+import MillionLint from "@million/lint";
 import { TanStackRouterVite } from "@tanstack/router-vite-plugin";
 import react from "@vitejs/plugin-react";
 import UnpluginInjectPreload from "unplugin-inject-preload/vite";
@@ -12,6 +13,9 @@ import tsconfigPaths from "vite-tsconfig-paths";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
+    MillionLint.vite({
+      enabled: true,
+    }),
     tsconfigPaths(),
     react(),
     svgrPlugin(),

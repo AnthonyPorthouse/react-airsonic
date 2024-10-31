@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Temporal } from "temporal-polyfill";
 
 interface DurationProps {
@@ -26,4 +27,4 @@ function Duration({ time }: DurationProps) {
   return <span>{output}</span>;
 }
 
-export default Duration;
+export default memo(Duration);

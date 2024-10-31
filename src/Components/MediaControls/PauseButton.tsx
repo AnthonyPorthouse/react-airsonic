@@ -1,6 +1,6 @@
 import { PauseIcon } from "@heroicons/react/24/solid";
 import { useAudio } from "@hooks/useAudio";
-import { SyntheticEvent } from "react";
+import { SyntheticEvent, memo } from "react";
 import { useTranslation } from "react-i18next";
 
 function PauseButton() {
@@ -26,4 +26,4 @@ function PauseButton() {
   );
 }
 
-export default PauseButton;
+export default memo(PauseButton);

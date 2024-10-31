@@ -3,7 +3,7 @@ import {
   ArrowsPointingOutIcon,
 } from "@heroicons/react/24/solid";
 import { useFullscreen } from "@hooks/useFullscreen";
-import { SyntheticEvent } from "react";
+import { SyntheticEvent, memo } from "react";
 import { useTranslation } from "react-i18next";
 
 function FullscreenButton() {
@@ -42,4 +42,4 @@ function FullscreenButton() {
   );
 }
 
-export default FullscreenButton;
+export default memo(FullscreenButton);

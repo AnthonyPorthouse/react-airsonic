@@ -2,7 +2,7 @@ import { getStreamUrl } from "@api/stream.js";
 import type { Song } from "@api/types.js";
 import { useAuth } from "@hooks/useAuth.js";
 import { useTrackList } from "@hooks/useTrackList.js";
-import { PropsWithChildren, useCallback, useEffect, useRef } from "react";
+import { PropsWithChildren, memo, useCallback, useEffect, useRef } from "react";
 
 import { AudioContext } from "../Contexts/AudioContext.js";
 
@@ -11,7 +11,7 @@ interface AudioProviderProps {
   setCurrentTime: (pos: number) => void;
 }
 
-export function AudioProvider({
+export const AudioProvider = memo(function AudioProvider({
   children,
   setCurrentDuration,
   setCurrentTime,
@@ -59,7 +59,7 @@ export function AudioProvider({
         );
       }
 
-      setCurrentTime(audio.currentTime || 0);
+      setCurrentTime(Math.floor(audio.currentTime || 0));
       setCurrentDuration(audio.duration || 0);
 
       // If we are in the last 10 seconds, start preloading the next media item
@@ -147,4 +147,4 @@ export function AudioProvider({
       {children}
     </AudioContext.Provider>
   );
-}
+});

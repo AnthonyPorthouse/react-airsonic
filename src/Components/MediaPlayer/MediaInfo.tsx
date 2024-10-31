@@ -1,4 +1,5 @@
 import type { Song } from "@api/types.js";
+import { memo } from "react";
 
 import TrackInfo from "../TrackInfo.js";
 import MediaControls from "./MediaControls.js";
@@ -26,4 +27,4 @@ function MediaInfo({ track, duration, currentTime }: Readonly<MediaInfoProps>) {
   );
 }
 
-export default MediaInfo;
+export default memo(MediaInfo);
