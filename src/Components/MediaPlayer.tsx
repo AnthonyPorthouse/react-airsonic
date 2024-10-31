@@ -1,7 +1,6 @@
 import type { Song } from "@api/types.js";
 import { useTrackList } from "@hooks/useTrackList.js";
 import { AudioProvider } from "@providers/AudioProvider.js";
-import { FullscreenProvider } from "@providers/FullscreenProvider.js";
 import { Link } from "@tanstack/react-router";
 import { memo, useMemo, useState } from "react";
 
@@ -43,35 +42,33 @@ function MediaPlayer() {
       setCurrentDuration={setDuration}
       setCurrentTime={setCurrentTime}
     >
-      <FullscreenProvider>
-        <MediaSession track={nowPlaying}>
-          <TitleInfo nowPlaying={nowPlaying} />
+      <MediaSession track={nowPlaying}>
+        <TitleInfo nowPlaying={nowPlaying} />
 
-          <div className={`z-50 flex w-full gap-x-3 bg-white px-6 py-3 shadow`}>
-            <div
-              className={`hidden flex-shrink md:block`}
-              style={{ width: "100px" }}
+        <div className={`z-50 flex w-full gap-x-3 bg-white px-6 py-3 shadow`}>
+          <div
+            className={`hidden flex-shrink md:block`}
+            style={{ width: "100px" }}
+          >
+            <Link
+              to="/albums/$albumId"
+              params={{ albumId: nowPlaying.albumId }}
             >
-              <Link
-                to="/albums/$albumId"
-                params={{ albumId: nowPlaying.albumId }}
-              >
-                {artwork}
-              </Link>
-            </div>
-            <MediaInfo
-              track={nowPlaying}
-              duration={duration}
-              currentTime={currentTime}
-            />
+              {artwork}
+            </Link>
           </div>
-        </MediaSession>
-        <Fullscreen
-          track={nowPlaying}
-          duration={duration}
-          currentTime={currentTime}
-        />
-      </FullscreenProvider>
+          <MediaInfo
+            track={nowPlaying}
+            duration={duration}
+            currentTime={currentTime}
+          />
+        </div>
+      </MediaSession>
+      <Fullscreen
+        track={nowPlaying}
+        duration={duration}
+        currentTime={currentTime}
+      />
     </AudioProvider>
   );
 }

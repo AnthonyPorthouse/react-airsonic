@@ -1,3 +1,4 @@
+import { FullscreenProvider } from "@/Providers/FullscreenProvider";
 import MediaPlayer from "@components/MediaPlayer";
 import Nav from "@components/Nav";
 import Spinner from "@components/Spinner";
@@ -12,7 +13,7 @@ export const Route = createLazyFileRoute("/_authenticated")({
 
 function Authenticated() {
   return (
-    <>
+    <FullscreenProvider>
       <Nav />
 
       <div className={`flex-grow overflow-y-auto`}>
@@ -28,6 +29,6 @@ function Authenticated() {
         <Tooltip id="tooltip" style={{ zIndex: 100 }} />,
         document.body,
       )}
-    </>
+    </FullscreenProvider>
   );
 }

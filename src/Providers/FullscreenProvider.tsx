@@ -1,5 +1,6 @@
 import {
   PropsWithChildren,
+  memo,
   useCallback,
   useEffect,
   useMemo,
@@ -8,7 +9,9 @@ import {
 
 import { FullscreenContext } from "../Contexts/FullscreenContext";
 
-export function FullscreenProvider({ children }: Readonly<PropsWithChildren>) {
+export const FullscreenProvider = memo(function FullscreenProvider({
+  children,
+}: Readonly<PropsWithChildren>) {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   const setFullscreen = useCallback(async (enableFullscreen: boolean) => {
@@ -50,4 +53,4 @@ export function FullscreenProvider({ children }: Readonly<PropsWithChildren>) {
       {children}
     </FullscreenContext.Provider>
   );
-}
+});

@@ -59,7 +59,7 @@ export const AudioProvider = memo(function AudioProvider({
         );
       }
 
-      setCurrentTime(Math.floor(audio.currentTime || 0));
+      setCurrentTime(parseFloat(audio.currentTime.toFixed(2)) || 0);
       setCurrentDuration(audio.duration || 0);
 
       // If we are in the last 10 seconds, start preloading the next media item
