@@ -1,8 +1,9 @@
 import type { Podcasts } from "@api/types.js";
-import { Suspense, lazy } from "react";
+import { lazy } from "react";
+
+import List from "./List.js";
 
 const PodcastView = lazy(() => import("./Podcast.js"));
-const Grid = lazy(() => import("./Grid.js"));
 
 interface PodcastListProps {
   className?: string;
@@ -11,13 +12,11 @@ interface PodcastListProps {
 
 function PodcastList({ className, podcasts }: Readonly<PodcastListProps>) {
   return (
-    <Suspense fallback={null}>
-      <Grid className={className}>
-        {podcasts.map((podcast) => (
-          <PodcastView key={podcast.id} podcast={podcast} />
-        ))}
-      </Grid>
-    </Suspense>
+    <List className={className}>
+      {podcasts.map((podcast) => (
+        <PodcastView key={podcast.id} podcast={podcast} />
+      ))}
+    </List>
   );
 }
 

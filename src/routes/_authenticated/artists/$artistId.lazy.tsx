@@ -18,7 +18,7 @@ function Artist() {
           <section
             key={album.id}
             aria-label={`${artist.name} - ${album.name} (${album.year})`}
-            className={`flex h-full flex-auto flex-col justify-items-stretch gap-6 lg:flex-row`}
+            className={`flex h-full flex-auto flex-col justify-items-stretch gap-6 pb-6 lg:flex-row`}
           >
             <AlbumHeader album={album} tracks={songs} />
             <TrackList tracks={songs} includeAdd />

@@ -1,11 +1,9 @@
-import { Children, ReactNode } from "react";
+import { Children, PropsWithChildren } from "react";
 
-interface GridProps {
-  className?: string;
-  children: ReactNode[];
-}
-
-function Grid({ className, children }: Readonly<GridProps>) {
+function Grid({
+  className,
+  children,
+}: Readonly<PropsWithChildren<{ className?: string }>>) {
   return (
     <ul
       className={`grid ${

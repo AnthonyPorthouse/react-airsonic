@@ -87,7 +87,6 @@ export default defineConfig({
           },
         ],
         start_url: ".",
-        display_override: ["window-controls-overlay", "minimal-ui"],
         display: "standalone",
         theme_color: "#000000",
         background_color: "#000000",

@@ -1,7 +1,7 @@
 import type { Albums } from "@api/types.js";
 
 import Album from "./Album.js";
-import Grid from "./Grid.js";
+import List from "./List.js";
 
 interface AlbumListProps {
   className?: string;
@@ -10,11 +10,11 @@ interface AlbumListProps {
 
 function AlbumList({ className, albums }: Readonly<AlbumListProps>) {
   return (
-    <Grid className={className}>
+    <List className={className}>
       {albums.map((album, i) => (
         <Album key={album.id} album={album} lazyLoad={i >= 8} />
       ))}
-    </Grid>
+    </List>
   );
 }
 

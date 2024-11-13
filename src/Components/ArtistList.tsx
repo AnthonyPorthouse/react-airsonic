@@ -3,7 +3,7 @@ import { Fragment, useMemo } from "react";
 import slugify from "slugify";
 
 import ArtistItem from "./ArtistItem.js";
-import Grid from "./Grid.js";
+import List from "./List.js";
 
 interface ArtistListProps {
   className?: string;
@@ -40,11 +40,11 @@ function ArtistList({ className, artists }: Readonly<ArtistListProps>) {
     return (
       <Fragment key={key}>
         <h2 className={`my-4 mb-1 text-2xl`}>{key}</h2>
-        <Grid className={className}>
+        <List className={className}>
           {artists.map((artist) => (
             <ArtistItem key={artist.id} artist={artist} />
           ))}
-        </Grid>
+        </List>
       </Fragment>
     );
   });
