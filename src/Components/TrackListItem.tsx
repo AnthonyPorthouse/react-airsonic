@@ -1,7 +1,7 @@
 import type { Song } from "@api/types.js";
-import { PlayIcon, PlusIcon } from "@heroicons/react/24/solid";
 import { useAlbumTracks } from "@hooks/useAlbumTracks.js";
 import { useTrackList } from "@hooks/useTrackList.js";
+import { Play, Plus } from "lucide-react";
 import { SyntheticEvent, memo, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -49,7 +49,7 @@ function TrackListItem({
         data-tooltip-content={t("playTrack")}
         data-tooltip-delay-show={1000}
       >
-        <PlayIcon className={`w-6 md:w-full`} />
+        <Play className={`w-6 md:w-full`} />
       </a>
     </button>
   );
@@ -66,7 +66,7 @@ function TrackListItem({
           data-tooltip-content={t("addTrack")}
           data-tooltip-delay-show={1000}
         >
-          <PlusIcon className={`w-6 md:w-full`} />
+          <Plus className={`w-6 md:w-full`} />
         </a>
       </button>
     ),
@@ -80,7 +80,7 @@ function TrackListItem({
         data-tooltip-content={t("currentlyPlaying")}
         data-tooltip-delay-show={1000}
       >
-        <PlayIcon className={`w-6 text-green-400 md:w-full`} />
+        <Play className={`w-6 text-green-400 md:w-full`} />
       </a>
     </div>
   );

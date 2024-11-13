@@ -1,5 +1,5 @@
-import { ForwardIcon } from "@heroicons/react/24/solid";
 import { useTrackList } from "@hooks/useTrackList";
+import { SkipForward } from "lucide-react";
 import { SyntheticEvent, memo } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -18,7 +18,7 @@ function SkipButton() {
       className={`inline-block w-12`}
       title={t("nextTrack")}
     >
-      <ForwardIcon className={`w-full`} />
+      <SkipForward className={`w-full`} />
     </button>
   );
 }

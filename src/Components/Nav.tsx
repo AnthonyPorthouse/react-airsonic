@@ -1,5 +1,5 @@
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import { Link } from "@tanstack/react-router";
+import { Menu, X } from "lucide-react";
 import { memo, useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -52,7 +52,7 @@ function Nav() {
             className={`my-auto h-6 w-6`}
             aria-label={t("nav:show-menu")}
           >
-            <Bars3Icon />
+            <Menu />
           </button>
         </div>
 
@@ -75,7 +75,7 @@ function Nav() {
                 className={`h-6 w-6`}
                 aria-label={t("nav:close-menu")}
               >
-                <XMarkIcon />
+                <X />
               </button>
             </div>
 

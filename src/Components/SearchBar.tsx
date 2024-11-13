@@ -1,5 +1,5 @@
-import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { getRouteApi, useNavigate } from "@tanstack/react-router";
+import { Search } from "lucide-react";
 import { SyntheticEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -53,7 +53,7 @@ function SearchBar({ onSubmit }: Readonly<SearchBarProps>) {
           onChange={(event) => setFilter(event.target.value)}
         />
         <button className={"px-3 py-2"} aria-label={t("search")}>
-          <MagnifyingGlassIcon className={"h-6"} />
+          <Search className={"h-6"} />
         </button>
       </div>
     </form>

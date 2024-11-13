@@ -1,6 +1,6 @@
-import { StopIcon } from "@heroicons/react/24/solid";
 import { useAudio } from "@hooks/useAudio";
 import { useTrackList } from "@hooks/useTrackList";
+import { Square } from "lucide-react";
 import { SyntheticEvent, memo } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -24,7 +24,7 @@ function StopButton() {
       title={t("stopTrack")}
       onClick={stop}
     >
-      <StopIcon className={`w-full`} />
+      <Square className={`w-full`} />
     </button>
   );
 }

@@ -1,5 +1,5 @@
-import { CloudArrowUpIcon } from "@heroicons/react/24/solid";
 import { useUpdateAvailable } from "@hooks/useUpdateAvailable.js";
+import { CloudUpload } from "lucide-react";
 import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -20,7 +20,7 @@ function Update() {
           data-tooltip-content={t("update-available")}
           data-tooltip-delay-show={1000}
         >
-          <CloudArrowUpIcon className={`h-6`} />
+          <CloudUpload className={`h-6`} />
         </a>
       </button>
     );

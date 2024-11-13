@@ -1,7 +1,7 @@
 import type { SongIds, Songs } from "@api/types.js";
-import { ArrowsRightLeftIcon, PlayIcon } from "@heroicons/react/24/solid";
 import { useTrackList } from "@hooks/useTrackList.js";
 import { Link } from "@tanstack/react-router";
+import { Play, Shuffle } from "lucide-react";
 import { SyntheticEvent, memo, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -76,14 +76,14 @@ function AlbumHeader({ album, tracks }: Readonly<AlbumHeaderProps>) {
           <h3>{album.year}</h3>
           <div className="flex flex-col gap-2">
             <Button
-              renderIcon={() => <PlayIcon className="w-6" />}
+              renderIcon={() => <Play className="w-6" />}
               onClick={playAll}
             >
               <span className="flex-grow">{t("playAll")}</span>
             </Button>
 
             <Button
-              renderIcon={() => <ArrowsRightLeftIcon className="w-6" />}
+              renderIcon={() => <Shuffle className="w-6" />}
               onClick={shuffleAll}
             >
               <span className="flex-grow">{t("shuffleAll")}</span>

@@ -1,6 +1,6 @@
-import { Cog6ToothIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { useSetting } from "@hooks/useSettings.js";
 import classNames from "classnames";
+import { Settings, X } from "lucide-react";
 import { SyntheticEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ReactModal from "react-modal";
@@ -30,7 +30,7 @@ function ShowSettings({ onClick }: Readonly<ShowSettingsProps>) {
         title={t("nav:show-settings")}
         onClick={openModal}
       >
-        <Cog6ToothIcon className={`h-6`} />
+        <Settings className={`h-6`} />
       </button>
 
       <ReactModal
@@ -65,11 +65,8 @@ function ShowSettings({ onClick }: Readonly<ShowSettingsProps>) {
           )}
         >
           <h1 className={`text-xl`}>{t("settings:modal-title")}</h1>
-          <button onClick={closeModal}>
-            <XMarkIcon
-              title={t("settings:close-modal")}
-              className={classNames(`h-5`)}
-            />
+          <button onClick={closeModal} title={t("settings:close-modal")}>
+            <X className={classNames(`h-5`)} />
           </button>
         </header>
 

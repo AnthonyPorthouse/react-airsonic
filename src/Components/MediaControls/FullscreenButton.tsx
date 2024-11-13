@@ -1,8 +1,5 @@
-import {
-  ArrowsPointingInIcon,
-  ArrowsPointingOutIcon,
-} from "@heroicons/react/24/solid";
 import { useFullscreen } from "@hooks/useFullscreen";
+import { Expand, Shrink } from "lucide-react";
 import { SyntheticEvent, memo } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -26,7 +23,7 @@ function FullscreenButton() {
         title={t("exitFullscreen")}
         onClick={fullScreen}
       >
-        <ArrowsPointingInIcon className={`w-full`} />
+        <Shrink className={`w-full`} />
       </button>
     );
   }
@@ -37,7 +34,7 @@ function FullscreenButton() {
       title={t("enterFullscreen")}
       onClick={fullScreen}
     >
-      <ArrowsPointingOutIcon className={`w-full`} />
+      <Expand className={`w-full`} />
     </button>
   );
 }

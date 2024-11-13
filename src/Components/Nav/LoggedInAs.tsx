@@ -1,6 +1,6 @@
 import { useAuth } from "@/hooks/useAuth";
-import { UserIcon } from "@heroicons/react/24/solid";
 import { useNavigate } from "@tanstack/react-router";
+import { User2 } from "lucide-react";
 import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -21,7 +21,7 @@ function LoggedInAs() {
 
   return (
     <div className={`flex flex-row items-center gap-2 text-base`}>
-      <UserIcon className={`h-6 w-6`} />
+      <User2 className={`h-6 w-6`} />
       <div className={`flex flex-col text-center`}>
         <span title={server}>{username}</span>
       </div>

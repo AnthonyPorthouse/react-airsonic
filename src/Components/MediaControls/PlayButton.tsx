@@ -1,5 +1,5 @@
-import { PlayIcon } from "@heroicons/react/24/solid";
 import { useAudio } from "@hooks/useAudio";
+import { Play } from "lucide-react";
 import { SyntheticEvent, memo } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -19,7 +19,7 @@ function PlayButton() {
       title={t("playTrack")}
       onClick={play}
     >
-      <PlayIcon className={`w-full`} />
+      <Play className={`w-full`} />
     </button>
   );
 }

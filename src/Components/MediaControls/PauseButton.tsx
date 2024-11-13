@@ -1,5 +1,5 @@
-import { PauseIcon } from "@heroicons/react/24/solid";
 import { useAudio } from "@hooks/useAudio";
+import { Pause } from "lucide-react";
 import { SyntheticEvent, memo } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -21,7 +21,7 @@ function PauseButton() {
       title={t("pauseTrack")}
       onClick={pause}
     >
-      <PauseIcon className={`w-full`} />
+      <Pause className={`w-full`} />
     </button>
   );
 }

@@ -1,12 +1,12 @@
 import { downloadEpisode, isDownloadedEpisode } from "@/api/podcasts.js";
 import { Episode } from "@api/types.js";
-import { ArrowDownTrayIcon, PlayIcon } from "@heroicons/react/24/solid";
 import { useAuth } from "@hooks/useAuth.js";
 import { useEpisodes } from "@hooks/useEpisodes.js";
 import { useTrackList } from "@hooks/useTrackList.js";
 import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns/format";
 import { parseISO } from "date-fns/parseISO";
+import { Download, Play } from "lucide-react";
 import { SyntheticEvent, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -51,7 +51,7 @@ function EpisodeListItem({ episode }: Readonly<EpisodeListItemProps>) {
       className={`flex w-full flex-shrink-0 gap-6 md:block md:w-6`}
       title={t("media:playTrack")}
     >
-      <PlayIcon className={`w-6 flex-shrink-0 md:w-full`} />
+      <Play className={`w-6 flex-shrink-0 md:w-full`} />
       <span className={`truncate md:hidden`}>{episode.title}</span>
     </button>
   );
@@ -61,7 +61,7 @@ function EpisodeListItem({ episode }: Readonly<EpisodeListItemProps>) {
       className={`flex w-full flex-shrink-0 gap-6 md:block md:w-6`}
       title={`Currently Playing`}
     >
-      <PlayIcon className={`w-6 flex-shrink-0 text-green-400 md:w-full`} />
+      <Play className={`w-6 flex-shrink-0 text-green-400 md:w-full`} />
       <span className={`truncate md:hidden`}>{episode.title}</span>
     </div>
   );
@@ -72,7 +72,7 @@ function EpisodeListItem({ episode }: Readonly<EpisodeListItemProps>) {
       className={`flex w-full flex-shrink-0 gap-6 md:block md:w-6`}
       title={t("podcasts:downloadEpisode")}
     >
-      <ArrowDownTrayIcon className={`w-6 flex-shrink-0 md:w-full`} />
+      <Download className={`w-6 flex-shrink-0 md:w-full`} />
       <span className={`truncate md:hidden`}>{episode.title}</span>
     </button>
   );
