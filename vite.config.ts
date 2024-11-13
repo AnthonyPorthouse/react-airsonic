@@ -14,7 +14,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 export default defineConfig({
   plugins: [
     MillionLint.vite({
-      enabled: true,
+      enabled: false,
     }),
     tsconfigPaths(),
     react(),
@@ -174,5 +174,8 @@ export default defineConfig({
       reporter: ["text", "html", "clover", "json", "lcov"],
       include: ["src/**/*"],
     },
+  },
+  optimizeDeps: {
+    exclude: "node_modules/.cache/storybook",
   },
 });

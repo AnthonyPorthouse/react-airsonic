@@ -1,6 +1,6 @@
-import { GlobeEuropeAfricaIcon } from "@heroicons/react/24/solid";
 import { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
+import { Globe } from "lucide-react";
 
 import Button from "./Button";
 
@@ -27,6 +27,6 @@ export const BasicButton: Story = {};
 
 export const ButtonWithIcon: Story = {
   args: {
-    renderIcon: () => <GlobeEuropeAfricaIcon className="w-6" />,
+    renderIcon: () => <Globe className="w-6" />,
   },
 };
