@@ -18,7 +18,7 @@ function SkipButton() {
       className={`inline-block w-12`}
       title={t("nextTrack")}
     >
-      <SkipForward className={`w-full`} />
+      <SkipForward fill="#000" className={`w-full`} />
     </button>
   );
 }

@@ -49,7 +49,7 @@ function TrackListItem({
         data-tooltip-content={t("playTrack")}
         data-tooltip-delay-show={1000}
       >
-        <Play className={`w-6 md:w-full`} />
+        <Play className={`w-6 fill-black md:w-full`} />
       </a>
     </button>
   );
@@ -80,7 +80,7 @@ function TrackListItem({
         data-tooltip-content={t("currentlyPlaying")}
         data-tooltip-delay-show={1000}
       >
-        <Play className={`w-6 text-green-400 md:w-full`} />
+        <Play className={`w-6 fill-green-400 text-green-400 md:w-full`} />
       </a>
     </div>
   );

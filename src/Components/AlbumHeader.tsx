@@ -2,7 +2,7 @@ import type { SongIds, Songs } from "@api/types.js";
 import { useTrackList } from "@hooks/useTrackList.js";
 import { Link } from "@tanstack/react-router";
 import { Play, Shuffle } from "lucide-react";
-import { SyntheticEvent, memo, useMemo } from "react";
+import { SyntheticEvent, memo, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
 import AlbumArt from "./AlbumArt.js";
@@ -76,7 +76,12 @@ function AlbumHeader({ album, tracks }: Readonly<AlbumHeaderProps>) {
           <h3>{album.year}</h3>
           <div className="flex flex-col gap-2">
             <Button
-              renderIcon={() => <Play className="w-6" />}
+              renderIcon={useCallback(
+                () => (
+                  <Play className="w-6 fill-black" />
+                ),
+                [],
+              )}
               onClick={playAll}
             >
               <span className="flex-grow">{t("playAll")}</span>

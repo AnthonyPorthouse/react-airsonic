@@ -24,7 +24,7 @@ function StopButton() {
       title={t("stopTrack")}
       onClick={stop}
     >
-      <Square className={`w-full`} />
+      <Square fill="#000" className={`w-full`} />
     </button>
   );
 }

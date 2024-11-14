@@ -19,7 +19,7 @@ function PlayButton() {
       title={t("playTrack")}
       onClick={play}
     >
-      <Play className={`w-full`} />
+      <Play className={`w-full fill-black`} />
     </button>
   );
 }

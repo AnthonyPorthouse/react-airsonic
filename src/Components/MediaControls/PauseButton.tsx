@@ -21,7 +21,7 @@ function PauseButton() {
       title={t("pauseTrack")}
       onClick={pause}
     >
-      <Pause className={`w-full`} />
+      <Pause fill="#000" className={`w-full`} />
     </button>
   );
 }

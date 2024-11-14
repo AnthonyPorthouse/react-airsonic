@@ -51,7 +51,7 @@ function EpisodeListItem({ episode }: Readonly<EpisodeListItemProps>) {
       className={`flex w-full flex-shrink-0 gap-6 md:block md:w-6`}
       title={t("media:playTrack")}
     >
-      <Play className={`w-6 flex-shrink-0 md:w-full`} />
+      <Play className={`w-6 flex-shrink-0 fill-black md:w-full`} />
       <span className={`truncate md:hidden`}>{episode.title}</span>
     </button>
   );
@@ -61,7 +61,9 @@ function EpisodeListItem({ episode }: Readonly<EpisodeListItemProps>) {
       className={`flex w-full flex-shrink-0 gap-6 md:block md:w-6`}
       title={`Currently Playing`}
     >
-      <Play className={`w-6 flex-shrink-0 text-green-400 md:w-full`} />
+      <Play
+        className={`w-6 flex-shrink-0 fill-green-400 text-green-400 md:w-full`}
+      />
       <span className={`truncate md:hidden`}>{episode.title}</span>
     </div>
   );

@@ -1,5 +1,5 @@
 import { useFullscreen } from "@hooks/useFullscreen";
-import { Expand, Shrink } from "lucide-react";
+import { Fullscreen, Shrink } from "lucide-react";
 import { SyntheticEvent, memo } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -34,7 +34,7 @@ function FullscreenButton() {
       title={t("enterFullscreen")}
       onClick={fullScreen}
     >
-      <Expand className={`w-full`} />
+      <Fullscreen className={`w-full`} />
     </button>
   );
 }
