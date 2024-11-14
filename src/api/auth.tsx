@@ -8,7 +8,7 @@ export interface Credentials {
   password: string;
 }
 
-export const salt = uuid();
+const salt = uuid();
 
 function getToken(password: string) {
   return md5(`${password}${salt}`);
