@@ -1,4 +1,5 @@
-import { useAudio } from "@hooks/useAudio.js";
+import { useAudioState } from "@hooks/useAudio.js";
+import { useCallback } from "react";
 
 import FullscreenButton from "../MediaControls/FullscreenButton.js";
 import PauseButton from "../MediaControls/PauseButton.js";
@@ -7,15 +8,15 @@ import SkipButton from "../MediaControls/SkipButton.js";
 import StopButton from "../MediaControls/StopButton.js";
 
 function MediaControls() {
-  const audio = useAudio();
+  const { isPaused } = useAudioState();
 
-  const playPauseButton = () => {
-    if (audio?.paused) {
+  const playPauseButton = useCallback(() => {
+    if (isPaused) {
       return <PlayButton />;
     }
 
     return <PauseButton />;
-  };
+  }, [isPaused]);
 
   return (
     <div className={`flex w-full gap-2`}>
