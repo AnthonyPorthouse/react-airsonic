@@ -6,7 +6,6 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import ReactModal from "react-modal";
-import { registerSW } from "virtual:pwa-register";
 
 import App from "./App.js";
 import "./i18n";
@@ -34,13 +33,3 @@ root.render(
     </HelmetProvider>
   </React.StrictMode>,
 );
-
-if (import.meta.env.DEV) {
-  setTimeout(() => document.dispatchEvent(new Event("update_available")), 5000);
-}
-
-registerSW({
-  onNeedRefresh: () => {
-    document.dispatchEvent(new Event("update_available"));
-  },
-});

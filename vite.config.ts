@@ -20,7 +20,11 @@ export default defineConfig({
     react(),
     svgrPlugin(),
     VitePWA({
+      registerType: "autoUpdate",
       manifestFilename: "ra.webmanifest",
+      devOptions: {
+        enabled: true,
+      },
       manifest: {
         id: "/",
         short_name: "Ra",
@@ -91,8 +95,8 @@ export default defineConfig({
           },
         ],
         start_url: ".",
-        display_override: ["window-controls-overlay", "minimal-ui"],
-        display: "standalone",
+        display_override: ["window-controls-overlay", "fullscreen"],
+        display: "fullscreen",
         theme_color: "#000000",
         background_color: "#000000",
         screenshots: [

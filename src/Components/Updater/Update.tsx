@@ -1,20 +1,25 @@
-import { useUpdateAvailable } from "@hooks/useUpdateAvailable.js";
 import { CloudUpload } from "lucide-react";
-import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
+import { useRegisterSW } from "virtual:pwa-register/react";
 
 function Update() {
-  const [updateNeeded] = useUpdateAvailable();
+  const {
+    needRefresh: [needRefresh],
+    updateServiceWorker,
+  } = useRegisterSW({
+    onRegisteredSW(r) {
+      console.log(`SW Registered: ${r}`);
+    },
+    onRegisterError(r) {
+      console.log(`SW Registered: ${r}`);
+    },
+  });
+
   const { t } = useTranslation("nav");
 
-  const refreshApplication = (e: SyntheticEvent) => {
-    e.preventDefault();
-    window.location.reload();
-  };
-
-  if (updateNeeded) {
+  if (needRefresh) {
     return (
-      <button onClick={refreshApplication}>
+      <button onClick={() => updateServiceWorker(true)}>
         <a
           data-tooltip-id="tooltip"
           data-tooltip-content={t("update-available")}
