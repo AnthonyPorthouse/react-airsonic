@@ -125,61 +125,11 @@
     ]
   },
   "overrides": {
-    "@react-hook/window-size": {
-      "react": "$react"
-    },
-    "@tanstack/react-query": {
-      "react": "$react"
-    },
-    "@tanstack/react-query-devtools": {
-      "react": "$react"
-    },
-    "@tanstack/react-router": {
-      "react": "$react",
-      "react-dom": "$react-dom"
-    },
-    "@tanstack/router-devtools": {
-      "react": "$react",
-      "react-dom": "$react-dom"
-    },
-    "@tanstack/react-virtual": {
-      "react": "$react",
-      "react-dom": "$react-dom"
-    },
-    "@testing-library/react": {
-      "react": "$react",
-      "react-dom": "$react-dom"
-    },
-    "@storybook/icons": {
-      "react": "$react",
-      "react-dom": "$react-dom"
-    },
-    "react-focus-lock": {
-      "react": "$react",
-      "react-dom": "$react-dom",
-      "@types/react": "$@types/react"
-    },
     "react-helmet-async": {
       "react": "$react",
       "react-dom": "$react-dom"
     },
-    "react-i18next": {
-      "react": "$react",
-      "react-dom": "$react-dom"
-    },
     "react-modal": {
-      "react": "$react",
-      "react-dom": "$react-dom"
-    },
-    "react-tooltip": {
-      "react": "$react",
-      "react-dom": "$react-dom"
-    },
-    "@react-hook/latest": {
-      "react": "$react",
-      "react-dom": "$react-dom"
-    },
-    "react-clientside-effect": {
       "react": "$react",
       "react-dom": "$react-dom"
     }
