@@ -6,7 +6,7 @@ import { createFileRoute } from "@tanstack/react-router";
 export const PlaylistsQueryOptions = (auth: Authenticated) => {
   return queryOptions({
     queryKey: ["playlists", auth.credentials],
-    queryFn: () => getPlaylists(auth.credentials),
+    queryFn: () => getPlaylists(auth.credentials) || [],
   });
 };
 

@@ -1,4 +1,4 @@
-import { useAudio } from "@hooks/useAudio";
+import { useAudioRef } from "@hooks/useAudio";
 import { Play } from "lucide-react";
 import { SyntheticEvent, memo } from "react";
 import { useTranslation } from "react-i18next";
@@ -6,11 +6,11 @@ import { useTranslation } from "react-i18next";
 function PlayButton() {
   const { t } = useTranslation("media");
 
-  const audio = useAudio();
+  const audioRef = useAudioRef();
 
   const play = (e: SyntheticEvent) => {
     e.preventDefault();
-    audio?.play().catch(() => {});
+    audioRef.current?.play().catch(() => {});
   };
 
   return (

@@ -10,7 +10,7 @@ function to2Digits(number: number) {
 }
 
 function Duration({ time }: DurationProps) {
-  if (isNaN(time)) {
+  if (isNaN(time) || !isFinite(time)) {
     time = 0;
   }
 
@@ -24,7 +24,7 @@ function Duration({ time }: DurationProps) {
       "",
     );
 
-  return <span>{output}</span>;
+  return <span className="tabular-nums">{output}</span>;
 }
 
 export default memo(Duration);

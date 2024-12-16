@@ -9,9 +9,15 @@ interface MediaInfoProps {
   track: Song;
   duration: number;
   currentTime: number;
+  state: "playing" | "paused" | "stopped";
 }
 
-function MediaInfo({ track, duration, currentTime }: Readonly<MediaInfoProps>) {
+function MediaInfo({
+  track,
+  duration,
+  currentTime,
+  state,
+}: Readonly<MediaInfoProps>) {
   return (
     <div className={`flex flex-grow flex-col gap-y-3`}>
       <div className={`flex items-center justify-items-stretch`}>
@@ -19,7 +25,7 @@ function MediaInfo({ track, duration, currentTime }: Readonly<MediaInfoProps>) {
           <TrackInfo track={track} />
         </div>
         <div className={`flex-shrink-0`}>
-          <MediaControls />
+          <MediaControls state={state} />
         </div>
       </div>
       <ProgressBarWithTime length={duration} position={currentTime} />

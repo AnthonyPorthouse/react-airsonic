@@ -1,6 +1,5 @@
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
-import MillionLint from "@million/lint";
 import { TanStackRouterVite } from "@tanstack/router-vite-plugin";
 import react from "@vitejs/plugin-react";
 import UnpluginInjectPreload from "unplugin-inject-preload/vite";
@@ -10,14 +9,24 @@ import { VitePWA } from "vite-plugin-pwa";
 import svgrPlugin from "vite-plugin-svgr";
 import tsconfigPaths from "vite-tsconfig-paths";
 
+const ReactCompilerConfig = {
+  sources: (filename) => {
+    return filename.indexOf("src/") !== -1;
+  },
+};
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    MillionLint.vite({
-      enabled: true,
-    }),
+    // MillionLint.vite({
+    //   enabled: true,
+    // }),
     tsconfigPaths(),
-    react(),
+    react({
+      babel: {
+        plugins: [["babel-plugin-react-compiler", ReactCompilerConfig]],
+      },
+    }),
     svgrPlugin(),
     VitePWA({
       registerType: "autoUpdate",

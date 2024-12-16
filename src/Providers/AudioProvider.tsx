@@ -9,12 +9,14 @@ import { AudioContext } from "../Contexts/AudioContext.js";
 interface AudioProviderProps {
   setCurrentDuration: (pos: number) => void;
   setCurrentTime: (pos: number) => void;
+  setState: (state: "playing" | "paused" | "stopped") => void;
 }
 
 export const AudioProvider = memo(function AudioProvider({
   children,
   setCurrentDuration,
   setCurrentTime,
+  setState,
 }: Readonly<PropsWithChildren<AudioProviderProps>>) {
   const auth = useAuth();
 
@@ -37,17 +39,21 @@ export const AudioProvider = memo(function AudioProvider({
     return 0;
   };
 
-  const loadedDataEventListener = (audio: HTMLAudioElement) => () => {
-    audio.play().catch(() => {});
-  };
+  const loadedDataEventListener = useCallback(
+    (audio: HTMLAudioElement) => () => {
+      audio.play().catch(() => {});
+    },
+    [],
+  );
 
   const endedEventListener = useCallback(
     () => () => {
       nextTrack();
       setCurrentDuration(0);
       setCurrentTime(0);
+      setState("stopped");
     },
-    [nextTrack, setCurrentDuration, setCurrentTime],
+    [nextTrack, setCurrentDuration, setCurrentTime, setState],
   );
 
   const timeUpdateEventListener = useCallback(
@@ -109,6 +115,8 @@ export const AudioProvider = memo(function AudioProvider({
         "loadeddata",
         loadedDataEventListener(audio.current),
       );
+      audio.current.addEventListener("play", () => setState("playing"));
+      audio.current.addEventListener("pause", () => setState("paused"));
       audio.current.addEventListener("ended", endedEventListener());
       audio.current.addEventListener(
         "timeupdate",
@@ -124,6 +132,8 @@ export const AudioProvider = memo(function AudioProvider({
         "loadeddata",
         loadedDataEventListener(audio.current),
       );
+      audio.current.addEventListener("play", () => setState("playing"));
+      audio.current.addEventListener("pause", () => setState("paused"));
       audio.current.addEventListener("ended", endedEventListener());
       audio.current.addEventListener(
         "timeupdate",
@@ -140,11 +150,11 @@ export const AudioProvider = memo(function AudioProvider({
     getNextTrack,
     endedEventListener,
     timeUpdateEventListener,
+    loadedDataEventListener,
+    setState,
   ]);
 
   return (
-    <AudioContext.Provider value={audio.current}>
-      {children}
-    </AudioContext.Provider>
+    <AudioContext.Provider value={audio}>{children}</AudioContext.Provider>
   );
 });

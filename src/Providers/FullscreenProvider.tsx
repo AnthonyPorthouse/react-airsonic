@@ -15,18 +15,14 @@ export const FullscreenProvider = memo(function FullscreenProvider({
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   const setFullscreen = useCallback(async (enableFullscreen: boolean) => {
-    if (enableFullscreen) {
-      try {
+    try {
+      if (enableFullscreen) {
         await document.body.requestFullscreen();
-      } catch (e) {
-        console.error(e);
-      }
-    } else {
-      try {
+      } else {
         await document.exitFullscreen();
-      } catch (e) {
-        console.error(e);
       }
+    } catch (e) {
+      console.error(e);
     }
   }, []);
 

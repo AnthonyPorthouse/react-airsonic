@@ -7,10 +7,11 @@ interface SearchBarProps {
   onSubmit(e: SyntheticEvent): void;
 }
 
+const route = getRouteApi("/_authenticated");
+
 function SearchBar({ onSubmit }: Readonly<SearchBarProps>) {
   const { t } = useTranslation("search");
   const navigate = useNavigate();
-  const route = getRouteApi("/_authenticated");
   const { query } = route.useSearch();
 
   const [filter, setFilter] = useState(query ?? "");

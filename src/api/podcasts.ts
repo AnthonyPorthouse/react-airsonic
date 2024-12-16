@@ -10,7 +10,7 @@ import { DownloadedEpisode, Episode, Podcast, Podcasts } from "./types.js";
 export interface PodcastsResponse {
   "subsonic-response": {
     podcasts: {
-      channel: Podcasts;
+      channel?: Podcasts;
     };
   };
 }
@@ -40,7 +40,7 @@ export async function getPodcasts({
     },
   );
 
-  return result.data["subsonic-response"].podcasts.channel;
+  return result.data["subsonic-response"].podcasts?.channel ?? [];
 }
 
 export async function getPodcast(

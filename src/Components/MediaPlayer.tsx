@@ -23,6 +23,9 @@ function MediaPlayer() {
     return 0;
   };
 
+  const [state, setState] = useState<"playing" | "paused" | "stopped">(
+    "stopped",
+  );
   const [duration, setDuration] = useState(100);
   const [currentTime, setCurrentTime] = useState(
     getInitialProgress(nowPlaying),
@@ -41,6 +44,7 @@ function MediaPlayer() {
     <AudioProvider
       setCurrentDuration={setDuration}
       setCurrentTime={setCurrentTime}
+      setState={setState}
     >
       <MediaSession track={nowPlaying}>
         <TitleInfo nowPlaying={nowPlaying} />
@@ -61,6 +65,7 @@ function MediaPlayer() {
             track={nowPlaying}
             duration={duration}
             currentTime={currentTime}
+            state={state}
           />
         </div>
       </MediaSession>

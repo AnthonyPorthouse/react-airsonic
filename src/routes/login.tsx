@@ -22,6 +22,8 @@ export const Route = createFileRoute("/login")({
   component: LogIn,
 });
 
+const routeApi = getRouteApi("/login");
+
 function LogIn() {
   const auth = useAuth();
 
@@ -32,7 +34,6 @@ function LogIn() {
   const [hasAutoChecked, setHasAutoChecked] = useState(false);
 
   const navigate = useNavigate();
-  const routeApi = getRouteApi("/login");
   const search = routeApi.useSearch();
 
   const { isError, mutate } = useMutation({

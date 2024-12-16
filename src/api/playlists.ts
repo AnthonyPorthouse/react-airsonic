@@ -10,7 +10,7 @@ import { Playlist, Playlists, Songs } from "./types.js";
 export interface PlaylistsResponse {
   "subsonic-response": {
     playlists: {
-      playlist: Playlists;
+      playlist?: Playlists;
     };
   };
 }
@@ -34,7 +34,7 @@ export async function getPlaylists({
     { params: authParams },
   );
 
-  return result.data["subsonic-response"].playlists.playlist;
+  return result.data["subsonic-response"].playlists?.playlist ?? [];
 }
 
 export async function getPlaylist(

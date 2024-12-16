@@ -2,7 +2,7 @@ import type { Songs } from "@api/types.js";
 import { AlbumProvider } from "@providers/AlbumProvider.js";
 import { VirtualItem, useVirtualizer } from "@tanstack/react-virtual";
 import classNames from "classnames";
-import { memo, useRef } from "react";
+import { useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
 import TrackListItem from "./TrackListItem.js";
@@ -13,29 +13,36 @@ interface TrackListProps {
 }
 
 function TrackList({ tracks, includeAdd = false }: Readonly<TrackListProps>) {
-  const { t } = useTranslation("albums");
+  // eslint-disable-next-line react-compiler/react-compiler
+  "use no memo";
 
+  const { t } = useTranslation("albums");
   const trackListRef = useRef<HTMLDivElement>(null);
 
   const rowHeight = 41;
 
-  const rowRenderer = (item: VirtualItem) => (
-    <div
-      key={item.key}
-      style={{
-        transform: `translateY(${item.start}px)`,
-      }}
-      className={classNames(
-        `absolute`,
-        `w-full`,
-        `py-2`,
-        `px-4`,
-        `h-[${rowHeight}px]`,
-        item.index % 2 === 0 ? "bg-white" : "bg-gray-100",
-      )}
-    >
-      <TrackListItem track={tracks[item.index]} includeAdd={includeAdd} />
-    </div>
+  const rowRenderer = useCallback(
+    (item: VirtualItem) => {
+      return (
+        <div
+          key={item.key}
+          style={{
+            transform: `translateY(${item.start}px)`,
+          }}
+          className={classNames(
+            `absolute`,
+            `w-full`,
+            `py-2`,
+            `px-4`,
+            `h-[${rowHeight}px]`,
+            item.index % 2 === 0 ? "bg-white" : "bg-gray-100",
+          )}
+        >
+          <TrackListItem track={tracks[item.index]} includeAdd={includeAdd} />
+        </div>
+      );
+    },
+    [includeAdd, tracks],
   );
 
   const virtualizer = useVirtualizer({
@@ -57,7 +64,7 @@ function TrackList({ tracks, includeAdd = false }: Readonly<TrackListProps>) {
       >
         <div
           ref={trackListRef}
-          className="border-grey-200 max-h-full w-full overflow-auto rounded border"
+          className="border-grey-200 h-full max-h-full w-full overflow-auto rounded border"
         >
           <div
             style={{
@@ -74,4 +81,4 @@ function TrackList({ tracks, includeAdd = false }: Readonly<TrackListProps>) {
   );
 }
 
-export default memo(TrackList);
+export default TrackList;

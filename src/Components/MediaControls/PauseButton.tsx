@@ -1,18 +1,15 @@
-import { useAudio } from "@hooks/useAudio";
+import { useAudioRef } from "@hooks/useAudio";
 import { Pause } from "lucide-react";
-import { SyntheticEvent, memo } from "react";
+import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
 
 function PauseButton() {
   const { t } = useTranslation("media");
-  /**
-   * @type audio {Audio}
-   */
-  const audio = useAudio();
+  const audioRef = useAudioRef();
 
   const pause = (e: SyntheticEvent) => {
     e.preventDefault();
-    audio?.pause();
+    audioRef.current?.pause();
   };
 
   return (
@@ -26,4 +23,4 @@ function PauseButton() {
   );
 }
 
-export default memo(PauseButton);
+export default PauseButton;

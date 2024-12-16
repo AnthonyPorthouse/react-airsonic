@@ -1,4 +1,4 @@
-import { useAudio } from "@/hooks/useAudio.js";
+import { useAudioRef } from "@/hooks/useAudio.js";
 import { SyntheticEvent, useEffect, useRef, useState } from "react";
 
 import Duration from "../Duration.js";
@@ -9,7 +9,7 @@ interface ProgressBarProps {
 }
 
 function ProgressBar({ length, position }: Readonly<ProgressBarProps>) {
-  const audio = useAudio();
+  const audioRef = useAudioRef();
 
   const progress = (position / length) * 100;
 
@@ -25,6 +25,8 @@ function ProgressBar({ length, position }: Readonly<ProgressBarProps>) {
   const [bufferPercent, setBufferPercent] = useState(0);
 
   useEffect(() => {
+    const audio = audioRef.current;
+
     const progressHandler = () => {
       if (!audio?.buffered.length) {
         return;
@@ -45,8 +47,7 @@ function ProgressBar({ length, position }: Readonly<ProgressBarProps>) {
   const seekPosition = (e: { pageX: number }) => {
     const bar = progressBar.current;
 
-    if (!bar || !audio) {
-      console.debug(bar, audio);
+    if (!bar || !audioRef.current) {
       return;
     }
 
@@ -60,17 +61,20 @@ function ProgressBar({ length, position }: Readonly<ProgressBarProps>) {
     const value = length * percentagePosition;
 
     setMousePercent(Math.max(0, Math.min(100, percentagePosition * 100)));
-    setMouseSongPos(Math.max(0, Math.min(audio.duration, value)));
+    setMouseSongPos(
+      Math.max(0, Math.min(audioRef.current.duration || 0, value)),
+    );
   };
 
   const seek = (e: SyntheticEvent) => {
     e.preventDefault();
 
-    if (!audio) {
+    if (!audioRef.current) {
       return;
     }
 
-    audio.currentTime = mouseSongPos;
+    // eslint-disable-next-line react-compiler/react-compiler
+    audioRef.current.currentTime = mouseSongPos;
   };
 
   const renderMousePosition = () => {
@@ -125,16 +129,22 @@ function ProgressBar({ length, position }: Readonly<ProgressBarProps>) {
       onMouseMove={seekPosition}
       onClick={seek}
       onKeyDown={(e) => {
-        if (!audio) {
+        if (!audioRef.current) {
           return;
         }
 
         if (e.key === "ArrowRight") {
-          audio.currentTime = Math.min(audio.duration, audio.currentTime + 10);
+          audioRef.current.currentTime = Math.min(
+            audioRef.current.duration,
+            audioRef.current.currentTime + 10,
+          );
         }
 
         if (e.key === "ArrowLeft") {
-          audio.currentTime = Math.max(0, audio.currentTime - 10);
+          audioRef.current.currentTime = Math.max(
+            0,
+            audioRef.current.currentTime - 10,
+          );
         }
       }}
       tabIndex={0}
