@@ -2,7 +2,7 @@ import type { Song } from "@api/types.js";
 import { useAlbumTracks } from "@hooks/useAlbumTracks.js";
 import { useTrackList } from "@hooks/useTrackList.js";
 import { Play, Plus } from "lucide-react";
-import { SyntheticEvent, memo, useCallback, useMemo } from "react";
+import { SyntheticEvent, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
 import Duration from "./Duration.js";
@@ -110,4 +110,4 @@ function TrackListItem({
   );
 }
 
-export default memo(TrackListItem);
+export default TrackListItem;

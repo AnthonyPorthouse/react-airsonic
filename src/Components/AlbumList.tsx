@@ -1,5 +1,4 @@
 import type { Albums } from "@api/types.js";
-import { memo } from "react";
 
 import Album from "./Album.js";
 import Grid from "./Grid.js";
@@ -19,4 +18,4 @@ function AlbumList({ className, albums }: Readonly<AlbumListProps>) {
   );
 }
 
-export default memo(AlbumList);
+export default AlbumList;

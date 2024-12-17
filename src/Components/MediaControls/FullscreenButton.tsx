@@ -1,6 +1,6 @@
 import { useFullscreen } from "@hooks/useFullscreen";
 import { Fullscreen, Shrink } from "lucide-react";
-import { SyntheticEvent, memo } from "react";
+import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
 
 function FullscreenButton() {
@@ -39,4 +39,4 @@ function FullscreenButton() {
   );
 }
 
-export default memo(FullscreenButton);
+export default FullscreenButton;

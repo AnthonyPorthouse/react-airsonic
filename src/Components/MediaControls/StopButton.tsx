@@ -1,7 +1,7 @@
 import { useAudioRef } from "@hooks/useAudio";
 import { useTrackList } from "@hooks/useTrackList";
 import { Square } from "lucide-react";
-import { SyntheticEvent, memo } from "react";
+import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
 
 function StopButton() {
@@ -31,4 +31,4 @@ function StopButton() {
   );
 }
 
-export default memo(StopButton);
+export default StopButton;

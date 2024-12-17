@@ -2,7 +2,7 @@ import type { Song } from "@api/types.js";
 import { useTrackList } from "@hooks/useTrackList.js";
 import { AudioProvider } from "@providers/AudioProvider.js";
 import { Link } from "@tanstack/react-router";
-import { memo, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 import AlbumArt from "./AlbumArt.js";
 import Fullscreen from "./MediaPlayer/Fullscreen.js";
@@ -78,4 +78,4 @@ function MediaPlayer() {
   );
 }
 
-export default memo(MediaPlayer);
+export default MediaPlayer;

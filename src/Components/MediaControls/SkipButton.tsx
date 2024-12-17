@@ -1,6 +1,6 @@
 import { useTrackList } from "@hooks/useTrackList";
 import { SkipForward } from "lucide-react";
-import { SyntheticEvent, memo } from "react";
+import { SyntheticEvent } from "react";
 import { useTranslation } from "react-i18next";
 
 function SkipButton() {
@@ -23,4 +23,4 @@ function SkipButton() {
   );
 }
 
-export default memo(SkipButton);
+export default SkipButton;

@@ -1,7 +1,6 @@
 import type { Song } from "@api/types.js";
 import { useFullscreen } from "@hooks/useFullscreen.js";
 import classNames from "classnames";
-import { memo } from "react";
 import { createPortal } from "react-dom";
 import { AutoFocusInside } from "react-focus-lock";
 
@@ -120,4 +119,4 @@ function Fullscreen({ track, currentTime, duration }: FullscreenProps) {
   );
 }
 
-export default memo(Fullscreen);
+export default Fullscreen;

@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
-import { memo, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import logoAvif from "../images/logo192.avif";
@@ -163,4 +163,4 @@ function Nav() {
   );
 }
 
-export default memo(Nav);
+export default Nav;

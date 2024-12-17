@@ -2,7 +2,7 @@ import { getStreamUrl } from "@api/stream.js";
 import type { Song } from "@api/types.js";
 import { useAuth } from "@hooks/useAuth.js";
 import { useTrackList } from "@hooks/useTrackList.js";
-import { PropsWithChildren, memo, useCallback, useEffect, useRef } from "react";
+import { PropsWithChildren, useCallback, useEffect, useRef } from "react";
 
 import { AudioContext } from "../Contexts/AudioContext.js";
 
@@ -12,7 +12,7 @@ interface AudioProviderProps {
   setState: (state: "playing" | "paused" | "stopped") => void;
 }
 
-export const AudioProvider = memo(function AudioProvider({
+export const AudioProvider = function AudioProvider({
   children,
   setCurrentDuration,
   setCurrentTime,
@@ -163,4 +163,4 @@ export const AudioProvider = memo(function AudioProvider({
   return (
     <AudioContext.Provider value={audio}>{children}</AudioContext.Provider>
   );
-});
+};

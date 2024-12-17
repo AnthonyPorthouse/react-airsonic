@@ -2,7 +2,7 @@ import type { SongIds, Songs } from "@api/types.js";
 import { useTrackList } from "@hooks/useTrackList.js";
 import { Link } from "@tanstack/react-router";
 import { Play, Shuffle } from "lucide-react";
-import { SyntheticEvent, memo, useCallback, useMemo } from "react";
+import { SyntheticEvent, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
 import AlbumArt from "./AlbumArt.js";
@@ -100,4 +100,4 @@ function AlbumHeader({ album, tracks }: Readonly<AlbumHeaderProps>) {
   );
 }
 
-export default memo(AlbumHeader);
+export default AlbumHeader;
