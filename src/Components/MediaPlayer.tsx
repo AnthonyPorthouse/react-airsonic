@@ -26,7 +26,7 @@ function MediaPlayer() {
   const [state, setState] = useState<"playing" | "paused" | "stopped">(
     "stopped",
   );
-  const [duration, setDuration] = useState(100);
+  const [duration, setDuration] = useState(nowPlaying?.duration ?? 60);
   const [currentTime, setCurrentTime] = useState(
     getInitialProgress(nowPlaying),
   );

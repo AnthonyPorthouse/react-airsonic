@@ -65,14 +65,19 @@ export const AudioProvider = memo(function AudioProvider({
         );
       }
 
+      const duration =
+        audio.duration === Infinity
+          ? nowPlaying?.duration || 0
+          : audio.duration;
+
       setCurrentTime(parseFloat(audio.currentTime.toFixed(2)) || 0);
-      setCurrentDuration(audio.duration || 0);
+      setCurrentDuration(duration);
 
       // If we are in the last 10 seconds, start preloading the next media item
       if (
         audio.currentTime &&
-        audio.duration &&
-        audio.currentTime >= audio.duration - 10
+        nowPlaying?.duration &&
+        audio.currentTime >= duration - 10
       ) {
         const nextTrack = getNextTrack();
 
@@ -92,6 +97,7 @@ export const AudioProvider = memo(function AudioProvider({
     [
       auth.credentials,
       getNextTrack,
+      nowPlaying?.duration,
       nowPlaying?.id,
       nowPlaying?.isPodcast,
       setCurrentDuration,
