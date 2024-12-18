@@ -2,6 +2,7 @@ import type { Songs } from "@api/types.js";
 import { AlbumProvider } from "@providers/AlbumProvider.js";
 import { VirtualItem, useVirtualizer } from "@tanstack/react-virtual";
 import classNames from "classnames";
+import { motion } from "motion/react";
 import { useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -38,7 +39,16 @@ function TrackList({ tracks, includeAdd = false }: Readonly<TrackListProps>) {
             item.index % 2 === 0 ? "bg-white" : "bg-gray-100",
           )}
         >
-          <TrackListItem track={tracks[item.index]} includeAdd={includeAdd} />
+          <motion.div
+            initial={{ x: -50, opacity: 0.1 }}
+            animate={{
+              x: 0,
+              opacity: 1,
+              transition: { delay: (item.index < 20 ? item.index : 20) / 20 },
+            }}
+          >
+            <TrackListItem track={tracks[item.index]} includeAdd={includeAdd} />
+          </motion.div>
         </div>
       );
     },
