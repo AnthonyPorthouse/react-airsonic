@@ -13,8 +13,8 @@ function NowPlaying() {
 
   if (trackList.length === 0) {
     return (
-      <div>
-        <h1 className="text-2xl font-bold">Nothing Currently Playing</h1>
+      <div className="flex justify-center">
+        <span className="text-gray-500">Nothing Currently Playing</span>
       </div>
     );
   }

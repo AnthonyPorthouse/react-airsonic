@@ -12,6 +12,9 @@ interface EpisodeListProps {
 }
 
 function EpisodeList({ episodes }: Readonly<EpisodeListProps>) {
+  // eslint-disable-next-line react-compiler/react-compiler
+  "use no memo";
+
   const { t } = useTranslation("podcasts");
 
   const episodeListRef = useRef<HTMLDivElement>(null);

@@ -20,6 +20,14 @@ function Playlists() {
     initialData: Route.useLoaderData(),
   });
 
+  if (playlists.length === 0) {
+    return (
+      <div className="flex justify-center">
+        <span className="text-gray-500">No Playlists Found</span>
+      </div>
+    );
+  }
+
   return (
     <div>
       <Grid>

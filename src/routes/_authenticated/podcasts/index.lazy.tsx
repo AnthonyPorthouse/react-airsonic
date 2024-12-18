@@ -19,6 +19,14 @@ function Podcasts() {
     initialData: Route.useLoaderData(),
   });
 
+  if (data.length === 0) {
+    return (
+      <div className="flex justify-center">
+        <span className="text-gray-500">No Podcasts Found</span>
+      </div>
+    );
+  }
+
   return (
     <div>
       <h1 className={`text-2xl`}>Podcasts</h1>

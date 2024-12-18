@@ -104,8 +104,8 @@ export default defineConfig({
           },
         ],
         start_url: ".",
-        display_override: ["window-controls-overlay", "fullscreen"],
-        display: "fullscreen",
+        display_override: ["window-controls-overlay", "standalone"],
+        display: "standalone",
         theme_color: "#000000",
         background_color: "#000000",
         screenshots: [
