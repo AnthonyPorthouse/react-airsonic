@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@million/lint": "^1.0.14",
-    "@tanstack/react-query": "^5.62.8",
+    "@tanstack/react-query": "^5.63.0",
     "@tanstack/react-query-devtools": "^5.62.8",
     "@tanstack/react-router": "^1.91.2",
     "@tanstack/react-virtual": "^3.11.2",
