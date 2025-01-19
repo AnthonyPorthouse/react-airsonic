@@ -40,7 +40,7 @@ function TrackList({ tracks, includeAdd = false }: Readonly<TrackListProps>) {
           )}
         >
           <motion.div
-            initial={{ x: -50, opacity: 0.1 }}
+            initial={{ x: -50, opacity: 0 }}
             animate={{
               x: 0,
               opacity: 1,
