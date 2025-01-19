@@ -17,19 +17,24 @@ describe(getCoverArtUrl, async () => {
 
   it("returns a cover art url", async () => {
     authParamsMock.mockReturnValueOnce("auth");
-    sanitizeServerMock.mockReturnValueOnce("http://example.com");
+    sanitizeServerMock.mockReturnValueOnce("https://example.com");
 
     const result = getCoverArtUrl("ar-1", {
-      server: "",
-      username: "",
-      password: "",
+      server: "https://example.com",
+      username: "user",
+      password: "password",
     });
 
-    expect(authParamsMock).toHaveBeenCalledOnce();
-    expect(sanitizeServerMock).toHaveBeenCalledOnce();
+    expect(authParamsMock).toHaveBeenCalledExactlyOnceWith({
+      username: "user",
+      password: "password",
+    });
+    expect(sanitizeServerMock).toHaveBeenCalledExactlyOnceWith(
+      "https://example.com",
+    );
 
     expect(result).toBe(
-      "http://example.com/rest/getCoverArt.view?id=ar-1&auth",
+      "https://example.com/rest/getCoverArt.view?id=ar-1&auth",
     );
   });
 });
@@ -48,19 +53,24 @@ describe(getScaledCoverArtUrl, async () => {
 
   it("returns a scaled cover art url", async () => {
     authParamsMock.mockReturnValueOnce("auth");
-    sanitizeServerMock.mockReturnValueOnce("http://example.com");
+    sanitizeServerMock.mockReturnValueOnce("https://example.com");
 
     const result = getScaledCoverArtUrl("ar-1", "256", {
-      server: "",
-      username: "",
-      password: "",
+      server: "https://example.com",
+      username: "user",
+      password: "password",
     });
 
-    expect(authParamsMock).toHaveBeenCalledOnce();
-    expect(sanitizeServerMock).toHaveBeenCalledOnce();
+    expect(authParamsMock).toHaveBeenCalledExactlyOnceWith({
+      username: "user",
+      password: "password",
+    });
+    expect(sanitizeServerMock).toHaveBeenCalledExactlyOnceWith(
+      "https://example.com",
+    );
 
     expect(result).toBe(
-      "http://example.com/rest/getCoverArt.view?id=ar-1&size=256&auth",
+      "https://example.com/rest/getCoverArt.view?id=ar-1&size=256&auth",
     );
   });
 });

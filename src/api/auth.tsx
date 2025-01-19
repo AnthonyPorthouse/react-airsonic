@@ -1,6 +1,6 @@
 import axios from "axios";
 import md5 from "md5";
-import { v4 as uuid } from "uuid";
+import { nanoid } from "nanoid";
 
 export interface Credentials {
   server: string;
@@ -8,10 +8,16 @@ export interface Credentials {
   password: string;
 }
 
-const salt = uuid();
+let memoSalt: string | undefined;
+
+const salt = () => {
+  if (memoSalt) return memoSalt;
+
+  return (memoSalt = nanoid(11));
+};
 
 function getToken(password: string) {
-  return md5(`${password}${salt}`);
+  return md5(`${password}${salt()}`);
 }
 
 export function generateAuthParamsObject({
@@ -21,7 +27,7 @@ export function generateAuthParamsObject({
   return {
     u: username,
     t: getToken(password),
-    s: salt,
+    s: salt(),
     v: "1.15.0",
     c: "react-airsonic",
     f: "json",
@@ -37,7 +43,7 @@ export function generateAuthParams({
 }) {
   return `u=${username}&t=${getToken(
     password,
-  )}&s=${salt}&v=1.15.0&c=react-airsonic&f=json`;
+  )}&s=${salt()}&v=1.15.0&c=react-airsonic&f=json`;
 }
 
 export function sanitizeServer(url: string) {

@@ -1,5 +1,6 @@
 import axios from "axios";
 import md5 from "md5";
+import { nanoid } from "nanoid";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 
 import {
@@ -9,14 +10,13 @@ import {
   sanitizeServer,
 } from "./auth";
 
-describe(generateAuthParamsObject, async () => {
-  beforeEach(() => {
-    vi.mock("uuid", () => {
-      return { v4: () => "test" };
-    });
-  });
+beforeAll(() => {
+  vi.mock("nanoid");
+  vi.mocked(nanoid).mockReturnValue("nanoid");
+});
 
-  afterEach(() => {
+describe(generateAuthParamsObject, async () => {
+  afterAll(() => {
     vi.restoreAllMocks();
   });
 
@@ -27,18 +27,15 @@ describe(generateAuthParamsObject, async () => {
     });
 
     expect(result.u).toBe("username");
-    expect(result.t).toBe(md5("passwordtest"));
-    expect(result.s).toBe("test");
+    expect(result.s).toBe("nanoid");
+    expect(result.t).toBe(md5("passwordnanoid"));
+    expect(result.v).toBe("1.15.0");
+    expect(result.c).toBe("react-airsonic");
+    expect(result.f).toBe("json");
   });
 });
 
 describe(generateAuthParams, async () => {
-  beforeEach(() => {
-    vi.mock("uuid", () => {
-      return { v4: () => "test" };
-    });
-  });
-
   afterEach(() => {
     vi.restoreAllMocks();
   });
@@ -50,7 +47,7 @@ describe(generateAuthParams, async () => {
     });
 
     expect(result).toBe(
-      `u=username&t=${md5("passwordtest")}&s=test&v=1.15.0&c=react-airsonic&f=json`,
+      `u=username&t=${md5("passwordnanoid")}&s=nanoid&v=1.15.0&c=react-airsonic&f=json`,
     );
   });
 });
@@ -99,7 +96,19 @@ describe(ping, async () => {
       password: "password",
     });
 
-    expect(axiosGetMock).toHaveBeenCalledOnce();
+    expect(axiosGetMock).toHaveBeenCalledExactlyOnceWith(
+      "https://example.com/rest/ping.view",
+      {
+        params: {
+          u: "username",
+          t: md5("passwordnanoid"),
+          s: "nanoid",
+          v: "1.15.0",
+          c: "react-airsonic",
+          f: "json",
+        },
+      },
+    );
     expect(res.authenticated).toBe(true);
   });
 

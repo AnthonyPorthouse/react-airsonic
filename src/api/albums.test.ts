@@ -2,6 +2,7 @@ import axios from "axios";
 import { afterEach, describe } from "vitest";
 
 import { getAlbum, getAlbums } from "./albums";
+import { generateAuthParamsObject, sanitizeServer } from "./auth";
 import { Album, Song } from "./types";
 
 const testAlbum: Album = {
@@ -34,6 +35,7 @@ const testSong: Song = {
 describe(getAlbums, async () => {
   beforeEach(() => {
     vi.mock("axios");
+    vi.mock("./auth.js");
   });
 
   afterEach(() => {
@@ -42,6 +44,21 @@ describe(getAlbums, async () => {
 
   it("returns albums on success", async () => {
     const axiosGetMock = vi.mocked(axios.get);
+    const generateAuthParamsObjectMock = vi.mocked(generateAuthParamsObject);
+    const sanitizeServerMock = vi.mocked(sanitizeServer);
+
+    const mockedAuthResponse: ReturnType<typeof generateAuthParamsObject> = {
+      u: "user",
+      t: "token",
+      s: "salt",
+      v: "version",
+      c: "test",
+      f: "json",
+    };
+
+    generateAuthParamsObjectMock.mockReturnValue(mockedAuthResponse);
+
+    sanitizeServerMock.mockReturnValue("https://example.com");
 
     axiosGetMock.mockResolvedValueOnce({
       data: {
@@ -56,10 +73,24 @@ describe(getAlbums, async () => {
     const res = await getAlbums({
       server: "https://example.com",
       username: "test",
-      password: "test",
+      password: "password",
     });
 
-    expect(axiosGetMock).toHaveBeenCalledOnce();
+    expect(sanitizeServerMock).toHaveBeenCalledWith("https://example.com");
+    expect(generateAuthParamsObjectMock).toHaveBeenCalledExactlyOnceWith({
+      username: "test",
+      password: "password",
+    });
+    expect(axiosGetMock).toHaveBeenCalledExactlyOnceWith(
+      "https://example.com/rest/getAlbumList2.view",
+      {
+        params: {
+          type: "alphabeticalByArtist",
+          size: 500,
+          ...mockedAuthResponse,
+        },
+      },
+    );
     expect(res).toEqual([testAlbum]);
   });
 });
@@ -67,6 +98,7 @@ describe(getAlbums, async () => {
 describe(getAlbum, async () => {
   beforeEach(() => {
     vi.mock("axios");
+    vi.mock("./auth.js");
   });
 
   afterEach(() => {
@@ -75,6 +107,22 @@ describe(getAlbum, async () => {
 
   it("returns an album on success", async () => {
     const axiosGetMock = vi.mocked(axios.get);
+
+    const generateAuthParamsObjectMock = vi.mocked(generateAuthParamsObject);
+    const sanitizeServerMock = vi.mocked(sanitizeServer);
+
+    const mockedAuthResponse: ReturnType<typeof generateAuthParamsObject> = {
+      u: "user",
+      t: "token",
+      s: "salt",
+      v: "version",
+      c: "test",
+      f: "json",
+    };
+
+    generateAuthParamsObjectMock.mockReturnValue(mockedAuthResponse);
+
+    sanitizeServerMock.mockReturnValue("https://example.com");
 
     axiosGetMock.mockResolvedValueOnce({
       data: {
@@ -90,10 +138,24 @@ describe(getAlbum, async () => {
     const res = await getAlbum("al-1", {
       server: "https://example.com",
       username: "test",
-      password: "test",
+      password: "password",
     });
 
-    expect(axiosGetMock).toHaveBeenCalledOnce();
+    expect(sanitizeServerMock).toHaveBeenCalledWith("https://example.com");
+    expect(generateAuthParamsObjectMock).toHaveBeenCalledExactlyOnceWith({
+      username: "test",
+      password: "password",
+    });
+    expect(axiosGetMock).toHaveBeenCalledExactlyOnceWith(
+      "https://example.com/rest/getAlbum.view",
+      {
+        params: {
+          id: "al-1",
+          ...mockedAuthResponse,
+        },
+      },
+    );
+
     expect(res).toEqual([testAlbum, [testSong]]);
   });
 });

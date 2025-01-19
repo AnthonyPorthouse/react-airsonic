@@ -9,7 +9,13 @@ import tseslint from "typescript-eslint";
 
 export default tseslint.config(
   {
-    ignores: ["build/**", "coverage/**", "*.config.*"],
+    ignores: [
+      "build/**",
+      "coverage/**",
+      "*.config.*",
+      "dev-dist/**",
+      "public/mockServiceWorker.js",
+    ],
   },
   {
     extends: [

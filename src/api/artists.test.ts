@@ -2,7 +2,17 @@ import axios from "axios";
 import { afterEach, beforeEach, describe } from "vitest";
 
 import { getArtist, getArtists } from "./artists";
+import { generateAuthParamsObject, sanitizeServer } from "./auth";
 import { Album, Artist } from "./types";
+
+const mockedAuthResponse: ReturnType<typeof generateAuthParamsObject> = {
+  u: "user",
+  t: "token",
+  s: "salt",
+  v: "version",
+  c: "test",
+  f: "json",
+};
 
 const testArtist: Artist = {
   id: "ar-1",
@@ -27,9 +37,15 @@ const testAlbum: Album = {
 
 describe(getArtists, async () => {
   const axiosGetMock = vi.mocked(axios.get);
+  const generateAuthParamsObjectMock = vi.mocked(generateAuthParamsObject);
+  const sanitizeServerMock = vi.mocked(sanitizeServer);
 
   beforeEach(() => {
     vi.mock("axios");
+    vi.mock("./auth.js");
+
+    generateAuthParamsObjectMock.mockReturnValue(mockedAuthResponse);
+    sanitizeServerMock.mockReturnValue("https://example.com");
   });
 
   afterEach(() => {
@@ -56,19 +72,40 @@ describe(getArtists, async () => {
     const res = await getArtists({
       server: "https://example.com",
       username: "test",
-      password: "test",
+      password: "password",
     });
 
-    expect(axiosGetMock).toHaveBeenCalledOnce();
+    expect(sanitizeServerMock).toHaveBeenCalledExactlyOnceWith(
+      "https://example.com",
+    );
+    expect(generateAuthParamsObjectMock).toHaveBeenCalledExactlyOnceWith({
+      username: "test",
+      password: "password",
+    });
+
+    expect(axiosGetMock).toHaveBeenCalledExactlyOnceWith(
+      "https://example.com/rest/getArtists.view",
+      {
+        params: {
+          ...mockedAuthResponse,
+        },
+      },
+    );
     expect(res).toEqual([testArtist]);
   });
 });
 
 describe(getArtist, async () => {
   const axiosGetMock = vi.mocked(axios.get);
+  const generateAuthParamsObjectMock = vi.mocked(generateAuthParamsObject);
+  const sanitizeServerMock = vi.mocked(sanitizeServer);
 
   beforeEach(() => {
     vi.mock("axios");
+    vi.mock("./auth.js");
+
+    generateAuthParamsObjectMock.mockReturnValue(mockedAuthResponse);
+    sanitizeServerMock.mockReturnValue("https://example.com");
   });
 
   afterEach(() => {
@@ -90,10 +127,27 @@ describe(getArtist, async () => {
     const res = await getArtist("ar-1", {
       server: "https://example.com",
       username: "test",
-      password: "test",
+      password: "password",
     });
 
-    expect(axiosGetMock).toHaveBeenCalledOnce();
+    expect(sanitizeServerMock).toHaveBeenCalledExactlyOnceWith(
+      "https://example.com",
+    );
+    expect(generateAuthParamsObjectMock).toHaveBeenCalledExactlyOnceWith({
+      username: "test",
+      password: "password",
+    });
+
+    expect(axiosGetMock).toHaveBeenCalledExactlyOnceWith(
+      "https://example.com/rest/getArtist.view",
+      {
+        params: {
+          id: "ar-1",
+          ...mockedAuthResponse,
+        },
+      },
+    );
+
     expect(res).toEqual([testArtist, [testAlbum]]);
   });
 });
