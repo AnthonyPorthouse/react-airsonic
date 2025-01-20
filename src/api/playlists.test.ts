@@ -1,8 +1,18 @@
 import axios from "axios";
 import { describe } from "vitest";
 
+import { generateAuthParamsObject, sanitizeServer } from "./auth";
 import { getPlaylist, getPlaylists } from "./playlists";
 import { Playlist, Song } from "./types";
+
+const mockedAuthResponse: ReturnType<typeof generateAuthParamsObject> = {
+  u: "user",
+  t: "token",
+  s: "salt",
+  v: "version",
+  c: "test",
+  f: "json",
+};
 
 const testPlaylist: Playlist = {
   id: "pl-1",
@@ -29,16 +39,15 @@ const testSong: Song = {
 
 describe(getPlaylists, async () => {
   const axiosGetMock = vi.mocked(axios.get);
+  const generateAuthParamsObjectMock = vi.mocked(generateAuthParamsObject);
+  const sanitizeServerMock = vi.mocked(sanitizeServer);
 
   beforeEach(() => {
     vi.mock("axios");
-  });
+    vi.mock("./auth.js");
 
-  afterEach(() => {
-    vi.restoreAllMocks();
-  });
-
-  it("returns playlists on success", async () => {
+    sanitizeServerMock.mockReturnValue("https://example.com");
+    generateAuthParamsObjectMock.mockReturnValue(mockedAuthResponse);
     axiosGetMock.mockResolvedValueOnce({
       data: {
         "subsonic-response": {
@@ -48,30 +57,80 @@ describe(getPlaylists, async () => {
         },
       },
     });
-
-    const res = await getPlaylists({
-      server: "https://example.com",
-      username: "test",
-      password: "test",
-    });
-
-    expect(axiosGetMock).toHaveBeenCalledOnce();
-    expect(res).toEqual([testPlaylist]);
-  });
-});
-
-describe(getPlaylist, async () => {
-  const axiosGetMock = vi.mocked(axios.get);
-
-  beforeEach(() => {
-    vi.mock("axios");
   });
 
   afterEach(() => {
     vi.restoreAllMocks();
   });
 
-  it("returns a playlist and its entries on success", async () => {
+  it("generates auth params for the passed credentials", async () => {
+    await getPlaylists({
+      server: "https://example.com",
+      username: "test",
+      password: "password",
+    });
+
+    expect(generateAuthParamsObjectMock).toHaveBeenCalledExactlyOnceWith({
+      username: "test",
+      password: "password",
+    });
+  });
+
+  it("calls the api with the correct parameters", async () => {
+    await getPlaylists({
+      server: "https://example.com",
+      username: "test",
+      password: "password",
+    });
+
+    expect(axiosGetMock).toHaveBeenCalledExactlyOnceWith(
+      "https://example.com/rest/getPlaylists.view",
+      {
+        params: {
+          ...mockedAuthResponse,
+        },
+      },
+    );
+  });
+
+  it("returns playlists on success", async () => {
+    const res = await getPlaylists({
+      server: "https://example.com",
+      username: "test",
+      password: "password",
+    });
+
+    expect(res).toEqual([testPlaylist]);
+  });
+
+  it("returns an empty array if no playlists exist", async () => {
+    axiosGetMock.mockReset().mockResolvedValueOnce({
+      data: {
+        "subsonic-response": {},
+      },
+    });
+
+    const res = await getPlaylists({
+      server: "https://example.com",
+      username: "test",
+      password: "password",
+    });
+
+    expect(res).toEqual([]);
+  });
+});
+
+describe(getPlaylist, async () => {
+  const axiosGetMock = vi.mocked(axios.get);
+  const generateAuthParamsObjectMock = vi.mocked(generateAuthParamsObject);
+  const sanitizeServerMock = vi.mocked(sanitizeServer);
+
+  beforeEach(() => {
+    vi.mock("axios");
+    vi.mock("./auth.js");
+
+    sanitizeServerMock.mockReturnValue("https://example.com");
+    generateAuthParamsObjectMock.mockReturnValue(mockedAuthResponse);
     axiosGetMock.mockResolvedValueOnce({
       data: {
         "subsonic-response": {
@@ -82,19 +141,55 @@ describe(getPlaylist, async () => {
         },
       },
     });
+  });
 
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("generates auth params for the passed credentials", async () => {
+    await getPlaylist("pl-1", {
+      server: "https://example.com",
+      username: "test",
+      password: "password",
+    });
+
+    expect(generateAuthParamsObjectMock).toHaveBeenCalledExactlyOnceWith({
+      username: "test",
+      password: "password",
+    });
+  });
+
+  it("calls the api with the correct parameters", async () => {
+    await getPlaylist("pl-1", {
+      server: "https://example.com",
+      username: "test",
+      password: "password",
+    });
+
+    expect(axiosGetMock).toHaveBeenCalledExactlyOnceWith(
+      "https://example.com/rest/getPlaylist.view",
+      {
+        params: {
+          id: "pl-1",
+          ...mockedAuthResponse,
+        },
+      },
+    );
+  });
+
+  it("returns a playlist and its entries on success", async () => {
     const res = await getPlaylist("pl-1", {
       server: "https://example.com",
       username: "test",
-      password: "test",
+      password: "password",
     });
 
-    expect(axiosGetMock).toHaveBeenCalledOnce();
     expect(res).toEqual([testPlaylist, [testSong]]);
   });
 
   it("returns a playlist and an empty list of songs for a playlist with no entries on success", async () => {
-    axiosGetMock.mockResolvedValueOnce({
+    axiosGetMock.mockReset().mockResolvedValueOnce({
       data: {
         "subsonic-response": {
           playlist: {
@@ -107,10 +202,9 @@ describe(getPlaylist, async () => {
     const res = await getPlaylist("pl-1", {
       server: "https://example.com",
       username: "test",
-      password: "test",
+      password: "password",
     });
 
-    expect(axiosGetMock).toHaveBeenCalledOnce();
     expect(res).toEqual([testPlaylist, []]);
   });
 });

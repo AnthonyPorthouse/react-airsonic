@@ -26,12 +26,14 @@ describe(generateAuthParamsObject, async () => {
       password: "password",
     });
 
-    expect(result.u).toBe("username");
-    expect(result.s).toBe("nanoid");
-    expect(result.t).toBe(md5("passwordnanoid"));
-    expect(result.v).toBe("1.15.0");
-    expect(result.c).toBe("react-airsonic");
-    expect(result.f).toBe("json");
+    expect(result).toEqual({
+      u: "username",
+      s: "nanoid",
+      t: md5("passwordnanoid"),
+      v: "1.15.0",
+      c: "react-airsonic",
+      f: "json",
+    });
   });
 });
 
@@ -71,16 +73,10 @@ describe(sanitizeServer, async () => {
 });
 
 describe(ping, async () => {
+  const axiosGetMock = vi.mocked(axios.get);
+
   beforeEach(() => {
     vi.mock("axios");
-  });
-
-  afterEach(() => {
-    vi.restoreAllMocks();
-  });
-
-  it("returns authenticated on success", async () => {
-    const axiosGetMock = vi.mocked(axios.get);
 
     axiosGetMock.mockResolvedValue({
       data: {
@@ -89,8 +85,14 @@ describe(ping, async () => {
         },
       },
     });
+  });
 
-    const res = await ping({
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("calls the api with the correct parameters", async () => {
+    await ping({
       server: "https://example.com",
       username: "username",
       password: "password",
@@ -109,13 +111,20 @@ describe(ping, async () => {
         },
       },
     );
+  });
+
+  it("returns authenticated on success", async () => {
+    const res = await ping({
+      server: "https://example.com",
+      username: "username",
+      password: "password",
+    });
+
     expect(res.authenticated).toBe(true);
   });
 
   it("returns unauthenticated on failure", async () => {
-    const axiosGetMock = vi.mocked(axios.get);
-
-    axiosGetMock.mockResolvedValue({
+    axiosGetMock.mockReset().mockResolvedValue({
       data: {
         "subsonic-response": {
           status: "failed",
@@ -129,7 +138,6 @@ describe(ping, async () => {
       password: "password",
     });
 
-    expect(axiosGetMock).toHaveBeenCalledOnce();
     expect(res.authenticated).toBe(false);
   });
 });

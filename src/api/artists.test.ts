@@ -46,13 +46,6 @@ describe(getArtists, async () => {
 
     generateAuthParamsObjectMock.mockReturnValue(mockedAuthResponse);
     sanitizeServerMock.mockReturnValue("https://example.com");
-  });
-
-  afterEach(() => {
-    vi.restoreAllMocks();
-  });
-
-  it("returns artists on success", async () => {
     axiosGetMock.mockResolvedValueOnce({
       data: {
         "subsonic-response": {
@@ -68,17 +61,28 @@ describe(getArtists, async () => {
         },
       },
     });
+  });
 
-    const res = await getArtists({
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("generates auth params for the passed credentials", async () => {
+    await getArtists({
       server: "https://example.com",
       username: "test",
       password: "password",
     });
 
-    expect(sanitizeServerMock).toHaveBeenCalledExactlyOnceWith(
-      "https://example.com",
-    );
     expect(generateAuthParamsObjectMock).toHaveBeenCalledExactlyOnceWith({
+      username: "test",
+      password: "password",
+    });
+  });
+
+  it("calls the api with the correct parameters", async () => {
+    await getArtists({
+      server: "https://example.com",
       username: "test",
       password: "password",
     });
@@ -91,6 +95,15 @@ describe(getArtists, async () => {
         },
       },
     );
+  });
+
+  it("returns artists on success", async () => {
+    const res = await getArtists({
+      server: "https://example.com",
+      username: "test",
+      password: "password",
+    });
+
     expect(res).toEqual([testArtist]);
   });
 });
