@@ -1,6 +1,6 @@
 import { AuthProvider } from "@providers/AuthProvider.js";
 import { TrackListProvider } from "@providers/TrackListProvider.js";
-import Sentry from "@sentry/react";
+import * as Sentry from "@sentry/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import React from "react";
