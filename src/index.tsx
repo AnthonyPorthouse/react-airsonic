@@ -24,8 +24,8 @@ Sentry.init({
   tracesSampleRate: 1.0, //  Capture 100% of the transactions
   // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
   tracePropagationTargets: ["localhost", /^https:\/\/ra.porthou.se/],
-  // Session Replay
-  replaysSessionSampleRate: 0.1, // This sets the sample rate at 10%. You may want to change it to 100% while in development and then sample at a lower rate in production.
+  // Session Replay and then sample at a lower rate in production.
+  replaysSessionSampleRate: 0.1, // This sets the sample rate at 10%. You may want to change it to 100% while in development
   replaysOnErrorSampleRate: 1.0, // If you're not already sampling the entire session, change the sample rate to 100% when sampling sessions where errors occur.
 });
 
@@ -33,7 +33,13 @@ const container = document.getElementById("root") as HTMLElement;
 
 ReactModal.setAppElement(container);
 
-const root = createRoot(container);
+const root = createRoot(container, {
+  onUncaughtError: Sentry.reactErrorHandler((err, errInfo) => {
+    console.warn("Uncaught error", err, errInfo.componentStack);
+  }),
+  onCaughtError: Sentry.reactErrorHandler(),
+  onRecoverableError: Sentry.reactErrorHandler(),
+});
 
 export const queryClient = new QueryClient();
 
