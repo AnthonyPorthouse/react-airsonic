@@ -32,3 +32,6 @@ yarn-error.log*
 
 # stryker temp files
 .stryker-tmp
+
+# Sentry Config File
+.env.sentry-build-plugin

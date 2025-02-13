@@ -1,3 +1,4 @@
+import { sentryVitePlugin } from "@sentry/vite-plugin";
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
 import { TanStackRouterVite } from "@tanstack/router-vite-plugin";
@@ -169,6 +170,11 @@ export default defineConfig({
       ],
     }),
     mkcert(),
+    sentryVitePlugin({
+      org: "sentry",
+      project: "ra",
+      url: "https://sentry.porthouse.dev/",
+    }),
   ],
   css: {
     devSourcemap: true,
@@ -176,6 +182,7 @@ export default defineConfig({
   build: {
     outDir: "build",
     target: "esnext",
+    sourcemap: true,
   },
   test: {
     globals: true,
