@@ -11,13 +11,15 @@ import ReactModal from "react-modal";
 import App from "./App.js";
 import "./i18n";
 import "./index.css";
+import { router } from "./router.js";
 
 Sentry.init({
   dsn: "https://7f604bbfd4d89d353f3fa13222854efc@sentry.porthouse.dev/2",
   integrations: [
-    Sentry.browserTracingIntegration(),
+    Sentry.tanstackRouterBrowserTracingIntegration(router),
     Sentry.replayIntegration(),
   ],
+
   // Tracing
   tracesSampleRate: 1.0, //  Capture 100% of the transactions
   // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
