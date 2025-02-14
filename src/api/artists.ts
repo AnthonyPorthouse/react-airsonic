@@ -1,3 +1,4 @@
+import { NotFoundError, notFound } from "@tanstack/react-router";
 import Axios from "axios";
 
 import {
@@ -5,31 +6,40 @@ import {
   generateAuthParamsObject,
   sanitizeServer,
 } from "./auth.js";
-import { Albums, Artist, Artists } from "./types.js";
+import {
+  Albums,
+  Artist,
+  Artists,
+  ErrorResponse,
+  SuccessResponse,
+  isErrorMessage,
+} from "./types.js";
 
-export interface ArtistsResponse {
-  "subsonic-response": {
-    artists: {
-      ignoredArticles: string;
-      index: {
-        name: string;
-        artist: Artists;
-      }[];
-    };
-  };
-}
+export type ArtistsResponse =
+  | (SuccessResponse & {
+      "subsonic-response": {
+        artists: {
+          ignoredArticles: string;
+          index: {
+            name: string;
+            artist: Artists;
+          }[];
+        };
+      };
+    })
+  | ErrorResponse;
 
-export interface ArtistResponse {
+export type ArtistResponse = SuccessResponse & {
   "subsonic-response": {
     artist: Artist & { album: Albums };
   };
-}
+};
 
 export async function getArtists({
   server,
   username,
   password,
-}: Credentials): Promise<Artists> {
+}: Credentials): Promise<Artists | NotFoundError> {
   const authParams = generateAuthParamsObject({ username, password });
   const serverUrl = sanitizeServer(server);
 
@@ -41,6 +51,10 @@ export async function getArtists({
       },
     },
   );
+
+  if (isErrorMessage(result.data)) {
+    return notFound();
+  }
 
   const artists: Artist[] = [];
 
@@ -56,7 +70,7 @@ export async function getArtists({
 export async function getArtist(
   id: string,
   { server, username, password }: Credentials,
-): Promise<[Artist, Albums]> {
+): Promise<[Artist, Albums] | NotFoundError> {
   const authParams = generateAuthParamsObject({ username, password });
   const serverUrl = sanitizeServer(server);
 
@@ -69,6 +83,10 @@ export async function getArtist(
       },
     },
   );
+
+  if (isErrorMessage(result.data)) {
+    return notFound();
+  }
 
   const { album: albums, ...artist } = result.data["subsonic-response"].artist;
 

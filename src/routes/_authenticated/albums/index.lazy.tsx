@@ -1,7 +1,7 @@
 import AlbumList from "@components/AlbumList";
 import { useAuth } from "@hooks/useAuth";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { createLazyFileRoute } from "@tanstack/react-router";
+import { createLazyFileRoute, isNotFound } from "@tanstack/react-router";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -15,10 +15,20 @@ function Albums() {
   const auth = useAuth();
   const { t } = useTranslation("albums");
 
+  const initialData = Route.useLoaderData();
+
+  if (isNotFound(initialData)) {
+    throw initialData;
+  }
+
   const { data } = useSuspenseQuery({
     ...AlbumsQueryOptions(auth),
-    initialData: Route.useLoaderData(),
+    initialData,
   });
+
+  if (isNotFound(data)) {
+    throw data;
+  }
 
   const albums = useMemo(
     () => [...data].sort((a, b) => a.name.localeCompare(b.name)),

@@ -77,7 +77,10 @@ export async function getPodcast(
     },
   );
 
-  if (isErrorMessage(result.data)) {
+  if (
+    isErrorMessage(result.data) ||
+    Object.entries(result.data["subsonic-response"].podcasts).length === 0
+  ) {
     return notFound();
   }
 

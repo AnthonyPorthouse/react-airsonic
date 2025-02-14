@@ -1,13 +1,28 @@
 import AlbumHeader from "@components/AlbumHeader";
 import TrackList from "@components/TrackList";
-import { createLazyFileRoute } from "@tanstack/react-router";
+import { createLazyFileRoute, isNotFound } from "@tanstack/react-router";
 
 export const Route = createLazyFileRoute("/_authenticated/artists/$artistId")({
   component: Artist,
+  notFoundComponent: () => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const { artistId } = Route.useParams();
+    return (
+      <div>
+        <h2>Artist {artistId} not found</h2>
+      </div>
+    );
+  },
 });
 
 function Artist() {
-  const { artist, albums } = Route.useLoaderData();
+  const data = Route.useLoaderData();
+
+  if (isNotFound(data)) {
+    throw data;
+  }
+
+  const { artist, albums } = data;
 
   return (
     <div>

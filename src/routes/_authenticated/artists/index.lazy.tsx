@@ -1,7 +1,7 @@
 import ArtistList from "@components/ArtistList";
 import { useAuth } from "@hooks/useAuth";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { createLazyFileRoute } from "@tanstack/react-router";
+import { createLazyFileRoute, isNotFound } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 
 import { ArtistsQueryOptions } from ".";
@@ -15,10 +15,19 @@ function Artists() {
 
   const { t } = useTranslation("artists");
 
+  const initialData = Route.useLoaderData();
+  if (isNotFound(initialData)) {
+    throw initialData;
+  }
+
   const { data } = useSuspenseQuery({
     ...ArtistsQueryOptions(auth),
-    initialData: Route.useLoaderData(),
+    initialData,
   });
+
+  if (isNotFound(data)) {
+    throw data;
+  }
 
   return (
     <div>

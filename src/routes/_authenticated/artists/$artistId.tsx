@@ -2,7 +2,7 @@ import { Authenticated } from "@/Contexts/AuthContext";
 import { getArtist } from "@api/artists";
 import Spinner from "@components/Spinner";
 import { queryOptions } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, isNotFound } from "@tanstack/react-router";
 
 import { AlbumQueryOptions } from "../albums/$albumId";
 
@@ -18,9 +18,15 @@ export const ArtistQueryOptions = (artistId: string, auth: Authenticated) => {
 export const Route = createFileRoute("/_authenticated/artists/$artistId")({
   pendingComponent: Spinner,
   loader: async ({ context: { queryClient, auth }, params: { artistId } }) => {
-    const [artist, albums] = await queryClient.ensureQueryData(
+    const data = await queryClient.ensureQueryData(
       ArtistQueryOptions(artistId, auth),
     );
+
+    if (isNotFound(data)) {
+      return data;
+    }
+
+    const [artist, albums] = data;
 
     const fullAlbums = (
       await Promise.all(

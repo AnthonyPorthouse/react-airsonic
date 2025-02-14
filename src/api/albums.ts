@@ -1,3 +1,4 @@
+import { NotFoundError, notFound } from "@tanstack/react-router";
 import Axios from "axios";
 
 import {
@@ -5,27 +6,38 @@ import {
   generateAuthParamsObject,
   sanitizeServer,
 } from "./auth.js";
-import { Album, Albums, Songs } from "./types.js";
+import {
+  Album,
+  Albums,
+  ErrorResponse,
+  Songs,
+  SuccessResponse,
+  isErrorMessage,
+} from "./types.js";
 
-export interface AlbumsResponse {
-  "subsonic-response": {
-    albumList2: {
-      album: Albums;
-    };
-  };
-}
+export type AlbumsResponse =
+  | (SuccessResponse & {
+      "subsonic-response": {
+        albumList2: {
+          album: Albums;
+        };
+      };
+    })
+  | ErrorResponse;
 
-export interface AlbumResponse {
-  "subsonic-response": {
-    album: Album & { song: Songs };
-  };
-}
+export type AlbumResponse =
+  | (SuccessResponse & {
+      "subsonic-response": {
+        album: Album & { song: Songs };
+      };
+    })
+  | ErrorResponse;
 
 export async function getAlbums({
   server,
   username,
   password,
-}: Credentials): Promise<Albums> {
+}: Credentials): Promise<Albums | NotFoundError> {
   const authParams = generateAuthParamsObject({ username, password });
 
   const serverUrl = sanitizeServer(server);
@@ -41,13 +53,17 @@ export async function getAlbums({
     },
   );
 
+  if (isErrorMessage(result.data)) {
+    return notFound();
+  }
+
   return result.data["subsonic-response"].albumList2.album;
 }
 
 export async function getAlbum(
   id: string,
   { server, username, password }: Credentials,
-): Promise<[Album, Songs]> {
+): Promise<[Album, Songs] | NotFoundError> {
   const authParams = generateAuthParamsObject({ username, password });
   const serverUrl = sanitizeServer(server);
 
@@ -60,6 +76,10 @@ export async function getAlbum(
       },
     },
   );
+
+  if (isErrorMessage(result.data)) {
+    return notFound();
+  }
 
   const { song: songs, ...album } = result.data["subsonic-response"].album;
 
