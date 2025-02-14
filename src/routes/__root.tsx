@@ -23,6 +23,13 @@ interface RouterContext {
 
 export const Route = createRootRouteWithContext<RouterContext>()({
   component: RootComponent,
+  errorComponent: () => {
+    return (
+      <div>
+        <h2>Something Went Wrong</h2>
+      </div>
+    );
+  },
 });
 
 function RootComponent() {

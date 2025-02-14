@@ -11,7 +11,7 @@ import ReactModal from "react-modal";
 import App from "./App.js";
 import "./i18n";
 import "./index.css";
-import { router } from "./router.js";
+import { router } from "./router";
 
 Sentry.init({
   dsn: "https://7f604bbfd4d89d353f3fa13222854efc@sentry.porthouse.dev/2",

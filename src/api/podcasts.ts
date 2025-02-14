@@ -1,3 +1,4 @@
+import { NotFoundError, notFound } from "@tanstack/react-router";
 import axios from "axios";
 
 import {
@@ -5,28 +6,40 @@ import {
   generateAuthParamsObject,
   sanitizeServer,
 } from "./auth.js";
-import { DownloadedEpisode, Episode, Podcast, Podcasts } from "./types.js";
+import {
+  DownloadedEpisode,
+  Episode,
+  ErrorResponse,
+  Podcast,
+  Podcasts,
+  SuccessResponse,
+  isErrorMessage,
+} from "./types.js";
 
-export interface PodcastsResponse {
-  "subsonic-response": {
-    podcasts: {
-      channel?: Podcasts;
-    };
-  };
-}
-export interface PodcastResponse {
-  "subsonic-response": {
-    podcasts: {
-      channel: [Podcast & { episode: Episode[] }];
-    };
-  };
-}
+export type PodcastsResponse =
+  | (SuccessResponse & {
+      "subsonic-response": {
+        podcasts: {
+          channel?: Podcasts;
+        };
+      };
+    })
+  | ErrorResponse;
+export type PodcastResponse =
+  | (SuccessResponse & {
+      "subsonic-response": {
+        podcasts: {
+          channel: [Podcast & { episode: Episode[] }];
+        };
+      };
+    })
+  | ErrorResponse;
 
 export async function getPodcasts({
   server,
   username,
   password,
-}: Credentials): Promise<Podcasts> {
+}: Credentials): Promise<Podcasts | NotFoundError> {
   const authParams = generateAuthParamsObject({ username, password });
   const serverUrl = sanitizeServer(server);
 
@@ -40,13 +53,17 @@ export async function getPodcasts({
     },
   );
 
+  if (isErrorMessage(result.data)) {
+    return notFound();
+  }
+
   return result.data["subsonic-response"].podcasts?.channel ?? [];
 }
 
 export async function getPodcast(
   id: string,
   { server, username, password }: Credentials,
-): Promise<[Podcast, Episode[]]> {
+): Promise<[Podcast, Episode[]] | NotFoundError> {
   const authParams = generateAuthParamsObject({ username, password });
   const serverUrl = sanitizeServer(server);
 
@@ -59,6 +76,10 @@ export async function getPodcast(
       },
     },
   );
+
+  if (isErrorMessage(result.data)) {
+    return notFound();
+  }
 
   const { episode: episodes, ...podcast } =
     result.data["subsonic-response"].podcasts.channel[0];

@@ -3,7 +3,7 @@ import Playlist from "@components/Playlist";
 import Spinner from "@components/Spinner";
 import { useAuth } from "@hooks/useAuth";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { createLazyFileRoute } from "@tanstack/react-router";
+import { createLazyFileRoute, isNotFound } from "@tanstack/react-router";
 
 import { PlaylistsQueryOptions } from ".";
 
@@ -15,10 +15,19 @@ export const Route = createLazyFileRoute("/_authenticated/playlists/")({
 function Playlists() {
   const auth = useAuth();
 
+  const initialData = Route.useLoaderData();
+  if (isNotFound(initialData)) {
+    throw initialData;
+  }
+
   const { data: playlists } = useSuspenseQuery({
     ...PlaylistsQueryOptions(auth),
-    initialData: Route.useLoaderData(),
+    initialData,
   });
+
+  if (isNotFound(playlists)) {
+    throw playlists;
+  }
 
   if (playlists.length === 0) {
     return (

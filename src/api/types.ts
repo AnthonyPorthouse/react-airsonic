@@ -1,3 +1,34 @@
+export type AirsonicResponse = {
+  "subsonic-response": {
+    status: "ok" | "failed";
+    version: string;
+  };
+};
+
+export type SuccessResponse = AirsonicResponse & {
+  "subsonic-response": {
+    status: "ok";
+    version: string;
+  };
+};
+
+export type ErrorResponse = AirsonicResponse & {
+  "subsonic-response": {
+    status: "failed";
+    version: string;
+    error: {
+      code: number;
+      message: string;
+    };
+  };
+};
+
+export function isErrorMessage(
+  response: AirsonicResponse,
+): response is ErrorResponse {
+  return response["subsonic-response"].status === "failed";
+}
+
 export type Album = {
   id: string;
   name: string;

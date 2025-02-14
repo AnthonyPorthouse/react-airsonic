@@ -10,6 +10,20 @@ export const router = createRouter({
     queryClient: undefined!,
   },
   defaultPreloadStaleTime: 0,
+  defaultErrorComponent: () => {
+    return (
+      <div>
+        <h2>Something Went Wrong</h2>
+      </div>
+    );
+  },
+  defaultNotFoundComponent: () => {
+    return (
+      <div>
+        <h2>Not Found</h2>
+      </div>
+    );
+  },
 });
 
 declare module "@tanstack/react-router" {

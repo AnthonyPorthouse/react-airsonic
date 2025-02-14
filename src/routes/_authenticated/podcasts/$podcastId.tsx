@@ -10,6 +10,7 @@ export const PodcastQueryOptions = (podcastId: string, auth: Authenticated) =>
   });
 
 export const Route = createFileRoute("/_authenticated/podcasts/$podcastId")({
-  loader: ({ context: { auth, queryClient }, params: { podcastId } }) =>
-    queryClient.ensureQueryData(PodcastQueryOptions(podcastId, auth)),
+  loader: ({ context: { auth, queryClient }, params: { podcastId } }) => {
+    return queryClient.ensureQueryData(PodcastQueryOptions(podcastId, auth));
+  },
 });

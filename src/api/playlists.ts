@@ -1,3 +1,4 @@
+import { NotFoundError, notFound } from "@tanstack/react-router";
 import axios from "axios";
 
 import {
@@ -5,27 +6,38 @@ import {
   generateAuthParamsObject,
   sanitizeServer,
 } from "./auth.js";
-import { Playlist, Playlists, Songs } from "./types.js";
+import {
+  ErrorResponse,
+  Playlist,
+  Playlists,
+  Songs,
+  SuccessResponse,
+  isErrorMessage,
+} from "./types.js";
 
-export interface PlaylistsResponse {
-  "subsonic-response": {
-    playlists: {
-      playlist?: Playlists;
-    };
-  };
-}
+export type PlaylistsResponse =
+  | (SuccessResponse & {
+      "subsonic-response": {
+        playlists: {
+          playlist?: Playlists;
+        };
+      };
+    })
+  | ErrorResponse;
 
-export interface PlaylistResponse {
-  "subsonic-response": {
-    playlist: Playlist & { entry?: Songs };
-  };
-}
+export type PlaylistResponse =
+  | (SuccessResponse & {
+      "subsonic-response": {
+        playlist: Playlist & { entry?: Songs };
+      };
+    })
+  | ErrorResponse;
 
 export async function getPlaylists({
   server,
   username,
   password,
-}: Credentials): Promise<Playlists> {
+}: Credentials): Promise<Playlists | NotFoundError> {
   const authParams = generateAuthParamsObject({ username, password });
   const serverUrl = sanitizeServer(server);
 
@@ -34,13 +46,17 @@ export async function getPlaylists({
     { params: authParams },
   );
 
+  if (isErrorMessage(result.data)) {
+    return notFound();
+  }
+
   return result.data["subsonic-response"].playlists?.playlist ?? [];
 }
 
 export async function getPlaylist(
   id: string,
   { server, username, password }: Credentials,
-): Promise<[Playlist, Songs]> {
+): Promise<[Playlist, Songs] | NotFoundError> {
   const authParams = generateAuthParamsObject({ username, password });
   const serverUrl = sanitizeServer(server);
 
@@ -53,6 +69,10 @@ export async function getPlaylist(
       },
     },
   );
+
+  if (isErrorMessage(result.data)) {
+    return notFound();
+  }
 
   const { entry: songs, ...playlist } =
     result.data["subsonic-response"].playlist;
