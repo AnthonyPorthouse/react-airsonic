@@ -1,4 +1,5 @@
 import { Authenticated } from "@/Contexts/AuthContext";
+import { Album, Songs } from "@/api/types";
 import { getArtist } from "@api/artists";
 import Spinner from "@components/Spinner";
 import { queryOptions } from "@tanstack/react-query";
@@ -28,14 +29,24 @@ export const Route = createFileRoute("/_authenticated/artists/$artistId")({
 
     const [artist, albums] = data;
 
-    const fullAlbums = (
-      await Promise.all(
-        albums.map((album) =>
-          queryClient.ensureQueryData(AlbumQueryOptions(album.id, auth)),
-        ),
-      )
-    ).sort((a, b) => (a[0].year < b[0].year ? -1 : 1));
+    const fullAlbums = await Promise.all(
+      albums.map((album) =>
+        queryClient.ensureQueryData(AlbumQueryOptions(album.id, auth)),
+      ),
+    );
 
-    return { artist, albums: fullAlbums };
+    const filteredAlbums = fullAlbums
+      .filter<[Album, Songs]>(
+        (album): album is [Album, Songs] => !isNotFound(album),
+      )
+      .sort((a, b) => {
+        if (isNotFound(a) || isNotFound(b)) {
+          return 0;
+        }
+
+        return a[0].year < b[0].year ? -1 : 1;
+      });
+
+    return { artist, albums: filteredAlbums };
   },
 });
