@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/AnthonyPorthouse/react-airsonic/compare/v1.0.0...v1.1.0) (2025-02-15)
+
+
+### Features
+
+* update tailwind to 4 ([1e83bd9](https://github.com/AnthonyPorthouse/react-airsonic/commit/1e83bd9a6f2ba8c033f387be012e49c5763d013c))
+
 ## 1.0.0 (2025-02-15)
 
 
