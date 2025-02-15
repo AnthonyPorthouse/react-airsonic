@@ -16,6 +16,8 @@ jobs:
       - name: Install Node Dependencies
         run: npm ci
       - run: npm run build
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
 
       - name: "Release to cloudflare"
         uses: "cloudflare/wrangler-action@v3"
