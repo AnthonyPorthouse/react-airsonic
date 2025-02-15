@@ -1,0 +1,25 @@
+name: Release to Cloudflare
+
+on:
+  workflow_call:
+    inputs:
+      tag:
+        type: string
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - name: Install Node Dependencies
+        run: npm ci
+      - run: npm run build
+
+      - name: "Release to cloudflare"
+        uses: "cloudflare/wrangler-action@v3"
+        with:
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          command: pages deploy build --project-name=react-airsonic

@@ -15,6 +15,8 @@ import { router } from "./router";
 
 Sentry.init({
   dsn: "https://7f604bbfd4d89d353f3fa13222854efc@sentry.porthouse.dev/2",
+  environment: import.meta.env.MODE,
+  release: APP_VERSION,
   integrations: [
     Sentry.tanstackRouterBrowserTracingIntegration(router),
     Sentry.replayIntegration(),

@@ -10,6 +10,8 @@ import { VitePWA } from "vite-plugin-pwa";
 import svgrPlugin from "vite-plugin-svgr";
 import tsconfigPaths from "vite-tsconfig-paths";
 
+import packageJson from "./package.json" with { type: "json" };
+
 const ReactCompilerConfig = {
   sources: (filename) => {
     return filename.indexOf("src/") !== -1;
@@ -18,6 +20,10 @@ const ReactCompilerConfig = {
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  define: {
+    APP_VERSION: JSON.stringify("v" + packageJson.version),
+  },
+
   plugins: [
     // MillionLint.vite({
     //   enabled: true,

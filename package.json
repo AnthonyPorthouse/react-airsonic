@@ -4,10 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc && VITE_COMMIT_SHA=`git rev-parse --short HEAD` vite build",
+    "build": "tsc && vite build",
     "build-storybook": "storybook build",
     "coverage": "vitest run --coverage",
-    "dev": "cross-env VITE_COMMIT_SHA=dev vite",
+    "dev": "vite",
     "format": "prettier --write .",
     "knip": "knip",
     "lint": "eslint .",
