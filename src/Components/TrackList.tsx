@@ -74,7 +74,7 @@ function TrackList({ tracks, includeAdd = false }: Readonly<TrackListProps>) {
       >
         <div
           ref={trackListRef}
-          className="border-grey-200 h-full max-h-full w-full overflow-auto rounded border"
+          className="border-grey-200 h-full max-h-full w-full overflow-auto rounded-sm border"
         >
           <div
             style={{

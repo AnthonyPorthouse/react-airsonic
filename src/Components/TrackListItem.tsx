@@ -41,7 +41,7 @@ function TrackListItem({
   const playButton = (
     <button
       onClick={play}
-      className={`w-6 flex-shrink-0`}
+      className={`w-6 shrink-0`}
       aria-label={t("playTrack")}
     >
       <a
@@ -58,7 +58,7 @@ function TrackListItem({
     () => (
       <button
         onClick={add}
-        className={`w-6 flex-shrink-0`}
+        className={`w-6 shrink-0`}
         aria-label={t("addTrack")}
       >
         <a
@@ -74,7 +74,7 @@ function TrackListItem({
   );
 
   const nowPlayingIcon = (
-    <div className={`w-6 flex-shrink-0`} aria-label={t("currentlyPlaying")}>
+    <div className={`w-6 shrink-0`} aria-label={t("currentlyPlaying")}>
       <a
         data-tooltip-id="tooltip"
         data-tooltip-content={t("currentlyPlaying")}
@@ -87,7 +87,7 @@ function TrackListItem({
 
   return (
     <div className={`flex gap-6 overflow-hidden`}>
-      <div className="flex w-full flex-shrink-0 flex-row gap-6 md:block md:w-6">
+      <div className="flex w-full shrink-0 flex-row gap-6 md:block md:w-6">
         <div className="flex flex-row">
           {getCurrentTrack()?.id === track.id ? nowPlayingIcon : playButton}
           {includeAdd && addButton}
@@ -100,9 +100,7 @@ function TrackListItem({
         {track.track}
       </span>
       <span className={`hidden w-1/6 truncate md:block`}>{track.artist}</span>
-      <span className={`hidden w-0 flex-grow truncate md:block`}>
-        {track.title}
-      </span>
+      <span className={`hidden w-0 grow truncate md:block`}>{track.title}</span>
       <span className={`hidden text-right md:block`}>
         <Duration time={track.duration} />
       </span>

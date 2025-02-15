@@ -44,7 +44,7 @@ function SearchBar({ onSubmit }: Readonly<SearchBarProps>) {
       >
         <input
           className={
-            "flex-grow border-none bg-transparent px-3 py-2 pr-0 focus:ring-0"
+            "grow border-none bg-transparent px-3 py-2 pr-0 focus:ring-0"
           }
           autoComplete="off"
           type="search"

@@ -13,8 +13,8 @@ const meta: Meta<typeof Button> = {
   },
 
   args: {
-    children: <span className="flex-grow">My Button</span>,
-    className: "!w-64",
+    children: <span className="grow">My Button</span>,
+    className: "w-64!",
     onClick: fn(),
   },
 };

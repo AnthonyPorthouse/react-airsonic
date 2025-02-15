@@ -48,21 +48,21 @@ function EpisodeListItem({ episode }: Readonly<EpisodeListItemProps>) {
   const playButton = (
     <button
       onClick={play}
-      className={`flex w-full flex-shrink-0 gap-6 md:block md:w-6`}
+      className={`flex w-full shrink-0 gap-6 md:block md:w-6`}
       title={t("media:playTrack")}
     >
-      <Play className={`w-6 flex-shrink-0 fill-black md:w-full`} />
+      <Play className={`w-6 shrink-0 fill-black md:w-full`} />
       <span className={`truncate md:hidden`}>{episode.title}</span>
     </button>
   );
 
   const nowPlaying = (
     <div
-      className={`flex w-full flex-shrink-0 gap-6 md:block md:w-6`}
+      className={`flex w-full shrink-0 gap-6 md:block md:w-6`}
       title={`Currently Playing`}
     >
       <Play
-        className={`w-6 flex-shrink-0 fill-green-400 text-green-400 md:w-full`}
+        className={`w-6 shrink-0 fill-green-400 text-green-400 md:w-full`}
       />
       <span className={`truncate md:hidden`}>{episode.title}</span>
     </div>
@@ -71,10 +71,10 @@ function EpisodeListItem({ episode }: Readonly<EpisodeListItemProps>) {
   const downloadButton = (
     <button
       onClick={download}
-      className={`flex w-full flex-shrink-0 gap-6 md:block md:w-6`}
+      className={`flex w-full shrink-0 gap-6 md:block md:w-6`}
       title={t("podcasts:downloadEpisode")}
     >
-      <Download className={`w-6 flex-shrink-0 md:w-full`} />
+      <Download className={`w-6 shrink-0 md:w-full`} />
       <span className={`truncate md:hidden`}>{episode.title}</span>
     </button>
   );
@@ -87,9 +87,9 @@ function EpisodeListItem({ episode }: Readonly<EpisodeListItemProps>) {
     return (
       <div className={`flex gap-6 overflow-hidden`}>
         {getCurrentTrack()?.id === episode.id ? nowPlaying : playButton}
-        <div className={`hidden flex-grow gap-6 md:flex`}>
+        <div className={`hidden grow gap-6 md:flex`}>
           <span className={`w-1/6 truncate`}>{publishDate}</span>
-          <span className={`w-0 flex-grow truncate`}>{episode.title}</span>
+          <span className={`w-0 grow truncate`}>{episode.title}</span>
           <span className={`flex gap-2 text-right`}>
             <Duration
               time={Number(localStorage.getItem(`podcast_${episode.id}`) ?? 0)}
@@ -105,9 +105,9 @@ function EpisodeListItem({ episode }: Readonly<EpisodeListItemProps>) {
   return (
     <div className={`flex gap-6 overflow-hidden`}>
       {downloadButton}
-      <div className={`hidden flex-grow gap-6 md:flex`}>
+      <div className={`hidden grow gap-6 md:flex`}>
         <span className={`w-1/6 truncate`}>{publishDate}</span>
-        <span className={`w-0 flex-grow truncate`}>{episode.title}</span>
+        <span className={`w-0 grow truncate`}>{episode.title}</span>
         <span className={`text-right`}>&nbsp;</span>
       </div>
     </div>

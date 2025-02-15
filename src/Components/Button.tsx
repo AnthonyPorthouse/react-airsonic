@@ -17,7 +17,7 @@ function Button({
       <div
         className={classNames(
           `transition group-hover:-translate-y-1 group-focus:-translate-y-1`,
-          `flex w-full flex-row items-center rounded-full border border-gray-200 bg-white px-2 py-1 text-lg shadow-sm group-hover:shadow-md group-focus:shadow-md group-active:shadow-inner`,
+          `flex w-full flex-row items-center rounded-full border border-gray-200 bg-white px-2 py-1 text-lg shadow-xs group-hover:shadow-md group-focus:shadow-md group-active:shadow-inner`,
           className,
         )}
       >

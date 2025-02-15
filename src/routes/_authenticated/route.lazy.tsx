@@ -16,7 +16,7 @@ function Authenticated() {
     <FullscreenProvider>
       <Nav />
 
-      <div className={`flex-grow overflow-y-auto`}>
+      <div className={`grow overflow-y-auto`}>
         <div className="max-h-full p-6">
           <a id="main" />
           <Outlet />

@@ -92,15 +92,15 @@ function ProgressBar({ length, position }: Readonly<ProgressBarProps>) {
         style={{ width: `${mousePercent}%` }}
       >
         <div
-          className={`absolute -right-3 -top-1 h-6 w-6 rounded-full border-4 border-green-400 bg-white leading-none`}
+          className={`absolute -top-1 -right-3 h-6 w-6 rounded-full border-4 border-green-400 bg-white leading-none`}
         />
         <div
           ref={trackPosition}
           style={{ left: `${pos}px` }}
-          className={`absolute left-0 -ml-6 -mt-[2em] flex w-12 items-center justify-center`}
+          className={`absolute left-0 -mt-[2em] -ml-6 flex w-12 items-center justify-center`}
         >
           <div
-            className={`rounded bg-white px-2 py-1 leading-none text-black shadow`}
+            className={`rounded-sm bg-white px-2 py-1 leading-none text-black shadow-sm`}
           >
             <Duration time={mouseSongPos} />
           </div>

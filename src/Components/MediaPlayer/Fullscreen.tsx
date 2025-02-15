@@ -93,7 +93,7 @@ function Fullscreen({ track, currentTime, duration }: FullscreenProps) {
               </h2>
             </div>
           </div>
-          <div className="flex bg-black bg-opacity-20 p-5">
+          <div className="bg-opacity-20 flex bg-black p-5">
             <ProgressBarWithTime
               length={duration}
               position={currentTime}
@@ -108,7 +108,7 @@ function Fullscreen({ track, currentTime, duration }: FullscreenProps) {
             "left-5",
             "top-5",
             "text-white",
-            "drop-shadow",
+            "drop-shadow-sm",
           )}
         >
           <FullscreenButton />
