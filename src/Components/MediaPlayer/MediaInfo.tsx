@@ -18,12 +18,12 @@ function MediaInfo({
   state,
 }: Readonly<MediaInfoProps>) {
   return (
-    <div className={`flex flex-grow flex-col gap-y-3`}>
+    <div className={`flex grow flex-col gap-y-3`}>
       <div className={`flex items-center justify-items-stretch`}>
-        <div className={`flex-grow`}>
+        <div className={`grow`}>
           <TrackInfo track={track} />
         </div>
-        <div className={`flex-shrink-0`}>
+        <div className={`shrink-0`}>
           <MediaControls state={state} />
         </div>
       </div>

@@ -84,14 +84,14 @@ function AlbumHeader({ album, tracks }: Readonly<AlbumHeaderProps>) {
               )}
               onClick={playAll}
             >
-              <span className="flex-grow">{t("playAll")}</span>
+              <span className="grow">{t("playAll")}</span>
             </Button>
 
             <Button
               renderIcon={() => <Shuffle className="w-6" />}
               onClick={shuffleAll}
             >
-              <span className="flex-grow">{t("shuffleAll")}</span>
+              <span className="grow">{t("shuffleAll")}</span>
             </Button>
           </div>
         </div>

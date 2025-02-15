@@ -49,11 +49,10 @@ function MediaPlayer() {
       <MediaSession track={nowPlaying}>
         <TitleInfo nowPlaying={nowPlaying} />
 
-        <div className={`z-50 flex w-full gap-x-3 bg-white px-6 py-3 shadow`}>
-          <div
-            className={`hidden flex-shrink md:block`}
-            style={{ width: "100px" }}
-          >
+        <div
+          className={`z-50 flex w-full gap-x-3 bg-white px-6 py-3 shadow-sm`}
+        >
+          <div className={`hidden shrink md:block`} style={{ width: "100px" }}>
             <Link
               to="/albums/$albumId"
               params={{ albumId: nowPlaying.albumId }}

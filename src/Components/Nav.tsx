@@ -25,14 +25,14 @@ function Nav() {
       <div className="absolute top-4 z-20 flex w-full justify-center">
         <a
           href="#main"
-          className="sr-only rounded border bg-white px-4 py-2 text-xl shadow focus:not-sr-only"
+          className="sr-only rounded-sm border bg-white px-4 py-2 text-xl shadow-sm focus:not-sr-only"
         >
           Jump to Content
         </a>
       </div>
 
       <nav
-        className={`z-10 flex w-full items-center justify-between bg-white px-6 py-3 text-2xl shadow md:static`}
+        className={`z-10 flex w-full items-center justify-between bg-white px-6 py-3 text-2xl shadow-sm md:static`}
       >
         <picture className="absolute">
           <source srcSet={logoAvif} type="image/avif" />
