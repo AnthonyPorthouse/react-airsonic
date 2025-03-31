@@ -35,7 +35,7 @@
     "@tanstack/react-query-devtools": "^5.66.0",
     "@tanstack/react-router": "^1.105.0",
     "@tanstack/react-virtual": "^3.13.0",
-    "@tanstack/router-devtools": "^1.105.0",
+    "@tanstack/router-devtools": "^1.114.4",
     "axios": "^1.7.9",
     "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
