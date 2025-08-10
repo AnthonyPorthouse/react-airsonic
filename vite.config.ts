@@ -1,3 +1,4 @@
+import { cloudflare } from "@cloudflare/vite-plugin";
 import { sentryVitePlugin } from "@sentry/vite-plugin";
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
@@ -181,6 +182,7 @@ export default defineConfig({
       project: "ra",
       url: "https://sentry.porthouse.dev/",
     }),
+    cloudflare(),
   ],
   css: {
     devSourcemap: true,

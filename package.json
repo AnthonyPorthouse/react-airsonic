@@ -7,6 +7,7 @@
     "build": "tsc && vite build",
     "build-storybook": "storybook build",
     "coverage": "vitest run --coverage",
+    "deploy": "npm run build && wrangler deploy",
     "dev": "vite",
     "format": "prettier --write .",
     "knip": "knip",
@@ -26,6 +27,20 @@
     "extends": [
       "plugin:storybook/recommended"
     ]
+  },
+  "overrides": {
+    "react-helmet-async": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    },
+    "react-modal": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    },
+    "use-callback-ref": {
+      "react": "$react",
+      "@types/react": "$@types/react"
+    }
   },
   "dependencies": {
     "@million/lint": "^1.0.14",
@@ -57,6 +72,7 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.4",
+    "@cloudflare/vite-plugin": "^1.11.2",
     "@commitlint/cli": "19.7.1",
     "@commitlint/config-conventional": "19.7.1",
     "@commitlint/types": "19.5.0",
@@ -116,7 +132,8 @@
     "vite-plugin-svgr": "^4.3.0",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.0.5",
-    "workbox-window": "^7.3.0"
+    "workbox-window": "^7.3.0",
+    "wrangler": "^4.28.1"
   },
   "optionalDependencies": {
     "@esbuild/darwin-arm64": "^0.25.0",
@@ -128,19 +145,5 @@
     "workerDirectory": [
       "public"
     ]
-  },
-  "overrides": {
-    "react-helmet-async": {
-      "react": "$react",
-      "react-dom": "$react-dom"
-    },
-    "react-modal": {
-      "react": "$react",
-      "react-dom": "$react-dom"
-    },
-    "use-callback-ref": {
-      "react": "$react",
-      "@types/react": "$@types/react"
-    }
   }
 }
