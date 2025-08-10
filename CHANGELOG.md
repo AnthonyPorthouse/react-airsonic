@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/AnthonyPorthouse/react-airsonic/compare/v1.1.0...v1.2.0) (2025-08-10)
+
+
+### Features
+
+* migrate to cloudflare workers ([f4aa7e1](https://github.com/AnthonyPorthouse/react-airsonic/commit/f4aa7e1a5a0ad6e31b6cc012e0c11440437ba9c8))
+
 ## [1.1.0](https://github.com/AnthonyPorthouse/react-airsonic/compare/v1.0.0...v1.1.0) (2025-02-15)
 
 
