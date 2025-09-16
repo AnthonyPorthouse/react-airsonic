@@ -2,3 +2,4 @@ build
 package.json
 package-lock.json
 src/routeTree.gen.ts
+public/mockServiceWorker.js
