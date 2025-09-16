@@ -3,3 +3,4 @@ package.json
 package-lock.json
 src/routeTree.gen.ts
 public/mockServiceWorker.js
+CHANGELOG.md
