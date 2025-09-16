@@ -24,12 +24,14 @@ export async function getSearchResults(
   const authParams = generateAuthParamsObject({ username, password });
   const serverUrl = sanitizeServer(server);
 
+  console.log(query);
+
   const result = await axios.get<SearchResultsResponse>(
     `${serverUrl}/rest/search3.view`,
     {
       params: {
         ...authParams,
-        query: encodeURIComponent(query),
+        query: query,
         artistCount: 4,
         albumCount: 4,
         songCount: 100,

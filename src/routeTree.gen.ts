@@ -10,103 +10,89 @@
 
 import { createFileRoute } from '@tanstack/react-router'
 
-// Import Routes
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedSearchRouteImport } from './routes/_authenticated/search'
+import { Route as AuthenticatedPodcastsIndexRouteImport } from './routes/_authenticated/podcasts/index'
+import { Route as AuthenticatedPlaylistsIndexRouteImport } from './routes/_authenticated/playlists/index'
+import { Route as AuthenticatedArtistsIndexRouteImport } from './routes/_authenticated/artists/index'
+import { Route as AuthenticatedAlbumsIndexRouteImport } from './routes/_authenticated/albums/index'
+import { Route as AuthenticatedPodcastsPodcastIdRouteImport } from './routes/_authenticated/podcasts/$podcastId'
+import { Route as AuthenticatedPlaylistsPlaylistIdRouteImport } from './routes/_authenticated/playlists/$playlistId'
+import { Route as AuthenticatedArtistsArtistIdRouteImport } from './routes/_authenticated/artists/$artistId'
+import { Route as AuthenticatedAlbumsAlbumIdRouteImport } from './routes/_authenticated/albums/$albumId'
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as LoginImport } from './routes/login'
-import { Route as AuthenticatedRouteImport } from './routes/_authenticated/route'
-import { Route as IndexImport } from './routes/index'
-import { Route as AuthenticatedSearchImport } from './routes/_authenticated/search'
-import { Route as AuthenticatedPodcastsIndexImport } from './routes/_authenticated/podcasts/index'
-import { Route as AuthenticatedPlaylistsIndexImport } from './routes/_authenticated/playlists/index'
-import { Route as AuthenticatedArtistsIndexImport } from './routes/_authenticated/artists/index'
-import { Route as AuthenticatedAlbumsIndexImport } from './routes/_authenticated/albums/index'
-import { Route as AuthenticatedPodcastsPodcastIdImport } from './routes/_authenticated/podcasts/$podcastId'
-import { Route as AuthenticatedPlaylistsPlaylistIdImport } from './routes/_authenticated/playlists/$playlistId'
-import { Route as AuthenticatedArtistsArtistIdImport } from './routes/_authenticated/artists/$artistId'
-import { Route as AuthenticatedAlbumsAlbumIdImport } from './routes/_authenticated/albums/$albumId'
-
-// Create Virtual Routes
-
-const AuthenticatedNowPlayingLazyImport = createFileRoute(
+const AuthenticatedNowPlayingLazyRouteImport = createFileRoute(
   '/_authenticated/now-playing',
 )()
 
-// Create/Update Routes
-
-const LoginRoute = LoginImport.update({
+const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const AuthenticatedRouteRoute = AuthenticatedRouteImport.update({
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any).lazy(() =>
   import('./routes/_authenticated/route.lazy').then((d) => d.Route),
 )
-
-const IndexRoute = IndexImport.update({
+const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
 const AuthenticatedNowPlayingLazyRoute =
-  AuthenticatedNowPlayingLazyImport.update({
+  AuthenticatedNowPlayingLazyRouteImport.update({
     id: '/now-playing',
     path: '/now-playing',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any).lazy(() =>
     import('./routes/_authenticated/now-playing.lazy').then((d) => d.Route),
   )
-
-const AuthenticatedSearchRoute = AuthenticatedSearchImport.update({
+const AuthenticatedSearchRoute = AuthenticatedSearchRouteImport.update({
   id: '/search',
   path: '/search',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any).lazy(() =>
   import('./routes/_authenticated/search.lazy').then((d) => d.Route),
 )
-
-const AuthenticatedPodcastsIndexRoute = AuthenticatedPodcastsIndexImport.update(
-  {
+const AuthenticatedPodcastsIndexRoute =
+  AuthenticatedPodcastsIndexRouteImport.update({
     id: '/podcasts/',
     path: '/podcasts/',
     getParentRoute: () => AuthenticatedRouteRoute,
-  } as any,
-).lazy(() =>
-  import('./routes/_authenticated/podcasts/index.lazy').then((d) => d.Route),
-)
-
+  } as any).lazy(() =>
+    import('./routes/_authenticated/podcasts/index.lazy').then((d) => d.Route),
+  )
 const AuthenticatedPlaylistsIndexRoute =
-  AuthenticatedPlaylistsIndexImport.update({
+  AuthenticatedPlaylistsIndexRouteImport.update({
     id: '/playlists/',
     path: '/playlists/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any).lazy(() =>
     import('./routes/_authenticated/playlists/index.lazy').then((d) => d.Route),
   )
-
-const AuthenticatedArtistsIndexRoute = AuthenticatedArtistsIndexImport.update({
-  id: '/artists/',
-  path: '/artists/',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any).lazy(() =>
-  import('./routes/_authenticated/artists/index.lazy').then((d) => d.Route),
-)
-
-const AuthenticatedAlbumsIndexRoute = AuthenticatedAlbumsIndexImport.update({
-  id: '/albums/',
-  path: '/albums/',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any).lazy(() =>
-  import('./routes/_authenticated/albums/index.lazy').then((d) => d.Route),
-)
-
+const AuthenticatedArtistsIndexRoute =
+  AuthenticatedArtistsIndexRouteImport.update({
+    id: '/artists/',
+    path: '/artists/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/artists/index.lazy').then((d) => d.Route),
+  )
+const AuthenticatedAlbumsIndexRoute =
+  AuthenticatedAlbumsIndexRouteImport.update({
+    id: '/albums/',
+    path: '/albums/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/albums/index.lazy').then((d) => d.Route),
+  )
 const AuthenticatedPodcastsPodcastIdRoute =
-  AuthenticatedPodcastsPodcastIdImport.update({
+  AuthenticatedPodcastsPodcastIdRouteImport.update({
     id: '/podcasts/$podcastId',
     path: '/podcasts/$podcastId',
     getParentRoute: () => AuthenticatedRouteRoute,
@@ -115,9 +101,8 @@ const AuthenticatedPodcastsPodcastIdRoute =
       (d) => d.Route,
     ),
   )
-
 const AuthenticatedPlaylistsPlaylistIdRoute =
-  AuthenticatedPlaylistsPlaylistIdImport.update({
+  AuthenticatedPlaylistsPlaylistIdRouteImport.update({
     id: '/playlists/$playlistId',
     path: '/playlists/$playlistId',
     getParentRoute: () => AuthenticatedRouteRoute,
@@ -126,9 +111,8 @@ const AuthenticatedPlaylistsPlaylistIdRoute =
       (d) => d.Route,
     ),
   )
-
 const AuthenticatedArtistsArtistIdRoute =
-  AuthenticatedArtistsArtistIdImport.update({
+  AuthenticatedArtistsArtistIdRouteImport.update({
     id: '/artists/$artistId',
     path: '/artists/$artistId',
     getParentRoute: () => AuthenticatedRouteRoute,
@@ -137,116 +121,206 @@ const AuthenticatedArtistsArtistIdRoute =
       (d) => d.Route,
     ),
   )
-
-const AuthenticatedAlbumsAlbumIdRoute = AuthenticatedAlbumsAlbumIdImport.update(
-  {
+const AuthenticatedAlbumsAlbumIdRoute =
+  AuthenticatedAlbumsAlbumIdRouteImport.update({
     id: '/albums/$albumId',
     path: '/albums/$albumId',
     getParentRoute: () => AuthenticatedRouteRoute,
-  } as any,
-).lazy(() =>
-  import('./routes/_authenticated/albums/$albumId.lazy').then((d) => d.Route),
-)
+  } as any).lazy(() =>
+    import('./routes/_authenticated/albums/$albumId.lazy').then((d) => d.Route),
+  )
 
-// Populate the FileRoutesByPath interface
+export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/search': typeof AuthenticatedSearchRoute
+  '/now-playing': typeof AuthenticatedNowPlayingLazyRoute
+  '/albums/$albumId': typeof AuthenticatedAlbumsAlbumIdRoute
+  '/artists/$artistId': typeof AuthenticatedArtistsArtistIdRoute
+  '/playlists/$playlistId': typeof AuthenticatedPlaylistsPlaylistIdRoute
+  '/podcasts/$podcastId': typeof AuthenticatedPodcastsPodcastIdRoute
+  '/albums': typeof AuthenticatedAlbumsIndexRoute
+  '/artists': typeof AuthenticatedArtistsIndexRoute
+  '/playlists': typeof AuthenticatedPlaylistsIndexRoute
+  '/podcasts': typeof AuthenticatedPodcastsIndexRoute
+}
+export interface FileRoutesByTo {
+  '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/search': typeof AuthenticatedSearchRoute
+  '/now-playing': typeof AuthenticatedNowPlayingLazyRoute
+  '/albums/$albumId': typeof AuthenticatedAlbumsAlbumIdRoute
+  '/artists/$artistId': typeof AuthenticatedArtistsArtistIdRoute
+  '/playlists/$playlistId': typeof AuthenticatedPlaylistsPlaylistIdRoute
+  '/podcasts/$podcastId': typeof AuthenticatedPodcastsPodcastIdRoute
+  '/albums': typeof AuthenticatedAlbumsIndexRoute
+  '/artists': typeof AuthenticatedArtistsIndexRoute
+  '/playlists': typeof AuthenticatedPlaylistsIndexRoute
+  '/podcasts': typeof AuthenticatedPodcastsIndexRoute
+}
+export interface FileRoutesById {
+  __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/login': typeof LoginRoute
+  '/_authenticated/search': typeof AuthenticatedSearchRoute
+  '/_authenticated/now-playing': typeof AuthenticatedNowPlayingLazyRoute
+  '/_authenticated/albums/$albumId': typeof AuthenticatedAlbumsAlbumIdRoute
+  '/_authenticated/artists/$artistId': typeof AuthenticatedArtistsArtistIdRoute
+  '/_authenticated/playlists/$playlistId': typeof AuthenticatedPlaylistsPlaylistIdRoute
+  '/_authenticated/podcasts/$podcastId': typeof AuthenticatedPodcastsPodcastIdRoute
+  '/_authenticated/albums/': typeof AuthenticatedAlbumsIndexRoute
+  '/_authenticated/artists/': typeof AuthenticatedArtistsIndexRoute
+  '/_authenticated/playlists/': typeof AuthenticatedPlaylistsIndexRoute
+  '/_authenticated/podcasts/': typeof AuthenticatedPodcastsIndexRoute
+}
+export interface FileRouteTypes {
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/search'
+    | '/now-playing'
+    | '/albums/$albumId'
+    | '/artists/$artistId'
+    | '/playlists/$playlistId'
+    | '/podcasts/$podcastId'
+    | '/albums'
+    | '/artists'
+    | '/playlists'
+    | '/podcasts'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/login'
+    | '/search'
+    | '/now-playing'
+    | '/albums/$albumId'
+    | '/artists/$artistId'
+    | '/playlists/$playlistId'
+    | '/podcasts/$podcastId'
+    | '/albums'
+    | '/artists'
+    | '/playlists'
+    | '/podcasts'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/login'
+    | '/_authenticated/search'
+    | '/_authenticated/now-playing'
+    | '/_authenticated/albums/$albumId'
+    | '/_authenticated/artists/$artistId'
+    | '/_authenticated/playlists/$playlistId'
+    | '/_authenticated/podcasts/$podcastId'
+    | '/_authenticated/albums/'
+    | '/_authenticated/artists/'
+    | '/_authenticated/playlists/'
+    | '/_authenticated/podcasts/'
+  fileRoutesById: FileRoutesById
+}
+export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  LoginRoute: typeof LoginRoute
+}
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_authenticated': {
       id: '/_authenticated'
       path: ''
       fullPath: ''
-      preLoaderRoute: typeof AuthenticatedRouteImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginImport
-      parentRoute: typeof rootRoute
-    }
-    '/_authenticated/search': {
-      id: '/_authenticated/search'
-      path: '/search'
-      fullPath: '/search'
-      preLoaderRoute: typeof AuthenticatedSearchImport
-      parentRoute: typeof AuthenticatedRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_authenticated/now-playing': {
       id: '/_authenticated/now-playing'
       path: '/now-playing'
       fullPath: '/now-playing'
-      preLoaderRoute: typeof AuthenticatedNowPlayingLazyImport
-      parentRoute: typeof AuthenticatedRouteImport
+      preLoaderRoute: typeof AuthenticatedNowPlayingLazyRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/albums/$albumId': {
-      id: '/_authenticated/albums/$albumId'
-      path: '/albums/$albumId'
-      fullPath: '/albums/$albumId'
-      preLoaderRoute: typeof AuthenticatedAlbumsAlbumIdImport
-      parentRoute: typeof AuthenticatedRouteImport
-    }
-    '/_authenticated/artists/$artistId': {
-      id: '/_authenticated/artists/$artistId'
-      path: '/artists/$artistId'
-      fullPath: '/artists/$artistId'
-      preLoaderRoute: typeof AuthenticatedArtistsArtistIdImport
-      parentRoute: typeof AuthenticatedRouteImport
-    }
-    '/_authenticated/playlists/$playlistId': {
-      id: '/_authenticated/playlists/$playlistId'
-      path: '/playlists/$playlistId'
-      fullPath: '/playlists/$playlistId'
-      preLoaderRoute: typeof AuthenticatedPlaylistsPlaylistIdImport
-      parentRoute: typeof AuthenticatedRouteImport
-    }
-    '/_authenticated/podcasts/$podcastId': {
-      id: '/_authenticated/podcasts/$podcastId'
-      path: '/podcasts/$podcastId'
-      fullPath: '/podcasts/$podcastId'
-      preLoaderRoute: typeof AuthenticatedPodcastsPodcastIdImport
-      parentRoute: typeof AuthenticatedRouteImport
-    }
-    '/_authenticated/albums/': {
-      id: '/_authenticated/albums/'
-      path: '/albums'
-      fullPath: '/albums'
-      preLoaderRoute: typeof AuthenticatedAlbumsIndexImport
-      parentRoute: typeof AuthenticatedRouteImport
-    }
-    '/_authenticated/artists/': {
-      id: '/_authenticated/artists/'
-      path: '/artists'
-      fullPath: '/artists'
-      preLoaderRoute: typeof AuthenticatedArtistsIndexImport
-      parentRoute: typeof AuthenticatedRouteImport
-    }
-    '/_authenticated/playlists/': {
-      id: '/_authenticated/playlists/'
-      path: '/playlists'
-      fullPath: '/playlists'
-      preLoaderRoute: typeof AuthenticatedPlaylistsIndexImport
-      parentRoute: typeof AuthenticatedRouteImport
+    '/_authenticated/search': {
+      id: '/_authenticated/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof AuthenticatedSearchRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/podcasts/': {
       id: '/_authenticated/podcasts/'
       path: '/podcasts'
       fullPath: '/podcasts'
-      preLoaderRoute: typeof AuthenticatedPodcastsIndexImport
-      parentRoute: typeof AuthenticatedRouteImport
+      preLoaderRoute: typeof AuthenticatedPodcastsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/playlists/': {
+      id: '/_authenticated/playlists/'
+      path: '/playlists'
+      fullPath: '/playlists'
+      preLoaderRoute: typeof AuthenticatedPlaylistsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/artists/': {
+      id: '/_authenticated/artists/'
+      path: '/artists'
+      fullPath: '/artists'
+      preLoaderRoute: typeof AuthenticatedArtistsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/albums/': {
+      id: '/_authenticated/albums/'
+      path: '/albums'
+      fullPath: '/albums'
+      preLoaderRoute: typeof AuthenticatedAlbumsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/podcasts/$podcastId': {
+      id: '/_authenticated/podcasts/$podcastId'
+      path: '/podcasts/$podcastId'
+      fullPath: '/podcasts/$podcastId'
+      preLoaderRoute: typeof AuthenticatedPodcastsPodcastIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/playlists/$playlistId': {
+      id: '/_authenticated/playlists/$playlistId'
+      path: '/playlists/$playlistId'
+      fullPath: '/playlists/$playlistId'
+      preLoaderRoute: typeof AuthenticatedPlaylistsPlaylistIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/artists/$artistId': {
+      id: '/_authenticated/artists/$artistId'
+      path: '/artists/$artistId'
+      fullPath: '/artists/$artistId'
+      preLoaderRoute: typeof AuthenticatedArtistsArtistIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/albums/$albumId': {
+      id: '/_authenticated/albums/$albumId'
+      path: '/albums/$albumId'
+      fullPath: '/albums/$albumId'
+      preLoaderRoute: typeof AuthenticatedAlbumsAlbumIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
   }
 }
-
-// Create and export the route tree
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedSearchRoute: typeof AuthenticatedSearchRoute
@@ -277,192 +351,11 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
 const AuthenticatedRouteRouteWithChildren =
   AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
-export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '': typeof AuthenticatedRouteRouteWithChildren
-  '/login': typeof LoginRoute
-  '/search': typeof AuthenticatedSearchRoute
-  '/now-playing': typeof AuthenticatedNowPlayingLazyRoute
-  '/albums/$albumId': typeof AuthenticatedAlbumsAlbumIdRoute
-  '/artists/$artistId': typeof AuthenticatedArtistsArtistIdRoute
-  '/playlists/$playlistId': typeof AuthenticatedPlaylistsPlaylistIdRoute
-  '/podcasts/$podcastId': typeof AuthenticatedPodcastsPodcastIdRoute
-  '/albums': typeof AuthenticatedAlbumsIndexRoute
-  '/artists': typeof AuthenticatedArtistsIndexRoute
-  '/playlists': typeof AuthenticatedPlaylistsIndexRoute
-  '/podcasts': typeof AuthenticatedPodcastsIndexRoute
-}
-
-export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '': typeof AuthenticatedRouteRouteWithChildren
-  '/login': typeof LoginRoute
-  '/search': typeof AuthenticatedSearchRoute
-  '/now-playing': typeof AuthenticatedNowPlayingLazyRoute
-  '/albums/$albumId': typeof AuthenticatedAlbumsAlbumIdRoute
-  '/artists/$artistId': typeof AuthenticatedArtistsArtistIdRoute
-  '/playlists/$playlistId': typeof AuthenticatedPlaylistsPlaylistIdRoute
-  '/podcasts/$podcastId': typeof AuthenticatedPodcastsPodcastIdRoute
-  '/albums': typeof AuthenticatedAlbumsIndexRoute
-  '/artists': typeof AuthenticatedArtistsIndexRoute
-  '/playlists': typeof AuthenticatedPlaylistsIndexRoute
-  '/podcasts': typeof AuthenticatedPodcastsIndexRoute
-}
-
-export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/': typeof IndexRoute
-  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
-  '/login': typeof LoginRoute
-  '/_authenticated/search': typeof AuthenticatedSearchRoute
-  '/_authenticated/now-playing': typeof AuthenticatedNowPlayingLazyRoute
-  '/_authenticated/albums/$albumId': typeof AuthenticatedAlbumsAlbumIdRoute
-  '/_authenticated/artists/$artistId': typeof AuthenticatedArtistsArtistIdRoute
-  '/_authenticated/playlists/$playlistId': typeof AuthenticatedPlaylistsPlaylistIdRoute
-  '/_authenticated/podcasts/$podcastId': typeof AuthenticatedPodcastsPodcastIdRoute
-  '/_authenticated/albums/': typeof AuthenticatedAlbumsIndexRoute
-  '/_authenticated/artists/': typeof AuthenticatedArtistsIndexRoute
-  '/_authenticated/playlists/': typeof AuthenticatedPlaylistsIndexRoute
-  '/_authenticated/podcasts/': typeof AuthenticatedPodcastsIndexRoute
-}
-
-export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | ''
-    | '/login'
-    | '/search'
-    | '/now-playing'
-    | '/albums/$albumId'
-    | '/artists/$artistId'
-    | '/playlists/$playlistId'
-    | '/podcasts/$podcastId'
-    | '/albums'
-    | '/artists'
-    | '/playlists'
-    | '/podcasts'
-  fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | ''
-    | '/login'
-    | '/search'
-    | '/now-playing'
-    | '/albums/$albumId'
-    | '/artists/$artistId'
-    | '/playlists/$playlistId'
-    | '/podcasts/$podcastId'
-    | '/albums'
-    | '/artists'
-    | '/playlists'
-    | '/podcasts'
-  id:
-    | '__root__'
-    | '/'
-    | '/_authenticated'
-    | '/login'
-    | '/_authenticated/search'
-    | '/_authenticated/now-playing'
-    | '/_authenticated/albums/$albumId'
-    | '/_authenticated/artists/$artistId'
-    | '/_authenticated/playlists/$playlistId'
-    | '/_authenticated/podcasts/$podcastId'
-    | '/_authenticated/albums/'
-    | '/_authenticated/artists/'
-    | '/_authenticated/playlists/'
-    | '/_authenticated/podcasts/'
-  fileRoutesById: FileRoutesById
-}
-
-export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
-  LoginRoute: typeof LoginRoute
-}
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   LoginRoute: LoginRoute,
 }
-
-export const routeTree = rootRoute
+export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-/* ROUTE_MANIFEST_START
-{
-  "routes": {
-    "__root__": {
-      "filePath": "__root.tsx",
-      "children": [
-        "/",
-        "/_authenticated",
-        "/login"
-      ]
-    },
-    "/": {
-      "filePath": "index.tsx"
-    },
-    "/_authenticated": {
-      "filePath": "_authenticated/route.tsx",
-      "children": [
-        "/_authenticated/search",
-        "/_authenticated/now-playing",
-        "/_authenticated/albums/$albumId",
-        "/_authenticated/artists/$artistId",
-        "/_authenticated/playlists/$playlistId",
-        "/_authenticated/podcasts/$podcastId",
-        "/_authenticated/albums/",
-        "/_authenticated/artists/",
-        "/_authenticated/playlists/",
-        "/_authenticated/podcasts/"
-      ]
-    },
-    "/login": {
-      "filePath": "login.tsx"
-    },
-    "/_authenticated/search": {
-      "filePath": "_authenticated/search.tsx",
-      "parent": "/_authenticated"
-    },
-    "/_authenticated/now-playing": {
-      "filePath": "_authenticated/now-playing.lazy.tsx",
-      "parent": "/_authenticated"
-    },
-    "/_authenticated/albums/$albumId": {
-      "filePath": "_authenticated/albums/$albumId.tsx",
-      "parent": "/_authenticated"
-    },
-    "/_authenticated/artists/$artistId": {
-      "filePath": "_authenticated/artists/$artistId.tsx",
-      "parent": "/_authenticated"
-    },
-    "/_authenticated/playlists/$playlistId": {
-      "filePath": "_authenticated/playlists/$playlistId.tsx",
-      "parent": "/_authenticated"
-    },
-    "/_authenticated/podcasts/$podcastId": {
-      "filePath": "_authenticated/podcasts/$podcastId.tsx",
-      "parent": "/_authenticated"
-    },
-    "/_authenticated/albums/": {
-      "filePath": "_authenticated/albums/index.tsx",
-      "parent": "/_authenticated"
-    },
-    "/_authenticated/artists/": {
-      "filePath": "_authenticated/artists/index.tsx",
-      "parent": "/_authenticated"
-    },
-    "/_authenticated/playlists/": {
-      "filePath": "_authenticated/playlists/index.tsx",
-      "parent": "/_authenticated"
-    },
-    "/_authenticated/podcasts/": {
-      "filePath": "_authenticated/podcasts/index.tsx",
-      "parent": "/_authenticated"
-    }
-  }
-}
-ROUTE_MANIFEST_END */
