@@ -1,5 +1,5 @@
 import { AuthProvider } from "@/Providers/AuthProvider";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { HttpResponse, http } from "msw";
 
 import HoverableAlbumArt from "./HoverableAlbumArt";
