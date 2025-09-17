@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/AnthonyPorthouse/react-airsonic/compare/v1.1.0...v1.2.0) (2025-09-17)
+
+
+### Features
+
+* add mockServiceWorker.js to prettier ignore ([20ff585](https://github.com/AnthonyPorthouse/react-airsonic/commit/20ff585bbaf0ff7bb279ab150fbc59e855316fac))
+* add mockServiceWorker.js to prettier ignore ([5f28631](https://github.com/AnthonyPorthouse/react-airsonic/commit/5f28631ac2b53274ff14c36fe1678009c64057a0))
+* complete migration to storybook 9 ([1bf9e21](https://github.com/AnthonyPorthouse/react-airsonic/commit/1bf9e21c3ee962c8502343106bc77e7e4e252335))
+* migrate to cloudflare workers ([f4aa7e1](https://github.com/AnthonyPorthouse/react-airsonic/commit/f4aa7e1a5a0ad6e31b6cc012e0c11440437ba9c8))
+* update dependencies and refactor route imports ([d0e642c](https://github.com/AnthonyPorthouse/react-airsonic/commit/d0e642c79a9908a32a8d5a9c91ca048920d9ae6e))
+* update SonarCloud action to use sonarqube-scan-action@v5 ([6af9c4b](https://github.com/AnthonyPorthouse/react-airsonic/commit/6af9c4bdb5d4b13726890b7d9aae78e87db7e8fb))
+
 ## [1.1.0](https://github.com/AnthonyPorthouse/react-airsonic/compare/v1.0.0...v1.1.0) (2025-02-15)
 
 
