@@ -132,7 +132,7 @@
     "wrangler": "^4.28.1"
   },
   "optionalDependencies": {
-    "@esbuild/darwin-arm64": "^0.25.0",
+    "@esbuild/darwin-arm64": "^0.25.10",
     "@esbuild/linux-x64": "^0.25.10",
     "@rollup/rollup-darwin-arm64": "^4.34.7",
     "@rollup/rollup-linux-x64-gnu": "^4.34.7"
