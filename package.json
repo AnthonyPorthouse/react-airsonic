@@ -126,7 +126,7 @@
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4",
     "workbox-window": "^7.3.0",
-    "wrangler": "^4.42.1"
+    "wrangler": "^4.42.2"
   },
   "optionalDependencies": {
     "@esbuild/darwin-arm64": "^0.25.10",
