@@ -1,8 +1,7 @@
-import { cloudflare } from "@cloudflare/vite-plugin";
-import { sentryVitePlugin } from "@sentry/vite-plugin";
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
-import { TanStackRouterVite } from "@tanstack/router-vite-plugin";
+import { cloudflare } from "@cloudflare/vite-plugin";
+import { tanstackRouter } from "@tanstack/router-plugin/vite";
 import react from "@vitejs/plugin-react";
 import UnpluginInjectPreload from "unplugin-inject-preload/vite";
 import { defineConfig } from "vite";
@@ -26,9 +25,6 @@ export default defineConfig({
   },
 
   plugins: [
-    // MillionLint.vite({
-    //   enabled: true,
-    // }),
     tsconfigPaths(),
     react({
       babel: {
@@ -150,7 +146,7 @@ export default defineConfig({
         ],
       },
     }),
-    TanStackRouterVite({}),
+    tanstackRouter({}),
     UnpluginInjectPreload({
       files: [
         {
@@ -177,11 +173,6 @@ export default defineConfig({
       ],
     }),
     mkcert(),
-    sentryVitePlugin({
-      org: "sentry",
-      project: "ra",
-      url: "https://sentry.porthouse.dev/",
-    }),
     cloudflare(),
   ],
   css: {

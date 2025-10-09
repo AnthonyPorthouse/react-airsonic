@@ -67,3 +67,59 @@ export async function ping({ server, username, password }: Credentials) {
 
   return { authenticated: result.data["subsonic-response"].status === "ok" };
 }
+
+export async function checkServerInfo(server: string) {
+  const { f, c, v } = generateAuthParamsObject({ username: "", password: "" });
+
+  const result = await axios.get<{
+    "subsonic-response": {
+      status: "failed";
+      version: string;
+      type?: string;
+      openSubsonic?: boolean;
+      serverVersion?: string;
+      error: {
+        code: 10;
+        message: string;
+      };
+    };
+  }>(`${sanitizeServer(server)}/rest/ping.view`, {
+    params: { f, c, v },
+  });
+
+  return {
+    valid: true,
+    version: result.data["subsonic-response"].version,
+    serverType: result.data["subsonic-response"].type ?? "unknown",
+    isOpenSubsonic: result.data["subsonic-response"].openSubsonic ?? false,
+    serverVersion: result.data["subsonic-response"].serverVersion,
+  };
+}
+
+export async function checkAuthentication(
+  server: string,
+  username: string,
+  password: string,
+) {
+  const auth = generateAuthParamsObject({ username, password });
+
+  const result = await axios.get<{
+    "subsonic-response": {
+      status: "failed" | "ok";
+      version: string;
+      type?: string;
+      openSubsonic?: boolean;
+      serverVersion?: string;
+    };
+  }>(`${sanitizeServer(server)}/rest/ping.view`, {
+    params: auth,
+  });
+
+  if (result.data["subsonic-response"].status === "failed") {
+    throw new Error("Invalid credentials");
+  }
+
+  return {
+    valid: result.data["subsonic-response"].status === "ok",
+  };
+}
