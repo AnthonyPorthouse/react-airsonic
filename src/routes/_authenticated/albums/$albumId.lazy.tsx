@@ -3,6 +3,7 @@ import TrackList from "@components/TrackList";
 import { useAuth } from "@hooks/useAuth";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createLazyFileRoute, isNotFound } from "@tanstack/react-router";
+import { t } from "i18next";
 
 import { AlbumQueryOptions } from "./$albumId";
 
@@ -13,7 +14,7 @@ export const Route = createLazyFileRoute("/_authenticated/albums/$albumId")({
     const { albumId } = Route.useParams();
     return (
       <div>
-        <h2>Album {albumId} not found</h2>
+        <h2>{t("albums:notFound", { id: albumId })}</h2>
       </div>
     );
   },

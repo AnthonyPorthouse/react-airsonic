@@ -2,6 +2,7 @@ import Spinner from "@components/Spinner.js";
 import TrackList from "@components/TrackList.js";
 import { useTrackList } from "@hooks/useTrackList";
 import { createLazyFileRoute } from "@tanstack/react-router";
+import { t } from "i18next";
 
 export const Route = createLazyFileRoute("/_authenticated/now-playing")({
   component: NowPlaying,
@@ -14,7 +15,7 @@ function NowPlaying() {
   if (trackList.length === 0) {
     return (
       <div className="flex justify-center">
-        <span className="text-gray-500">Nothing Currently Playing</span>
+        <span className="text-gray-500">{t("media:nothingPlaying")}</span>
       </div>
     );
   }

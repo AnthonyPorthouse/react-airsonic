@@ -1,6 +1,7 @@
 import AlbumHeader from "@components/AlbumHeader";
 import TrackList from "@components/TrackList";
 import { createLazyFileRoute, isNotFound } from "@tanstack/react-router";
+import { t } from "i18next";
 
 export const Route = createLazyFileRoute("/_authenticated/artists/$artistId")({
   component: Artist,
@@ -9,7 +10,7 @@ export const Route = createLazyFileRoute("/_authenticated/artists/$artistId")({
     const { artistId } = Route.useParams();
     return (
       <div>
-        <h2>Artist {artistId} not found</h2>
+        <h2>{t("artists:notFound", { id: artistId })}</h2>
       </div>
     );
   },

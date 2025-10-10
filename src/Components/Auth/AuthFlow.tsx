@@ -1,6 +1,7 @@
 import logoAvif from "@/images/logo192.avif";
 import logoPng from "@/images/logo192.png";
 import logoWebp from "@/images/logo192.webp";
+import logoSvg from "@/images/logo.svg";
 import { checkAuthentication, checkServerInfo } from "@api/auth.tsx";
 import CredentialStep from "@components/Auth/CredentialStep.tsx";
 import ServerStep from "@components/Auth/ServerStep.tsx";
@@ -8,6 +9,7 @@ import { useAuth } from "@hooks/useAuth.ts";
 import { useMutation } from "@tanstack/react-query";
 import { getRouteApi, useNavigate } from "@tanstack/react-router";
 import { t } from "i18next";
+import { ChevronLeft } from "lucide-react";
 import {
   FormEvent,
   useCallback,
@@ -156,19 +158,15 @@ function AuthFlow() {
 
   return (
     <div className={`flex h-auto flex-auto items-center`}>
-      <div className={`mx-auto w-64`}>
-        <header className="mx-auto">
-          <picture>
+      <div className={`mx-auto w-1/3`}>
+        <header>
+          <picture className="mx-auto block aspect-square h-64 md:h-full">
+            <source srcSet={logoSvg} type="image/svg+xml" />
             <source srcSet={logoAvif} type="image/avif" />
             <source srcSet={logoWebp} type="image/webp" />
             <source srcSet={logoPng} type="image/png" />
 
-            <img
-              src={logoAvif}
-              alt={t("common:title")}
-              aria-hidden="true"
-              className={`h-12 w-12 md:h-16 md:w-16`}
-            />
+            <img src={logoAvif} alt={t("common:title")} aria-hidden="true" />
           </picture>
         </header>
 
@@ -185,7 +183,18 @@ function AuthFlow() {
 
         {step === "server" && <ServerStep onSubmit={validateServer} />}
         {step === "credentials" && (
-          <CredentialStep onSubmit={validateCredentials} />
+          <>
+            <button
+              className="mx-auto mb-4 flex gap-2 rounded border bg-white px-2 py-1 shadow-sm"
+              onClick={() => setStep("server")}
+            >
+              <ChevronLeft />{" "}
+              {t("auth:notServer", {
+                server: auth.credentials.server.replace(/^.*?:\/\//, ""),
+              })}
+            </button>
+            <CredentialStep onSubmit={validateCredentials} />
+          </>
         )}
       </div>
     </div>

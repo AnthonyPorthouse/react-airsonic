@@ -3,6 +3,7 @@ import TitleInfo from "@components/TitleInfo";
 import { QueryClient } from "@tanstack/react-query";
 import { Outlet, createRootRouteWithContext } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import { t } from "i18next";
 import { Suspense } from "react";
 
 interface RouterContext {
@@ -15,7 +16,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
   errorComponent: () => {
     return (
       <div>
-        <h2>Something Went Wrong</h2>
+        <h2>{t("errors:genericError")}</h2>
       </div>
     );
   },

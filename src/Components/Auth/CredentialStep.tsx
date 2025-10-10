@@ -1,4 +1,6 @@
 import { useAuth } from "@hooks/useAuth.ts";
+import { t } from "i18next";
+import { LogIn } from "lucide-react";
 import { FormEvent, useState } from "react";
 
 function CredentialStep({
@@ -20,7 +22,7 @@ function CredentialStep({
         }}
       >
         <label className={`block w-full`}>
-          Username{" "}
+          {t("auth:username")}{" "}
           <input
             name="username"
             data-testid="username"
@@ -29,10 +31,11 @@ function CredentialStep({
             value={username}
             autoComplete="username"
             onChange={(e) => setUsername(e.target.value)}
+            required
           />
         </label>
         <label className={`block w-full`}>
-          Password{" "}
+          {t("auth:password")}{" "}
           <input
             name="password"
             data-testid="password"
@@ -41,11 +44,15 @@ function CredentialStep({
             value={password}
             autoComplete="current-password"
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </label>
 
-        <button data-testid="next" className={`block w-full`}>
-          Log In
+        <button
+          data-testid="next"
+          className={`flex w-full items-center justify-center gap-2 rounded border bg-gradient-to-br from-amber-400 to-pink-600 px-4 py-2 text-lg text-white shadow-sm`}
+        >
+          {t("auth:login")} <LogIn />
         </button>
       </form>
     </div>

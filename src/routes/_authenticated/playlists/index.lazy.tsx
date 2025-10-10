@@ -4,6 +4,7 @@ import Spinner from "@components/Spinner";
 import { useAuth } from "@hooks/useAuth";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createLazyFileRoute, isNotFound } from "@tanstack/react-router";
+import { t } from "i18next";
 
 import { PlaylistsQueryOptions } from ".";
 
@@ -32,7 +33,7 @@ function Playlists() {
   if (playlists.length === 0) {
     return (
       <div className="flex justify-center">
-        <span className="text-gray-500">No Playlists Found</span>
+        <span className="text-gray-500">{t("playlists:noPlaylists")}</span>
       </div>
     );
   }

@@ -1,4 +1,5 @@
 import type { Song } from "@api/types.js";
+import { t } from "i18next";
 import { Helmet } from "react-helmet-async";
 
 interface TitleInfoProps {
@@ -9,7 +10,7 @@ function TitleInfo({ nowPlaying }: Readonly<TitleInfoProps>) {
   if (!nowPlaying) {
     return (
       <Helmet>
-        <title>Ra</title>
+        <title>{t("common:title")}</title>
       </Helmet>
     );
   }

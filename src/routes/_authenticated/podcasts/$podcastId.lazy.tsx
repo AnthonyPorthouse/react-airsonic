@@ -4,6 +4,7 @@ import Spinner from "@components/Spinner";
 import { useAuth } from "@hooks/useAuth";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createLazyFileRoute, isNotFound } from "@tanstack/react-router";
+import { t } from "i18next";
 
 import { PodcastQueryOptions } from "./$podcastId";
 
@@ -14,7 +15,7 @@ export const Route = createLazyFileRoute("/_authenticated/podcasts/$podcastId")(
     errorComponent: () => {
       return (
         <div>
-          <h2>Something Went Wrong</h2>
+          <h2>{t("errors:genericError")}</h2>
         </div>
       );
     },
@@ -23,7 +24,7 @@ export const Route = createLazyFileRoute("/_authenticated/podcasts/$podcastId")(
       const { podcastId } = Route.useParams();
       return (
         <div>
-          <h2>Podcast {podcastId} not found</h2>
+          <h2>{t("podcasts:notFound", { id: podcastId })}</h2>
         </div>
       );
     },

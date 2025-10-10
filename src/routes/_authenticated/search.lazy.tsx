@@ -2,6 +2,7 @@ import AlbumList from "@components/AlbumList";
 import ArtistList from "@components/ArtistList";
 import TrackList from "@components/TrackList";
 import { createLazyFileRoute } from "@tanstack/react-router";
+import { t } from "i18next";
 
 export const Route = createLazyFileRoute("/_authenticated/search")({
   component: Search,
@@ -14,7 +15,7 @@ function Search() {
     <div className={`grid grid-cols-1 gap-6 md:grid-cols-2`}>
       {artists.length ? (
         <div className={``}>
-          <h1 className={`text-xl`}>Artists</h1>
+          <h1 className={`text-xl`}>{t("nav:artists")}</h1>
           <ArtistList
             className={`grid-cols-2 md:grid-cols-4`}
             artists={artists}
@@ -24,7 +25,7 @@ function Search() {
 
       {albums.length ? (
         <div className={``}>
-          <h1 className={`text-xl`}>Albums</h1>
+          <h1 className={`text-xl`}>{t("nav:albums")}</h1>
           <AlbumList className={`grid-cols-2 md:grid-cols-4`} albums={albums} />
         </div>
       ) : null}

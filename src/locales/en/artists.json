@@ -1,3 +1,4 @@
 {
-  "allArtists": "All Artists"
+  "allArtists": "All Artists",
+  "notFound": "Artist {{id}} not found"
 }

@@ -3,6 +3,7 @@ import Spinner from "@components/Spinner";
 import { useAuth } from "@hooks/useAuth";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createLazyFileRoute, isNotFound } from "@tanstack/react-router";
+import { t } from "i18next";
 
 import { PodcastsQueryOptions } from ".";
 
@@ -31,14 +32,14 @@ function Podcasts() {
   if (data.length === 0) {
     return (
       <div className="flex justify-center">
-        <span className="text-gray-500">No Podcasts Found</span>
+        <span className="text-gray-500">{t("podcasts:noneFound")}</span>
       </div>
     );
   }
 
   return (
     <div>
-      <h1 className={`text-2xl`}>Podcasts</h1>
+      <h1 className={`text-2xl`}>{t("podcasts:podcasts")}</h1>
 
       <div>
         <PodcastList podcasts={data} />

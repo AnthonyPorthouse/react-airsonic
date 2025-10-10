@@ -6,5 +6,6 @@
   "stopTrack": "Stop Track",
   "enterFullscreen": "Enter Fullscreen",
   "exitFullscreen": "Exit Fullscreen",
-  "currentlyPlaying": "Currently Playing"
+  "currentlyPlaying": "Currently Playing",
+  "nothingPlaying": "Nothing Currently Playing"
 }

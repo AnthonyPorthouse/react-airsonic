@@ -1,4 +1,8 @@
 {
+  "podcast": "Podcast",
+  "podcasts": "Podcasts",
+  "noneFound": "No Podcasts Found",
+  "notFound": "Podcast {{id}} not found",
   "episodes": "Episodes",
   "downloadEpisode": "Download Episode"
 }

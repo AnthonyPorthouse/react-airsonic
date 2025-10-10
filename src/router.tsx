@@ -1,4 +1,5 @@
 import { createRouter } from "@tanstack/react-router";
+import { t } from "i18next";
 
 import { routeTree } from "./routeTree.gen";
 
@@ -13,14 +14,14 @@ export const router = createRouter({
   defaultErrorComponent: () => {
     return (
       <div>
-        <h2>Something Went Wrong</h2>
+        <h2>{t("errors:genericError")}</h2>
       </div>
     );
   },
   defaultNotFoundComponent: () => {
     return (
       <div>
-        <h2>Not Found</h2>
+        <h2>{t("errors:notFound")}</h2>
       </div>
     );
   },

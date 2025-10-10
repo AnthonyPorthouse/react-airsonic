@@ -27,7 +27,7 @@ function Nav() {
           href="#main"
           className="sr-only rounded-sm border bg-white px-4 py-2 text-xl shadow-sm focus:not-sr-only"
         >
-          Jump to Content
+          {t("common:skip-to-content")}
         </a>
       </div>
 

@@ -4,6 +4,7 @@ import TrackList from "@components/TrackList";
 import { useAuth } from "@hooks/useAuth";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createLazyFileRoute, isNotFound } from "@tanstack/react-router";
+import { t } from "i18next";
 
 import { PlaylistQueryOptions } from "./$playlistId";
 
@@ -15,7 +16,7 @@ export const Route = createLazyFileRoute(
   errorComponent: () => {
     return (
       <div>
-        <h2>Something Went Wrong</h2>
+        <h2>{t("errors:genericError")}</h2>
       </div>
     );
   },
@@ -25,7 +26,7 @@ export const Route = createLazyFileRoute(
 
     return (
       <div>
-        <h2>Playlist {playlistId} not found</h2>
+        <h2>{t("playlists:notFound", { id: playlistId })}</h2>
       </div>
     );
   },

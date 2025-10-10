@@ -1,8 +1,11 @@
 import albums from "@locales/en/albums.json";
 import artists from "@locales/en/artists.json";
+import auth from "@locales/en/auth.json";
 import common from "@locales/en/common.json";
+import errors from "@locales/en/errors.json";
 import media from "@locales/en/media.json";
 import nav from "@locales/en/nav.json";
+import playlists from "@locales/en/playlists.json";
 import podcasts from "@locales/en/podcasts.json";
 import search from "@locales/en/search.json";
 import settings from "@locales/en/settings.json";
@@ -21,6 +24,9 @@ export const resources = {
     podcasts,
     search,
     settings,
+    errors,
+    playlists,
+    auth,
   },
 };
 
@@ -37,6 +43,9 @@ i18n.use(initReactI18next).init({
     "podcasts",
     "search",
     "settings",
+    "errors",
+    "playlists",
+    "auth",
   ],
   defaultNS,
   resources,

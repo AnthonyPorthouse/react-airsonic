@@ -1,4 +1,6 @@
 import { useAuth } from "@hooks/useAuth.ts";
+import { t } from "i18next";
+import { ChevronRight } from "lucide-react";
 import { FormEvent, useState } from "react";
 
 function ServerStep({
@@ -18,20 +20,26 @@ function ServerStep({
         }}
       >
         <label className={`block w-full`}>
-          Server{" "}
+          {t("auth:server")}{" "}
           <input
             name="server"
             data-testid="server"
             className={`block w-full`}
             type="url"
             value={server}
+            pattern="https?://.*"
+            placeholder="https://example.com"
             autoComplete="url"
             onChange={(e) => setServer(e.target.value)}
+            required
           />
         </label>
 
-        <button data-testid="next" className={`block w-full`}>
-          Next
+        <button
+          data-testid="next"
+          className={`flex w-full items-center justify-center gap-2 rounded border bg-gradient-to-br from-amber-400 to-pink-600 px-4 py-2 text-lg text-white shadow-sm`}
+        >
+          {t("auth:next")} <ChevronRight />
         </button>
       </form>
     </div>
