@@ -158,7 +158,7 @@ function AuthFlow() {
 
   return (
     <div className={`flex h-auto flex-auto items-center`}>
-      <div className={`mx-auto w-1/3`}>
+      <div className={`mx-auto w-full p-4 md:w-1/2 lg:w-1/3`}>
         <header>
           <picture className="mx-auto block aspect-square h-64 md:h-full">
             <source srcSet={logoSvg} type="image/svg+xml" />

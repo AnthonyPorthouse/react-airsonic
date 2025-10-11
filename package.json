@@ -62,7 +62,7 @@
     "react-helmet-async": "^2.0.5",
     "react-i18next": "^16.0.0",
     "react-modal": "^3.16.3",
-    "react-tooltip": "^5.29.1",
+    "react-tooltip": "^5.30.0",
     "slugify": "^1.6.6",
     "temporal-polyfill": "^0.3.0",
     "zod": "^4.1.12"
@@ -108,7 +108,7 @@
     "husky": "^9.1.7",
     "jsdom": "^27.0.0",
     "knip": "^5.64.3",
-    "lint-staged": "^16.2.3",
+    "lint-staged": "^16.2.4",
     "msw": "^2.11.5",
     "msw-storybook-addon": "^2.0.6",
     "postcss": "^8.5.6",
