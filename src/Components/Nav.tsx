@@ -154,6 +154,7 @@ function Nav() {
                 <SearchBar onSubmit={toggleMenu} />
                 <Update />
                 <ShowSettings onClick={toggleMenu} />
+                <button className="h-6" is="google-cast-button"></button>
               </li>
             </menu>
           </div>

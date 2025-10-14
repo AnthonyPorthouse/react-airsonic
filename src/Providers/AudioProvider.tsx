@@ -5,6 +5,8 @@ import { useTrackList } from "@hooks/useTrackList.js";
 import { PropsWithChildren, useCallback, useEffect, useRef } from "react";
 
 import { AudioContext } from "../Contexts/AudioContext.js";
+import { useCast } from "@hooks/useCast.ts";
+import { getCoverArtUrl } from "@api/artwork.ts";
 
 interface AudioProviderProps {
   setCurrentDuration: (pos: number) => void;
@@ -22,6 +24,8 @@ export const AudioProvider = function AudioProvider({
 
   const audio = useRef(new Audio());
   const nextAudio = useRef(new Audio());
+
+  const { loaded, cast, chrome } = useCast();
 
   const { getCurrentTrack, getNextTrack, nextTrack } = useTrackList();
 
@@ -110,12 +114,38 @@ export const AudioProvider = function AudioProvider({
       return;
     }
 
+    let castSession
+    if (loaded && cast) {
+      castSession = cast.framework.CastContext.getInstance().getCurrentSession()
+    }
+
+    console.log(loaded, castSession)
+
+    if (castSession) {
+      if (audio.current.src !== currentTrackUrl) {
+        const mediaInfo = new chrome.cast.media.MediaInfo(currentTrackUrl, 'audio/mp3');
+        mediaInfo.metadata = new chrome.cast.media.MusicTrackMediaMetadata();
+        mediaInfo.metadata.title = nowPlaying.title;
+        mediaInfo.metadata.albumArtist = nowPlaying.artist;
+        mediaInfo.metadata.album = nowPlaying.album;
+        mediaInfo.metadata.trackNumber = nowPlaying.track;
+        mediaInfo.metadata.discNumber = nowPlaying.discNumber;
+        mediaInfo.metadata.images = [new chrome.cast.Image(getCoverArtUrl(nowPlaying.coverArt, auth.credentials))];
+        // mediaInfo.metadata.images = [new chrome.cast.Image(nowPlaying.coverArt)];
+        const request = new chrome.cast.media.LoadRequest(mediaInfo);
+        castSession.loadMedia(request);
+      }
+
+        return
+    }
+
+    // Not casting Behaviour
     if (audio.current.src !== currentTrackUrl) {
       audio.current.pause();
     }
 
     // If the next track is preloaded
-    if (nextAudio.current && nextAudio.current.src === currentTrackUrl) {
+    if (!castSession && nextAudio.current && nextAudio.current.src === currentTrackUrl) {
       audio.current = nextAudio.current;
       audio.current.addEventListener(
         "loadeddata",

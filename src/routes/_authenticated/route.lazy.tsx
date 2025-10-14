@@ -2,6 +2,7 @@ import { FullscreenProvider } from "@/Providers/FullscreenProvider";
 import MediaPlayer from "@components/MediaPlayer";
 import Nav from "@components/Nav";
 import Spinner from "@components/Spinner";
+import CastProvider from "@providers/CastProvider.tsx";
 import { Outlet, createLazyFileRoute } from "@tanstack/react-router";
 import { createPortal } from "react-dom";
 import { Tooltip } from "react-tooltip";
@@ -13,22 +14,24 @@ export const Route = createLazyFileRoute("/_authenticated")({
 
 function Authenticated() {
   return (
-    <FullscreenProvider>
-      <Nav />
+    <CastProvider>
+      <FullscreenProvider>
+        <Nav />
 
-      <div className={`grow overflow-y-auto`}>
-        <div className="max-h-full p-6">
-          <a id="main" />
-          <Outlet />
+        <div className={`grow overflow-y-auto`}>
+          <div className="max-h-full p-6">
+            <a id="main" />
+            <Outlet />
+          </div>
         </div>
-      </div>
 
-      <MediaPlayer />
+        <MediaPlayer />
 
-      {createPortal(
-        <Tooltip id="tooltip" style={{ zIndex: 100 }} />,
-        document.body,
-      )}
-    </FullscreenProvider>
+        {createPortal(
+          <Tooltip id="tooltip" style={{ zIndex: 100 }} />,
+          document.body,
+        )}
+      </FullscreenProvider>
+    </CastProvider>
   );
 }
