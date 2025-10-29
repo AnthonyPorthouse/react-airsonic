@@ -110,7 +110,7 @@ export default defineConfig({
         start_url: ".",
         display_override: ["window-controls-overlay", "standalone"],
         display: "standalone",
-        theme_color: "#000000",
+        theme_color: "#ffffff",
         background_color: "#000000",
         screenshots: [
           {
