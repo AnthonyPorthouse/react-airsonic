@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.3.0](https://github.com/AnthonyPorthouse/react-airsonic/compare/v1.2.0...v1.3.0) (2025-10-29)
+
+
+### Features
+
+* add lazy-loaded login route with AuthFlow component ([e8f81ec](https://github.com/AnthonyPorthouse/react-airsonic/commit/e8f81ecf308a3871d0eba67f31d2fe1464296ec2))
+* enhance authentication flow ([3f1a326](https://github.com/AnthonyPorthouse/react-airsonic/commit/3f1a326a0fb2c804508f0ac6a23ade60a3aa7ae6))
+* implement authentication flow and update dependencies ([1f6d27c](https://github.com/AnthonyPorthouse/react-airsonic/commit/1f6d27c5ca3a7e7d4ef31a34d4a2aaa7d0d0cba8))
+* implement authentication flow and update dependencies ([535f65e](https://github.com/AnthonyPorthouse/react-airsonic/commit/535f65e61e6705f91addeea455922ada1658d049))
+* improve error handling and localization ([3f1a326](https://github.com/AnthonyPorthouse/react-airsonic/commit/3f1a326a0fb2c804508f0ac6a23ade60a3aa7ae6))
+
+
+### Bug Fixes
+
+* update react-tooltip and lint-staged versions; adjust AuthFlow component layout ([2160ee4](https://github.com/AnthonyPorthouse/react-airsonic/commit/2160ee417f7f36ff9eb9164f6df6c61c4b05200a))
+
 ## [1.2.0](https://github.com/AnthonyPorthouse/react-airsonic/compare/v1.1.0...v1.2.0) (2025-09-17)
 
 
